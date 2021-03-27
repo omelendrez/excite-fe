@@ -30,7 +30,9 @@ const Transportes = () => {
 
   return (
     <Layout>
+
       <Header title="Transportes" />
+
       <Table
         loading={loading}
         columns={columns}
@@ -42,6 +44,7 @@ const Transportes = () => {
         sticky={true}
         tableLayout="fixed"
       />
+
     </Layout>
   );
 };
