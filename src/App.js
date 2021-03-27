@@ -116,7 +116,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/transportes" component={Transportes} />
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Excite Fragancias ©2020</Footer>
+          <Footer style={{ textAlign: 'center' }}>Excite Fragancias ©2021</Footer>
         </Layout>
       </Layout>
     </Router>
