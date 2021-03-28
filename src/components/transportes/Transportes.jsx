@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Table } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header';
-import { getRecords } from '../../services';
+import { getTransportes } from '../../redux/actions/transportes';
 const { columns } = require(`./columns`);
 
 const rowSelection = {
@@ -11,27 +12,19 @@ const rowSelection = {
 };
 
 const Transportes = () => {
-
-  const [records, setRecords] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const transportes = useSelector(state => state.transportes);
+  const { loading, records, error } = transportes;
 
   useEffect(() => {
-    setLoading(true);
-    getRecords('transportes')
-      .then(data => {
-        setRecords(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.log(err);
-        setLoading(false);
-      });
-  }, []);
+    dispatch(getTransportes());
+  }, [dispatch]);
 
   return (
     <Layout>
 
       <Header title="Transportes" />
+      {error && (<div>Error</div>)}
 
       <Table
         loading={loading}
