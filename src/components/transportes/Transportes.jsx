@@ -20,23 +20,25 @@ const Transportes = () => {
     dispatch(getTransportes());
   }, [dispatch]);
 
+  const tableProps = {
+    loading,
+    columns,
+    dataSource: records,
+    rowSelection: { ...rowSelection },
+    rowKey: 'ID',
+    pagination: { position: ['bottomCenter'] },
+    size: 'small',
+    sticky: true,
+    tableLayout: 'fixed'
+  };
+
   return (
     <Layout>
 
       <Header title="Transportes" />
       {error && (<div>Error</div>)}
 
-      <Table
-        loading={loading}
-        columns={columns}
-        dataSource={records}
-        rowSelection={{ ...rowSelection }}
-        rowKey="ID"
-        pagination={{ position: ['bottomCenter'] }}
-        size="small"
-        sticky={true}
-        tableLayout="fixed"
-      />
+      <Table {...tableProps} />
 
     </Layout>
   );
