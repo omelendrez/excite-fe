@@ -18,12 +18,10 @@ export const columns = [
     title: "Domicilio",
     dataIndex: "TRADOM",
     key: "TRADOM",
-    sorter: (a, b) => sortColumn(a, b, "TRADOM"),
   },
   {
     title: "Teléfono",
     dataIndex: "TRATEL",
     key: "TRATEL",
-    sorter: (a, b) => sortColumn(a, b, "TRATEL"),
   },
 ];
