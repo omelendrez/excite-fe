@@ -4,12 +4,17 @@ import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
-const store = compose(
-  applyMiddleware(sagaMiddleware),
-  process.NODE_ENV !== "production" &&
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
+
+let store;
+
+if (process.NODE_ENV !== "production" && window.__REDUX_DEVTOOLS_EXTENSION__) {
+  store = compose(
+    applyMiddleware(sagaMiddleware),
     window.__REDUX_DEVTOOLS_EXTENSION__()
-)(createStore)(rootReducer);
+  )(createStore)(rootReducer);
+} else {
+  store = compose(applyMiddleware(sagaMiddleware))(createStore)(rootReducer);
+}
 
 sagaMiddleware.run(rootSaga);
 
