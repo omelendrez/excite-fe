@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { Layout, Table } from 'antd';
+import { Layout } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header';
+import Table from '../common/Table';
 import { getTransportes } from '../../redux/actions/transportes';
 const { columns } = require(`./columns`);
 
@@ -26,10 +27,6 @@ const Transportes = () => {
     dataSource: records,
     rowSelection: { ...rowSelection },
     rowKey: 'ID',
-    pagination: { position: ['bottomCenter'] },
-    size: 'small',
-    sticky: true,
-    tableLayout: 'fixed'
   };
 
   return (
