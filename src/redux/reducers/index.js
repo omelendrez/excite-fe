@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import transportesReducer from './transportes';
+import { combineReducers } from "redux";
+import transportesReducer from "./transportes";
 
 const rootReducer = combineReducers({
-  transportes: transportesReducer
+  transportes: transportesReducer,
 });
 
 export default rootReducer;

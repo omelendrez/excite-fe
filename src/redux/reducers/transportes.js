@@ -1,9 +1,9 @@
-import * as types from '../types';
+import * as types from "../types";
 
 const initialState = {
   records: [],
   loading: false,
-  error: null
+  error: null,
 };
 
 const transportesReducer = (state = initialState, action) => {
@@ -12,20 +12,20 @@ const transportesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: null
+        error: null,
       };
     case types.GET_TRANSPORTES_SUCCESS:
       return {
         ...state,
         loading: false,
         records: action.payload,
-        error: null
+        error: null,
       };
     case types.GET_TRANSPORTES_FAILED:
       return {
         ...state,
         loading: false,
-        error: action.payload
+        error: action.payload,
       };
     default:
       return state;

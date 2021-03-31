@@ -1,6 +1,6 @@
-import React from 'react';
-import { Layout } from 'antd';
-import './home.css';
+import React from "react";
+import { Layout } from "antd";
+import "./home.css";
 
 const Home = () => {
   return (

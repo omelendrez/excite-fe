@@ -1,7 +1,7 @@
 import api from "./api";
 import { handleError } from "../utils/helpers";
 
-export const getRecords = endpoint => {
+export const getRecords = (endpoint) => {
   return new Promise((resolve, reject) => {
     api
       .get(endpoint)
