@@ -1,12 +1,11 @@
 import api from "./api";
-import { handleError } from "../utils/helpers";
 
 export const getRecords = (endpoint) => {
   return new Promise((resolve, reject) => {
     api
       .get(endpoint)
       .then((response) => resolve(response.data))
-      .catch((error) => reject(handleError(error)));
+      .catch((error) => reject(error));
   });
 };
 
@@ -15,7 +14,7 @@ export const getRecordById = (endpoint, id) => {
     api
       .get(`${endpoint}/${id}`)
       .then((response) => resolve(response.data))
-      .catch((error) => reject(handleError(error)));
+      .catch((error) => reject(error));
   });
 };
 
@@ -24,7 +23,7 @@ export const addRecord = (endpoint, record) => {
     api
       .post(endpoint, record)
       .then((response) => resolve(response.data))
-      .catch((error) => reject(handleError(error)));
+      .catch((error) => reject(error));
   });
 };
 
@@ -33,7 +32,7 @@ export const updateRecord = (endpoint, record) => {
     api
       .put(`${endpoint}/${record.ID}`, record)
       .then((response) => resolve(response.data))
-      .catch((error) => reject(handleError(error)));
+      .catch((error) => reject(error));
   });
 };
 
@@ -42,6 +41,6 @@ export const deleteRecord = (endpoint, id) => {
     api
       .delete(`${endpoint}/${id}`)
       .then((response) => resolve(response.data))
-      .catch((error) => reject(handleError(error)));
+      .catch((error) => reject(error));
   });
 };
