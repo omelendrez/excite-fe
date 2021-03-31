@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import "antd/dist/antd.css";
 import { Layout, Menu, ConfigProvider } from "antd";
 import es_ES from "antd/lib/locale/es_ES";
-import { PieChartOutlined, TeamOutlined } from "@ant-design/icons";
+import {
+  SettingOutlined,
+  TeamOutlined,
+  HomeOutlined,
+  CarOutlined,
+  IdcardOutlined,
+  ShoppingOutlined,
+  FileTextOutlined,
+} from "@ant-design/icons";
 import "./App.css";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -28,22 +36,18 @@ function App() {
           <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
-              <Menu.Item key="0" icon={<PieChartOutlined />}>
+              <Menu.Item key="0" icon={<HomeOutlined />}>
                 Home
                 <Link to="/" />
               </Menu.Item>
-              <SubMenu
-                key="sub1"
-                icon={<PieChartOutlined />}
-                title="Transportes"
-              >
-                <Menu.Item key="1" icon={<PieChartOutlined />}>
+              <SubMenu key="sub1" icon={<CarOutlined />} title="Transportes">
+                <Menu.Item key="1">
                   ABM Transportes
                   <Link to="/transportes" />
                 </Menu.Item>
               </SubMenu>
 
-              <SubMenu key="sub2" icon={<TeamOutlined />} title="Clientes">
+              <SubMenu key="sub2" icon={<IdcardOutlined />} title="Clientes">
                 <Menu.Item key="3">
                   ABM Clientes
                   <Link to="/clientes" />
@@ -62,34 +66,30 @@ function App() {
                 </Menu.Item>
               </SubMenu>
 
-              <SubMenu
-                key="sub3"
-                icon={<PieChartOutlined />}
-                title="Vendedores"
-              >
-                <Menu.Item key="7" icon={<PieChartOutlined />}>
+              <SubMenu key="sub3" icon={<TeamOutlined />} title="Vendedores">
+                <Menu.Item key="7">
                   ABM Vendedores
                   <Link to="/vendedores" />
                 </Menu.Item>
               </SubMenu>
 
-              <SubMenu key="sub4" icon={<PieChartOutlined />} title="Productos">
-                <Menu.Item key="8" icon={<PieChartOutlined />}>
+              <SubMenu key="sub4" icon={<ShoppingOutlined />} title="Productos">
+                <Menu.Item key="8">
                   ABM Tipos
                   <Link to="/tipos" />
                 </Menu.Item>
 
-                <Menu.Item key="9" icon={<PieChartOutlined />}>
+                <Menu.Item key="9">
                   ABM Subtipos
                   <Link to="/subtipos" />
                 </Menu.Item>
 
-                <Menu.Item key="10" icon={<PieChartOutlined />}>
+                <Menu.Item key="10">
                   ABM Productos
                   <Link to="/productos" />
                 </Menu.Item>
 
-                <Menu.Item key="11" icon={<PieChartOutlined />}>
+                <Menu.Item key="11">
                   Ajustes de Stock
                   <Link to="/ajustes" />
                 </Menu.Item>
@@ -97,15 +97,15 @@ function App() {
 
               <SubMenu
                 key="sub6"
-                icon={<PieChartOutlined />}
+                icon={<FileTextOutlined />}
                 title="Documentos"
               >
-                <Menu.Item key="13" icon={<PieChartOutlined />}>
+                <Menu.Item key="13">
                   Presupuestos y Facturas
                   <Link to="/presupuestos-facturas" />
                 </Menu.Item>
 
-                <Menu.Item key="14" icon={<PieChartOutlined />}>
+                <Menu.Item key="14">
                   Conceptos
                   <Link to="/conceptos" />
                 </Menu.Item>
@@ -113,10 +113,10 @@ function App() {
 
               <SubMenu
                 key="sub7"
-                icon={<PieChartOutlined />}
+                icon={<SettingOutlined />}
                 title="Mantenimiento"
               >
-                <Menu.Item key="15" icon={<PieChartOutlined />}>
+                <Menu.Item key="15">
                   Últimos números
                   <Link to="/ultimos-numeros" />
                 </Menu.Item>
