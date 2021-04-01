@@ -9,7 +9,6 @@ const rootReducer = combineReducers({
   transportes: transportesReducer,
   tipos: tiposReducer,
   subtipos: subtiposReducer,
-  transportes: transportesReducer,
   vendedores: vendedoresReducer,
   porciva: porcivaReducer,
 });
