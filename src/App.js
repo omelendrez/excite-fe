@@ -17,6 +17,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Home from "./components/Home";
 import Transportes from "./components/transportes/Transportes";
+import Tipos from "./components/tipos/Tipos";
+import Subtipos from "./components/subtipos/Subtipos";
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -127,6 +129,8 @@ function App() {
             <Content style={{ margin: "0 16px" }}>
               <Route exact path="/" component={Home} />
               <Route exact path="/transportes" component={Transportes} />
+              <Route exact path="/tipos" component={Tipos} />
+              <Route exact path="/subtipos" component={Subtipos} />
             </Content>
             <Footer style={{ textAlign: "center" }}>
               Excite Fragancias ©2021
