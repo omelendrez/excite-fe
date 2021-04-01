@@ -17,6 +17,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Home from "./components/Home";
 import Transportes from "./components/transportes/Transportes";
+import Iva from "./components/iva/Iva";
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -127,6 +128,7 @@ function App() {
             <Content style={{ margin: "0 16px" }}>
               <Route exact path="/" component={Home} />
               <Route exact path="/transportes" component={Transportes} />
+              <Route exact path="/iva" component={Iva} />
             </Content>
             <Footer style={{ textAlign: "center" }}>
               Excite Fragancias ©2021
