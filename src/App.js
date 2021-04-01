@@ -19,6 +19,8 @@ import Home from "./components/Home";
 import Transportes from "./components/transportes/Transportes";
 import Tipos from "./components/tipos/Tipos";
 import Subtipos from "./components/subtipos/Subtipos";
+import Vendedores from "./components/vendedores/Vendedores";
+import Porciva from "./components/porciva/Porciva";
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -131,6 +133,8 @@ function App() {
               <Route exact path="/transportes" component={Transportes} />
               <Route exact path="/tipos" component={Tipos} />
               <Route exact path="/subtipos" component={Subtipos} />
+              <Route exact path="/vendedores" component={Vendedores} />
+              <Route exact path="/porciva" component={Porciva} />
             </Content>
             <Footer style={{ textAlign: "center" }}>
               Excite Fragancias ©2021
