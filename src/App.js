@@ -19,6 +19,8 @@ import Home from "./components/Home";
 import Transportes from "./components/transportes/Transportes";
 import Iva from "./components/iva/Iva";
 import Conceptos from "./components/conceptos/Conceptos";
+import Clientes from "./components/clientes/Clientes";
+import Ajustes from "./components/ajustes/Ajustes";
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -131,6 +133,8 @@ function App() {
               <Route exact path="/transportes" component={Transportes} />
               <Route exact path="/iva" component={Iva} />
               <Route exact path="/conceptos" component={Conceptos} />
+              <Route exact path="/clientes" component={Clientes} />
+              <Route exact path="/ajustes" component={Ajustes} />
             </Content>
             <Footer style={{ textAlign: "center" }}>
               Excite Fragancias ©2021
