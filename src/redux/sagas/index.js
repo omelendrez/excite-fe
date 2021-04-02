@@ -8,6 +8,8 @@ import tiposSaga from "./tiposSaga";
 import subtiposSaga from "./subtiposSaga";
 import vendedoresSaga from "./vendedoresSaga";
 import porcivaSaga from "./porcivaSaga";
+import pagosSaga from "./pagosSaga";
+import numerosSaga from "./numerosSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -19,6 +21,7 @@ export default function* rootSaga() {
     tiposSaga(), 
     subtiposSaga(), 
     vendedoresSaga(), 
-    porcivaSaga()
+    porcivaSaga(),
+    pagosSaga(),
+    numerosSaga(), 
   ]);
-}
