@@ -17,6 +17,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Home from "./components/Home";
 import Transportes from "./components/transportes/Transportes";
+import Iva from "./components/iva/Iva";
+import Conceptos from "./components/conceptos/Conceptos";
+import Clientes from "./components/clientes/Clientes";
+import Ajustes from "./components/ajustes/Ajustes";
 import Tipos from "./components/tipos/Tipos";
 import Subtipos from "./components/subtipos/Subtipos";
 import Vendedores from "./components/vendedores/Vendedores";
@@ -133,6 +137,10 @@ function App() {
             <Content style={{ margin: "0 16px" }}>
               <Route exact path="/" component={Home} />
               <Route exact path="/transportes" component={Transportes} />
+              <Route exact path="/iva" component={Iva} />
+              <Route exact path="/conceptos" component={Conceptos} />
+              <Route exact path="/clientes" component={Clientes} />
+              <Route exact path="/ajustes" component={Ajustes} />
               <Route exact path="/tipos" component={Tipos} />
               <Route exact path="/subtipos" component={Subtipos} />
               <Route exact path="/vendedores" component={Vendedores} />
