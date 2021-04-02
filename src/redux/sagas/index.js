@@ -18,10 +18,11 @@ export default function* rootSaga() {
     conceptosSaga(),
     clientesSaga(),
     ajustesSaga(),
-    tiposSaga(), 
-    subtiposSaga(), 
-    vendedoresSaga(), 
+    tiposSaga(),
+    subtiposSaga(),
+    vendedoresSaga(),
     porcivaSaga(),
     pagosSaga(),
-    numerosSaga(), 
+    numerosSaga(),
   ]);
+}
