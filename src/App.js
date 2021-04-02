@@ -27,6 +27,7 @@ import Vendedores from "./components/vendedores/Vendedores";
 import Porciva from "./components/porciva/Porciva";
 import Pagos from "./components/pagos/Pagos";
 import Numeros from "./components/numeros/Numeros";
+import Remitos from "./components/remitos/Remitos";
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -112,7 +113,7 @@ function App() {
               >
                 <Menu.Item key="13">
                   Presupuestos y Facturas
-                  <Link to="/presupuestos-facturas" />
+                  <Link to="/remitos" />
                 </Menu.Item>
 
                 <Menu.Item key="14">
@@ -147,6 +148,7 @@ function App() {
               <Route exact path="/porciva" component={Porciva} />
               <Route exact path="/pagos" component={Pagos} />
               <Route exact path="/ultimos-numeros" component={Numeros} />
+              <Route exact path="/remitos" component={Remitos} />
             </Content>
             <Footer style={{ textAlign: "center" }}>
               Excite Fragancias ©2021
