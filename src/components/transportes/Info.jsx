@@ -1,8 +1,15 @@
 import React from "react";
-import { Descriptions, Button, Space } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Descriptions, Space } from "antd";
+import EditButton from "../common/EditButton";
+import DeleteButton from "../common/DeleteButton";
 
 const Info = (props) => {
+  const handleEdit = () => {
+    console.log(props.ID);
+  };
+  const handleDelete = () => {
+    console.log(props.ID);
+  };
   return (
     <>
       <Descriptions title={props.TRANOM} layout="vertical" bordered>
@@ -14,10 +21,8 @@ const Info = (props) => {
       </Descriptions>
       <br />
       <Space>
-        <Button icon={<EditOutlined />}>Modificar</Button>
-        <Button icon={<DeleteOutlined />} danger>
-          Eliminar
-        </Button>
+        <EditButton handleEdit={handleEdit} />
+        <DeleteButton handleDelete={handleDelete} />
       </Space>
     </>
   );
