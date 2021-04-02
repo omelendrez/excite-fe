@@ -1,4 +1,4 @@
-import { sortColumn } from "../../utils/helpers";
+import { sortColumn, formatDate, formatNumber } from "../../utils/helpers";
 
 export const columns = [
   {
@@ -9,6 +9,7 @@ export const columns = [
   {
     title: "Fecha",
     dataIndex: "PAGFEC",
+    render: (text) => formatDate(text),
   },
   {
     title: "Código",
@@ -23,5 +24,7 @@ export const columns = [
   {
     title: "Total",
     dataIndex: "TOTAL",
+    render: (text) => formatNumber(text),
+    align: "right",
   },
 ];
