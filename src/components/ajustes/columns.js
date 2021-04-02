@@ -2,11 +2,6 @@ import { sortColumn, formatDate } from "../../utils/helpers";
 
 export const columns = [
   {
-    dataIndex: "AJUNUM",
-    title: "Número",
-    sorter: (a, b) => sortColumn(a, b, "AJUNUM"),
-  },
-  {
     dataIndex: "AJUFEC",
     title: "Fecha",
     render: (text) => formatDate(text),

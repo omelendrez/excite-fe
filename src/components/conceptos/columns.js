@@ -1,10 +1,6 @@
-import { formatNumber, formatDate } from "../../utils/helpers";
+import { formatAmount, formatDate } from "../../utils/helpers";
 
 export const columns = [
-  {
-    dataIndex: "CONNUM",
-    title: "Número",
-  },
   {
     dataIndex: "CONFEC",
     title: "Fecha",
@@ -23,7 +19,7 @@ export const columns = [
     key: "balance",
     align: "right",
     render: (text, record) => (
-      <div>{formatNumber(record.CONCANHAB - record.CONCANDEB)}</div>
+      <div>{formatAmount(record.CONCANHAB - record.CONCANDEB)}</div>
     ),
   },
 ];
