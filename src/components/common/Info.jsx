@@ -17,7 +17,7 @@ const Info = (props) => {
           .filter((field) => field.title)
           .map((field) => (
             <Descriptions.Item label={field.title}>
-              {field.value}
+              <strong>{field.value}</strong>
             </Descriptions.Item>
           ))}
       </Descriptions>
