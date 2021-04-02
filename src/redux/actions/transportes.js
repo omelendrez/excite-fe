@@ -5,3 +5,10 @@ export const getTransportes = () => {
     type: types.GET_TRANSPORTES_REQUEST,
   };
 };
+
+export const getTransporte = (id) => {
+  return {
+    type: types.GET_TRANSPORTE_REQUEST,
+    id,
+  };
+};

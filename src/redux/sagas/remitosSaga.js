@@ -1,4 +1,4 @@
-import { put, takeLatest, call } from "redux-saga/effects";
+import { put, takeEvery, call } from "redux-saga/effects";
 import * as types from "../types";
 import { getRecords } from "../../services";
 
@@ -26,7 +26,7 @@ function* fetchRemitos() {
 }
 
 function* remitosSaga() {
-  yield takeLatest(types.GET_REMITOS_REQUEST, fetchRemitos);
+  yield takeEvery(types.GET_REMITOS_REQUEST, fetchRemitos);
 }
 
 export default remitosSaga;

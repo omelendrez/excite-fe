@@ -1,4 +1,4 @@
-import { put, takeLatest, call } from "redux-saga/effects";
+import { put, takeEvery, call } from "redux-saga/effects";
 import * as types from "../types";
 import { getRecords } from "../../services";
 
@@ -26,7 +26,7 @@ function* fetchTipos() {
 }
 
 function* tiposSaga() {
-  yield takeLatest(types.GET_TIPOS_REQUEST, fetchTipos);
+  yield takeEvery(types.GET_TIPOS_REQUEST, fetchTipos);
 }
 
 export default tiposSaga;

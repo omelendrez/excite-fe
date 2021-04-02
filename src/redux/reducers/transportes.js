@@ -1,6 +1,7 @@
 import * as types from "../types";
 
 const initialState = {
+  record: {},
   records: [],
   loading: false,
   error: null,
@@ -22,6 +23,25 @@ const transportesReducer = (state = initialState, action) => {
         error: null,
       };
     case types.GET_TRANSPORTES_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case types.GET_TRANSPORTE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case types.GET_TRANSPORTE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        record: action.payload,
+        error: null,
+      };
+    case types.GET_TRANSPORTE_FAILED:
       return {
         ...state,
         loading: false,
