@@ -4,7 +4,6 @@ export const columns = [
   {
     dataIndex: "AJUNUM",
     title: "Número",
-    disablePadding: true,
     sorter: (a, b) => sortColumn(a, b, "AJUNUM"),
   },
   {
@@ -23,6 +22,5 @@ export const columns = [
   {
     dataIndex: "AJUCAN",
     title: "Ajuste",
-    align: "right",
   },
 ];

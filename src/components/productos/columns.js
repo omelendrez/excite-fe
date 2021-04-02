@@ -40,7 +40,5 @@ export const columns = [
   {
     dataIndex: "PRODSTO",
     title: "Stock",
-
-    align: "right",
   },
 ];

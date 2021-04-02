@@ -4,7 +4,6 @@ export const columns = [
   {
     dataIndex: "CLICOD",
     title: "Código",
-    align: "center",
     sorter: (a, b) => sortColumn(a, b, "CLICOD"),
   },
   {
