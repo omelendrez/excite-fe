@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
-import { getTransporte } from "../../redux/actions/transportes";
+import { getTransporte } from "../../redux/actions";
 import Info from "../common/Info";
 import fields from "./fields";
 

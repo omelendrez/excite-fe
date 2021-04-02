@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getConceptos } from "../../redux/actions/conceptos";
+import { getConceptos } from "../../redux/actions";
 const { columns } = require(`./columns`);
 
 const Conceptos = () => {

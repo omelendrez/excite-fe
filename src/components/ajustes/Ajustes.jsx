@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getAjustes } from "../../redux/actions/ajustes";
+import { getAjustes } from "../../redux/actions";
 const { columns } = require(`./columns`);
 
 const Ajustes = () => {
