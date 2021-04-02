@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getSubtipos } from "../../redux/actions/subtipos";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Subtipos = () => {
   const dispatch = useDispatch();
   const subtipos = useSelector((state) => state.subtipos);
@@ -30,7 +20,6 @@ const Subtipos = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

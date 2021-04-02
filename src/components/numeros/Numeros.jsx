@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getNumeros } from "../../redux/actions/numeros";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Numeros = () => {
   const dispatch = useDispatch();
   const numeros = useSelector((state) => state.numeros);
@@ -30,7 +20,6 @@ const Numeros = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

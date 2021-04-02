@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getConceptos } from "../../redux/actions/conceptos";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Conceptos = () => {
   const dispatch = useDispatch();
   const conceptos = useSelector((state) => state.conceptos);
@@ -30,7 +20,6 @@ const Conceptos = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getTransportes } from "../../redux/actions/transportes";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Transportes = () => {
   const dispatch = useDispatch();
   const transportes = useSelector((state) => state.transportes);
@@ -30,7 +20,6 @@ const Transportes = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

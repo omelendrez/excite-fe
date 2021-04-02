@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getTipos } from "../../redux/actions/tipos";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Tipos = () => {
   const dispatch = useDispatch();
   const tipos = useSelector((state) => state.tipos);
@@ -30,7 +20,6 @@ const Tipos = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

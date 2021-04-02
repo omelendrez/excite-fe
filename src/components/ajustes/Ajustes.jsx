@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getAjustes } from "../../redux/actions/ajustes";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Ajustes = () => {
   const dispatch = useDispatch();
   const ajustes = useSelector((state) => state.ajustes);
@@ -30,7 +20,6 @@ const Ajustes = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

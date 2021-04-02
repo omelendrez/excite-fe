@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getPagos } from "../../redux/actions/pagos";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Pagos = () => {
   const dispatch = useDispatch();
   const pagos = useSelector((state) => state.pagos);
@@ -30,7 +20,6 @@ const Pagos = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

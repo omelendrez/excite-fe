@@ -19,20 +19,4 @@ export const columns = [
     dataIndex: "CLILOC",
     title: "Localidad",
   },
-  {
-    dataIndex: "CLICP",
-    title: "C.P.",
-  },
-  {
-    dataIndex: "CLITEL",
-    title: "Teléfono",
-  },
-  {
-    dataIndex: "CLICEL",
-    title: "Celular",
-  },
-  {
-    dataIndex: "CLICUIT",
-    title: "CUIT",
-  },
 ];

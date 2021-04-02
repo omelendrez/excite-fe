@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getClientes } from "../../redux/actions/clientes";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Clientes = () => {
   const dispatch = useDispatch();
   const clientes = useSelector((state) => state.clientes);
@@ -30,7 +20,6 @@ const Clientes = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 
