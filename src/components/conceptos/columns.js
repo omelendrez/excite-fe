@@ -2,10 +2,6 @@ import { formatAmount, formatDate } from "../../utils/helpers";
 
 export const columns = [
   {
-    dataIndex: "CONNUM",
-    title: "Número",
-  },
-  {
     dataIndex: "CONFEC",
     title: "Fecha",
     render: (text) => formatDate(text),
