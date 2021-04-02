@@ -10,6 +10,7 @@ import vendedoresReducer from "./vendedores";
 import porcivaReducer from "./porciva";
 import pagosReducer from "./pagos";
 import numerosReducer from "./numeros";
+import remitosReducer from "./remitos";
 
 const rootReducer = combineReducers({
   transportes: transportesReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   vendedores: vendedoresReducer,
   porciva: porcivaReducer,
   pagos: pagosReducer,
-  numeros: numerosReducer
+  numeros: numerosReducer,
+  remitos: remitosReducer,
 });
 
 export default rootReducer;
