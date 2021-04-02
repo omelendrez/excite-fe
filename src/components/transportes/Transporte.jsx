@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
 import { getTransporte } from "../../redux/actions/transportes";
-import Descriptions from "./Descriptions";
+import Info from "./Info";
 
 const Transporte = (props) => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Transporte = (props) => {
         loading={loading}
       />
       {error && <Alert message="Error" description={error} type="error" />}
-      <Descriptions {...record} />
+      <Info {...record} />
     </Layout>
   );
 };
