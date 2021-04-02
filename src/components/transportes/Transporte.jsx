@@ -16,17 +16,15 @@ const Transporte = (props) => {
     dispatch(getTransporte(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
-  const info = fields.map((field) => {
-    return {
-      title: field.title,
-      value: record[field.name],
-    };
-  });
+  const info = fields.map((field) => ({
+    title: field.title,
+    value: record[field.name],
+  }));
 
   return (
     <Layout>
       <Header
-        title={`Transporte`}
+        title={"Transporte"}
         onBack={props.history.goBack}
         loading={loading}
       />
