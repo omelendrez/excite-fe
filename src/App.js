@@ -16,19 +16,33 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Home from "./components/Home";
+
 import Transportes from "./components/transportes/Transportes";
-import Iva from "./components/iva/Iva";
-import Conceptos from "./components/conceptos/Conceptos";
+import Transporte from "./components/transportes/Transporte";
+
 import Clientes from "./components/clientes/Clientes";
-import Ajustes from "./components/ajustes/Ajustes";
-import Tipos from "./components/tipos/Tipos";
-import Subtipos from "./components/subtipos/Subtipos";
-import Vendedores from "./components/vendedores/Vendedores";
+
+import Iva from "./components/iva/Iva";
+
 import Porciva from "./components/porciva/Porciva";
+
 import Pagos from "./components/pagos/Pagos";
-import Numeros from "./components/numeros/Numeros";
-import Remitos from "./components/remitos/Remitos";
+
+import Vendedores from "./components/vendedores/Vendedores";
+
+import Tipos from "./components/tipos/Tipos";
+
+import Subtipos from "./components/subtipos/Subtipos";
+
 import Productos from "./components/productos/Productos";
+
+import Ajustes from "./components/ajustes/Ajustes";
+
+import Remitos from "./components/remitos/Remitos";
+
+import Conceptos from "./components/conceptos/Conceptos";
+
+import Numeros from "./components/numeros/Numeros";
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -137,20 +151,64 @@ function App() {
           </Sider>
           <Layout>
             <Content style={{ margin: "0 16px" }}>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/transportes" component={Transportes} />
-              <Route exact path="/iva" component={Iva} />
-              <Route exact path="/conceptos" component={Conceptos} />
-              <Route exact path="/clientes" component={Clientes} />
-              <Route exact path="/ajustes" component={Ajustes} />
-              <Route exact path="/tipos" component={Tipos} />
-              <Route exact path="/subtipos" component={Subtipos} />
-              <Route exact path="/vendedores" component={Vendedores} />
-              <Route exact path="/porciva" component={Porciva} />
-              <Route exact path="/pagos" component={Pagos} />
-              <Route exact path="/ultimos-numeros" component={Numeros} />
-              <Route exact path="/remitos" component={Remitos} />
-              <Route exact path="/productos" component={Productos} />
+              <Route exact path="/">
+                <Home />
+              </Route>
+
+              <Route path="/transportes">
+                <Transportes />
+              </Route>
+
+              <Route path="/transporte/:id">
+                <Transporte />
+              </Route>
+
+              <Route path="/clientes">
+                <Clientes />
+              </Route>
+
+              <Route path="/iva">
+                <Iva />
+              </Route>
+
+              <Route path="/porciva">
+                <Porciva />
+              </Route>
+              <Route path="/pagos">
+                <Pagos />
+              </Route>
+
+              <Route path="/vendedores">
+                <Vendedores />
+              </Route>
+
+              <Route path="/tipos">
+                <Tipos />
+              </Route>
+
+              <Route path="/subtipos">
+                <Subtipos />
+              </Route>
+
+              <Route path="/productos">
+                <Productos />
+              </Route>
+
+              <Route path="/ajustes">
+                <Ajustes />
+              </Route>
+
+              <Route path="/conceptos">
+                <Conceptos />
+              </Route>
+
+              <Route path="/remitos">
+                <Remitos />
+              </Route>
+
+              <Route path="/ultimos-numeros">
+                <Numeros />
+              </Route>
             </Content>
             <Footer style={{ textAlign: "center" }}>
               Excite Fragancias ©2021
