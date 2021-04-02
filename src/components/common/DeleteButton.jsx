@@ -5,7 +5,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 const DeleteButton = (props) => {
   return (
     <Popconfirm
-      title="Está seguro que desear eliminar este registro"
+      title="Está seguro que desear eliminar este registro?"
       okText="Si"
       cancelText="No"
       onConfirm={props.handleDelete}
