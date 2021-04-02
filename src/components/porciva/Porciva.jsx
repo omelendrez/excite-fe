@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getPorciva } from "../../redux/actions/porciva";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Porciva = () => {
   const dispatch = useDispatch();
   const porciva = useSelector((state) => state.porciva);
@@ -30,7 +20,6 @@ const Porciva = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

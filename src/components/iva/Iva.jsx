@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getIva } from "../../redux/actions/iva";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Iva = () => {
   const dispatch = useDispatch();
   const iva = useSelector((state) => state.iva);
@@ -30,7 +20,6 @@ const Iva = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

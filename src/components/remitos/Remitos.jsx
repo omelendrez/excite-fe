@@ -7,16 +7,6 @@ import Alert from "../common/Alert";
 import { getRemitos } from "../../redux/actions/remitos";
 const { columns } = require(`./columns`);
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const Remitos = () => {
   const dispatch = useDispatch();
   const remitos = useSelector((state) => state.remitos);
@@ -30,7 +20,6 @@ const Remitos = () => {
     loading,
     columns,
     dataSource: records,
-    rowSelection: { ...rowSelection },
     rowKey: "ID",
   };
 

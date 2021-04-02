@@ -14,8 +14,4 @@ export const columns = [
     title: "Valor",
     dataIndex: "NUMVAL",
   },
-  {
-    title: "Pv",
-    dataIndex: "NUMPV",
-  },
 ];
