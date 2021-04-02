@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getIva } from "../../redux/actions/iva";
+import { getIva } from "../../redux/actions";
 const { columns } = require(`./columns`);
 
 const Iva = () => {
