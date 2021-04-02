@@ -1,4 +1,4 @@
-import { put, takeLatest, call } from "redux-saga/effects";
+import { put, takeEvery, call } from "redux-saga/effects";
 import * as types from "../types";
 import { getRecords } from "../../services";
 
@@ -26,7 +26,7 @@ function* fetchPorciva() {
 }
 
 function* porcivaSaga() {
-  yield takeLatest(types.GET_PORCIVA_REQUEST, fetchPorciva);
+  yield takeEvery(types.GET_PORCIVA_REQUEST, fetchPorciva);
 }
 
 export default porcivaSaga;

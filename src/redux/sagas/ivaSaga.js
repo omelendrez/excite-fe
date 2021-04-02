@@ -1,4 +1,4 @@
-import { put, takeLatest, call } from "redux-saga/effects";
+import { put, takeEvery, call } from "redux-saga/effects";
 import * as types from "../types";
 import { getRecords } from "../../services";
 
@@ -26,7 +26,7 @@ function* fetchIva() {
 }
 
 function* ivaSaga() {
-  yield takeLatest(types.GET_IVA_REQUEST, fetchIva);
+  yield takeEvery(types.GET_IVA_REQUEST, fetchIva);
 }
 
 export default ivaSaga;

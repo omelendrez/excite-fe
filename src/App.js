@@ -151,64 +151,26 @@ function App() {
           </Sider>
           <Layout>
             <Content style={{ margin: "0 16px" }}>
-              <Route exact path="/">
-                <Home />
-              </Route>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/transportes" component={Transportes} />
+              <Route exact path="/transportes/:id" component={Transporte} />
 
-              <Route path="/transportes">
-                <Transportes />
-              </Route>
+              <Route exact path="/clientes" component={Clientes} />
+              <Route exact path="/iva" component={Iva} />
+              <Route exact path="/porciva" component={Porciva} />
+              <Route exact path="/pagos" component={Pagos} />
 
-              <Route path="/transporte/:id">
-                <Transporte />
-              </Route>
+              <Route exact path="/vendedores" component={Vendedores} />
 
-              <Route path="/clientes">
-                <Clientes />
-              </Route>
+              <Route exact path="/tipos" component={Tipos} />
+              <Route exact path="/subtipos" component={Subtipos} />
+              <Route exact path="/productos" component={Productos} />
+              <Route exact path="/ajustes" component={Ajustes} />
 
-              <Route path="/iva">
-                <Iva />
-              </Route>
+              <Route exact path="/conceptos" component={Conceptos} />
+              <Route exact path="/remitos" component={Remitos} />
 
-              <Route path="/porciva">
-                <Porciva />
-              </Route>
-              <Route path="/pagos">
-                <Pagos />
-              </Route>
-
-              <Route path="/vendedores">
-                <Vendedores />
-              </Route>
-
-              <Route path="/tipos">
-                <Tipos />
-              </Route>
-
-              <Route path="/subtipos">
-                <Subtipos />
-              </Route>
-
-              <Route path="/productos">
-                <Productos />
-              </Route>
-
-              <Route path="/ajustes">
-                <Ajustes />
-              </Route>
-
-              <Route path="/conceptos">
-                <Conceptos />
-              </Route>
-
-              <Route path="/remitos">
-                <Remitos />
-              </Route>
-
-              <Route path="/ultimos-numeros">
-                <Numeros />
-              </Route>
+              <Route exact path="/ultimos-numeros" component={Numeros} />
             </Content>
             <Footer style={{ textAlign: "center" }}>
               Excite Fragancias ©2021

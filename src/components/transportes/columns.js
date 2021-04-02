@@ -7,7 +7,7 @@ export const columns = [
     dataIndex: "TRANOM",
     sorter: (a, b) => sortColumn(a, b, "TRANOM"),
     render: (text, record) => (
-      <Link to={`/trasnporte/${record.ID}`}>{text}</Link>
+      <Link to={`/transportes/${record.ID}`}>{text}</Link>
     ),
   },
   {
