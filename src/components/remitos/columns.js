@@ -1,9 +1,10 @@
+import { sortColumn } from "../../utils/helpers";
+
 export const columns = [
   {
     dataIndex: "REMNUM",
     title: "Número",
-    numeric: true,
-    align: "right",
+    sorter: (a, b) => sortColumn(a, b, "REMNUM"),
   },
   {
     dataIndex: "REMFEC",

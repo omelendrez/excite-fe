@@ -11,6 +11,7 @@ import porcivaSaga from "./porcivaSaga";
 import pagosSaga from "./pagosSaga";
 import numerosSaga from "./numerosSaga";
 import remitosSaga from "./remitosSaga";
+import productosSaga from "./productosSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -26,5 +27,6 @@ export default function* rootSaga() {
     pagosSaga(),
     numerosSaga(),
     remitosSaga(),
+    productosSaga(),
   ]);
 }

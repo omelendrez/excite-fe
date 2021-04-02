@@ -1,24 +1,26 @@
+import { sortColumn } from "../../utils/helpers";
+
 export const columns = [
   {
     title: "Código",
     dataIndex: "NUMCOD",
     key: "NUMCOD",
-    align: "center"
+    sorter: (a, b) => sortColumn(a, b, "NUMCOD"),
   },
   {
     title: "Descripción",
     dataIndex: "NUMDES",
-    key: "NUMDES"
+    key: "NUMDES",
   },
   {
     title: "Valor",
     dataIndex: "NUMVAL",
     key: "NUMVAL",
-    align: "center"
+    align: "center",
   },
   {
     title: "Pv",
     dataIndex: "NUMPV",
-    key: "NUMPV"
-  }
-]
+    key: "NUMPV",
+  },
+];
