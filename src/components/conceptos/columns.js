@@ -1,36 +1,29 @@
-import { sortColumn } from "../../utils/helpers";
+import { formatNumber, formatDate } from "../../utils/helpers";
 
 export const columns = [
   {
     dataIndex: "CONNUM",
     title: "Número",
-    sorter: (a, b) => sortColumn(a, b, "CONNUM"),
   },
   {
     dataIndex: "CONFEC",
     title: "Fecha",
-    sorter: (a, b) => sortColumn(a, b, "CONFEC"),
+    render: (text) => formatDate(text),
   },
   {
     dataIndex: "CONDES",
     title: "Descripción",
   },
   {
-    dataIndex: "CONCLI",
-    title: "Cliente",
-    sorter: (a, b) => sortColumn(a, b, "CONCLI"),
-  },
-  {
     dataIndex: "CLINOM",
     title: "Nombre",
-    sorter: (a, b) => sortColumn(a, b, "CLINOM"),
   },
   {
-    dataIndex: "CONCANDEB",
-    title: "Débito",
-  },
-  {
-    dataIndex: "CONCANHAB",
-    title: "Crédito",
+    title: "Importe",
+    key: "balance",
+    align: "right",
+    render: (text, record) => (
+      <div>{formatNumber(record.CONCANHAB - record.CONCANDEB)}</div>
+    ),
   },
 ];

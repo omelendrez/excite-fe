@@ -1,4 +1,4 @@
-import { sortColumn } from "../../utils/helpers";
+import { sortColumn, formatDate } from "../../utils/helpers";
 
 export const columns = [
   {
@@ -9,37 +9,18 @@ export const columns = [
   {
     dataIndex: "REMFEC",
     title: "Fecha",
+    render: (text) => formatDate(text),
   },
   {
     dataIndex: "ESTDES",
     title: "Estado",
   },
   {
-    dataIndex: "VENCOD",
-    title: "Cód. Ven.",
-  },
-  {
     dataIndex: "VENNOM",
     title: "Vendedor",
   },
   {
-    dataIndex: "CLICOD",
-    title: "Cód. Cli.",
-  },
-  {
     dataIndex: "CLINOM",
     title: "Cliente",
-  },
-  {
-    dataIndex: "REMFACNUM",
-    title: "Factura Nro.",
-  },
-  {
-    dataIndex: "REMPAGNUM",
-    title: "Pago Nro.",
-  },
-  {
-    dataIndex: "REMDES",
-    title: "Descuento",
   },
 ];

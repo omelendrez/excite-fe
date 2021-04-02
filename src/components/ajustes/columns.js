@@ -1,4 +1,4 @@
-import { sortColumn } from "../../utils/helpers";
+import { sortColumn, formatDate } from "../../utils/helpers";
 
 export const columns = [
   {
@@ -9,15 +9,12 @@ export const columns = [
   {
     dataIndex: "AJUFEC",
     title: "Fecha",
-  },
-  {
-    dataIndex: "PRODCOD",
-    title: "Código",
-    sorter: (a, b) => sortColumn(a, b, "PRODCOD"),
+    render: (text) => formatDate(text),
   },
   {
     dataIndex: "PRODDES",
     title: "Producto",
+    sorter: (a, b) => sortColumn(a, b, "PRODDES"),
   },
   {
     dataIndex: "AJUCAN",

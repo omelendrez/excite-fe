@@ -12,33 +12,17 @@ export const columns = [
     sorter: (a, b) => sortColumn(a, b, "PRODDES"),
   },
   {
-    dataIndex: "TIPCOD",
-    title: "Tipo",
-  },
-  {
     dataIndex: "TIPDES",
-    title: "Desc. Tipo",
-  },
-  {
-    dataIndex: "SUBTIPCOD",
-    title: "Subtipo",
+    title: "Tipo",
+    sorter: (a, b) => sortColumn(a, b, "TIPDES"),
   },
   {
     dataIndex: "SUBTIPDES",
-    title: "Desc. Subtipo",
+    title: "Subtipo",
+    sorter: (a, b) => sortColumn(a, b, "SUBTIPDES"),
   },
   {
     dataIndex: "PRODPRE",
     title: "Precio",
-
-    align: "right",
-  },
-  {
-    dataIndex: "PRODSEX",
-    title: "Sexo",
-  },
-  {
-    dataIndex: "PRODSTO",
-    title: "Stock",
   },
 ];
