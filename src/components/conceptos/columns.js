@@ -1,4 +1,4 @@
-import { formatNumber, formatDate } from "../../utils/helpers";
+import { formatAmount, formatDate } from "../../utils/helpers";
 
 export const columns = [
   {
@@ -23,7 +23,7 @@ export const columns = [
     key: "balance",
     align: "right",
     render: (text, record) => (
-      <div>{formatNumber(record.CONCANHAB - record.CONCANDEB)}</div>
+      <div>{formatAmount(record.CONCANHAB - record.CONCANDEB)}</div>
     ),
   },
 ];
