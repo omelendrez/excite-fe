@@ -1,7 +1,9 @@
 .logo {
   height: 32px;
   margin: 16px;
-  background: rgba(255, 255, 255, 0.3);
+  background-image: url(./logo23.JPG);
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .site-layout .site-layout-background {
