@@ -2,11 +2,6 @@ import { sortColumn } from "../../utils/helpers";
 
 export const columns = [
   {
-    title: "Código",
-    dataIndex: "VENCOD",
-    sorter: (a, b) => sortColumn(a, b, "VENCOD"),
-  },
-  {
     title: "Nombre",
     dataIndex: "VENNOM",
     sorter: (a, b) => sortColumn(a, b, "VENNOM"),
@@ -15,6 +10,10 @@ export const columns = [
   {
     title: "Domicilio",
     dataIndex: "VENDOM",
+  },
+  {
+    title: "Localidad",
+    dataIndex: "VENLOC",
   },
   {
     title: "Teléfono",

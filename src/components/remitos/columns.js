@@ -15,15 +15,19 @@ export const columns = [
   {
     dataIndex: "ESTDES",
     title: "Estado",
+    searchable: true,
+    sorter: (a, b) => sortColumn(a, b, "ESTDES"),
   },
   {
     dataIndex: "VENNOM",
     title: "Vendedor",
     searchable: true,
+    sorter: (a, b) => sortColumn(a, b, "VENNOM"),
   },
   {
     dataIndex: "CLINOM",
     title: "Cliente",
     searchable: true,
+    sorter: (a, b) => sortColumn(a, b, "CLINOM"),
   },
 ];

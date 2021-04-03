@@ -4,19 +4,14 @@ import Search from "./Search";
 
 const Table = (props) => {
   const [newProps, setNewProps] = useState({});
-  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
-    setNewProps({ ...props });
+    setNewProps(props);
   }, [props]);
-
-  useEffect(() => {
-    setNewProps({ ...props, dataSource: filtered });
-  }, [filtered]);
 
   const onSearch = (search) => {
     if (!search) {
-      return setFiltered(props.dataSource);
+      return setNewProps(props);
     }
     const filtered = [];
 
@@ -34,7 +29,7 @@ const Table = (props) => {
           }
         })
     );
-    setFiltered(filtered);
+    setNewProps({ ...props, dataSource: filtered });
   };
 
   return (
