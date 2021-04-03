@@ -21,6 +21,7 @@ const Vendedores = () => {
     columns,
     dataSource: records,
     rowKey: "ID",
+    searchFields: ["VENNOM"],
   };
 
   return (
