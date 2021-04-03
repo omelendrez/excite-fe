@@ -8,10 +8,11 @@ const Search = (props) => {
   };
   return (
     <AntdSearch
+      className="search"
       placeholder="Buscar"
       onSearch={onSearch}
       allowClear
-      style={{ width: 400 }}
+      style={{ width: 400, marginBottom: 10 }}
     />
   );
 };

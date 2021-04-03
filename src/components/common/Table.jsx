@@ -33,7 +33,9 @@ const Table = (props) => {
 
   return (
     <>
-      {props.searchFields && <Search onSearch={onSearch} />}
+      {props.searchFields && (
+        <Search className="table-search" onSearch={onSearch} />
+      )}
       <AntdTable
         pagination={{ position: ["bottomCenter"] }}
         size="small"
