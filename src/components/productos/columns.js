@@ -23,11 +23,13 @@ const columns = (props) => {
       dataIndex: "PRODCOD",
       title: "Código",
       sorter: (a, b) => sortColumn(a, b, "PRODCOD"),
+      searchable: true,
     },
     {
       dataIndex: "PRODDES",
       title: "Descripción",
       sorter: (a, b) => sortColumn(a, b, "PRODDES"),
+      searchable: true,
     },
     {
       dataIndex: "TIPDES",

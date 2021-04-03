@@ -27,7 +27,6 @@ const Productos = () => {
     columns: columns({ tipos: tipos.records, subtipos: subtipos.records }),
     dataSource: records,
     rowKey: "ID",
-    searchFields: ["PRODCOD", "PRODDES"],
   };
 
   return (

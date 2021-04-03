@@ -21,7 +21,6 @@ const Clientes = () => {
     columns,
     dataSource: records,
     rowKey: "ID",
-    searchFields: ["CLINOM"],
   };
 
   return (

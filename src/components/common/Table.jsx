@@ -19,21 +19,27 @@ const Table = (props) => {
       return setFiltered(props.dataSource);
     }
     const filtered = [];
+
     props.dataSource.map((record) =>
-      props.searchFields.forEach((field) => {
-        if (
-          record[field].toString().toLowerCase().includes(search.toLowerCase())
-        ) {
-          filtered.push(record);
-        }
-      })
+      props.columns
+        .filter((field) => field.searchable)
+        .forEach((field) => {
+          if (
+            record[field.dataIndex]
+              .toString()
+              .toLowerCase()
+              .includes(search.toLowerCase())
+          ) {
+            filtered.push(record);
+          }
+        })
     );
     setFiltered(filtered);
   };
 
   return (
     <>
-      {props.searchFields && (
+      {props.columns.filter((field) => field.searchable).length > 0 && (
         <Search className="table-search" onSearch={onSearch} />
       )}
       <AntdTable

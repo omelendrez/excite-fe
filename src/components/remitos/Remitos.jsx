@@ -21,7 +21,6 @@ const Remitos = () => {
     columns,
     dataSource: records,
     rowKey: "ID",
-    searchFields: ["REMNUM", "VENNOM", "CLINOM"],
   };
 
   return (
