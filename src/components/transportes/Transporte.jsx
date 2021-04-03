@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
@@ -11,6 +12,7 @@ const Transporte = (props) => {
   const dispatch = useDispatch();
   const transportes = useSelector((state) => state.transportes);
   const { loading, record, error } = transportes;
+  const [url, setUrl] = useState("");
 
   useEffect(() => {
     dispatch(getTransporte(props.match.params.id));
@@ -21,6 +23,19 @@ const Transporte = (props) => {
     value: record[field.name],
   }));
 
+  const handleEdit = () => {
+    setUrl(`/transportes/edit/${props.match.params.id}`);
+  };
+
+  if (!!url) {
+    return (
+      <Redirect
+        push
+        to={{ pathname: url, state: { record: transportes.record } }}
+      />
+    );
+  }
+
   return (
     <Layout>
       <Header
@@ -29,7 +44,12 @@ const Transporte = (props) => {
         loading={loading}
       />
       {error && <Alert message="Error" description={error} type="error" />}
-      <Info title={record.TRANOM} id={record.ID} data={info} />
+      <Info
+        title={record.TRANOM}
+        id={record.ID}
+        data={info}
+        onEdit={handleEdit}
+      />
     </Layout>
   );
 };

@@ -19,6 +19,7 @@ import Home from "./components/Home";
 
 import Transportes from "./components/transportes/Transportes";
 import Transporte from "./components/transportes/Transporte";
+import TransportEdit from "./components/transportes/TransportEdit";
 
 import Clientes from "./components/clientes/Clientes";
 
@@ -154,6 +155,11 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/transportes" component={Transportes} />
               <Route exact path="/transportes/:id" component={Transporte} />
+              <Route
+                exact
+                path="/transportes/edit/:id"
+                component={TransportEdit}
+              />
 
               <Route exact path="/clientes" component={Clientes} />
               <Route exact path="/iva" component={Iva} />
