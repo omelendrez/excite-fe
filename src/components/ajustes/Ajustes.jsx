@@ -21,7 +21,6 @@ const Ajustes = () => {
     columns,
     dataSource: records,
     rowKey: "ID",
-    searchFields: ["PRODDES"],
   };
 
   return (

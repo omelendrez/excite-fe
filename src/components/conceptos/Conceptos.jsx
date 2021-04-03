@@ -21,7 +21,6 @@ const Conceptos = () => {
     columns,
     dataSource: records,
     rowKey: "ID",
-    searchFields: ["CLINOM", "CONDES"],
   };
 
   return (

@@ -9,10 +9,12 @@ export const columns = [
   {
     dataIndex: "CONDES",
     title: "Descripción",
+    searchable: true,
   },
   {
     dataIndex: "CLINOM",
     title: "Nombre",
+    searchable: true,
   },
   {
     title: "Importe",

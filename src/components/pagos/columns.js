@@ -5,6 +5,7 @@ export const columns = [
     title: "Número",
     dataIndex: "PAGNUM",
     sorter: (a, b) => sortColumn(a, b, "PAGNUM"),
+    searchable: true,
   },
   {
     title: "Fecha",
@@ -20,6 +21,7 @@ export const columns = [
     title: "Cliente",
     dataIndex: "CLINOM",
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
+    searchable: true,
   },
   {
     title: "Total",

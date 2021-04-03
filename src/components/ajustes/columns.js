@@ -10,6 +10,7 @@ export const columns = [
     dataIndex: "PRODDES",
     title: "Producto",
     sorter: (a, b) => sortColumn(a, b, "PRODDES"),
+    searchable: true,
   },
   {
     dataIndex: "AJUCAN",

@@ -9,6 +9,7 @@ export const columns = [
     render: (text, record) => (
       <Link to={`/transportes/${record.ID}`}>{text}</Link>
     ),
+    searchable: true,
   },
   {
     title: "Domicilio",

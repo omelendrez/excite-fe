@@ -21,7 +21,6 @@ const Pagos = () => {
     columns,
     dataSource: records,
     rowKey: "ID",
-    searchFields: ["PAGNUM", "CLINOM"],
   };
 
   return (
