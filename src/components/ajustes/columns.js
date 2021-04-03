@@ -1,4 +1,4 @@
-import { sortColumn, formatDate } from "../../utils/helpers";
+import { sortColumn, formatDate, formatAmount } from "../../utils/helpers";
 
 export const columns = [
   {
@@ -14,6 +14,7 @@ export const columns = [
   },
   {
     dataIndex: "AJUCAN",
-    title: "Ajuste",
+    title: "Cantidad",
+    align: "right",
   },
 ];

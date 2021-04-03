@@ -2,11 +2,6 @@ import { sortColumn } from "../../utils/helpers";
 
 export const columns = [
   {
-    dataIndex: "CLICOD",
-    title: "Código",
-    sorter: (a, b) => sortColumn(a, b, "CLICOD"),
-  },
-  {
     dataIndex: "CLINOM",
     title: "Nombre",
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
@@ -19,5 +14,9 @@ export const columns = [
   {
     dataIndex: "CLILOC",
     title: "Localidad",
+  },
+  {
+    dataIndex: "CLITEL",
+    title: "Teléfono",
   },
 ];

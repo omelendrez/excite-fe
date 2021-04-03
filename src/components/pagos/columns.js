@@ -13,11 +13,6 @@ export const columns = [
     render: (text) => formatDate(text),
   },
   {
-    title: "Código",
-    dataIndex: "CLICOD",
-    sorter: (a, b) => sortColumn(a, b, "CLICOD"),
-  },
-  {
     title: "Cliente",
     dataIndex: "CLINOM",
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),

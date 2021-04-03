@@ -16,6 +16,10 @@ export const columns = [
     dataIndex: "TRADOM",
   },
   {
+    title: "Localidad",
+    dataIndex: "TRALOC",
+  },
+  {
     title: "Teléfono",
     dataIndex: "TRATEL",
   },
