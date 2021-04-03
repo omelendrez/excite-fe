@@ -14,13 +14,16 @@ export const columns = [
   {
     title: "Domicilio",
     dataIndex: "TRADOM",
+    searchable: true,
   },
   {
     title: "Localidad",
     dataIndex: "TRALOC",
+    searchable: true,
   },
   {
     title: "Teléfono",
     dataIndex: "TRATEL",
+    searchable: true,
   },
 ];

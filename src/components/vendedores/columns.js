@@ -10,13 +10,16 @@ export const columns = [
   {
     title: "Domicilio",
     dataIndex: "VENDOM",
+    searchable: true,
   },
   {
     title: "Localidad",
     dataIndex: "VENLOC",
+    searchable: true,
   },
   {
     title: "Teléfono",
     dataIndex: "VENTEL",
+    searchable: true,
   },
 ];

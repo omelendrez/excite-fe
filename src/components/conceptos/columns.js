@@ -7,13 +7,13 @@ export const columns = [
     render: (text) => formatDate(text),
   },
   {
-    dataIndex: "CONDES",
-    title: "Descripción",
+    dataIndex: "CLINOM",
+    title: "Cliente",
     searchable: true,
   },
   {
-    dataIndex: "CLINOM",
-    title: "Nombre",
+    dataIndex: "CONDES",
+    title: "Concepto",
     searchable: true,
   },
   {

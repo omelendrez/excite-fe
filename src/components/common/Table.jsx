@@ -32,10 +32,19 @@ const Table = (props) => {
     setNewProps({ ...props, dataSource: filtered });
   };
 
+  const searchPlaceholder = props.columns
+    .filter((field) => field.searchable)
+    .map((field) => field.title)
+    .join(", ");
+
   return (
     <>
       {props.columns.filter((field) => field.searchable).length > 0 && (
-        <Search className="table-search" onSearch={onSearch} />
+        <Search
+          className="table-search"
+          onSearch={onSearch}
+          searchPlaceholder={searchPlaceholder}
+        />
       )}
       <AntdTable
         pagination={{ position: ["bottomCenter"] }}

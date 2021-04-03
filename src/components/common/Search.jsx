@@ -9,7 +9,7 @@ const Search = (props) => {
   return (
     <AntdSearch
       className="search"
-      placeholder="Buscar"
+      placeholder={`Buscar por ${props.searchPlaceholder}`}
       onSearch={onSearch}
       allowClear
       style={{ width: 400, marginBottom: 10 }}
