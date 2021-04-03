@@ -4,12 +4,6 @@ import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 
 const Info = (props) => {
-  const handleEdit = () => {
-    console.log(props.id);
-  };
-  const handleDelete = () => {
-    console.log(props.id);
-  };
   return (
     <Row>
       <Col span={20}>
@@ -24,8 +18,8 @@ const Info = (props) => {
         </Descriptions>
         <br />
         <Space>
-          <EditButton handleEdit={handleEdit} />
-          <DeleteButton handleDelete={handleDelete} />
+          {props.onEdit && <EditButton handleEdit={props.onEdit} />}
+          {props.onDelete && <DeleteButton handleDelete={props.onDelete} />}
         </Space>
       </Col>
     </Row>
