@@ -10,13 +10,16 @@ export const columns = [
   {
     dataIndex: "CLIDOM",
     title: "Domicilio",
+    searchable: true,
   },
   {
     dataIndex: "CLILOC",
     title: "Localidad",
+    searchable: true,
   },
   {
     dataIndex: "CLITEL",
     title: "Teléfono",
+    searchable: true,
   },
 ];
