@@ -21,6 +21,7 @@ const Transportes = () => {
     columns,
     dataSource: records,
     rowKey: "ID",
+    searchFields: ["TRADOM", "TRANOM"],
   };
 
   return (
