@@ -12,7 +12,11 @@ const TransportEdit = (props) => {
   return (
     <Layout>
       <Header title={"Modificando transporte"} onBack={props.history.goBack} />
-      <EditForm fields={fields} onFinish={onFinish} on />
+      <EditForm
+        fields={fields}
+        record={props.location.state.record}
+        onFinish={onFinish}
+      />
     </Layout>
   );
 };

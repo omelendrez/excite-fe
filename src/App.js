@@ -19,7 +19,7 @@ import Home from "./components/Home";
 
 import Transportes from "./components/transportes/Transportes";
 import Transporte from "./components/transportes/Transporte";
-import TransportEdit from "./components/transportes/TransportEdit";
+import TransporteEdit from "./components/transportes/TransporteEdit";
 
 import Clientes from "./components/clientes/Clientes";
 
@@ -158,7 +158,7 @@ function App() {
               <Route
                 exact
                 path="/transportes/edit/:id"
-                component={TransportEdit}
+                component={TransporteEdit}
               />
 
               <Route exact path="/clientes" component={Clientes} />

@@ -1,19 +1,31 @@
 import React from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Space } from "antd";
+import SaveButton from "./SaveButton";
+import ResetButton from "./ResetButton";
 const { TextArea } = Input;
 
 const TextField = (props) => {
-  const { field } = props;
+  const { field, record } = props;
   switch (field.type) {
     default:
       return (
-        <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
+        <Form.Item
+          label={field.title}
+          name={[field.name]}
+          rules={field.rules}
+          initialValue={record[field.name]}
+        >
           <Input style={{ width: field.width }} allowClear />
         </Form.Item>
       );
     case "textarea":
       return (
-        <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
+        <Form.Item
+          label={field.title}
+          name={[field.name]}
+          rules={field.rules}
+          initialValue={record[field.name]}
+        >
           <TextArea rows={field.rows} allowClear />
         </Form.Item>
       );
@@ -41,15 +53,13 @@ const EditForm = (props) => {
       {props.fields &&
         props.fields
           .filter((field) => !!field.title && !field.readonly)
-          .map((field, index) => <TextField key={index} field={field} />)}
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Guardar
-        </Button>
-        <Button htmlType="button" onClick={onReset}>
-          Deshacer
-        </Button>
-      </Form.Item>
+          .map((field, index) => (
+            <TextField key={index} field={field} record={props.record} />
+          ))}
+      <Space>
+        <SaveButton />
+        <ResetButton handleReset={onReset} />
+      </Space>
     </Form>
   );
 };

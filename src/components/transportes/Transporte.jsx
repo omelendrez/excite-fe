@@ -27,6 +27,10 @@ const Transporte = (props) => {
     setUrl(`/transportes/edit/${props.match.params.id}`);
   };
 
+  const handleDelete = () => {
+    console.log(props.match.params.id);
+  };
+
   if (!!url) {
     return (
       <Redirect
@@ -49,6 +53,7 @@ const Transporte = (props) => {
         id={record.ID}
         data={info}
         onEdit={handleEdit}
+        onDelete={handleDelete}
       />
     </Layout>
   );
