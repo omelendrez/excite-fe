@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table as AntdTable } from "antd";
+import { Table as AntdTable, BackTop } from "antd";
 import Search from "./Search";
 
 const Table = (props) => {
@@ -39,6 +39,7 @@ const Table = (props) => {
 
   return (
     <>
+      <BackTop />
       {props.columns.filter((field) => field.searchable).length > 0 && (
         <Search
           className="table-search"
