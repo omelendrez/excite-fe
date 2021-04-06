@@ -15,7 +15,11 @@ const TextField = (props) => {
           rules={field.rules}
           initialValue={record[field.name]}
         >
-          <Input style={{ width: field.width }} allowClear />
+          <Input
+            style={{ width: field.width }}
+            allowClear
+            readOnly={field.readonly}
+          />
         </Form.Item>
       );
     case "textarea":
@@ -27,6 +31,16 @@ const TextField = (props) => {
           initialValue={record[field.name]}
         >
           <TextArea rows={field.rows} allowClear />
+        </Form.Item>
+      );
+    case "ID":
+      return (
+        <Form.Item
+          name={[field.name]}
+          initialValue={record[field.name]}
+          noStyle
+        >
+          <Input type="hidden" />
         </Form.Item>
       );
   }
@@ -51,11 +65,9 @@ const EditForm = (props) => {
       }}
     >
       {props.fields &&
-        props.fields
-          .filter((field) => !!field.title && !field.readonly)
-          .map((field, index) => (
-            <TextField key={index} field={field} record={props.record} />
-          ))}
+        props.fields.map((field, index) => (
+          <TextField key={index} field={field} record={props.record} />
+        ))}
       <Space>
         <SaveButton />
         <ResetButton handleReset={onReset} />

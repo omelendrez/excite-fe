@@ -1,6 +1,7 @@
 const fields = [
   {
     name: "ID",
+    type: "ID",
   },
   {
     name: "TRACOD",
