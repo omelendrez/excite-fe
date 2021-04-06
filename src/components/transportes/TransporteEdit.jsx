@@ -5,18 +5,17 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 
 const TransportEdit = (props) => {
+  const record = props.location.state.record;
+  const title = `${record.ID ? "Modificando" : "Agregando"} transporte`;
+
   const onFinish = (values) => {
     console.log(values);
   };
 
   return (
     <Layout>
-      <Header title={"Modificando transporte"} onBack={props.history.goBack} />
-      <EditForm
-        fields={fields}
-        record={props.location.state.record}
-        onFinish={onFinish}
-      />
+      <Header title={title} onBack={props.history.goBack} />
+      <EditForm fields={fields} record={record} onFinish={onFinish} />
     </Layout>
   );
 };

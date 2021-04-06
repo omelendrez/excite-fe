@@ -154,6 +154,11 @@ function App() {
             <Content style={{ margin: "0 16px" }}>
               <Route exact path="/" component={Home} />
               <Route exact path="/transportes" component={Transportes} />
+              <Route
+                exact
+                path="/transportes/add/transporte"
+                component={TransporteEdit}
+              />
               <Route exact path="/transportes/:id" component={Transporte} />
               <Route
                 exact
