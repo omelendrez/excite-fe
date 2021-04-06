@@ -10,3 +10,4 @@ export const formatAmount = (value) =>
   });
 
 export const formatDate = (date) => moment(date).format("L");
+//export const formatDate = (date) => moment(date).add(-3, "hours").format("L");  // For local environment
