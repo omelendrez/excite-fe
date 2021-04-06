@@ -19,7 +19,7 @@ import Home from "./components/Home";
 
 import Transportes from "./components/transportes/Transportes";
 import Transporte from "./components/transportes/Transporte";
-import TransporteEdit from "./components/transportes/TransporteEdit";
+import TransporteForm from "./components/transportes/TransporteForm";
 
 import Clientes from "./components/clientes/Clientes";
 
@@ -157,13 +157,13 @@ function App() {
               <Route
                 exact
                 path="/transportes/add/transporte"
-                component={TransporteEdit}
+                component={TransporteForm}
               />
               <Route exact path="/transportes/:id" component={Transporte} />
               <Route
                 exact
                 path="/transportes/edit/:id"
-                component={TransporteEdit}
+                component={TransporteForm}
               />
 
               <Route exact path="/clientes" component={Clientes} />
