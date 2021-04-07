@@ -5,3 +5,11 @@ export const getClientes = () => {
     type: types.GET_CLIENTES_REQUEST,
   };
 };
+
+export const getCliente = (id) => {
+  return {
+    type: types.GET_CLIENTE_REQUEST,
+    id,
+  };
+};
+
