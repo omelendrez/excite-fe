@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
@@ -14,6 +15,7 @@ const Productos = () => {
   const tipos = useSelector((state) => state.tipos);
   const subtipos = useSelector((state) => state.subtipos);
 
+  const [url, setUrl] = useState("");
   const { loading, records, error } = productos;
 
   useEffect(() => {
@@ -22,12 +24,21 @@ const Productos = () => {
     dispatch(getProductos());
   }, [dispatch]);
 
+  const onAdd = () => {
+    setUrl(`/productos/add/producto`);
+  };
+
   const tableProps = {
     loading,
     columns: columns({ tipos: tipos.records, subtipos: subtipos.records }),
     dataSource: records,
     rowKey: "ID",
+    onAdd,
   };
+
+  if (!!url) {
+    return <Redirect push to={{ pathname: url, state: { record: {} } }} />;
+  }
 
   return (
     <Layout>
