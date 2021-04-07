@@ -27,7 +27,7 @@ const vendedoresReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-  case types.GET_VENDEDOR_REQUEST:
+    case types.GET_VENDEDOR_REQUEST:
       return {
         ...state,
         loading: true,
@@ -48,8 +48,7 @@ const vendedoresReducer = (state = initialState, action) => {
       };
     default:
       return state;
-    }
+  }
 };
-
 
 export default vendedoresReducer;

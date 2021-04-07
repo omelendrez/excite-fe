@@ -37,9 +37,7 @@ const Transportes = () => {
   return (
     <Layout>
       <Header title="Transportes" />
-
       {error && <Alert message="Error" description={error} type="error" />}
-
       <Table {...tableProps} />
     </Layout>
   );

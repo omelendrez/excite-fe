@@ -5,14 +5,14 @@ const fields = [
   },
   {
     name: "VENCOD",
-    title: "Código de vencimiento",
+    title: "Código",
     type: "text",
     width: 100,
     readonly: true,
   },
   {
     name: "VENNOM",
-    title: "Nombre de vencimiento",
+    title: "Nombre",
     type: "text",
     rules: [{ required: true }],
   },
@@ -40,7 +40,7 @@ const fields = [
     width: 200,
   },
   {
-    name: "TRAOBS",
+    name: "VENOBS",
     title: "Observaciones",
     type: "textarea",
     rows: 2,

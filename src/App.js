@@ -40,6 +40,8 @@ import Tipos from "./components/tipos/Tipos";
 import Subtipos from "./components/subtipos/Subtipos";
 
 import Productos from "./components/productos/Productos";
+import Producto from "./components/productos/Producto";
+import ProductoForm from "./components/productos/ProductoForm";
 
 import Ajustes from "./components/ajustes/Ajustes";
 
@@ -198,7 +200,20 @@ function App() {
 
               <Route exact path="/tipos" component={Tipos} />
               <Route exact path="/subtipos" component={Subtipos} />
+
               <Route exact path="/productos" component={Productos} />
+              <Route
+                exact
+                path="/productos/add/producto"
+                component={ProductoForm}
+              />
+              <Route exact path="/productos/:id" component={Producto} />
+              <Route
+                exact
+                path="/productos/edit/:id"
+                component={ProductoForm}
+              />
+
               <Route exact path="/ajustes" component={Ajustes} />
 
               <Route exact path="/conceptos" component={Conceptos} />

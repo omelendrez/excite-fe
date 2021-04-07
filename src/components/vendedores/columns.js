@@ -8,7 +8,7 @@ export const columns = [
     sorter: (a, b) => sortColumn(a, b, "VENNOM"),
     searchable: true,
     render: (text, record) => (
-      <Link to={`/transportes/${record.ID}`}>
+      <Link to={`/vendedores/${record.ID}`}>
         {text || "*** sin nombre ***"}
       </Link>
     ),

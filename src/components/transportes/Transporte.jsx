@@ -13,15 +13,25 @@ const Transporte = (props) => {
   const transportes = useSelector((state) => state.transportes);
   const { loading, record, error } = transportes;
   const [url, setUrl] = useState("");
+  const infoDefault = fields.map((field) => ({
+    title: field.title,
+    value: "",
+  }));
+  const [info, setInfo] = useState(infoDefault);
 
   useEffect(() => {
     dispatch(getTransporte(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
-  const info = fields.map((field) => ({
-    title: field.title,
-    value: record[field.name],
-  }));
+  useEffect(() => {
+    if (record) {
+      const info = fields.map((field) => ({
+        title: field.title,
+        value: record[field.name],
+      }));
+      setInfo(info);
+    }
+  }, [record]);
 
   const handleEdit = () => {
     setUrl(`/transportes/edit/${props.match.params.id}`);
@@ -49,8 +59,7 @@ const Transporte = (props) => {
       />
       {error && <Alert message="Error" description={error} type="error" />}
       <Info
-        title={record.TRANOM}
-        id={record.ID}
+        title={info.TRANOM}
         data={info}
         onEdit={handleEdit}
         onDelete={handleDelete}

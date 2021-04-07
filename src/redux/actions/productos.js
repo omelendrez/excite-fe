@@ -5,3 +5,10 @@ export const getProductos = () => {
     type: types.GET_PRODUCTOS_REQUEST,
   };
 };
+
+export const getProducto = (id) => {
+  return {
+    type: types.GET_PRODUCTO_REQUEST,
+    id,
+  };
+};

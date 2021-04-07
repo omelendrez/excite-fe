@@ -13,15 +13,25 @@ const Cliente = (props) => {
   const clientes = useSelector((state) => state.clientes);
   const { loading, record, error } = clientes;
   const [url, setUrl] = useState("");
+  const infoDefault = fields.map((field) => ({
+    title: field.title,
+    value: "",
+  }));
+  const [info, setInfo] = useState(infoDefault);
 
   useEffect(() => {
     dispatch(getCliente(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
-  const info = fields.map((field) => ({
-    title: field.title,
-    value: record[field.name],
-  }));
+  useEffect(() => {
+    if (record) {
+      const info = fields.map((field) => ({
+        title: field.title,
+        value: record[field.name],
+      }));
+      setInfo(info);
+    }
+  }, [record]);
 
   const handleEdit = () => {
     setUrl(`/clientes/edit/${props.match.params.id}`);
@@ -49,8 +59,7 @@ const Cliente = (props) => {
       />
       {error && <Alert message="Error" description={error} type="error" />}
       <Info
-        title={record.TRANOM}
-        id={record.ID}
+        title={info.TRANOM}
         data={info}
         onEdit={handleEdit}
         onDelete={handleDelete}
