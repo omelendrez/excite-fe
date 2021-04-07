@@ -30,6 +30,8 @@ import Porciva from "./components/porciva/Porciva";
 import Pagos from "./components/pagos/Pagos";
 
 import Vendedores from "./components/vendedores/Vendedores";
+import Vendedor from "./components/vendedores/Vendedor";
+import VendedorForm from "./components/vendedores/VendedorForm";
 
 import Tipos from "./components/tipos/Tipos";
 
@@ -172,6 +174,17 @@ function App() {
               <Route exact path="/pagos" component={Pagos} />
 
               <Route exact path="/vendedores" component={Vendedores} />
+              <Route
+                exact
+                path="/vendedores/add/vendedor"
+                component={VendedorForm}
+              />
+              <Route exact path="/vendedores/:id" component={Vendedor} />
+              <Route
+                exact
+                path="/vendedores/edit/:id"
+                component={VendedorForm}
+              />
 
               <Route exact path="/tipos" component={Tipos} />
               <Route exact path="/subtipos" component={Subtipos} />
