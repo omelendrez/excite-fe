@@ -4,14 +4,14 @@ import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
-import { getVendedor } from "../../redux/actions";
+import { getProducto } from "../../redux/actions";
 import Info from "../common/Info";
 import fields from "./fields";
 
-const Vendedor = (props) => {
+const Producto = (props) => {
   const dispatch = useDispatch();
-  const vendedores = useSelector((state) => state.vendedores);
-  const { loading, record, error } = vendedores;
+  const productos = useSelector((state) => state.productos);
+  const { loading, record, error } = productos;
   const [url, setUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
@@ -20,7 +20,7 @@ const Vendedor = (props) => {
   const [info, setInfo] = useState(infoDefault);
 
   useEffect(() => {
-    dispatch(getVendedor(props.match.params.id));
+    dispatch(getProducto(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Vendedor = (props) => {
   }, [record]);
 
   const handleEdit = () => {
-    setUrl(`/vendedores/edit/${props.match.params.id}`);
+    setUrl(`/productos/edit/${props.match.params.id}`);
   };
 
   const handleDelete = () => {
@@ -45,7 +45,7 @@ const Vendedor = (props) => {
     return (
       <Redirect
         push
-        to={{ pathname: url, state: { record: vendedores.record } }}
+        to={{ pathname: url, state: { record: productos.record } }}
       />
     );
   }
@@ -53,13 +53,13 @@ const Vendedor = (props) => {
   return (
     <Layout>
       <Header
-        title={"Vendedor"}
+        title={"Producto"}
         onBack={props.history.goBack}
         loading={loading}
       />
       {error && <Alert message="Error" description={error} type="error" />}
       <Info
-        title={info.VENNOM}
+        title={info.PRODES}
         data={info}
         onEdit={handleEdit}
         onDelete={handleDelete}
@@ -68,4 +68,4 @@ const Vendedor = (props) => {
   );
 };
 
-export default Vendedor;
+export default Producto;
