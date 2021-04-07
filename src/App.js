@@ -22,6 +22,8 @@ import Transporte from "./components/transportes/Transporte";
 import TransporteForm from "./components/transportes/TransporteForm";
 
 import Clientes from "./components/clientes/Clientes";
+import Cliente from "./components/clientes/Cliente";
+import ClienteForm from "./components/clientes/ClienteForm";
 
 import Iva from "./components/iva/Iva";
 
@@ -167,6 +169,14 @@ function App() {
               />
 
               <Route exact path="/clientes" component={Clientes} />
+              <Route
+                exact
+                path="/clientes/add/cliente"
+                component={ClienteForm}
+              />
+              <Route exact path="/clientes/:id" component={Cliente} />
+              <Route exact path="/clientes/edit/:id" component={ClienteForm} />
+
               <Route exact path="/iva" component={Iva} />
               <Route exact path="/porciva" component={Porciva} />
               <Route exact path="/pagos" component={Pagos} />
