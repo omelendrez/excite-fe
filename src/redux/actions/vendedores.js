@@ -5,3 +5,10 @@ export const getVendedores = () => {
     type: types.GET_VENDEDORES_REQUEST,
   };
 };
+
+export const getVendedor = (id) => {
+  return {
+    type: types.GET_VENDEDOR_REQUEST,
+    id,
+  };
+};

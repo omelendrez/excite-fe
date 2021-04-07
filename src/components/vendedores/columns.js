@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { sortColumn } from "../../utils/helpers";
 
 export const columns = [
@@ -6,6 +7,11 @@ export const columns = [
     dataIndex: "VENNOM",
     sorter: (a, b) => sortColumn(a, b, "VENNOM"),
     searchable: true,
+    render: (text, record) => (
+      <Link to={`/transportes/${record.ID}`}>
+        {text || "*** sin nombre ***"}
+      </Link>
+    ),
   },
   {
     title: "Domicilio",
