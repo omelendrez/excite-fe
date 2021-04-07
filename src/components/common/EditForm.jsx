@@ -24,9 +24,9 @@ const EditForm = (props) => {
       }}
     >
       {props.fields &&
-        props.fields.map((field, index) => (
+        props.fields.map((field) => (
           <InputField
-            key={index}
+            key={field.name}
             field={field}
             record={props.record}
             optionGroups={props.optionGroups}
