@@ -4,6 +4,7 @@ import { Layout } from "antd";
 import Header from "../common/Header";
 import EditForm from "../common/EditForm";
 import fields from "./fields";
+import { sortColumn } from "../../utils/helpers";
 
 const ProductoForm = (props) => {
   const record = props.location.state.record;
@@ -23,14 +24,18 @@ const ProductoForm = (props) => {
         record={record}
         onFinish={onFinish}
         optionGroups={{
-          tipos: tipos.records.map((record) => ({
-            id: record.TIPCOD,
-            text: record.TIPDES,
-          })),
-          subtipos: subtipos.records.map((record) => ({
-            id: record.SUBTIPCOD,
-            text: record.SUBTIPDES,
-          })),
+          tipos: tipos.records
+            .sort((a, b) => sortColumn(a, b, "TIPDES"))
+            .map((record) => ({
+              id: record.TIPCOD,
+              text: record.TIPDES,
+            })),
+          subtipos: subtipos.records
+            .sort((a, b) => sortColumn(a, b, "SUBTIPDES"))
+            .map((record) => ({
+              id: record.SUBTIPCOD,
+              text: record.SUBTIPDES,
+            })),
           sexos: [
             { id: "", text: "INDEFINIDO" },
             { id: "FEMENINO", text: "FEMENINO" },

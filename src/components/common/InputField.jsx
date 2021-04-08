@@ -49,6 +49,7 @@ const InputField = (props) => {
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
           <Select
             showSearch
+            allowClear={true}
             placeholder="Seleccione uno"
             optionFilterProp="children"
             filterOption={(input, option) =>
