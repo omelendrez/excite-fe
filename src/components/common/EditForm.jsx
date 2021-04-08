@@ -1,5 +1,5 @@
-import React from "react";
-import { Space, Form } from "antd";
+import React, { useEffect } from "react";
+import { Space, Form, message } from "antd";
 import SaveButton from "./SaveButton";
 import ResetButton from "./ResetButton";
 import InputField from "./InputField";
@@ -10,6 +10,15 @@ const EditForm = (props) => {
   const onReset = () => {
     form.resetFields();
   };
+
+  useEffect(() => {
+    if (props.success) {
+      message.success("Registro actualizado satisfactoriamente");
+    }
+    if (props.error) {
+      message.error("Error al guardar el registro");
+    }
+  }, [props.success, props.error]);
 
   return (
     <Form
@@ -33,7 +42,7 @@ const EditForm = (props) => {
           />
         ))}
       <Space>
-        <SaveButton />
+        <SaveButton loading={props.loading} />
         <ResetButton handleReset={onReset} />
       </Space>
     </Form>

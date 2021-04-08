@@ -4,6 +4,10 @@ const fields = [
     type: "ID",
   },
   {
+    name: "TRAPROCOD",
+    type: "ID",
+  },
+  {
     name: "TRACOD",
     title: "Código",
     type: "text",
@@ -20,6 +24,7 @@ const fields = [
     name: "TRADOM",
     title: "Domicilio",
     type: "text",
+    required: true,
   },
   {
     name: "TRALOC",
