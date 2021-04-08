@@ -1,9 +1,11 @@
-import { formatAmount, formatDate } from "../../utils/helpers";
+import { formatAmount, formatDate, sortColumn } from "../../utils/helpers";
 
 export const columns = [
   {
     dataIndex: "CONNUM",
     title: "Número",
+    sorter: (a, b) => sortColumn(a, b, "AJUNUM"),
+    searchable: true,
   },
   {
     dataIndex: "CONFEC",
