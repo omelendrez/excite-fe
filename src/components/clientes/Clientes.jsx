@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getClientes } from "../../redux/actions";
+import { getClientes, getIva } from "../../redux/actions";
 const { columns } = require(`./columns`);
 
 const Clientes = () => {
@@ -15,6 +15,7 @@ const Clientes = () => {
   const { loading, records, error } = clientes;
 
   useEffect(() => {
+    dispatch(getIva());
     dispatch(getClientes());
   }, [dispatch]);
 
