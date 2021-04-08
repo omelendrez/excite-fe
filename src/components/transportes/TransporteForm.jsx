@@ -15,13 +15,7 @@ const TransportEdit = (props) => {
 
   const onFinish = (values) => {
     if (!record.ID) {
-      const record = values;
-      fields
-        .filter((field) => field.name !== "ID")
-        .forEach((field) => {
-          record[field.name] = values[field.name] || "";
-        });
-      return dispatch(addTransporte(record));
+      dispatch(addTransporte(values));
     }
     dispatch(updateTransporte(record.ID, values));
   };
