@@ -49,12 +49,20 @@ const fields = [
   {
     name: "CLIINT",
     title: "Interior",
-    type: "text",
+    type: "select",
+    options: "interior",
     rules: [{ required: true }],
   },
   {
-    name: "IVADES",
-    title: "Descripción de IVA",
+    name: "IVACOD",
+    title: "IVA",
+    type: "select",
+    options: "iva",
+    rules: [{ required: true }],
+  },
+  {
+    name: "CLIFAN",
+    title: "Nombre de fantasía",
     type: "text",
   },
 ];
