@@ -11,7 +11,7 @@ import fields from "./fields";
 const Transporte = (props) => {
   const dispatch = useDispatch();
   const transportes = useSelector((state) => state.transportes);
-  const { loading, record, error } = transportes;
+  const { loading, success, record, error } = transportes;
   const [url, setUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
@@ -63,6 +63,8 @@ const Transporte = (props) => {
         data={info}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        success={success}
+        history={props.history}
       />
     </Layout>
   );

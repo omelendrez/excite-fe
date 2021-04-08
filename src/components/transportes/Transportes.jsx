@@ -6,6 +6,7 @@ import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
 import { getTransportes } from "../../redux/actions";
+import fields from "./fields";
 const { columns } = require(`./columns`);
 
 const Transportes = () => {
@@ -31,7 +32,23 @@ const Transportes = () => {
   };
 
   if (!!url) {
-    return <Redirect push to={{ pathname: url, state: { record: {} } }} />;
+    const record = {};
+    fields
+      .filter((field) => field.name !== "ID")
+      .forEach((field) => {
+        record[field.name] = "";
+      });
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: url,
+          state: {
+            record,
+          },
+        }}
+      />
+    );
   }
 
   return (
