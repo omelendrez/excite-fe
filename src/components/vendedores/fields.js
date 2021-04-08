@@ -25,19 +25,16 @@ const fields = [
     name: "VENLOC",
     title: "Localidad",
     type: "text",
-    width: 400,
   },
   {
     name: "VENTEL",
     title: "Teléfono",
     type: "text",
-    width: 200,
   },
   {
     name: "VENCEL",
     title: "Celular",
     type: "text",
-    width: 200,
   },
   {
     name: "VENOBS",
@@ -47,7 +44,7 @@ const fields = [
   },
   {
     name: "VENCP",
-    title: "codigo postal",
+    title: "Código postal",
     type: "text",
     width: 200,
   },

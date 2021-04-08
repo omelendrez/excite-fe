@@ -30,6 +30,7 @@ const fields = [
     name: "CLICUIT",
     title: "Cuit",
     type: "text",
+    width: 200,
   },
   {
     name: "CLITEL",
@@ -45,6 +46,7 @@ const fields = [
     name: "CLICP",
     title: "Código Postal",
     type: "text",
+    width: 200,
   },
   {
     name: "CLIINT",
