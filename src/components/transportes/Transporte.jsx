@@ -4,7 +4,7 @@ import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
-import { getTransporte } from "../../redux/actions";
+import { getTransporte, deleteTransporte } from "../../redux/actions";
 import Info from "../common/Info";
 import fields from "./fields";
 
@@ -38,7 +38,7 @@ const Transporte = (props) => {
   };
 
   const handleDelete = () => {
-    console.log(props.match.params.id);
+    dispatch(deleteTransporte(props.match.params.id));
   };
 
   if (!!url) {

@@ -12,3 +12,25 @@ export const getTransporte = (id) => {
     id,
   };
 };
+
+export const addTransporte = (newData) => {
+  return {
+    type: types.ADD_TRANSPORTE_REQUEST,
+    newData,
+  };
+};
+
+export const updateTransporte = (id, newData) => {
+  return {
+    type: types.UPDATE_TRANSPORTE_REQUEST,
+    id,
+    newData,
+  };
+};
+
+export const deleteTransporte = (id) => {
+  return {
+    type: types.DELETE_TRANSPORTE_REQUEST,
+    id,
+  };
+};
