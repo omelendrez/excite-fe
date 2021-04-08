@@ -30,7 +30,6 @@ const fields = [
     name: "TRATEL",
     title: "Teléfono",
     type: "text",
-    width: 200,
   },
   {
     name: "TRAOBS",

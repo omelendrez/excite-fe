@@ -5,6 +5,7 @@ export const columns = [
     dataIndex: "AJUNUM",
     title: "Número",
     sorter: (a, b) => sortColumn(a, b, "AJUNUM"),
+    searchable: true,
   },
   {
     dataIndex: "AJUFEC",
