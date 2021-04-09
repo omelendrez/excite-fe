@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Space, Form, message } from "antd";
+import { Space, Form } from "antd";
 import SaveButton from "./SaveButton";
 import ResetButton from "./ResetButton";
 import InputField from "./InputField";
+import notification from "./notification";
 
 const EditForm = (props) => {
   const [form] = Form.useForm();
@@ -13,10 +14,18 @@ const EditForm = (props) => {
 
   useEffect(() => {
     if (props.success) {
-      message.success("Registro actualizado satisfactoriamente");
+      notification({
+        message: "Datos guardados",
+        description: "Los datos se guardaron satisfactoriamente",
+        type: "info",
+      });
     }
     if (props.error) {
-      message.error("Error al guardar el registro");
+      notification({
+        message: "Error",
+        description: "Error al intentar guardar los datos",
+        type: "error",
+      });
     }
   }, [props.success, props.error]);
 

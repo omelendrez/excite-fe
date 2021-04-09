@@ -1,15 +1,24 @@
 import React, { useEffect } from "react";
-import { Descriptions, Space, Row, Col, message } from "antd";
+import { Descriptions, Space, Row, Col } from "antd";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
+import notification from "./notification";
 
 const Info = (props) => {
   useEffect(() => {
     if (props.record && props.record.message && !props.error) {
-      return message.success("Registro eliminado");
+      notification({
+        message: "Registro eliminado",
+        description: "El registro fue eliminado con éxito",
+        type: "info",
+      });
     }
     if (props.error) {
-      message.error("Error al eliminar el registro");
+      notification({
+        message: "Error",
+        description: "Error al intentar eliminar el registro",
+        type: "error",
+      });
     }
   }, [props]);
 
