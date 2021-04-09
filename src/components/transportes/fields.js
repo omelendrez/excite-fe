@@ -4,10 +4,6 @@ const fields = [
     type: "ID",
   },
   {
-    name: "TRAPROCOD",
-    type: "ID",
-  },
-  {
     name: "TRACOD",
     title: "Código",
     type: "text",
@@ -30,6 +26,12 @@ const fields = [
     name: "TRALOC",
     title: "Localidad",
     type: "text",
+  },
+  {
+    name: "TRAPROCOD",
+    title: "Provincia",
+    type: "select",
+    options: "provincias",
   },
   {
     name: "TRATEL",

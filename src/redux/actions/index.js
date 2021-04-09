@@ -11,3 +11,4 @@ export * from "./subtipos";
 export * from "./tipos";
 export * from "./transportes";
 export * from "./vendedores";
+export * from "./provincias";

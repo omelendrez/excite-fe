@@ -11,3 +11,11 @@ export const formatAmount = (value) =>
 
 export const formatDate = (date) => moment(date).format("L");
 //export const formatDate = (date) => moment(date).add(-3, "hours").format("L");  // For local environment
+
+export const createSelectList = (records, id, text) =>
+  records
+    .sort((a, b) => sortColumn(a, b, text))
+    .map((record) => ({
+      id: record[id],
+      text: record[text],
+    }));

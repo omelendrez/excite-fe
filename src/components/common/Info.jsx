@@ -5,7 +5,7 @@ import DeleteButton from "./DeleteButton";
 
 const Info = (props) => {
   useEffect(() => {
-    if (props.record.message && !props.error) {
+    if (props.record && props.record.message && !props.error) {
       return message.success("Registro eliminado");
     }
     if (props.error) {

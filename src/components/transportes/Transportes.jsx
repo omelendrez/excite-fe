@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getTransportes } from "../../redux/actions";
+import { getTransportes, getProvincias } from "../../redux/actions";
 import fields from "./fields";
 import columns from "./columns";
 
@@ -16,6 +16,7 @@ const Transportes = () => {
   const { loading, records, error } = transportes;
 
   useEffect(() => {
+    dispatch(getProvincias());
     dispatch(getTransportes());
   }, [dispatch]);
 
@@ -25,7 +26,7 @@ const Transportes = () => {
 
   const tableProps = {
     loading,
-    columns,
+    columns: columns(),
     dataSource: records,
     rowKey: "ID",
     onAdd,
