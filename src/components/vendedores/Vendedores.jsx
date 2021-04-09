@@ -7,7 +7,7 @@ import Table from "../common/Table";
 import Alert from "../common/Alert";
 import { getVendedores } from "../../redux/actions";
 import fields from "./fields";
-const { columns } = require(`./columns`);
+import columns from "./columns";
 
 const Vendedores = () => {
   const dispatch = useDispatch();
