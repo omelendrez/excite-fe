@@ -8,16 +8,17 @@ import { addVendedor, updateVendedor } from "../../redux/actions";
 
 const VendedorEdit = (props) => {
   const record = props.location.state.record;
-  const title = `${record.ID ? "Modificando" : "Agregando"} transporte`;
+  const title = `${record.ID ? "Modificando" : "Agregando"} vendedor`;
   const dispatch = useDispatch();
-  const transportes = useSelector((state) => state.transportes);
-  const { loading, success, error } = transportes;
+  const vendedores = useSelector((state) => state.vendedores);
+  const { loading, success, error } = vendedores;
 
   const onFinish = (values) => {
     if (!record.ID) {
       dispatch(addVendedor(values));
+      
     }
-    dispatch(updateVendedor(record.ID, values));
+    return dispatch(updateVendedor(record.ID, values));
   };
 
   return (
