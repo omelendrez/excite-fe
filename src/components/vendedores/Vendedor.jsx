@@ -4,14 +4,14 @@ import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
-import { getVendedor } from "../../redux/actions";
+import { getVendedor, deleteVendedor } from "../../redux/actions";
 import Info from "../common/Info";
 import fields from "./fields";
 
 const Vendedor = (props) => {
   const dispatch = useDispatch();
   const vendedores = useSelector((state) => state.vendedores);
-  const { loading, record, error } = vendedores;
+  const { loading, success, record, error } = vendedores;
   const [url, setUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
@@ -38,7 +38,7 @@ const Vendedor = (props) => {
   };
 
   const handleDelete = () => {
-    console.log(props.match.params.id);
+    dispatch(deleteVendedor(props.match.params.id));
   };
 
   if (!!url) {
@@ -63,6 +63,8 @@ const Vendedor = (props) => {
         data={info}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        success={success}
+        history={props.history}
       />
     </Layout>
   );
