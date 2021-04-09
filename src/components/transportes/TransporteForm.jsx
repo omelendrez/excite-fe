@@ -15,7 +15,7 @@ const TransportEdit = (props) => {
 
   const onFinish = (values) => {
     if (!record.ID) {
-      dispatch(addTransporte(values));
+      return dispatch(addTransporte(values));
     }
     dispatch(updateTransporte(record.ID, values));
   };

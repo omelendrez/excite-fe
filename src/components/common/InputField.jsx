@@ -4,6 +4,13 @@ const { Option } = Select;
 
 const InputField = (props) => {
   const { field, optionGroups } = props;
+  if (field.hidden) {
+    return (
+      <Form.Item name={[field.name]} noStyle>
+        <Input type="hidden" />
+      </Form.Item>
+    );
+  }
   switch (field.type) {
     default:
       return (
