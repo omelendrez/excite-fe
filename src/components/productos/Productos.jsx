@@ -6,6 +6,7 @@ import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
 import { getProductos, getTipos, getSubtipos } from "../../redux/actions";
+import fields from "./fields";
 import columns from "./columns";
 
 const Productos = () => {
@@ -37,7 +38,23 @@ const Productos = () => {
   };
 
   if (!!url) {
-    return <Redirect push to={{ pathname: url, state: { record: {} } }} />;
+    const record = {};
+    fields
+      .filter((field) => field.name !== "ID")
+      .forEach((field) => {
+        record[field.name] = field.type === "number" ? 0 : "";
+      });
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: url,
+          state: {
+            record,
+          },
+        }}
+      />
+    );
   }
 
   return (

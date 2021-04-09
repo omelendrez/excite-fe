@@ -1,7 +1,18 @@
 const fields = [
   {
     name: "ID",
-    type: "ID",
+    type: "number",
+    hidden: true,
+  },
+  {
+    name: "PRODSINI",
+    type: "number",
+    hidden: true,
+  },
+  {
+    name: "PRODCOM",
+    type: "text",
+    hidden: true,
   },
   {
     name: "PRODCOD",
@@ -45,7 +56,7 @@ const fields = [
   },
   {
     name: "PRODSTO",
-    title: "Stock",
+    title: "Stock actual",
     type: "number",
     width: 200,
     rules: [{ required: true }],

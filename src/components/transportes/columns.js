@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { sortColumn } from "../../utils/helpers";
 
-export const columns = [
+const columns = [
   {
     title: "Nombre",
     dataIndex: "TRANOM",
@@ -29,3 +29,5 @@ export const columns = [
     searchable: true,
   },
 ];
+
+export default columns;
