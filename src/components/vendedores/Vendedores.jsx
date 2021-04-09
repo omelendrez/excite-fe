@@ -6,7 +6,8 @@ import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
 import { getVendedores } from "../../redux/actions";
-const { columns } = require(`./columns`);
+import fields from "./fields";
+import columns from "./columns";
 
 const Vendedores = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,23 @@ const Vendedores = () => {
   };
 
   if (!!url) {
-    return <Redirect push to={{ pathname: url, state: { record: {} } }} />;
+    const record = {};
+    fields
+      .filter((field) => field.name !== "ID")
+      .forEach((field) => {
+        record[field.name] = "";
+      });
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: url,
+          state: {
+            record,
+          },
+        }}
+      />
+    );
   }
 
   return (
