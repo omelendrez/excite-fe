@@ -19,7 +19,6 @@ const fields = [
     title: "Código",
     type: "text",
     width: 100,
-    readonly: true,
   },
   {
     name: "PRODDES",
