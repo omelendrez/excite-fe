@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Layout } from "antd";
+import { Layout, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
-import { getVendedor, deleteVendedor } from "../../redux/actions";
+import Table from "../common/Table";
+import {
+  getVendedor,
+  deleteVendedor,
+  getActiveClientes,
+} from "../../redux/actions";
 import Info from "../common/Info";
 import fields from "./fields";
+import { columns as clientColumns } from "../clientes/columns";
+const { TabPane } = Tabs;
 
 const Vendedor = (props) => {
   const dispatch = useDispatch();
@@ -18,13 +25,16 @@ const Vendedor = (props) => {
     value: "",
   }));
   const [info, setInfo] = useState(infoDefault);
+  const clientes = useSelector((state) => state.clientes);
 
   useEffect(() => {
     dispatch(getVendedor(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
-    if (record) {
+    if (record.ID) {
+      console.log(record);
+      dispatch(getActiveClientes(record.VENCOD));
       const info = fields.map((field) => ({
         title: field.title,
         value: record[field.name],
@@ -50,6 +60,13 @@ const Vendedor = (props) => {
     );
   }
 
+  const tableProps = {
+    loading,
+    columns: clientColumns,
+    dataSource: clientes.active,
+    rowKey: "ID",
+  };
+
   return (
     <Layout>
       <Header
@@ -58,14 +75,23 @@ const Vendedor = (props) => {
         loading={loading}
       />
       {error && <Alert message="Error" description={error} type="error" />}
-      <Info
-        title={info.VENNOM}
-        data={info}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        success={success}
-        history={props.history}
-      />
+      <div className="card-container">
+        <Tabs>
+          <TabPane tab="Info" key="1">
+            <Info
+              title={info.VENNOM}
+              data={info}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              success={success}
+              history={props.history}
+            />
+          </TabPane>
+          <TabPane tab="Clientes" key="2">
+            <Table {...tableProps} />
+          </TabPane>
+        </Tabs>
+      </div>
     </Layout>
   );
 };

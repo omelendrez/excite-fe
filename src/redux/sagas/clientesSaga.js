@@ -2,6 +2,7 @@ import { put, takeEvery, call } from "redux-saga/effects";
 import * as types from "../types";
 import {
   getRecords,
+  getActiveRecords,
   getRecordById,
   addRecord,
   updateRecord,
@@ -12,6 +13,14 @@ const endpoint = "clientes";
 
 function getClientes() {
   return getRecords(endpoint)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+function getActiveClientes(id) {
+  return getActiveRecords(endpoint, id)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -60,6 +69,21 @@ function* fetchClientesSaga() {
   } catch (error) {
     yield put({
       type: types.GET_CLIENTES_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
+function* fetchActiveClientesSaga(action) {
+  try {
+    const records = yield call(getActiveClientes, action.id);
+    yield put({
+      type: types.GET_ACTIVE_CLIENTES_SUCCESS,
+      payload: records,
+    });
+  } catch (error) {
+    yield put({
+      type: types.GET_ACTIVE_CLIENTES_FAILED,
       payload: error.message,
     });
   }
@@ -127,6 +151,7 @@ function* deleteClienteSaga(action) {
 
 function* clientesSaga() {
   yield takeEvery(types.GET_CLIENTES_REQUEST, fetchClientesSaga);
+  yield takeEvery(types.GET_ACTIVE_CLIENTES_REQUEST, fetchActiveClientesSaga);
   yield takeEvery(types.GET_CLIENTE_REQUEST, fetchClienteSaga);
   yield takeEvery(types.ADD_CLIENTE_REQUEST, addClienteSaga);
   yield takeEvery(types.UPDATE_CLIENTE_REQUEST, updateClienteSaga);

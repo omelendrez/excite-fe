@@ -42,6 +42,14 @@ const ClienteEdit = (props) => {
           iva: createSelectList(iva.records, "IVACOD", "IVADES"),
           provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
           vendedores: createSelectList(vendedores.records, "VENCOD", "VENNOM"),
+          estado: createSelectList(
+            [
+              { id: "A", text: "ACTIVO" },
+              { id: "I", text: "INACTIVO" },
+            ],
+            "id",
+            "text"
+          ),
         }}
       />
     </Layout>

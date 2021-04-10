@@ -6,6 +6,13 @@ export const getClientes = () => {
   };
 };
 
+export const getActiveClientes = (id) => {
+  return {
+    type: types.GET_ACTIVE_CLIENTES_REQUEST,
+    id,
+  };
+};
+
 export const getCliente = (id) => {
   return {
     type: types.GET_CLIENTE_REQUEST,

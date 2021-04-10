@@ -3,6 +3,7 @@ import * as types from "../types";
 const initialState = {
   record: {},
   records: [],
+  active: [],
   loading: false,
   success: false,
   error: null,
@@ -25,6 +26,26 @@ const clientesReducer = (state = initialState, action) => {
         error: null,
       };
     case types.GET_CLIENTES_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case types.GET_ACTIVE_CLIENTES_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        success: false,
+        error: null,
+      };
+    case types.GET_ACTIVE_CLIENTES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        active: action.payload,
+        error: null,
+      };
+    case types.GET_ACTIVE_CLIENTES_FAILED:
       return {
         ...state,
         loading: false,

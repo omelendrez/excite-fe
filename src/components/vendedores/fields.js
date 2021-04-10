@@ -45,6 +45,12 @@ const fields = [
     width: 200,
   },
   {
+    name: "VENEST",
+    title: "Estado",
+    type: "select",
+    options: "estado",
+  },
+  {
     name: "ID",
     type: "number",
     hidden: true,

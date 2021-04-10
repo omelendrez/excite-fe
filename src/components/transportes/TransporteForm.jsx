@@ -34,6 +34,14 @@ const TransportEdit = (props) => {
         onFinish={onFinish}
         optionGroups={{
           provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
+          estado: createSelectList(
+            [
+              { id: "A", text: "ACTIVO" },
+              { id: "I", text: "INACTIVO" },
+            ],
+            "id",
+            "text"
+          ),
         }}
       />
     </Layout>

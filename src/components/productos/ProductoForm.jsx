@@ -49,7 +49,6 @@ const ProductoForm = (props) => {
             "id",
             "text"
           ),
-
           estado: createSelectList(
             [
               { id: "A", text: "ACTIVO" },

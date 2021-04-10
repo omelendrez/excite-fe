@@ -9,6 +9,15 @@ export const getRecords = (endpoint) => {
   });
 };
 
+export const getActiveRecords = (endpoint, id) => {
+  return new Promise((resolve, reject) => {
+    api
+      .get(`${endpoint}-activos/${id}`)
+      .then((response) => resolve(response.data))
+      .catch((error) => reject(error));
+  });
+};
+
 export const getRecordById = (endpoint, id) => {
   return new Promise((resolve, reject) => {
     api

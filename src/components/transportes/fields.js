@@ -47,6 +47,12 @@ const fields = [
     rows: 4,
   },
   {
+    name: "TRAEST",
+    title: "Estado",
+    type: "select",
+    options: "estado",
+  },
+  {
     name: "ID",
     type: "number",
     hidden: true,

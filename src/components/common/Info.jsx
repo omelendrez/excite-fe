@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Descriptions, Space, Row, Col } from "antd";
+import { Descriptions, Row, Col } from "antd";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 import notification from "./notification";
@@ -25,7 +25,7 @@ const Info = (props) => {
   return (
     <>
       <Row>
-        <Col span={10}>
+        <Col span={18}>
           <Descriptions title={props.title} layout="vertical" bordered>
             {props.data
               .filter((field) => field.title)
@@ -39,7 +39,7 @@ const Info = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col offset={2} span={3}>
+        <Col offset={3} span={10}>
           {props.onEdit && <EditButton handleEdit={props.onEdit} />}
         </Col>
         <Col>

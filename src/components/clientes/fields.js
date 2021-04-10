@@ -74,6 +74,13 @@ const fields = [
     type: "text",
   },
   {
+    name: "CLIEST",
+    title: "Estado",
+    type: "select",
+    options: "estado",
+  },
+
+  {
     name: "CLIFP",
     type: "text",
     hidden: true,
