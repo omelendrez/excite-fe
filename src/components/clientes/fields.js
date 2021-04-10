@@ -27,6 +27,12 @@ const fields = [
     type: "text",
   },
   {
+    name: "PROCOD",
+    title: "Provincia",
+    type: "select",
+    options: "provincias",
+  },
+  {
     name: "CLICUIT",
     title: "Cuit",
     type: "text",
@@ -63,9 +69,19 @@ const fields = [
     rules: [{ required: true }],
   },
   {
-    name: "CLIFAN",
-    title: "Nombre de fantasía",
+    name: "CLIFP",
     type: "text",
+    hidden: true,
+  },
+  {
+    name: "CLIFAN",
+    type: "text",
+    hidden: true,
+  },
+  {
+    name: "TRACOD",
+    type: "number",
+    hidden: true,
   },
 ];
 

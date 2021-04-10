@@ -5,7 +5,8 @@ import { Redirect } from "react-router-dom";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getClientes, getIva } from "../../redux/actions";
+import { getClientes, getIva, getProvincias } from "../../redux/actions";
+import fields from "./fields";
 const { columns } = require(`./columns`);
 
 const Clientes = () => {
@@ -16,6 +17,7 @@ const Clientes = () => {
 
   useEffect(() => {
     dispatch(getIva());
+    dispatch(getProvincias());
     dispatch(getClientes());
   }, [dispatch]);
 
@@ -32,12 +34,29 @@ const Clientes = () => {
   };
 
   if (!!url) {
-    return <Redirect push to={{ pathname: url, state: { record: {} } }} />;
+    const record = {};
+    fields
+      .filter((field) => field.name !== "ID")
+      .forEach((field) => {
+        record[field.name] = field.type === "number" ? 0 : "";
+      });
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: url,
+          state: {
+            record,
+          },
+        }}
+      />
+    );
   }
 
   return (
     <Layout>
       <Header title="Clientes" />
+
       {error && <Alert message="Error" description={error} type="error" />}
 
       <Table {...tableProps} />
