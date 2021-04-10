@@ -6,7 +6,6 @@ import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addCliente, updateCliente } from "../../redux/actions";
 import { createSelectList } from "../../utils/helpers";
-import create from "@ant-design/icons/lib/components/IconFont";
 
 const ClienteEdit = (props) => {
   const record = props.location.state.record;
