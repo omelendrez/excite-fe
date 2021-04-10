@@ -32,6 +32,7 @@ const fields = [
     type: "select",
     options: "tipos",
     rules: [{ required: true }],
+    allowAdd: true,
   },
   {
     name: "SUBTIPCOD",
@@ -39,6 +40,7 @@ const fields = [
     type: "select",
     options: "subtipos",
     rules: [{ required: true }],
+    allowAdd: true,
   },
   {
     name: "PRODSEX",

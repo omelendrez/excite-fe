@@ -19,3 +19,8 @@ export const createSelectList = (records, id, text) =>
       id: record[id],
       text: record[text],
     }));
+
+export const statuses = [
+  { id: "A", text: "ACTIVO" },
+  { id: "I", text: "INACTIVO" },
+];

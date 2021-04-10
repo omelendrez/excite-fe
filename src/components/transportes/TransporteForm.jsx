@@ -5,10 +5,10 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addTransporte, updateTransporte } from "../../redux/actions";
-import { createSelectList } from "../../utils/helpers";
+import { createSelectList, statuses } from "../../utils/helpers";
 
 const TransportEdit = (props) => {
-  const record = props.location.state.record;
+  const record = props.record || props.location.state.record;
   const title = `${record.ID ? "Modificando" : "Agregando"} transporte`;
   const dispatch = useDispatch();
   const transportes = useSelector((state) => state.transportes);
@@ -24,7 +24,7 @@ const TransportEdit = (props) => {
 
   return (
     <Layout>
-      <Header title={title} onBack={props.history.goBack} />
+      <Header title={title} onBack={props.history && props.history.goBack} />
       <EditForm
         fields={fields}
         record={record}
@@ -32,16 +32,10 @@ const TransportEdit = (props) => {
         success={success}
         error={error}
         onFinish={onFinish}
+        maximize={props.maximize}
         optionGroups={{
           provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
-          estado: createSelectList(
-            [
-              { id: "A", text: "ACTIVO" },
-              { id: "I", text: "INACTIVO" },
-            ],
-            "id",
-            "text"
-          ),
+          estado: createSelectList(statuses, "id", "text"),
         }}
       />
     </Layout>

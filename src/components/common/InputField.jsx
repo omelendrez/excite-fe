@@ -1,9 +1,12 @@
-import { Form, Input, InputNumber, Select } from "antd";
+import React from "react";
+import { Form, Input, InputNumber, Select, Divider, Button } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
 const { Option } = Select;
 
 const InputField = (props) => {
   const { field, optionGroups } = props;
+
   if (field.hidden) {
     return (
       <Form.Item name={[field.name]} noStyle>
@@ -56,6 +59,30 @@ const InputField = (props) => {
                 .toLowerCase()
                 .localeCompare(optionB.children.toLowerCase())
             }
+            dropdownRender={(menu) => (
+              <div>
+                {menu}
+                {field.allowAdd && (
+                  <>
+                    <Divider style={{ margin: "4px 0" }} />
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "nowrap",
+                        padding: 8,
+                      }}
+                    >
+                      <Button
+                        type="primary"
+                        onClick={() => props.addOption(field)}
+                      >
+                        <PlusOutlined /> Nuevo
+                      </Button>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
           >
             {optionGroups &&
               optionGroups[field.options].map((option) => (
