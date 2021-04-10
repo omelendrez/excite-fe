@@ -33,7 +33,6 @@ const Vendedor = (props) => {
 
   useEffect(() => {
     if (record.ID) {
-      console.log(record);
       dispatch(getActiveClientes(record.VENCOD));
       const info = fields.map((field) => ({
         title: field.title,
@@ -41,7 +40,7 @@ const Vendedor = (props) => {
       }));
       setInfo(info);
     }
-  }, [record]);
+  }, [dispatch, record]);
 
   const handleEdit = () => {
     setUrl(`/vendedores/edit/${props.match.params.id}`);
