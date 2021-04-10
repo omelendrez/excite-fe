@@ -5,7 +5,12 @@ import { Redirect } from "react-router-dom";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getClientes, getIva, getProvincias } from "../../redux/actions";
+import {
+  getClientes,
+  getIva,
+  getProvincias,
+  getVendedores,
+} from "../../redux/actions";
 import fields from "./fields";
 const { columns } = require(`./columns`);
 
@@ -18,6 +23,7 @@ const Clientes = () => {
   useEffect(() => {
     dispatch(getIva());
     dispatch(getProvincias());
+    dispatch(getVendedores());
     dispatch(getClientes());
   }, [dispatch]);
 

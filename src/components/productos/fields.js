@@ -45,6 +45,7 @@ const fields = [
     title: "Sexo",
     type: "select",
     options: "sexos",
+    rules: [{ required: true }],
   },
   {
     name: "PRODPRE",

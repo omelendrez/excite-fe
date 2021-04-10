@@ -15,23 +15,13 @@ const InputField = (props) => {
     default:
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <Input
-            style={{ width: field.width }}
-            allowClear
-            readOnly={field.readonly}
-          />
-        </Form.Item>
-      );
-    case "ID":
-      return (
-        <Form.Item name={[field.name]} noStyle>
-          <Input type="hidden" />
+          <Input style={{ width: field.width }} readOnly={field.readonly} />
         </Form.Item>
       );
     case "textarea":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <TextArea rows={field.rows} allowClear />
+          <TextArea rows={field.rows} />
         </Form.Item>
       );
     case "number":
@@ -56,7 +46,6 @@ const InputField = (props) => {
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
           <Select
             showSearch
-            allowClear={true}
             placeholder="Seleccione uno"
             optionFilterProp="children"
             filterOption={(input, option) =>

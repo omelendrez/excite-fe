@@ -1,9 +1,5 @@
 const fields = [
   {
-    name: "ID",
-    type: "ID",
-  },
-  {
     name: "TRACOD",
     title: "Código",
     type: "text",
@@ -39,16 +35,21 @@ const fields = [
     type: "text",
   },
   {
-    name: "TRAOBS",
-    title: "Observaciones",
-    type: "textarea",
-    rows: 2,
-  },
-  {
     name: "TRACUIT",
     title: "CUIT",
     type: "text",
     width: 200,
+  },
+  {
+    name: "TRAOBS",
+    title: "Obs.",
+    type: "textarea",
+    rows: 4,
+  },
+  {
+    name: "ID",
+    type: "number",
+    hidden: true,
   },
 ];
 

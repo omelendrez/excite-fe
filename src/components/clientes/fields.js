@@ -1,20 +1,26 @@
 const fields = [
   {
-    name: "ID",
-    type: "ID",
-  },
-  {
     name: "CLICOD",
     title: "Código",
     type: "text",
-    width: 100,
-    readonly: true,
+  },
+  {
+    name: "VENCOD",
+    title: "Vendedor",
+    type: "select",
+    options: "vendedores",
+    rules: [{ required: true }],
   },
   {
     name: "CLINOM",
     title: "Nombre",
     type: "text",
     rules: [{ required: true }],
+  },
+  {
+    name: "CLIFAN",
+    title: "N. fantasía",
+    type: "text",
   },
   {
     name: "CLIDOM",
@@ -31,12 +37,19 @@ const fields = [
     title: "Provincia",
     type: "select",
     options: "provincias",
+    rules: [{ required: true }],
   },
   {
-    name: "CLICUIT",
-    title: "Cuit",
+    name: "CLICP",
+    title: "Código Postal",
     type: "text",
-    width: 200,
+  },
+  {
+    name: "CLIINT",
+    title: "Interior",
+    type: "select",
+    options: "interior",
+    rules: [{ required: true }],
   },
   {
     name: "CLITEL",
@@ -49,19 +62,6 @@ const fields = [
     type: "text",
   },
   {
-    name: "CLICP",
-    title: "Código Postal",
-    type: "text",
-    width: 200,
-  },
-  {
-    name: "CLIINT",
-    title: "Interior",
-    type: "select",
-    options: "interior",
-    rules: [{ required: true }],
-  },
-  {
     name: "IVACOD",
     title: "IVA",
     type: "select",
@@ -69,17 +69,22 @@ const fields = [
     rules: [{ required: true }],
   },
   {
+    name: "CLICUIT",
+    title: "Cuit",
+    type: "text",
+  },
+  {
     name: "CLIFP",
     type: "text",
     hidden: true,
   },
   {
-    name: "CLIFAN",
-    type: "text",
+    name: "TRACOD",
+    type: "number",
     hidden: true,
   },
   {
-    name: "TRACOD",
+    name: "ID",
     type: "number",
     hidden: true,
   },

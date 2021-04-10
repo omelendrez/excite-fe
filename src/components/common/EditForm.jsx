@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Space, Form } from "antd";
+import { Form, Row, Col } from "antd";
 import SaveButton from "./SaveButton";
 import ResetButton from "./ResetButton";
 import InputField from "./InputField";
@@ -35,10 +35,10 @@ const EditForm = (props) => {
       onFinish={props.onFinish}
       initialValues={props.record}
       labelCol={{
-        span: 3,
+        span: 2,
       }}
       wrapperCol={{
-        span: 8,
+        span: 6,
       }}
     >
       {props.fields &&
@@ -50,10 +50,14 @@ const EditForm = (props) => {
             optionGroups={props.optionGroups}
           />
         ))}
-      <Space>
-        <SaveButton loading={props.loading} />
-        <ResetButton handleReset={onReset} />
-      </Space>
+      <Row>
+        <Col offset={2} span={3}>
+          <SaveButton loading={props.loading} />
+        </Col>
+        <Col>
+          <ResetButton handleReset={onReset} />
+        </Col>
+      </Row>
     </Form>
   );
 };

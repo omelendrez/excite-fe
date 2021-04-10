@@ -23,24 +23,30 @@ const Info = (props) => {
   }, [props]);
 
   return (
-    <Row>
-      <Col span={20}>
-        <Descriptions title={props.title} layout="vertical" bordered>
-          {props.data
-            .filter((field) => field.title)
-            .map((field, index) => (
-              <Descriptions.Item key={index} label={field.title}>
-                <strong>{field.value}</strong>
-              </Descriptions.Item>
-            ))}
-        </Descriptions>
-        <br />
-        <Space>
+    <>
+      <Row>
+        <Col span={10}>
+          <Descriptions title={props.title} layout="vertical" bordered>
+            {props.data
+              .filter((field) => field.title)
+              .map((field, index) => (
+                <Descriptions.Item key={index} label={field.title}>
+                  <strong>{field.value}</strong>
+                </Descriptions.Item>
+              ))}
+          </Descriptions>
+          <br />
+        </Col>
+      </Row>
+      <Row>
+        <Col offset={2} span={3}>
           {props.onEdit && <EditButton handleEdit={props.onEdit} />}
+        </Col>
+        <Col>
           {props.onDelete && <DeleteButton handleDelete={props.onDelete} />}
-        </Space>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addProducto, updateProducto } from "../../redux/actions";
-import { sortColumn } from "../../utils/helpers";
+import { createSelectList } from "../../utils/helpers";
 
 const ProductoForm = (props) => {
   const record = props.location.state.record;
@@ -34,27 +34,30 @@ const ProductoForm = (props) => {
         error={error}
         onFinish={onFinish}
         optionGroups={{
-          tipos: tipos.records
-            .sort((a, b) => sortColumn(a, b, "TIPDES"))
-            .map((record) => ({
-              id: record.TIPCOD,
-              text: record.TIPDES,
-            })),
-          subtipos: subtipos.records
-            .sort((a, b) => sortColumn(a, b, "SUBTIPDES"))
-            .map((record) => ({
-              id: record.SUBTIPCOD,
-              text: record.SUBTIPDES,
-            })),
-          sexos: [
-            { id: "", text: "INDEFINIDO" },
-            { id: "FEMENINO", text: "FEMENINO" },
-            { id: "MASCULINO", text: "MASCULINO" },
-          ],
-          estado: [
-            { id: "A", text: "ACTIVO" },
-            { id: "I", text: "INACTIVO" },
-          ],
+          tipos: createSelectList(tipos.records, "TIPCOD", "TIPDES"),
+          subtipos: createSelectList(
+            subtipos.records,
+            "SUBTIPCOD",
+            "SUBTIPDES"
+          ),
+          sexos: createSelectList(
+            [
+              { id: "", text: "INDEFINIDO" },
+              { id: "FEMENINO", text: "FEMENINO" },
+              { id: "MASCULINO", text: "MASCULINO" },
+            ],
+            "id",
+            "text"
+          ),
+
+          estado: createSelectList(
+            [
+              { id: "A", text: "ACTIVO" },
+              { id: "I", text: "INACTIVO" },
+            ],
+            "id",
+            "text"
+          ),
         }}
       />
     </Layout>

@@ -4,11 +4,16 @@ import { sortColumn } from "../../utils/helpers";
 export const columns = [
   {
     dataIndex: "CLINOM",
-    title: "Nombre",
+    title: "Cliente",
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
     render: (text, record) => (
       <Link to={`/clientes/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
     ),
+    searchable: true,
+  },
+  {
+    dataIndex: "VENNOM",
+    title: "Vendedor",
     searchable: true,
   },
   {

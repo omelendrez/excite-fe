@@ -1,9 +1,5 @@
 const fields = [
   {
-    name: "ID",
-    type: "ID",
-  },
-  {
     name: "VENCOD",
     title: "Código",
     type: "text",
@@ -47,6 +43,11 @@ const fields = [
     title: "Código postal",
     type: "text",
     width: 200,
+  },
+  {
+    name: "ID",
+    type: "number",
+    hidden: true,
   },
 ];
 

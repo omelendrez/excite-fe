@@ -15,6 +15,7 @@ const ClienteEdit = (props) => {
   const clientes = useSelector((state) => state.clientes);
   const { loading, success, error } = clientes;
   const provincias = useSelector((state) => state.provincias);
+  const vendedores = useSelector((state) => state.vendedores);
 
   const onFinish = (values) => {
     if (!record.ID) {
@@ -40,6 +41,7 @@ const ClienteEdit = (props) => {
           ],
           iva: createSelectList(iva.records, "IVACOD", "IVADES"),
           provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
+          vendedores: createSelectList(vendedores.records, "VENCOD", "VENNOM"),
         }}
       />
     </Layout>
