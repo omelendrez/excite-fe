@@ -1,10 +1,10 @@
 import { notification } from "antd";
 
 const Notification = (props) => {
-   notification[props.type]({
+  notification[props.type]({
     message: props.message,
     description: props.description,
-    placement: "bottomLeft",
+    placement: "topLeft",
   });
 };
 

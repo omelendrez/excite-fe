@@ -1,58 +1,16 @@
 import React, { useState } from "react";
-import "antd/dist/antd.css";
-import { Layout, Menu, ConfigProvider } from "antd";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Layout, ConfigProvider } from "antd";
+
 import es_ES from "antd/lib/locale/es_ES";
-import {
-  SettingOutlined,
-  TeamOutlined,
-  HomeOutlined,
-  CarOutlined,
-  IdcardOutlined,
-  ShoppingOutlined,
-  FileTextOutlined,
-} from "@ant-design/icons";
+import "antd/dist/antd.css";
+
 import "./App.css";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Menu from "./components/Menu.jsx";
+import Routes from "./components/Routes";
 
-import Home from "./components/Home";
-
-import Transportes from "./components/transportes/Transportes";
-import Transporte from "./components/transportes/Transporte";
-import TransporteForm from "./components/transportes/TransporteForm";
-
-import Clientes from "./components/clientes/Clientes";
-import Cliente from "./components/clientes/Cliente";
-import ClienteForm from "./components/clientes/ClienteForm";
-
-import Iva from "./components/iva/Iva";
-
-import Porciva from "./components/porciva/Porciva";
-
-import Pagos from "./components/pagos/Pagos";
-
-import Vendedores from "./components/vendedores/Vendedores";
-import Vendedor from "./components/vendedores/Vendedor";
-import VendedorForm from "./components/vendedores/VendedorForm";
-
-import Tipos from "./components/tipos/Tipos";
-
-import Subtipos from "./components/subtipos/Subtipos";
-
-import Productos from "./components/productos/Productos";
-import Producto from "./components/productos/Producto";
-import ProductoForm from "./components/productos/ProductoForm";
-
-import Ajustes from "./components/ajustes/Ajustes";
-
-import Remitos from "./components/remitos/Remitos";
-
-import Conceptos from "./components/conceptos/Conceptos";
-
-import Numeros from "./components/numeros/Numeros";
-
-const { Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Footer, Sider } = Layout;
 
 function App() {
   const [state, setState] = useState({ collapsed: false });
@@ -68,159 +26,10 @@ function App() {
         <Layout style={{ minHeight: "100vh" }}>
           <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
             <div className="logo" />
-            <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
-              <Menu.Item key="0" icon={<HomeOutlined />}>
-                Home
-                <Link to="/" />
-              </Menu.Item>
-              <SubMenu key="sub1" icon={<CarOutlined />} title="Transportes">
-                <Menu.Item key="1">
-                  ABM Transportes
-                  <Link to="/transportes" />
-                </Menu.Item>
-              </SubMenu>
-
-              <SubMenu key="sub2" icon={<IdcardOutlined />} title="Clientes">
-                <Menu.Item key="3">
-                  ABM Clientes
-                  <Link to="/clientes" />
-                </Menu.Item>
-                <Menu.Item key="4">
-                  Condición de IVA
-                  <Link to="/iva" />
-                </Menu.Item>
-                <Menu.Item key="5">
-                  Porcentaje IVA
-                  <Link to="/porciva" />
-                </Menu.Item>
-                <Menu.Item key="6">
-                  Pagos de facturas
-                  <Link to="/pagos" />
-                </Menu.Item>
-              </SubMenu>
-
-              <SubMenu key="sub3" icon={<TeamOutlined />} title="Vendedores">
-                <Menu.Item key="7">
-                  ABM Vendedores
-                  <Link to="/vendedores" />
-                </Menu.Item>
-              </SubMenu>
-
-              <SubMenu key="sub4" icon={<ShoppingOutlined />} title="Productos">
-                <Menu.Item key="8">
-                  ABM Tipos
-                  <Link to="/tipos" />
-                </Menu.Item>
-
-                <Menu.Item key="9">
-                  ABM Subtipos
-                  <Link to="/subtipos" />
-                </Menu.Item>
-
-                <Menu.Item key="10">
-                  ABM Productos
-                  <Link to="/productos" />
-                </Menu.Item>
-
-                <Menu.Item key="11">
-                  Ajustes de Stock
-                  <Link to="/ajustes" />
-                </Menu.Item>
-              </SubMenu>
-
-              <SubMenu
-                key="sub6"
-                icon={<FileTextOutlined />}
-                title="Documentos"
-              >
-                <Menu.Item key="13">
-                  Presupuestos y Facturas
-                  <Link to="/remitos" />
-                </Menu.Item>
-
-                <Menu.Item key="14">
-                  Conceptos
-                  <Link to="/conceptos" />
-                </Menu.Item>
-              </SubMenu>
-
-              <SubMenu
-                key="sub7"
-                icon={<SettingOutlined />}
-                title="Mantenimiento"
-              >
-                <Menu.Item key="15">
-                  Últimos números
-                  <Link to="/ultimos-numeros" />
-                </Menu.Item>
-              </SubMenu>
-            </Menu>
+            <Menu />
           </Sider>
           <Layout>
-            <Content style={{ margin: "0 16px" }}>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/transportes" component={Transportes} />
-              <Route
-                exact
-                path="/transportes/add/transporte"
-                component={TransporteForm}
-              />
-              <Route exact path="/transportes/:id" component={Transporte} />
-              <Route
-                exact
-                path="/transportes/edit/:id"
-                component={TransporteForm}
-              />
-
-              <Route exact path="/clientes" component={Clientes} />
-              <Route
-                exact
-                path="/clientes/add/cliente"
-                component={ClienteForm}
-              />
-              <Route exact path="/clientes/:id" component={Cliente} />
-              <Route exact path="/clientes/edit/:id" component={ClienteForm} />
-
-              <Route exact path="/iva" component={Iva} />
-              <Route exact path="/porciva" component={Porciva} />
-              <Route exact path="/pagos" component={Pagos} />
-
-              <Route exact path="/vendedores" component={Vendedores} />
-              <Route
-                exact
-                path="/vendedores/add/vendedor"
-                component={VendedorForm}
-              />
-              <Route exact path="/vendedores/:id" component={Vendedor} />
-              <Route
-                exact
-                path="/vendedores/edit/:id"
-                component={VendedorForm}
-              />
-
-              <Route exact path="/tipos" component={Tipos} />
-              <Route exact path="/subtipos" component={Subtipos} />
-
-              <Route exact path="/productos" component={Productos} />
-              <Route
-                exact
-                path="/productos/add/producto"
-                component={ProductoForm}
-              />
-              <Route exact path="/productos/:id" component={Producto} />
-              <Route
-                exact
-                path="/productos/edit/:id"
-                component={ProductoForm}
-              />
-
-              <Route exact path="/ajustes" component={Ajustes} />
-
-              <Route exact path="/conceptos" component={Conceptos} />
-              <Route exact path="/remitos" component={Remitos} />
-
-              <Route exact path="/ultimos-numeros" component={Numeros} />
-            </Content>
+            <Routes />
             <Footer style={{ textAlign: "center" }}>
               Excite Fragancias ©2021
             </Footer>
