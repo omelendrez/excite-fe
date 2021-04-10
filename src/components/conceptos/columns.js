@@ -4,7 +4,7 @@ export const columns = [
   {
     dataIndex: "CONNUM",
     title: "Número",
-    sorter: (a, b) => sortColumn(a, b, "AJUNUM"),
+    sorter: (a, b) => sortColumn(a, b, "CONNUM"),
     searchable: true,
   },
   {

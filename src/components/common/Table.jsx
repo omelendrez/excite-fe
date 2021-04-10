@@ -54,7 +54,12 @@ const Table = (props) => {
         <Col span={3}>{props.onAdd && <AddButton onAdd={props.onAdd} />}</Col>
       </Row>
       <AntdTable
-        pagination={{ position: ["bottomCenter"] }}
+        pagination={{
+          position: ["bottomCenter"],
+          showTotal: (total, range) => `${total} registros`,
+          hideOnSinglePage: true,
+          showQuickJumper: true,
+        }}
         size="small"
         sticky={true}
         tableLayout="fixed"

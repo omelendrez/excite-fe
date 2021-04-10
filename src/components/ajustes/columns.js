@@ -15,7 +15,7 @@ export const columns = [
   {
     dataIndex: "PRODDES",
     title: "Producto",
-    sorter: (a, b) => sortColumn(a, b, "PRODDES"),
+    render: (text, record) => `${record.PRODCOD} - ${record.PRODDES}`,
     searchable: true,
   },
   {
