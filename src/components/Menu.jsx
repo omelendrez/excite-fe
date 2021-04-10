@@ -20,6 +20,8 @@ const Menu = () => {
         Home
         <Link to="/" />
       </AntdMenu.Item>
+
+      {/* Transportes */}
       <SubMenu key="sub1" icon={<CarOutlined />} title="Transportes">
         <AntdMenu.Item key="1">
           ABM Transportes
@@ -27,6 +29,7 @@ const Menu = () => {
         </AntdMenu.Item>
       </SubMenu>
 
+      {/* Clientes */}
       <SubMenu key="sub2" icon={<IdcardOutlined />} title="Clientes">
         <AntdMenu.Item key="3">
           ABM Clientes
@@ -46,6 +49,7 @@ const Menu = () => {
         </AntdMenu.Item>
       </SubMenu>
 
+      {/* Vendedores */}
       <SubMenu key="sub3" icon={<TeamOutlined />} title="Vendedores">
         <AntdMenu.Item key="7">
           ABM Vendedores
@@ -53,6 +57,7 @@ const Menu = () => {
         </AntdMenu.Item>
       </SubMenu>
 
+      {/* Productos */}
       <SubMenu key="sub4" icon={<ShoppingOutlined />} title="Productos">
         <AntdMenu.Item key="8">
           ABM Tipos
@@ -75,6 +80,7 @@ const Menu = () => {
         </AntdMenu.Item>
       </SubMenu>
 
+      {/* Documentos */}
       <SubMenu key="sub6" icon={<FileTextOutlined />} title="Documentos">
         <AntdMenu.Item key="13">
           Presupuestos y Facturas
@@ -87,6 +93,7 @@ const Menu = () => {
         </AntdMenu.Item>
       </SubMenu>
 
+      {/* Mantenimiento */}
       <SubMenu key="sub7" icon={<SettingOutlined />} title="Mantenimiento">
         <AntdMenu.Item key="15">
           Últimos números

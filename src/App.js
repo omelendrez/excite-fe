@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 
 import "./App.css";
 
-import Menu from "./components/Menu.jsx";
+import Menu from "./components/Menu";
 import Routes from "./components/Routes";
 
 const { Footer, Sider } = Layout;
