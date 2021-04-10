@@ -86,7 +86,7 @@ const Vendedor = (props) => {
               history={props.history}
             />
           </TabPane>
-          <TabPane tab="Clientes" key="2">
+          <TabPane tab={`Clientes (${clientes.active.length})`} key="2">
             <Table {...tableProps} />
           </TabPane>
         </Tabs>

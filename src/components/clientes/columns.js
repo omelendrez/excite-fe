@@ -31,4 +31,8 @@ export const columns = [
     title: "Teléfono",
     searchable: true,
   },
+  {
+    dataIndex: "CLIEST",
+    title: "Estado",
+  },
 ];

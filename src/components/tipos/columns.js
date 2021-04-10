@@ -11,4 +11,8 @@ export const columns = [
     dataIndex: "TIPDES",
     sorter: (a, b) => sortColumn(a, b, "TIPDES"),
   },
+  {
+    dataIndex: "TIPEST",
+    title: "Estado",
+  },
 ];

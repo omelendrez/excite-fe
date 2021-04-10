@@ -28,6 +28,10 @@ const columns = [
     dataIndex: "VENTEL",
     searchable: true,
   },
+  {
+    dataIndex: "VENEST",
+    title: "Estado",
+  },
 ];
 
 export default columns;

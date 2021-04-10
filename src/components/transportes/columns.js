@@ -29,6 +29,10 @@ const columns = () => {
       dataIndex: "TRATEL",
       searchable: true,
     },
+    {
+      dataIndex: "TRAEST",
+      title: "Estado",
+    },
   ];
 };
 

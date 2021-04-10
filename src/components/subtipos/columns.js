@@ -28,6 +28,10 @@ const columns = (props) => {
       dataIndex: "SUBTIPDES",
       sorter: (a, b) => sortColumn(a, b, "SUBTIPDES"),
     },
+    {
+      dataIndex: "SUBTIPEST",
+      title: "Estado",
+    },
   ];
 };
 export default columns;

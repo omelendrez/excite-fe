@@ -59,6 +59,10 @@ const columns = (props) => {
       render: (value) => formatAmount(value),
       align: "right",
     },
+    {
+      dataIndex: "PRODEST",
+      title: "Estado",
+    },
   ];
 };
 
