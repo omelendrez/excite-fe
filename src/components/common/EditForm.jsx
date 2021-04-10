@@ -18,6 +18,7 @@ const EditForm = (props) => {
 
   const onAddOption = (field) => {
     switch (field.options) {
+      default:
       case "tipos":
         return setModalVisibleTipos(true);
       case "subtipos":
@@ -27,6 +28,7 @@ const EditForm = (props) => {
 
   const handleOnCancel = (options) => {
     switch (options) {
+      default:
       case "tipos":
         return setModalVisibleTipos(false);
       case "subtipos":
