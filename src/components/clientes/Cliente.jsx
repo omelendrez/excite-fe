@@ -4,14 +4,14 @@ import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
-import { getCliente } from "../../redux/actions";
+import { getCliente, deleteCliente } from "../../redux/actions";
 import Info from "../common/Info";
 import fields from "./fields";
 
 const Cliente = (props) => {
   const dispatch = useDispatch();
   const clientes = useSelector((state) => state.clientes);
-  const { loading, record, error } = clientes;
+  const { loading, success, record, error } = clientes;
   const [url, setUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
@@ -38,7 +38,7 @@ const Cliente = (props) => {
   };
 
   const handleDelete = () => {
-    console.log(props.match.params.id);
+    dispatch(deleteCliente(props.match.params.id));
   };
 
   if (!!url) {
@@ -62,7 +62,9 @@ const Cliente = (props) => {
         title={info.TRANOM}
         data={info}
         onEdit={handleEdit}
-        onDelete={handleDelete}
+        onDelete={handleDelete} 
+        success={success}
+        history={props.history}
       />
     </Layout>
   );

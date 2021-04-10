@@ -13,3 +13,24 @@ export const getCliente = (id) => {
   };
 };
 
+export const addCliente = (newData) => {
+  return {
+    type: types.ADD_CLIENTE_REQUEST,
+    newData,
+  };
+};
+
+export const updateCliente = (id, newData) => {
+  return {
+    type: types.UPDATE_CLIENTE_REQUEST,
+    id,
+    newData,
+  };
+};
+
+export const deleteCliente = (id) => {
+  return {
+    type: types.DELETE_CLIENTE_REQUEST,
+    id,
+  };
+};
