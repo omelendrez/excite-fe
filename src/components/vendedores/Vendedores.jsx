@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getVendedores } from "../../redux/actions";
+import { getVendedores, getProvincias } from "../../redux/actions";
 import fields from "./fields";
 import columns from "./columns";
 
@@ -16,6 +16,7 @@ const Vendedores = () => {
   const { loading, records, error } = vendedores;
 
   useEffect(() => {
+    dispatch(getProvincias());
     dispatch(getVendedores());
   }, [dispatch]);
 

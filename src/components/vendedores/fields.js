@@ -23,6 +23,26 @@ const fields = [
     type: "text",
   },
   {
+    name: "PROCOD",
+    title: "Provincia",
+    type: "select",
+    options: "provincias",
+    rules: [{ required: true }],
+  },
+  {
+    name: "VENCP",
+    title: "Código postal",
+    type: "text",
+    width: 200,
+  },
+  {
+    name: "VENINT",
+    title: "Interior",
+    type: "select",
+    options: "interior",
+    rules: [{ required: true }],
+  },
+  {
     name: "VENTEL",
     title: "Teléfono",
     type: "text",
@@ -37,12 +57,6 @@ const fields = [
     title: "Observaciones",
     type: "textarea",
     rows: 2,
-  },
-  {
-    name: "VENCP",
-    title: "Código postal",
-    type: "text",
-    width: 200,
   },
   {
     name: "VENEST",
