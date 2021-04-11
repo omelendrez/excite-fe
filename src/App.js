@@ -30,7 +30,14 @@ function App() {
           </Sider>
           <Layout>
             <Routes />
-            <Footer style={{ textAlign: "center" }}>
+            <Footer
+              style={{
+                textAlign: "center",
+                backgroundColor: "#fff",
+                height: 48,
+                padding: 12,
+              }}
+            >
               Excite Fragancias ©2021
             </Footer>
           </Layout>
