@@ -74,20 +74,21 @@ const fields = [
     type: "text",
   },
   {
+    name: "TRACOD",
+    title: "Transporte",
+    type: "select",
+    options: "transportes",
+  },
+  {
     name: "CLIEST",
     title: "Estado",
     type: "select",
-    options: "estado",
+    options: "estados",
   },
 
   {
     name: "CLIFP",
     type: "text",
-    hidden: true,
-  },
-  {
-    name: "TRACOD",
-    type: "number",
     hidden: true,
   },
   {

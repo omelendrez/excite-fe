@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addTransporte, updateTransporte } from "../../redux/actions";
 import { createSelectList, statuses } from "../../utils/helpers";
 
-const TransportEdit = (props) => {
+const TransporteForm = (props) => {
   const record = props.record || props.location.state.record;
   const title = `${record.ID ? "Modificando" : "Agregando"} transporte`;
   const dispatch = useDispatch();
@@ -35,11 +35,11 @@ const TransportEdit = (props) => {
         maximize={props.maximize}
         optionGroups={{
           provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
-          estado: createSelectList(statuses, "id", "text"),
+          estados: createSelectList(statuses, "id", "text"),
         }}
       />
     </Layout>
   );
 };
 
-export default TransportEdit;
+export default TransporteForm;

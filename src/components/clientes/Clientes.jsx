@@ -10,6 +10,7 @@ import {
   getIva,
   getProvincias,
   getVendedores,
+  getTransportes,
 } from "../../redux/actions";
 import fields from "./fields";
 const { columns } = require(`./columns`);
@@ -22,6 +23,7 @@ const Clientes = () => {
 
   useEffect(() => {
     dispatch(getIva());
+    dispatch(getTransportes());
     dispatch(getProvincias());
     dispatch(getVendedores());
     dispatch(getClientes());

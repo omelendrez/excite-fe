@@ -5,17 +5,19 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addCliente, updateCliente } from "../../redux/actions";
-import { createSelectList } from "../../utils/helpers";
+import { createSelectList, statuses, interior } from "../../utils/helpers";
 
 const ClienteEdit = (props) => {
   const record = props.location.state.record;
   const title = `${record.ID ? "Modificando" : "Agregando"} cliente`;
-  const iva = useSelector((state) => state.iva);
   const dispatch = useDispatch();
   const clientes = useSelector((state) => state.clientes);
   const { loading, success, error } = clientes;
+
+  const iva = useSelector((state) => state.iva);
   const provincias = useSelector((state) => state.provincias);
   const vendedores = useSelector((state) => state.vendedores);
+  const transportes = useSelector((state) => state.transportes);
 
   const onFinish = (values) => {
     if (!record.ID) {
@@ -35,21 +37,16 @@ const ClienteEdit = (props) => {
         error={error}
         onFinish={onFinish}
         optionGroups={{
-          interior: [
-            { id: "BAHIA BLANCA", text: "BAHIA BLANCA" },
-            { id: "INTERIOR", text: "INTERIOR" },
-          ],
           iva: createSelectList(iva.records, "IVACOD", "IVADES"),
-          provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
           vendedores: createSelectList(vendedores.records, "VENCOD", "VENNOM"),
-          estado: createSelectList(
-            [
-              { id: "A", text: "ACTIVO" },
-              { id: "I", text: "INACTIVO" },
-            ],
-            "id",
-            "text"
+          estados: createSelectList(statuses, "id", "text"),
+          interior: createSelectList(interior, "id", "text"),
+          transportes: createSelectList(
+            transportes.records,
+            "TRACOD",
+            "TRANOM"
           ),
+          provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
         }}
       />
     </Layout>

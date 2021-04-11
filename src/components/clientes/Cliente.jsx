@@ -60,9 +60,10 @@ const Cliente = (props) => {
       {error && <Alert message="Error" description={error} type="error" />}
       <Info
         title={info.TRANOM}
+        fields={fields}
         data={info}
         onEdit={handleEdit}
-        onDelete={handleDelete} 
+        onDelete={handleDelete}
         success={success}
         history={props.history}
       />

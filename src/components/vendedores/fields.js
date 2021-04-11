@@ -48,7 +48,7 @@ const fields = [
     name: "VENEST",
     title: "Estado",
     type: "select",
-    options: "estado",
+    options: "estados",
   },
   {
     name: "ID",

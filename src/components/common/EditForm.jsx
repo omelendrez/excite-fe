@@ -7,34 +7,28 @@ import notification from "./notification";
 import Tipos from "../transportes/TransporteForm";
 import Subtipos from "../transportes/TransporteForm";
 
+const components = {
+  Tipos,
+  Subtipos,
+};
+
 const EditForm = (props) => {
   const [form] = Form.useForm();
-  const [modalVisibleTipos, setModalVisibleTipos] = useState(false);
-  const [modalVisibleSubtipos, setModalVisibleSubipos] = useState(false);
+  const [modalVisible, setmodalVisible] = useState(false);
+  const [componentName, setComponentName] = useState("");
 
   const onReset = () => {
     form.resetFields();
   };
 
-  const onAddOption = (field) => {
-    switch (field.options) {
-      default:
-      case "tipos":
-        return setModalVisibleTipos(true);
-      case "subtipos":
-        return setModalVisibleSubipos(true);
-    }
+  const toggleModal = (options) => {
+    setComponentName(options);
+    setmodalVisible(!modalVisible);
   };
 
-  const handleOnCancel = (options) => {
-    switch (options) {
-      default:
-      case "tipos":
-        return setModalVisibleTipos(false);
-      case "subtipos":
-        return setModalVisibleSubipos(false);
-    }
-  };
+  const FormComponent = componentName.length
+    ? components[componentName.charAt(0).toUpperCase() + componentName.slice(1)]
+    : null;
 
   useEffect(() => {
     if (props.success) {
@@ -68,7 +62,7 @@ const EditForm = (props) => {
           span: props.maximize ? 5 : 2,
         }}
         wrapperCol={{
-          span: props.maximize ? 16 : 6,
+          span: props.maximize ? 16 : 8,
         }}
       >
         {props.fields &&
@@ -78,7 +72,7 @@ const EditForm = (props) => {
               field={field}
               record={props.record}
               optionGroups={props.optionGroups}
-              addOption={onAddOption}
+              addOption={() => toggleModal(field.options)}
             />
           ))}
         <Row>
@@ -91,20 +85,14 @@ const EditForm = (props) => {
         </Row>
       </Form>
       <Modal
-        visible={modalVisibleTipos}
-        onCancel={() => handleOnCancel("tipos")}
+        visible={modalVisible}
+        onCancel={toggleModal}
         footer={null}
         {...modalStyles}
       >
-        <Tipos record={{ ID: 0 }} maximize={true} />
-      </Modal>
-      <Modal
-        visible={modalVisibleSubtipos}
-        onCancel={() => handleOnCancel("subtipos")}
-        footer={null}
-        {...modalStyles}
-      >
-        <Subtipos record={{ ID: 0 }} maximize={true} />
+        {componentName.length && (
+          <FormComponent record={{ ID: 0 }} maximize={true} />
+        )}
       </Modal>
     </>
   );

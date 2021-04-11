@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addVendedor, updateVendedor } from "../../redux/actions";
-import { createSelectList } from "../../utils/helpers";
+import { createSelectList, statuses } from "../../utils/helpers";
 
 const VendedorEdit = (props) => {
   const record = props.location.state.record;
@@ -32,14 +32,7 @@ const VendedorEdit = (props) => {
         error={error}
         onFinish={onFinish}
         optionGroups={{
-          estado: createSelectList(
-            [
-              { id: "A", text: "ACTIVO" },
-              { id: "I", text: "INACTIVO" },
-            ],
-            "id",
-            "text"
-          ),
+          estados: createSelectList(statuses, "id", "text"),
         }}
       />
     </Layout>

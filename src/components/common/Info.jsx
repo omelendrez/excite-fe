@@ -29,11 +29,13 @@ const Info = (props) => {
           <Descriptions title={props.title} layout="vertical" bordered>
             {props.data
               .filter((field) => field.title)
-              .map((field, index) => (
-                <Descriptions.Item key={index} label={field.title}>
-                  <strong>{field.value}</strong>
-                </Descriptions.Item>
-              ))}
+              .map((field, index) => {
+                return (
+                  <Descriptions.Item key={index} label={field.title}>
+                    <strong>{field.value}</strong>
+                  </Descriptions.Item>
+                );
+              })}
           </Descriptions>
           <br />
         </Col>
