@@ -34,11 +34,12 @@ const ProductoForm = (props) => {
         error={error}
         onFinish={onFinish}
         optionGroups={{
-          tipos: createSelectList(tipos.records, "TIPCOD", "TIPDES"),
+          tipos: createSelectList(tipos.records, "TIPCOD", "TIPDES", "TIPEST"),
           subtipos: createSelectList(
             subtipos.records,
             "SUBTIPCOD",
-            "SUBTIPDES"
+            "SUBTIPDES",
+            "SUBTIPEST"
           ),
           sexos: createSelectList(sexos, "id", "text"),
           estados: createSelectList(statuses, "id", "text"),

@@ -12,16 +12,19 @@ export const formatAmount = (value) =>
 export const formatDate = (date) => moment(date).format("L");
 //export const formatDate = (date) => moment(date).add(-3, "hours").format("L");  // For local environment
 
-export const createSelectList = (records, id, text) => {
+export const createSelectList = (records, id, text, filter = null) => {
+  console.log(records);
   const uniqueList = [];
-  records.forEach((record) => {
-    if (!uniqueList.find((item) => item.id === record[id])) {
-      uniqueList.push({
-        id: record[id],
-        text: record[text],
-      });
-    }
-  });
+  records
+    .filter((item) => !filter || item[filter] === "Activo")
+    .forEach((record) => {
+      if (!uniqueList.find((item) => item.id === record[id])) {
+        uniqueList.push({
+          id: record[id],
+          text: record[text],
+        });
+      }
+    });
   return uniqueList.sort((a, b) => sortColumn(a, b, "text"));
 };
 

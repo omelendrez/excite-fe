@@ -38,13 +38,19 @@ const ClienteEdit = (props) => {
         onFinish={onFinish}
         optionGroups={{
           iva: createSelectList(iva.records, "IVACOD", "IVADES"),
-          vendedores: createSelectList(vendedores.records, "VENCOD", "VENNOM"),
+          vendedores: createSelectList(
+            vendedores.records,
+            "VENCOD",
+            "VENNOM",
+            "VENEST"
+          ),
           estados: createSelectList(statuses, "id", "text"),
           interior: createSelectList(interior, "id", "text"),
           transportes: createSelectList(
             transportes.records,
             "TRACOD",
-            "TRANOM"
+            "TRANOM",
+            "TRAEST"
           ),
           provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
         }}
