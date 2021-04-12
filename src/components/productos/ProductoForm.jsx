@@ -33,7 +33,7 @@ const ProductoForm = (props) => {
         success={success}
         error={error}
         onFinish={onFinish}
-        optionGroups={{
+        optionsModels={{
           tipos: createSelectList(tipos.records, "TIPCOD", "TIPDES", "TIPEST"),
           subtipos: createSelectList(
             subtipos.records,

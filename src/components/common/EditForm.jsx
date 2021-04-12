@@ -71,7 +71,7 @@ const EditForm = (props) => {
               key={field.name}
               field={field}
               record={props.record}
-              optionGroups={props.optionGroups}
+              optionsModels={props.optionsModels}
               addOption={() => toggleModal(field.options)}
             />
           ))}

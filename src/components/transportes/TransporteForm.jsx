@@ -33,7 +33,7 @@ const TransporteForm = (props) => {
         error={error}
         onFinish={onFinish}
         maximize={props.maximize}
-        optionGroups={{
+        optionsModels={{
           provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
           estados: createSelectList(statuses, "id", "text"),
         }}

@@ -5,7 +5,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const InputField = (props) => {
-  const { field, optionGroups } = props;
+  const { field, optionsModels } = props;
 
   if (field.hidden) {
     return (
@@ -84,8 +84,8 @@ const InputField = (props) => {
               </div>
             )}
           >
-            {optionGroups &&
-              optionGroups[field.options].map((option) => (
+            {optionsModels &&
+              optionsModels[field.options].map((option) => (
                 <Option key={option.id} value={option.id}>
                   {option.text}
                 </Option>

@@ -36,7 +36,7 @@ const ClienteEdit = (props) => {
         success={success}
         error={error}
         onFinish={onFinish}
-        optionGroups={{
+        optionsModels={{
           iva: createSelectList(iva.records, "IVACOD", "IVADES"),
           vendedores: createSelectList(
             vendedores.records,

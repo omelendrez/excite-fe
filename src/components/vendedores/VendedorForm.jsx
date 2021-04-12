@@ -32,7 +32,7 @@ const VendedorEdit = (props) => {
         success={success}
         error={error}
         onFinish={onFinish}
-        optionGroups={{
+        optionsModels={{
           provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
           interior: createSelectList(interior, "id", "text"),
           estados: createSelectList(statuses, "id", "text"),
