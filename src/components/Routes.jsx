@@ -12,7 +12,7 @@ import Clientes from "../components/clientes/Clientes";
 import Cliente from "../components/clientes/Cliente";
 import ClienteForm from "../components/clientes/ClienteForm";
 
-import Iva from "../components/iva/Iva";
+import Ivas from "../components/ivas/Ivas";
 
 import Porciva from "../components/porciva/Porciva";
 
@@ -62,7 +62,7 @@ const Routes = () => {
       <Route exact path="/clientes/edit/:id" component={ClienteForm} />
 
       {/* Iva */}
-      <Route exact path="/iva" component={Iva} />
+      <Route exact path="/ivas" component={Ivas} />
 
       {/* Porciva */}
       <Route exact path="/porciva" component={Porciva} />

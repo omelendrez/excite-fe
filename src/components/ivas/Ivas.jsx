@@ -7,7 +7,7 @@ import Alert from "../common/Alert";
 import { getIva } from "../../redux/actions";
 const { columns } = require(`./columns`);
 
-const Iva = () => {
+const Ivas = () => {
   const dispatch = useDispatch();
   const iva = useSelector((state) => state.iva);
   const { loading, records, error } = iva;
@@ -33,4 +33,4 @@ const Iva = () => {
   );
 };
 
-export default Iva;
+export default Ivas;

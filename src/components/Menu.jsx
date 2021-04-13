@@ -37,7 +37,7 @@ const Menu = () => {
         </AntdMenu.Item>
         <AntdMenu.Item key="4">
           Condición de IVA
-          <Link to="/iva" />
+          <Link to="/ivas" />
         </AntdMenu.Item>
         <AntdMenu.Item key="5">
           Porcentaje IVA
