@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
-import { sortColumn } from "../../utils/helpers";
+import { sortColumn, statuses } from "../../utils/helpers";
 
 const columns = () => {
+  const status =
+    statuses
+      .map((status) => ({
+        text: status.text,
+        value: status.text,
+      }))
+      .sort((a, b) => sortColumn(a, b, "text")) || [];
+
   return [
     {
       title: "Nombre",
@@ -32,6 +40,9 @@ const columns = () => {
     {
       dataIndex: "TRAEST",
       title: "Estado",
+      onFilter: (value, record) =>
+        record.TRAEST.toLowerCase() === value.toLowerCase(),
+      filters: status,
     },
   ];
 };

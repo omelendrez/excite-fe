@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { sortColumn, formatAmount } from "../../utils/helpers";
+import { sortColumn, formatAmount, statuses } from "../../utils/helpers";
 
 const columns = (props) => {
   const tipos =
@@ -18,6 +18,13 @@ const columns = (props) => {
         value: subtipo.SUBTIPCOD,
       }))
     ).sort((a, b) => sortColumn(a, b, "text")) || [];
+  const status =
+    statuses
+      .map((status) => ({
+        text: status.text,
+        value: status.text,
+      }))
+      .sort((a, b) => sortColumn(a, b, "text")) || [];
 
   return [
     {
@@ -62,6 +69,9 @@ const columns = (props) => {
     {
       dataIndex: "PRODEST",
       title: "Estado",
+      onFilter: (value, record) =>
+        record.PRODEST.toLowerCase() === value.toLowerCase(),
+      filters: status,
     },
   ];
 };

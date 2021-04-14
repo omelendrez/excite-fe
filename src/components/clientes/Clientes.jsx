@@ -13,7 +13,7 @@ import {
   getTransportes,
 } from "../../redux/actions";
 import fields from "./fields";
-const { columns } = require(`./columns`);
+import columns from "./columns";
 
 const Clientes = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const Clientes = () => {
 
   const tableProps = {
     loading,
-    columns,
+    columns: columns(),
     dataSource: records,
     rowKey: "ID",
     onAdd,
