@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
 import { sortColumn, formatDate } from "../../utils/helpers";
 
-export const columns = [
+const columns = () => [
   {
     dataIndex: "AJUNUM",
     title: "Número",
     sorter: (a, b) => sortColumn(a, b, "AJUNUM"),
+    render: (text, record) => <Link to={`/ajustes/${record.ID}`}>{text}</Link>,
     searchable: true,
   },
   {
@@ -24,3 +26,5 @@ export const columns = [
     align: "right",
   },
 ];
+
+export default columns;

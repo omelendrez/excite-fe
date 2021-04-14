@@ -2,26 +2,27 @@ const fields = [
   {
     name: "AJUNUM",
     title: "Número",
-    type: "text",
-    width: 100,
+    type: "number",
     readonly: true,
   },
   {
     name: "AJUFEC",
     title: "Fecha",
-    type: "text",
+    type: "date",
     rules: [{ required: true }],
   },
   {
-    name: "PRODDES",
+    name: "PRODCOD",
     title: "Producto",
-    type: "text",
-    required: true,
+    type: "select",
+    options: "productos",
+    rules: [{ required: true }],
   },
   {
     name: "AJUCAN",
     title: "Cantidad",
-    type: "text",
+    type: "number",
+    rules: [{ required: true }],
   },
 ];
 

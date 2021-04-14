@@ -1,6 +1,15 @@
 import React from "react";
-import { Form, Input, InputNumber, Select, Divider, Button } from "antd";
+import {
+  Form,
+  Input,
+  InputNumber,
+  DatePicker,
+  Select,
+  Divider,
+  Button,
+} from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+
 const { TextArea } = Input;
 const { Option } = Select;
 
@@ -19,6 +28,12 @@ const InputField = (props) => {
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
           <Input style={{ width: field.width }} readOnly={field.readonly} />
+        </Form.Item>
+      );
+    case "date":
+      return (
+        <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
+          <DatePicker format="DD-MM-YYYY" />
         </Form.Item>
       );
     case "textarea":

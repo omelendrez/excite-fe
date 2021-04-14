@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addAjuste, updateAjuste } from "../../redux/actions";
-import { createSelectList, statuses } from "../../utils/helpers";
+import { createSelectList, formatInputDate } from "../../utils/helpers";
 
 const AjusteForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -13,7 +13,7 @@ const AjusteForm = (props) => {
   const dispatch = useDispatch();
   const ajustes = useSelector((state) => state.ajustes);
   const { loading, success, error } = ajustes;
-  const provincias = useSelector((state) => state.provincias);
+  const productos = useSelector((state) => state.productos);
 
   const onFinish = (values) => {
     if (!record.ID) {
@@ -27,15 +27,14 @@ const AjusteForm = (props) => {
       <Header title={title} onBack={props.history && props.history.goBack} />
       <EditForm
         fields={fields}
-        record={record}
+        record={{ ...record, AJUFEC: formatInputDate(record.AJUFEC) }}
         loading={loading}
         success={success}
         error={error}
         onFinish={onFinish}
         maximize={props.maximize}
         optionsModels={{
-          provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
-          estados: createSelectList(statuses, "id", "text"),
+          productos: createSelectList(productos.records, "PRODCOD", "PRODDES"),
         }}
       />
     </Layout>

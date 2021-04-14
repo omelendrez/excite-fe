@@ -12,8 +12,9 @@ export const formatAmount = (value) =>
 export const formatDate = (date) => moment(date).format("L");
 //export const formatDate = (date) => moment(date).add(-3, "hours").format("L");  // For local environment
 
+export const formatInputDate = (date) => moment(date);
+
 export const createSelectList = (records, id, text, filter = null) => {
-  console.log(records);
   const uniqueList = [];
   records
     .filter((item) => !filter || item[filter] === "Activo")
