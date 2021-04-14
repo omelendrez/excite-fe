@@ -37,7 +37,7 @@ const Transportes = () => {
     fields
       .filter((field) => field.name !== "ID")
       .forEach((field) => {
-        record[field.name] = "";
+        record[field.name] = field.type === "number" ? 0 : "";
       });
     return (
       <Redirect
