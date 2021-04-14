@@ -2,7 +2,7 @@ const fields = [
   {
     name: "CLICOD",
     title: "Código",
-    type: "text",
+    type: "number",
   },
   {
     name: "VENCOD",
