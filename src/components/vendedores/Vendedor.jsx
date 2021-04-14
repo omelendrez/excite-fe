@@ -9,6 +9,9 @@ import {
   getVendedor,
   deleteVendedor,
   getActiveClientes,
+  getIva,
+  getProvincias,
+  getTransportes,
 } from "../../redux/actions";
 import Info from "../common/Info";
 import fields from "./fields";
@@ -34,6 +37,9 @@ const Vendedor = (props) => {
   useEffect(() => {
     if (record.ID) {
       dispatch(getActiveClientes(record.VENCOD));
+      dispatch(getIva());
+      dispatch(getProvincias());
+      dispatch(getTransportes());
       const info = fields.map((field) => ({
         title: field.title,
         value: record[field.name],
