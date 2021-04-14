@@ -12,7 +12,7 @@ const Search = (props) => {
       placeholder={`Buscar por ${props.searchPlaceholder}`}
       onSearch={onSearch}
       allowClear
-      style={{ width: 400, marginBottom: 10 }}
+      style={{ width: 500, marginBottom: 10 }}
     />
   );
 };
