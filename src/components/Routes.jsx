@@ -37,6 +37,8 @@ import Remitos from "../components/remitos/Remitos";
 import Conceptos from "../components/conceptos/Conceptos";
 
 import Numeros from "../components/numeros/Numeros";
+import Numero from "../components/numeros/Numero";
+import NumeroForm from "../components/numeros/NumeroForm";
 
 const { Content } = Layout;
 
@@ -99,6 +101,9 @@ const Routes = () => {
 
       {/* Números */}
       <Route exact path="/ultimos-numeros" component={Numeros} />
+      <Route exact path="/ultimos-numeros/add/numero" component={NumeroForm} />
+      <Route exact path="/ultimos-numeros/:id" component={Numero} />
+      <Route exact path="/ultimos-numeros/edit/:id" component={NumeroForm} />
     </Content>
   );
 };
