@@ -34,7 +34,12 @@ const AjusteForm = (props) => {
         onFinish={onFinish}
         maximize={props.maximize}
         optionsModels={{
-          productos: createSelectList(productos.records, "PRODCOD", "PRODDES"),
+          productos: createSelectList(
+            productos.records,
+            "PRODCOD",
+            "PRODDES",
+            "PRODEST"
+          ),
         }}
       />
     </Layout>

@@ -17,7 +17,7 @@ export const formatInputDate = (date) => moment(date);
 export const createSelectList = (records, id, text, filter = null) => {
   const uniqueList = [];
   records
-    .filter((item) => !filter || item[filter] === "Activo")
+    .filter((item) => !filter || item[filter].toLowerCase() === "activo")
     .forEach((record) => {
       if (!uniqueList.find((item) => item.id === record[id])) {
         uniqueList.push({
