@@ -33,19 +33,19 @@ const InputField = (props) => {
     case "date":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <DatePicker format="DD-MM-YYYY" />
+          <DatePicker format="DD-MM-YYYY" readOnly={field.readonly} />
         </Form.Item>
       );
     case "textarea":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <TextArea rows={field.rows} />
+          <TextArea rows={field.rows} readOnly={field.readonly} />
         </Form.Item>
       );
     case "number":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <InputNumber />
+          <InputNumber readOnly={field.readonly} />
         </Form.Item>
       );
     case "amount":
@@ -56,6 +56,7 @@ const InputField = (props) => {
               `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
             parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+            readOnly={field.readonly}
           />
         </Form.Item>
       );
