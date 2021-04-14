@@ -24,6 +24,12 @@ const fields = [
     type: "number",
     rules: [{ required: true }],
   },
+  {
+    name: "AJUOBS",
+    title: "Observaciones",
+    type: "textarea",
+    rows: 2,
+  },
 ];
 
 export default fields;
