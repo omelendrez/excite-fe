@@ -61,7 +61,7 @@ const Vendedor = (props) => {
 
   const tableProps = {
     loading,
-    columns: clientColumns,
+    columns: clientColumns(),
     dataSource: clientes.active,
     rowKey: "ID",
   };
