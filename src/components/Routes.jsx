@@ -31,6 +31,8 @@ import Producto from "../components/productos/Producto";
 import ProductoForm from "../components/productos/ProductoForm";
 
 import Ajustes from "../components/ajustes/Ajustes";
+import Ajuste from "../components/ajustes/Ajuste";
+import AjusteForm from "../components/ajustes/AjusteForm";
 
 import Remitos from "../components/remitos/Remitos";
 
@@ -92,6 +94,9 @@ const Routes = () => {
 
       {/* Ajustes */}
       <Route exact path="/ajustes" component={Ajustes} />
+      <Route exact path="/ajustes/add/ajuste" component={AjusteForm} />
+      <Route exact path="/ajustes/:id" component={Ajuste} />
+      <Route exact path="/ajustes/edit/:id" component={AjusteForm} />
 
       {/* Conceptos */}
       <Route exact path="/conceptos" component={Conceptos} />
