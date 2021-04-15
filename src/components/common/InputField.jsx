@@ -27,7 +27,11 @@ const InputField = (props) => {
     default:
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <Input style={{ width: field.width }} readOnly={field.readonly} />
+          <Input
+            style={{ width: field.width }}
+            readOnly={field.readonly}
+            maxLength={field.size}
+          />
         </Form.Item>
       );
     case "date":

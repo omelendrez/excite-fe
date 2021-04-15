@@ -12,6 +12,11 @@ const columns = () => {
 
   return [
     {
+      title: "Código",
+      dataIndex: "VENCOD",
+      searchable: true,
+    },
+    {
       title: "Nombre",
       dataIndex: "VENNOM",
       sorter: (a, b) => sortColumn(a, b, "VENNOM"),

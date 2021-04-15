@@ -18,7 +18,6 @@ const fields = [
     name: "PRODCOD",
     title: "Código",
     type: "text",
-    width: 100,
   },
   {
     name: "PRODDES",
@@ -40,7 +39,7 @@ const fields = [
     type: "select",
     options: "subtipos",
     rules: [{ required: true }],
-    //allowAdd: true,
+    allowAdd: true,
   },
   {
     name: "PRODSEX",

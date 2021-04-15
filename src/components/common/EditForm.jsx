@@ -5,7 +5,7 @@ import ResetButton from "./ResetButton";
 import InputField from "./InputField";
 import notification from "./notification";
 import Tipos from "../transportes/TransporteForm";
-import Subtipos from "../transportes/TransporteForm";
+import Subtipos from "../subtipos/SubtipoForm";
 
 const components = {
   Tipos,
