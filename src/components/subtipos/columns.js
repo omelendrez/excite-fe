@@ -1,5 +1,5 @@
 import { sortColumn } from "../../utils/helpers";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const columns = (props) => {
   const tipos =
@@ -18,11 +18,13 @@ const columns = (props) => {
       sorter: (a, b) => sortColumn(a, b, "TIPCOD"),
       onFilter: (value, record) => record.TIPCOD === value,
       filters: tipos,
+      searchable: true,
     },
     {
       title: "Subtipo",
       dataIndex: "SUBTIPCOD",
       sorter: (a, b) => sortColumn(a, b, "SUBTIPCOD"),
+      searchable: true,
     },
     {
       title: "Descripción",
@@ -33,6 +35,7 @@ const columns = (props) => {
           {text || "*** sin nombre ***"}
         </Link>
       ),
+      searchable: true,
     },
     {
       dataIndex: "SUBTIPEST",

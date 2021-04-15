@@ -8,6 +8,7 @@ const columns = () => [
         {text || "*** sin nombre ***"}
       </Link>
     ),
+    searchable: true,
   },
   {
     title: "Número",
