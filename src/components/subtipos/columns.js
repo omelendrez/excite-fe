@@ -1,4 +1,5 @@
 import { sortColumn } from "../../utils/helpers";
+import { Link } from "react-router-dom"
 
 const columns = (props) => {
   const tipos =
@@ -27,6 +28,11 @@ const columns = (props) => {
       title: "Descripción",
       dataIndex: "SUBTIPDES",
       sorter: (a, b) => sortColumn(a, b, "SUBTIPDES"),
+      render: (text, record) => (
+        <Link to={`/subtipos/${record.ID}`}>
+          {text || "*** sin nombre ***"}
+        </Link>
+      ),
     },
     {
       dataIndex: "SUBTIPEST",
