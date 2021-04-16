@@ -1,6 +1,6 @@
 import { all } from "redux-saga/effects";
 import transportesSaga from "./transportesSaga";
-import ivaSaga from "./ivaSaga";
+import ivasSaga from "./ivasSaga";
 import conceptosSaga from "./conceptosSaga";
 import clientesSaga from "./clientesSaga";
 import ajustesSaga from "./ajustesSaga";
@@ -17,7 +17,7 @@ import provinciasSaga from "./provinciasSaga";
 export default function* rootSaga() {
   yield all([
     transportesSaga(),
-    ivaSaga(),
+    ivasSaga(),
     conceptosSaga(),
     clientesSaga(),
     ajustesSaga(),

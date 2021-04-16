@@ -1,4 +1,5 @@
 import { sortColumn } from "../../utils/helpers";
+import { Link } from "react-router-dom";
 
 export const columns = [
   {
@@ -10,5 +11,8 @@ export const columns = [
     title: "Nombre",
     dataIndex: "IVADES",
     sorter: (a, b) => sortColumn(a, b, "IVADES"),
+    render: (text, record) => (
+      <Link to={`/ivas/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
+    ),
   },
 ];
