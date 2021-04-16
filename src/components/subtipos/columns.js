@@ -2,14 +2,13 @@ import { sortColumn } from "../../utils/helpers";
 import { Link } from "react-router-dom";
 
 const columns = (props) => {
-  const tipos =
-    (
-      props.tipos &&
-      props.tipos.map((tipo) => ({
-        text: tipo.TIPCOD,
-        value: tipo.TIPCOD,
-      }))
-    ).sort((a, b) => sortColumn(a, b, "text")) || [];
+  const tipos = (
+    props.tipos &&
+    props.tipos.map((tipo) => ({
+      text: tipo.TIPCOD,
+      value: tipo.TIPCOD,
+    }))
+  ).sort((a, b) => sortColumn(a, b, "text"));
 
   return [
     {

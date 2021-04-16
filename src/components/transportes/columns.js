@@ -2,13 +2,12 @@ import { Link } from "react-router-dom";
 import { sortColumn, statuses } from "../../utils/helpers";
 
 const columns = () => {
-  const status =
-    statuses
-      .map((status) => ({
-        text: status.text,
-        value: status.text,
-      }))
-      .sort((a, b) => sortColumn(a, b, "text")) || [];
+  const status = statuses
+    .map((status) => ({
+      text: status.text,
+      value: status.text,
+    }))
+    .sort((a, b) => sortColumn(a, b, "text"));
 
   return [
     {

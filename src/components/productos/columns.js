@@ -2,29 +2,26 @@ import { Link } from "react-router-dom";
 import { sortColumn, formatAmount, statuses } from "../../utils/helpers";
 
 const columns = (props) => {
-  const tipos =
-    (
-      props.tipos &&
-      props.tipos.map((tipo) => ({
-        text: tipo.TIPCOD,
-        value: tipo.TIPCOD,
-      }))
-    ).sort((a, b) => sortColumn(a, b, "text")) || [];
-  const subtipos =
-    (
-      props.subtipos &&
-      props.subtipos.map((subtipo) => ({
-        text: subtipo.SUBTIPCOD,
-        value: subtipo.SUBTIPCOD,
-      }))
-    ).sort((a, b) => sortColumn(a, b, "text")) || [];
-  const status =
-    statuses
-      .map((status) => ({
-        text: status.text,
-        value: status.text,
-      }))
-      .sort((a, b) => sortColumn(a, b, "text")) || [];
+  const tipos = (
+    props.tipos &&
+    props.tipos.map((tipo) => ({
+      text: tipo.TIPCOD,
+      value: tipo.TIPCOD,
+    }))
+  ).sort((a, b) => sortColumn(a, b, "text"));
+  const subtipos = (
+    props.subtipos &&
+    props.subtipos.map((subtipo) => ({
+      text: subtipo.SUBTIPCOD,
+      value: subtipo.SUBTIPCOD,
+    }))
+  ).sort((a, b) => sortColumn(a, b, "text"));
+  const status = statuses
+    .map((status) => ({
+      text: status.text,
+      value: status.text,
+    }))
+    .sort((a, b) => sortColumn(a, b, "text"));
 
   return [
     {
