@@ -4,16 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getIva } from "../../redux/actions";
+import { getIvas } from "../../redux/actions";
 const { columns } = require(`./columns`);
 
 const Ivas = () => {
   const dispatch = useDispatch();
-  const iva = useSelector((state) => state.iva);
-  const { loading, records, error } = iva;
+  const ivas = useSelector((state) => state.ivas);
+  const { loading, records, error } = ivas;
 
   useEffect(() => {
-    dispatch(getIva());
+    dispatch(getIvas());
   }, [dispatch]);
 
   const tableProps = {
@@ -25,7 +25,7 @@ const Ivas = () => {
 
   return (
     <Layout>
-      <Header title="Iva" />
+      <Header title="Ivas" />
       {error && <Alert message="Error" description={error} type="error" />}
 
       <Table {...tableProps} />

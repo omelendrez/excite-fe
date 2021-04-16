@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import transportesReducer from "./transportes";
-import ivaReducer from "./iva";
+import ivasReducer from "./ivas";
 import conceptosReducer from "./conceptos";
 import clientesReducer from "./clientes";
 import ajustesReducer from "./ajustes";
@@ -16,7 +16,7 @@ import provinciasReducer from "./provincias";
 
 const rootReducer = combineReducers({
   transportes: transportesReducer,
-  iva: ivaReducer,
+  ivas: ivasReducer,
   conceptos: conceptosReducer,
   clientes: clientesReducer,
   ajustes: ajustesReducer,

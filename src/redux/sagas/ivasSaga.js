@@ -8,17 +8,16 @@ import {
   deleteRecord,
 } from "../../services";
 
-const endpoint = "numeros";
+const endpoint = "ivas";
 
-function getNumeros() {
+function getIvas() {
   return getRecords(endpoint)
     .then((response) => response)
     .catch((error) => {
       throw error;
     });
 }
-
-function getNumero(id) {
+function getIva(id) {
   return getRecordById(endpoint, id)
     .then((response) => response)
     .catch((error) => {
@@ -26,7 +25,7 @@ function getNumero(id) {
     });
 }
 
-function addNumero(newData) {
+function addIva(newData) {
   return addRecord(endpoint, newData)
     .then((response) => response)
     .catch((error) => {
@@ -34,7 +33,7 @@ function addNumero(newData) {
     });
 }
 
-function updateNumero(newData) {
+function updateIva(newData) {
   return updateRecord(endpoint, newData)
     .then((response) => response)
     .catch((error) => {
@@ -42,7 +41,7 @@ function updateNumero(newData) {
     });
 }
 
-function deleteNumero(id) {
+function deleteIva(id) {
   return deleteRecord(endpoint, id)
     .then((response) => response)
     .catch((error) => {
@@ -50,87 +49,87 @@ function deleteNumero(id) {
     });
 }
 
-function* fetchNumerosSaga() {
+function* fetchIvasSaga() {
   try {
-    const records = yield call(getNumeros);
+    const records = yield call(getIvas);
     yield put({
-      type: types.GET_NUMEROS_SUCCESS,
+      type: types.GET_IVAS_SUCCESS,
       payload: records,
     });
   } catch (error) {
     yield put({
-      type: types.GET_NUMEROS_FAILED,
+      type: types.GET_IVAS_FAILED,
       payload: error.message,
     });
   }
 }
 
-function* fetchNumeroSaga(action) {
+function* fetchIvaSaga(action) {
   try {
-    const record = yield call(getNumero, action.id);
+    const record = yield call(getIva, action.id);
     yield put({
-      type: types.GET_NUMERO_SUCCESS,
+      type: types.GET_IVA_SUCCESS,
       payload: record,
     });
   } catch (error) {
     yield put({
-      type: types.GET_NUMERO_FAILED,
+      type: types.GET_IVA_FAILED,
       payload: error.message,
     });
   }
 }
 
-function* addNumeroSaga(action) {
+function* addIvaSaga(action) {
   try {
-    const record = yield call(addNumero, action.newData);
+    const record = yield call(addIva, action.newData);
     yield put({
-      type: types.ADD_NUMERO_SUCCESS,
+      type: types.ADD_IVA_SUCCESS,
       payload: record,
     });
   } catch (error) {
     yield put({
-      type: types.ADD_NUMERO_FAILED,
+      type: types.ADD_IVA_FAILED,
       payload: error.message,
     });
   }
 }
 
-function* updateNumeroSaga(action) {
+function* updateIvaSaga(action) {
   try {
-    const record = yield call(updateNumero, action.newData);
+    const record = yield call(updateIva, action.newData);
     yield put({
-      type: types.UPDATE_NUMERO_SUCCESS,
+      type: types.UPDATE_IVA_SUCCESS,
       payload: record,
     });
   } catch (error) {
     yield put({
-      type: types.UPDATE_NUMERO_FAILED,
+      type: types.UPDATE_IVA_FAILED,
       payload: error.message,
     });
   }
 }
 
-function* deleteNumeroSaga(action) {
+function* deleteIvaSaga(action) {
   try {
-    const record = yield call(deleteNumero, action.id);
+    const record = yield call(deleteIva, action.id);
     yield put({
-      type: types.DELETE_NUMERO_SUCCESS,
+      type: types.DELETE_IVA_SUCCESS,
       payload: record,
     });
   } catch (error) {
     yield put({
-      type: types.DELETE_NUMERO_FAILED,
+      type: types.DELETE_IVA_FAILED,
       payload: error.message,
     });
   }
 }
 
-function* numerosSaga() {
-  yield takeEvery(types.GET_NUMEROS_REQUEST, fetchNumerosSaga);
-  yield takeEvery(types.GET_NUMERO_REQUEST, fetchNumeroSaga);
-  yield takeEvery(types.ADD_NUMERO_REQUEST, addNumeroSaga);
-  yield takeEvery(types.UPDATE_NUMERO_REQUEST, updateNumeroSaga);
-  yield takeEvery(types.DELETE_NUMERO_REQUEST, deleteNumeroSaga);
+function* ivaSaga() {
+  yield takeEvery(types.GET_IVAS_REQUEST, fetchIvasSaga);
+  yield takeEvery(types.GET_IVA_REQUEST, fetchIvaSaga);
+  yield takeEvery(types.ADD_IVA_REQUEST, addIvaSaga);
+  yield takeEvery(types.UPDATE_IVA_REQUEST, updateIvaSaga);
+  yield takeEvery(types.DELETE_IVA_REQUEST, deleteIvaSaga);
 }
 
-export default numerosSaga;
+export default ivaSaga;

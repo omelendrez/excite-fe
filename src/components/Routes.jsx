@@ -13,6 +13,8 @@ import Cliente from "../components/clientes/Cliente";
 import ClienteForm from "../components/clientes/ClienteForm";
 
 import Ivas from "../components/ivas/Ivas";
+import Iva from "../components/ivas/Iva";
+import IvaForm from "../components/ivas/IvaForm";
 
 import Porciva from "../components/porciva/Porciva";
 
@@ -71,6 +73,9 @@ const Routes = () => {
 
       {/* Iva */}
       <Route exact path="/ivas" component={Ivas} />
+      <Route exact path="/ivas/add/iva" component={IvaForm} />
+      <Route exact path="/ivas/:id" component={Iva} />
+      <Route exact path="/ivas/edit/:id" component={IvaForm} />
 
       {/* Porciva */}
       <Route exact path="/porciva" component={Porciva} />
