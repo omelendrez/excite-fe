@@ -1,7 +1,7 @@
 import { sortColumn } from "../../utils/helpers";
 import { Link } from "react-router-dom";
 
-export const columns = [
+const columns = [
   {
     title: "Código",
     dataIndex: "IVACOD",
@@ -20,3 +20,5 @@ export const columns = [
     dataIndex: "IVAEST",
   },
 ];
+
+export default columns;
