@@ -5,3 +5,33 @@ export const getTipos = () => {
     type: types.GET_TIPOS_REQUEST,
   };
 };
+
+export const getTipo = (id) => {
+  return {
+    type: types.GET_TIPO_REQUEST,
+    id,
+  };
+};
+
+export const addTipo = (newData) => {
+  return {
+    type: types.ADD_TIPO_REQUEST,
+    newData,
+  };
+};
+
+export const updateTipo = (id, newData) => {
+  return {
+    type: types.UPDATE_TIPO_REQUEST,
+    id,
+    newData,
+  };
+};
+
+export const deleteTipo = (id) => {
+  return {
+    type: types.DELETE_TIPO_REQUEST,
+    id,
+  };
+};
+

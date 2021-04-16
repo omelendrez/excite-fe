@@ -23,6 +23,8 @@ import Vendedor from "../components/vendedores/Vendedor";
 import VendedorForm from "../components/vendedores/VendedorForm";
 
 import Tipos from "../components/tipos/Tipos";
+import Tipo from "../components/tipos/Tipo";
+import TipoForm from "../components/tipos/TipoForm";
 
 import Subtipos from "../components/subtipos/Subtipos";
 import Subtipo from "../components/subtipos/Subtipo";
@@ -84,6 +86,9 @@ const Routes = () => {
 
       {/* Tipos */}
       <Route exact path="/tipos" component={Tipos} />
+      <Route exact path="/tipos/add/tipo" component={TipoForm} />
+      <Route exact path="/tipos/:id" component={Tipo} />
+      <Route exact path="/tipos/edit/:id" component={TipoForm} />
 
       {/* Subtipos */}
       <Route exact path="/subtipos" component={Subtipos} />
