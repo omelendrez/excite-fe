@@ -32,7 +32,7 @@ const fields = [
     type: "select",
     options: "tipos",
     rules: [{ required: true }],
-    //allowAdd: true,
+    allowAdd: true,
   },
   {
     name: "SUBTIPCOD",
