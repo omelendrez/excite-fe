@@ -90,7 +90,7 @@ const EditForm = (props) => {
         footer={null}
         {...modalStyles}
       >
-        {componentName.length && (
+        {componentName.length > 0 && (
           <FormComponent record={{ ID: 0 }} maximize={true} />
         )}
       </Modal>
