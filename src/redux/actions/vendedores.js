@@ -6,6 +6,13 @@ export const getVendedores = () => {
   };
 };
 
+export const getVendedoresProductos = (id) => {
+  return {
+    type: types.GET_VENDEDORES_PRODUCTOS_REQUEST,
+    id,
+  };
+};
+
 export const getVendedor = (id) => {
   return {
     type: types.GET_VENDEDOR_REQUEST,

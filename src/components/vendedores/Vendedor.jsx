@@ -7,6 +7,7 @@ import Alert from "../common/Alert";
 import Table from "../common/Table";
 import {
   getVendedor,
+  getVendedoresProductos,
   deleteVendedor,
   getActiveClientes,
   getIva,
@@ -37,6 +38,7 @@ const Vendedor = (props) => {
   useEffect(() => {
     if (record.ID) {
       dispatch(getActiveClientes(record.VENCOD));
+      dispatch(getVendedoresProductos(record.VENCOD));
       dispatch(getIva());
       dispatch(getProvincias());
       dispatch(getTransportes());
@@ -65,17 +67,33 @@ const Vendedor = (props) => {
     );
   }
 
-  const tableProps = {
+  const clientesTableProps = {
     loading,
     columns: clientColumns(),
     dataSource: clientes.active,
     rowKey: "ID",
   };
 
+  const productosTableProps = {
+    loading,
+    columns: [
+      {
+        title: "Tipo",
+        dataIndex: "TIPDES",
+      },
+      {
+        title: "Comisión",
+        dataIndex: "VENCOM",
+      },
+    ],
+    dataSource: vendedores.productos,
+    rowKey: "ID",
+  };
+
   return (
     <Layout>
       <Header
-        title={"Vendedor"}
+        title={`Vendedor ${record.VENNOM}`}
         onBack={props.history.goBack}
         loading={loading}
       />
@@ -93,7 +111,13 @@ const Vendedor = (props) => {
             />
           </TabPane>
           <TabPane tab={`Clientes (${clientes.active.length})`} key="2">
-            <Table {...tableProps} />
+            <Table {...clientesTableProps} />
+          </TabPane>
+          <TabPane
+            tab={`Productos asociados (${vendedores.productos.length})`}
+            key="3"
+          >
+            <Table {...productosTableProps} />
           </TabPane>
         </Tabs>
       </div>
