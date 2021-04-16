@@ -6,6 +6,7 @@ const columns = [
     title: "Código",
     dataIndex: "IVACOD",
     sorter: (a, b) => sortColumn(a, b, "IVACOD"),
+    searchable: true,
   },
   {
     title: "Nombre",
@@ -14,6 +15,7 @@ const columns = [
     render: (text, record) => (
       <Link to={`/ivas/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
     ),
+    searchable: true,
   },
   {
     title: "Estado",

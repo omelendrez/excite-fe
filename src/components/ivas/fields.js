@@ -10,7 +10,6 @@ const fields = [
     title: "Descripción",
     type: "text",
     rules: [{ required: true }],
-    searchable: true,
   },
   {
     name: "IVAEST",
