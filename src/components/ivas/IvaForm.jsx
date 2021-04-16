@@ -5,6 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addIva, updateIva } from "../../redux/actions";
+import { createSelectList, statuses } from "../../utils/helpers";
 
 const IvaForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -31,6 +32,7 @@ const IvaForm = (props) => {
         error={error}
         onFinish={onFinish}
         maximize={props.maximize}
+        optionsModels={{ estados: createSelectList(statuses, "id", "text") }}
       />
     </Layout>
   );

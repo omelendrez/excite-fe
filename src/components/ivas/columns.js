@@ -15,4 +15,8 @@ export const columns = [
       <Link to={`/ivas/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
     ),
   },
+  {
+    title: "Estado",
+    dataIndex: "IVAEST",
+  },
 ];

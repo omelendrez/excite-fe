@@ -12,6 +12,13 @@ const fields = [
     rules: [{ required: true }],
   },
   {
+    name: "IVAEST",
+    title: "Estado",
+    type: "select",
+    options: "estados",
+    rules: [{ required: true }],
+  },
+  {
     name: "ID",
     type: "number",
     hidden: true,

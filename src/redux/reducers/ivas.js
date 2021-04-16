@@ -41,7 +41,7 @@ const ivasReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        records: action.payload,
+        record: action.payload,
         error: null,
       };
     case types.GET_IVA_FAILED:
