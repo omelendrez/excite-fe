@@ -16,6 +16,47 @@ const { Option } = Select;
 const InputField = (props) => {
   const { field, optionsModels } = props;
 
+  const commonProps = {
+    style: { width: field.width },
+    readOnly: field.readonly,
+    maxLength: field.size,
+    rows: field.rows,
+  };
+
+  const selectProps = {
+    showSearch: true,
+    placeholder: "Seleccione uno",
+    optionFilterProp: "children",
+    filterOption: (input, option) =>
+      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0,
+    filterSort: (optionA, optionB) =>
+      optionA.children
+        .toLowerCase()
+        .localeCompare(optionB.children.toLowerCase()),
+    dropdownRender: (menu) => (
+      <div>
+        {menu}
+        {field.allowAdd && (
+          <>
+            <Divider style={{ margin: "4px 0" }} />
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "nowrap",
+                padding: 8,
+              }}
+            >
+              <Button type="primary" onClick={() => props.addOption(field)}>
+                <PlusOutlined /> Nuevo
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
+    ),
+    commonProps,
+  };
+
   if (field.hidden) {
     return (
       <Form.Item name={[field.name]} noStyle>
@@ -27,29 +68,25 @@ const InputField = (props) => {
     default:
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <Input
-            style={{ width: field.width }}
-            readOnly={field.readonly}
-            maxLength={field.size}
-          />
+          <Input {...commonProps} />
         </Form.Item>
       );
     case "date":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <DatePicker format="DD-MM-YYYY" readOnly={field.readonly} />
+          <DatePicker format="DD-MM-YYYY" {...commonProps} />
         </Form.Item>
       );
     case "textarea":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <TextArea rows={field.rows} readOnly={field.readonly} />
+          <TextArea rows={field.rows} {...commonProps} />
         </Form.Item>
       );
     case "number":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <InputNumber readOnly={field.readonly} />
+          <InputNumber {...commonProps} />
         </Form.Item>
       );
     case "amount":
@@ -60,50 +97,14 @@ const InputField = (props) => {
               `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
             parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
-            readOnly={field.readonly}
+            {...commonProps}
           />
         </Form.Item>
       );
     case "select":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <Select
-            showSearch
-            placeholder="Seleccione uno"
-            optionFilterProp="children"
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-            filterSort={(optionA, optionB) =>
-              optionA.children
-                .toLowerCase()
-                .localeCompare(optionB.children.toLowerCase())
-            }
-            dropdownRender={(menu) => (
-              <div>
-                {menu}
-                {field.allowAdd && (
-                  <>
-                    <Divider style={{ margin: "4px 0" }} />
-                    <div
-                      style={{
-                        display: "flex",
-                        flexWrap: "nowrap",
-                        padding: 8,
-                      }}
-                    >
-                      <Button
-                        type="primary"
-                        onClick={() => props.addOption(field)}
-                      >
-                        <PlusOutlined /> Nuevo
-                      </Button>
-                    </div>
-                  </>
-                )}
-              </div>
-            )}
-          >
+          <Select {...selectProps}>
             {optionsModels &&
               optionsModels[field.options].map((option) => (
                 <Option key={option.id} value={option.id}>
