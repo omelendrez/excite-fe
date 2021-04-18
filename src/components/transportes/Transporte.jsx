@@ -4,9 +4,9 @@ import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
+import Info from "../common/Info";
 import notification from "../common/notification";
 import { getTransporte, deleteTransporte } from "../../redux/actions";
-import Info from "../common/Info";
 import fields from "./fields";
 
 const Transporte = (props) => {

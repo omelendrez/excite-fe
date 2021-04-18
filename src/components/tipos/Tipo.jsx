@@ -4,8 +4,9 @@ import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
-import { getTipo, deleteTipo } from "../../redux/actions";
 import Info from "../common/Info";
+import notification from "../common/notification";
+import { getTipo, deleteTipo } from "../../redux/actions";
 import fields from "./fields";
 
 const Tipo = (props) => {
@@ -33,6 +34,24 @@ const Tipo = (props) => {
       setInfo(info);
     }
   }, [record]);
+
+  useEffect(() => {
+    if (success && record.message) {
+      notification({
+        message: "Registro eliminado",
+        description: "El registro fue eliminado con éxito",
+        type: "info",
+      });
+      props.history.goBack();
+    }
+    if (error) {
+      notification({
+        message: "Error",
+        description: "Error al intentar eliminar el registro",
+        type: "error",
+      });
+    }
+  }, [success, record, error, props.history]);
 
   const handleEdit = () => {
     setUrl(`/tipos/edit/${props.match.params.id}`);
