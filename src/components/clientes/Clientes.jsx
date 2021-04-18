@@ -7,7 +7,7 @@ import Table from "../common/Table";
 import Alert from "../common/Alert";
 import {
   getClientes,
-  getIva,
+  getIvas,
   getProvincias,
   getVendedores,
   getTransportes,
@@ -22,7 +22,7 @@ const Clientes = () => {
   const { loading, records, error } = clientes;
 
   useEffect(() => {
-    dispatch(getIva());
+    dispatch(getIvas());
     dispatch(getTransportes());
     dispatch(getProvincias());
     dispatch(getVendedores());

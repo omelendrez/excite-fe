@@ -65,7 +65,7 @@ const fields = [
     name: "IVACOD",
     title: "IVA",
     type: "select",
-    options: "iva",
+    options: "ivas",
     rules: [{ required: true }],
   },
   {

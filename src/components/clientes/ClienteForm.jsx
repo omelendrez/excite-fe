@@ -14,7 +14,7 @@ const ClienteEdit = (props) => {
   const clientes = useSelector((state) => state.clientes);
   const { loading, success, error } = clientes;
 
-  const iva = useSelector((state) => state.iva);
+  const ivas = useSelector((state) => state.ivas);
   const provincias = useSelector((state) => state.provincias);
   const vendedores = useSelector((state) => state.vendedores);
   const transportes = useSelector((state) => state.transportes);
@@ -37,7 +37,7 @@ const ClienteEdit = (props) => {
         error={error}
         onFinish={onFinish}
         optionsModels={{
-          iva: createSelectList(iva.records, "IVACOD", "IVADES"),
+          ivas: createSelectList(ivas.records, "IVACOD", "IVADES", "IVAEST"),
           vendedores: createSelectList(
             vendedores.records,
             "VENCOD",

@@ -22,7 +22,7 @@ const InputField = (props) => {
     maxLength: field.size,
     rows: field.rows,
   };
-
+  console.log(field.options);
   const selectProps = {
     showSearch: true,
     placeholder: "Seleccione uno",
