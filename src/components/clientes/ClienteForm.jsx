@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addCliente, updateCliente } from "../../redux/actions";
-import { createSelectList, statuses, interior } from "../../utils/helpers";
+import { getSelectList, statuses, interior } from "../../utils/helpers";
 
 const ClienteEdit = (props) => {
   const record = props.location.state.record;
@@ -37,22 +37,12 @@ const ClienteEdit = (props) => {
         error={error}
         onFinish={onFinish}
         optionsModels={{
-          ivas: createSelectList(ivas.records, "IVACOD", "IVADES", "IVAEST"),
-          vendedores: createSelectList(
-            vendedores.records,
-            "VENCOD",
-            "VENNOM",
-            "VENEST"
-          ),
-          estados: createSelectList(statuses, "id", "text"),
-          interior: createSelectList(interior, "id", "text"),
-          transportes: createSelectList(
-            transportes.records,
-            "TRACOD",
-            "TRANOM",
-            "TRAEST"
-          ),
-          provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
+          ivas: getSelectList("ivas", ivas.records),
+          vendedores: getSelectList("vendedores", vendedores.records),
+          estados: getSelectList("estados", statuses),
+          interior: getSelectList("interior", interior),
+          transportes: getSelectList("transportes", transportes.records),
+          provincias: getSelectList("provincias", provincias.records),
         }}
       />
     </Layout>

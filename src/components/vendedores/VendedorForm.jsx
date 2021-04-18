@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addVendedor, updateVendedor } from "../../redux/actions";
-import { createSelectList, statuses, interior } from "../../utils/helpers";
+import { getSelectList, statuses, interior } from "../../utils/helpers";
 
 const VendedorEdit = (props) => {
   const record = props.location.state.record;
@@ -33,9 +33,9 @@ const VendedorEdit = (props) => {
         error={error}
         onFinish={onFinish}
         optionsModels={{
-          provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
-          interior: createSelectList(interior, "id", "text"),
-          estados: createSelectList(statuses, "id", "text"),
+          provincias: getSelectList("provincias", provincias.records),
+          interior: getSelectList("interior", interior),
+          estados: getSelectList("estados", statuses),
         }}
       />
     </Layout>

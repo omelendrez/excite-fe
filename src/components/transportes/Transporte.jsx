@@ -28,6 +28,7 @@ const Transporte = (props) => {
       const info = fields.map((field) => ({
         title: field.title,
         value: record[field.name],
+        options: field.options,
       }));
       setInfo(info);
     }
@@ -60,6 +61,7 @@ const Transporte = (props) => {
       {error && <Alert message="Error" description={error} type="error" />}
       <Info
         title={info.TRANOM}
+        fields={fields}
         data={info}
         onEdit={handleEdit}
         onDelete={handleDelete}

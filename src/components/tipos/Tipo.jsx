@@ -28,6 +28,7 @@ const Tipo = (props) => {
       const info = fields.map((field) => ({
         title: field.title,
         value: record[field.name],
+        options: field.options,
       }));
       setInfo(info);
     }
@@ -43,23 +44,17 @@ const Tipo = (props) => {
 
   if (!!url) {
     return (
-      <Redirect
-        push
-        to={{ pathname: url, state: { record: tipos.record } }}
-      />
+      <Redirect push to={{ pathname: url, state: { record: tipos.record } }} />
     );
   }
 
   return (
     <Layout>
-      <Header
-        title={"Tipo"}
-        onBack={props.history.goBack}
-        loading={loading}
-      />
+      <Header title={"Tipo"} onBack={props.history.goBack} loading={loading} />
       {error && <Alert message="Error" description={error} type="error" />}
       <Info
         title={info.TRANOM}
+        fields={fields}
         data={info}
         onEdit={handleEdit}
         onDelete={handleDelete}

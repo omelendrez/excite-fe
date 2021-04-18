@@ -28,6 +28,7 @@ const Iva = (props) => {
       const info = fields.map((field) => ({
         title: field.title,
         value: record[field.name],
+        options: field.options,
       }));
       setInfo(info);
     }
@@ -53,6 +54,7 @@ const Iva = (props) => {
       {error && <Alert message="Error" description={error} type="error" />}
       <Info
         title={info.IVADES}
+        fields={fields}
         data={info}
         onEdit={handleEdit}
         onDelete={handleDelete}

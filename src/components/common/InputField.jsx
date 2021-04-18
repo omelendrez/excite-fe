@@ -22,7 +22,7 @@ const InputField = (props) => {
     maxLength: field.size,
     rows: field.rows,
   };
-  console.log(field.options);
+
   const selectProps = {
     showSearch: true,
     placeholder: "Seleccione uno",
@@ -54,7 +54,6 @@ const InputField = (props) => {
         )}
       </div>
     ),
-    commonProps,
   };
 
   if (field.hidden) {
@@ -104,7 +103,7 @@ const InputField = (props) => {
     case "select":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <Select {...selectProps}>
+          <Select {...selectProps} {...commonProps}>
             {optionsModels &&
               optionsModels[field.options].map((option) => (
                 <Option key={option.id} value={option.id}>

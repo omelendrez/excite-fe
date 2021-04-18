@@ -10,9 +10,6 @@ import {
   getVendedoresProductos,
   deleteVendedor,
   getActiveClientes,
-  getIva,
-  getProvincias,
-  getTransportes,
 } from "../../redux/actions";
 import Info from "../common/Info";
 import fields from "./fields";
@@ -39,12 +36,10 @@ const Vendedor = (props) => {
     if (record.ID) {
       dispatch(getActiveClientes(record.VENCOD));
       dispatch(getVendedoresProductos(record.VENCOD));
-      dispatch(getIva());
-      dispatch(getProvincias());
-      dispatch(getTransportes());
       const info = fields.map((field) => ({
         title: field.title,
         value: record[field.name],
+        options: field.options,
       }));
       setInfo(info);
     }
@@ -103,6 +98,7 @@ const Vendedor = (props) => {
           <TabPane tab="Info" key="1">
             <Info
               title={info.VENNOM}
+              fields={fields}
               data={info}
               onEdit={handleEdit}
               onDelete={handleDelete}

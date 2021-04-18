@@ -5,7 +5,6 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addNumero, updateNumero } from "../../redux/actions";
-import { createSelectList, statuses } from "../../utils/helpers";
 
 const NumeroForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -13,7 +12,6 @@ const NumeroForm = (props) => {
   const dispatch = useDispatch();
   const numeros = useSelector((state) => state.numeros);
   const { loading, success, error } = numeros;
-  const provincias = useSelector((state) => state.provincias);
 
   const onFinish = (values) => {
     if (!record.ID) {
@@ -33,10 +31,6 @@ const NumeroForm = (props) => {
         error={error}
         onFinish={onFinish}
         maximize={props.maximize}
-        optionsModels={{
-          provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
-          estados: createSelectList(statuses, "id", "text"),
-        }}
       />
     </Layout>
   );

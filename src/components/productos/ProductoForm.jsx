@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addProducto, updateProducto } from "../../redux/actions";
-import { createSelectList, statuses, sexos } from "../../utils/helpers";
+import { getSelectList, statuses, sexos } from "../../utils/helpers";
 
 const ProductoForm = (props) => {
   const record = props.location.state.record;
@@ -34,15 +34,10 @@ const ProductoForm = (props) => {
         error={error}
         onFinish={onFinish}
         optionsModels={{
-          tipos: createSelectList(tipos.records, "TIPCOD", "TIPDES", "TIPEST"),
-          subtipos: createSelectList(
-            subtipos.records,
-            "SUBTIPCOD",
-            "SUBTIPDES",
-            "SUBTIPEST"
-          ),
-          sexos: createSelectList(sexos, "id", "text"),
-          estados: createSelectList(statuses, "id", "text"),
+          tipos: getSelectList("tipos", tipos.records),
+          subtipos: getSelectList("subtipos", subtipos.records),
+          sexos: getSelectList("sexos", sexos),
+          estados: getSelectList("estados", statuses),
         }}
       />
     </Layout>

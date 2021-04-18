@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addSubtipo, updateSubtipo } from "../../redux/actions";
-import { createSelectList, statuses } from "../../utils/helpers";
+import { getSelectList, statuses } from "../../utils/helpers";
 
 const SubtipoForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -34,8 +34,8 @@ const SubtipoForm = (props) => {
         onFinish={onFinish}
         maximize={props.maximize}
         optionsModels={{
-          tipos: createSelectList(tipos.records, "TIPCOD", "TIPDES", "TIPEST"),
-          estados: createSelectList(statuses, "id", "text"),
+          tipos: getSelectList("tipos", tipos.records),
+          estados: getSelectList("estados", statuses),
         }}
       />
     </Layout>

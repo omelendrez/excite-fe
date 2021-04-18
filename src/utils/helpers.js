@@ -14,7 +14,66 @@ export const formatDate = (date) => moment(date).format("L");
 
 export const formatInputDate = (date) => moment(date);
 
-export const createSelectList = (records, id, text, filter = null) => {
+const tableFields = [
+  {
+    model: "clientes",
+    id: "CLICOD",
+    text: "CLINOM",
+    status: "CLIEST",
+  },
+  {
+    model: "estados",
+    id: "id",
+    text: "text",
+  },
+  {
+    model: "interior",
+    id: "id",
+    text: "text",
+  },
+  {
+    model: "ivas",
+    id: "IVACOD",
+    text: "IVADES",
+    status: "IVAEST",
+  },
+  {
+    model: "provincias",
+    id: "PROCOD",
+    text: "PRONOM",
+  },
+  {
+    model: "sexos",
+    id: "id",
+    text: "text",
+  },
+  {
+    model: "subtipos",
+    id: "SUBTIPCOD",
+    text: "SUBTIPDES",
+    status: "SUBTIPEST",
+  },
+  {
+    model: "tipos",
+    id: "TIPCOD",
+    text: "TIPDES",
+    status: "TIPEST",
+  },
+  {
+    model: "transportes",
+    id: "TRACOD",
+    text: "TRANOM",
+    status: "TRAEST",
+  },
+  {
+    model: "vendedores",
+    id: "VENCOD",
+    text: "VENNOM",
+    status: "VENEST",
+  },
+];
+
+const createSelectList = (records, id, text, filter = null) => {
   const uniqueList = [];
   records
     .filter((item) => !filter || item[filter].toLowerCase() === "activo")
@@ -44,3 +103,21 @@ export const interior = [
   { id: "BAHIA BLANCA", text: "BAHIA BLANCA" },
   { id: "INTERIOR", text: "INTERIOR" },
 ];
+
+export const getSelectList = (modelName, data) => {
+  let table = data;
+  const field = tableFields.find((model) => model.model === modelName);
+  switch (modelName) {
+    case "estados":
+      table = statuses;
+      break;
+    case "sexos":
+      table = sexos;
+      break;
+    case "interior":
+      table = interior;
+      break;
+    default:
+  }
+  return createSelectList(table, field.id, field.text, field.status);
+};

@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addTipo, updateTipo } from "../../redux/actions";
-import { createSelectList, statuses } from "../../utils/helpers";
+import { getSelectList, statuses } from "../../utils/helpers";
 
 const TipoForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -34,8 +34,8 @@ const TipoForm = (props) => {
         onFinish={onFinish}
         maximize={props.maximize}
         optionsModels={{
-          provincias: createSelectList(provincias.records, "PROCOD", "PRONOM"),
-          estados: createSelectList(statuses, "id", "text"),
+          provincias: getSelectList("provincias", provincias.records),
+          estados: getSelectList("estados", statuses),
         }}
       />
     </Layout>

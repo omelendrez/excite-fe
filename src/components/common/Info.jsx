@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Descriptions, Row, Col } from "antd";
+import { getSelectList } from "../../utils/helpers";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 import notification from "./notification";
 
 const Info = (props) => {
+  const globalState = useSelector((state) => state);
   useEffect(() => {
     if (props.record && props.record.message && !props.error) {
       notification({
@@ -30,9 +33,20 @@ const Info = (props) => {
             {props.data
               .filter((field) => field.title)
               .map((field, index) => {
+                let value = field.value;
+                if (field.options) {
+                  const data = globalState[field.options]
+                    ? globalState[field.options].records
+                    : [];
+                  const valuesList = getSelectList(field.options, data);
+
+                  value = field.value
+                    ? valuesList.find((item) => item.id === field.value).text
+                    : value;
+                }
                 return (
                   <Descriptions.Item key={index} label={field.title}>
-                    <strong>{field.value}</strong>
+                    <strong>{value}</strong>
                   </Descriptions.Item>
                 );
               })}

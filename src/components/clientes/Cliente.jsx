@@ -28,6 +28,7 @@ const Cliente = (props) => {
       const info = fields.map((field) => ({
         title: field.title,
         value: record[field.name],
+        options: field.options,
       }));
       setInfo(info);
     }

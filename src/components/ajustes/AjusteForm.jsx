@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addAjuste, updateAjuste } from "../../redux/actions";
-import { createSelectList, formatInputDate } from "../../utils/helpers";
+import { getSelectList, formatInputDate } from "../../utils/helpers";
 
 const AjusteForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -34,12 +34,7 @@ const AjusteForm = (props) => {
         onFinish={onFinish}
         maximize={props.maximize}
         optionsModels={{
-          productos: createSelectList(
-            productos.records,
-            "PRODCOD",
-            "PRODDES",
-            "PRODEST"
-          ),
+          productos: getSelectList("productos", productos.records),
         }}
       />
     </Layout>
