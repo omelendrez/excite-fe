@@ -37,6 +37,7 @@ const TipoForm = (props) => {
           provincias: getSelectList("provincias", provincias.records),
           estados: getSelectList("estados", statuses),
         }}
+        history={props.history}
       />
     </Layout>
   );

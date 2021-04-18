@@ -37,6 +37,7 @@ const EditForm = (props) => {
         description: "Los datos se guardaron satisfactoriamente",
         type: "info",
       });
+      props.history.goBack();
     }
     if (props.error) {
       notification({
@@ -45,7 +46,7 @@ const EditForm = (props) => {
         type: "error",
       });
     }
-  }, [props.success, props.error]);
+  }, [props.success, props.error, props.history]);
 
   const modalStyles = {
     width: "40vw",

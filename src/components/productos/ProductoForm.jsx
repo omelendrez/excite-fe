@@ -39,6 +39,7 @@ const ProductoForm = (props) => {
           sexos: getSelectList("sexos", sexos),
           estados: getSelectList("estados", statuses),
         }}
+        history={props.history}
       />
     </Layout>
   );

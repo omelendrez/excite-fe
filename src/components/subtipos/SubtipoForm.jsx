@@ -37,6 +37,7 @@ const SubtipoForm = (props) => {
           tipos: getSelectList("tipos", tipos.records),
           estados: getSelectList("estados", statuses),
         }}
+        history={props.history}
       />
     </Layout>
   );

@@ -31,6 +31,7 @@ const NumeroForm = (props) => {
         error={error}
         onFinish={onFinish}
         maximize={props.maximize}
+        history={props.history}
       />
     </Layout>
   );

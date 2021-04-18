@@ -36,6 +36,7 @@ const AjusteForm = (props) => {
         optionsModels={{
           productos: getSelectList("productos", productos.records),
         }}
+        history={props.history}
       />
     </Layout>
   );

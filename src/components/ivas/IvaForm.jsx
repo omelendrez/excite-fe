@@ -33,6 +33,7 @@ const IvaForm = (props) => {
         onFinish={onFinish}
         maximize={props.maximize}
         optionsModels={{ estados: getSelectList("estados", statuses) }}
+        history={props.history}
       />
     </Layout>
   );

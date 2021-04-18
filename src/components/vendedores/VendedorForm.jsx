@@ -37,6 +37,7 @@ const VendedorEdit = (props) => {
           interior: getSelectList("interior", interior),
           estados: getSelectList("estados", statuses),
         }}
+        history={props.history}
       />
     </Layout>
   );

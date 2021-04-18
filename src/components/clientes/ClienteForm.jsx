@@ -44,6 +44,7 @@ const ClienteEdit = (props) => {
           transportes: getSelectList("transportes", transportes.records),
           provincias: getSelectList("provincias", provincias.records),
         }}
+        history={props.history}
       />
     </Layout>
   );

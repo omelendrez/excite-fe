@@ -1,30 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Descriptions, Row, Col } from "antd";
 import { getSelectList } from "../../utils/helpers";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
-import notification from "./notification";
 
 const Info = (props) => {
   const globalState = useSelector((state) => state);
-  useEffect(() => {
-    if (props.record && props.record.message && !props.error) {
-      notification({
-        message: "Registro eliminado",
-        description: "El registro fue eliminado con éxito",
-        type: "info",
-      });
-    }
-    if (props.error) {
-      notification({
-        message: "Error",
-        description: "Error al intentar eliminar el registro",
-        type: "error",
-      });
-    }
-  }, [props]);
-
   return (
     <>
       <Row>
