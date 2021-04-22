@@ -38,6 +38,12 @@ const tableFields = [
     status: "IVAEST",
   },
   {
+    model: "productos",
+    id: "PRODCOD",
+    text: "PRODDES",
+    status: "PRODEST",
+  },
+  {
     model: "provincias",
     id: "PROCOD",
     text: "PRONOM",

@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addConcepto, updateConcepto } from "../../redux/actions";
-import { getSelectList } from "../../utils/helpers";
+import { getSelectList, formatInputDate } from "../../utils/helpers";
 
 const ConceptoForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -27,7 +27,7 @@ const ConceptoForm = (props) => {
       <Header title={title} onBack={props.history && props.history.goBack} />
       <EditForm
         fields={fields}
-        record={record}
+        record={{ ...record, CONFEC: formatInputDate(record.CONFEC) }}
         loading={loading}
         success={success}
         error={error}

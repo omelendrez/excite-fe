@@ -2,7 +2,8 @@ const fields = [
   {
     name: "CONNUM",
     title: "Número",
-    type: "text",
+    type: "number",
+    readonly: true,
   },
   {
     name: "CONFEC",

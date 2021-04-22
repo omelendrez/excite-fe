@@ -30,6 +30,11 @@ const fields = [
     type: "textarea",
     rows: 2,
   },
+  {
+    name: "ID",
+    type: "number",
+    hidden: true,
+  },
 ];
 
 export default fields;

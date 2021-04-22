@@ -6,6 +6,9 @@ const columns = () => [
     dataIndex: "CONNUM",
     title: "Número",
     sorter: (a, b) => sortColumn(a, b, "CONNUM"),
+    render: (text, record) => (
+      <Link to={`/conceptos/${record.ID}`}>{text}</Link>
+    ),
     searchable: true,
   },
   {
@@ -22,9 +25,6 @@ const columns = () => [
     dataIndex: "CONDES",
     title: "Concepto",
     searchable: true,
-    render: (text, record) => (
-      <Link to={`/conceptos/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
-    ),
   },
   {
     title: "Importe",
