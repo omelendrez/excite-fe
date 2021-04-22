@@ -43,6 +43,8 @@ import AjusteForm from "../components/ajustes/AjusteForm";
 import Remitos from "../components/remitos/Remitos";
 
 import Conceptos from "../components/conceptos/Conceptos";
+import Concepto from "../components/conceptos/Concepto";
+import ConceptoForm from "../components/conceptos/ConceptoForm";
 
 import Numeros from "../components/numeros/Numeros";
 import Numero from "../components/numeros/Numero";
@@ -115,6 +117,9 @@ const Routes = () => {
 
       {/* Conceptos */}
       <Route exact path="/conceptos" component={Conceptos} />
+      <Route exact path="/conceptos/add/ajuste" component={ConceptoForm} />
+      <Route exact path="/conceptos/:id" component={Concepto} />
+      <Route exact path="/conceptos/edit/:id" component={ConceptoForm} />
 
       {/* Remitos */}
       <Route exact path="/remitos" component={Remitos} />
