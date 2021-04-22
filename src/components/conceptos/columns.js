@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { formatAmount, formatDate, sortColumn } from "../../utils/helpers";
 
-export const columns = [
+const columns = () => [
   {
     dataIndex: "CONNUM",
     title: "Número",
@@ -21,6 +22,9 @@ export const columns = [
     dataIndex: "CONDES",
     title: "Concepto",
     searchable: true,
+    render: (text, record) => (
+      <Link to={`/conceptos/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
+    ),
   },
   {
     title: "Importe",
@@ -31,3 +35,4 @@ export const columns = [
     ),
   },
 ];
+export default columns;
