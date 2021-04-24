@@ -14,6 +14,7 @@ const components = {
 };
 
 const EditForm = (props) => {
+  console.log(props);
   const [form] = Form.useForm();
   const [modalVisible, setmodalVisible] = useState(false);
   const [componentName, setComponentName] = useState("");
@@ -36,6 +37,7 @@ const EditForm = (props) => {
     const record = {};
     for (const field in props.record) {
       const fld = props.fields.find((fld) => fld.name === field);
+      console.log(fld, field);
       record[field] =
         fld.type === "date"
           ? formatInputDate(props.record[field])

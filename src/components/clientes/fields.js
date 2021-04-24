@@ -96,6 +96,26 @@ const fields = [
     type: "number",
     hidden: true,
   },
+  {
+    name: "CLISALFEC",
+    type: "date",
+    hidden: true,
+  },
+  {
+    name: "CLISALDEB",
+    type: "amount",
+    hidden: true,
+  },
+  {
+    name: "CLISALHAB",
+    type: "amount",
+    hidden: true,
+  },
+  {
+    name: "CLISALIMP",
+    type: "amount",
+    hidden: true,
+  },
 ];
 
 export default fields;
