@@ -69,6 +69,26 @@ const fields = [
     type: "number",
     hidden: true,
   },
+  {
+    name: "VENSALDEB",
+    type: "amount",
+    hidden: true,
+  },
+  {
+    name: "VENSALHAB",
+    type: "amount",
+    hidden: true,
+  },
+  {
+    name: "VENSALIMP",
+    type: "amount",
+    hidden: true,
+  },
+  {
+    name: "VENFECSAL",
+    type: "date",
+    hidden: true,
+  },
 ];
 
 export default fields;

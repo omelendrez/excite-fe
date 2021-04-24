@@ -5,7 +5,12 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addVendedor, updateVendedor } from "../../redux/actions";
-import { getSelectList, statuses, interior } from "../../utils/helpers";
+import {
+  getSelectList,
+  statuses,
+  interior,
+  cleanFields,
+} from "../../utils/helpers";
 
 const VendedorEdit = (props) => {
   const record = props.location.state.record;
@@ -16,10 +21,11 @@ const VendedorEdit = (props) => {
   const { loading, success, error } = vendedores;
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      dispatch(addVendedor(values));
+      dispatch(addVendedor(newValues));
     }
-    return dispatch(updateVendedor(record.ID, values));
+    return dispatch(updateVendedor(record.ID, newValues));
   };
 
   return (

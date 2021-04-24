@@ -72,3 +72,13 @@ export const setFields = (fields, record) => {
     type: field.type,
   }));
 };
+
+export const cleanFields = (fields, record) => {
+  const values = {};
+  fields.forEach((field) => {
+    if (!field.hidden || field.name === "ID") {
+      values[field.name] = record[field.name];
+    }
+  });
+  return values;
+};

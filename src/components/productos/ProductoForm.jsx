@@ -5,7 +5,12 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addProducto, updateProducto } from "../../redux/actions";
-import { getSelectList, statuses, sexos } from "../../utils/helpers";
+import {
+  getSelectList,
+  statuses,
+  sexos,
+  cleanFields,
+} from "../../utils/helpers";
 
 const ProductoForm = (props) => {
   const record = props.location.state.record;
@@ -17,10 +22,11 @@ const ProductoForm = (props) => {
   const { loading, success, error } = productos;
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      return dispatch(addProducto(values));
+      return dispatch(addProducto(newValues));
     }
-    dispatch(updateProducto(record.ID, values));
+    dispatch(updateProducto(record.ID, newValues));
   };
 
   return (

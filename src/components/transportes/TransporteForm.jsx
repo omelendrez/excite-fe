@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addTransporte, updateTransporte } from "../../redux/actions";
-import { getSelectList, statuses } from "../../utils/helpers";
+import { getSelectList, statuses, cleanFields } from "../../utils/helpers";
 
 const TransporteForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -16,10 +16,11 @@ const TransporteForm = (props) => {
   const provincias = useSelector((state) => state.provincias);
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      return dispatch(addTransporte(values));
+      return dispatch(addTransporte(newValues));
     }
-    dispatch(updateTransporte(record.ID, values));
+    dispatch(updateTransporte(record.ID, newValues));
   };
 
   return (

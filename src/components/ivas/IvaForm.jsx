@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addIva, updateIva } from "../../redux/actions";
-import { getSelectList, statuses } from "../../utils/helpers";
+import { getSelectList, statuses, cleanFields } from "../../utils/helpers";
 
 const IvaForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -15,10 +15,11 @@ const IvaForm = (props) => {
   const { loading, success, error } = ivas;
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      return dispatch(addIva(values));
+      return dispatch(addIva(newValues));
     }
-    dispatch(updateIva(record.ID, values));
+    dispatch(updateIva(record.ID, newValues));
   };
 
   return (

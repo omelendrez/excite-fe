@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addAjuste, updateAjuste } from "../../redux/actions";
-import { getSelectList } from "../../utils/helpers";
+import { getSelectList, cleanFields } from "../../utils/helpers";
 
 const AjusteForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -16,10 +16,11 @@ const AjusteForm = (props) => {
   const productos = useSelector((state) => state.productos);
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      return dispatch(addAjuste(values));
+      return dispatch(addAjuste(newValues));
     }
-    dispatch(updateAjuste(record.ID, values));
+    dispatch(updateAjuste(record.ID, newValues));
   };
 
   return (

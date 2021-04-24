@@ -37,7 +37,7 @@ const Subtipo = (props) => {
       notification({
         message: "Registro eliminado",
         description: "El registro fue eliminado con éxito",
-        type: "info",
+        type: "success",
       });
       props.history.goBack();
     }

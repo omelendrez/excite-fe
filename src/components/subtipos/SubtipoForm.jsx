@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addSubtipo, updateSubtipo } from "../../redux/actions";
-import { getSelectList, statuses } from "../../utils/helpers";
+import { getSelectList, statuses, cleanFields } from "../../utils/helpers";
 
 const SubtipoForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -16,10 +16,11 @@ const SubtipoForm = (props) => {
   const tipos = useSelector((state) => state.tipos);
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      return dispatch(addSubtipo(values));
+      return dispatch(addSubtipo(newValues));
     }
-    dispatch(updateSubtipo(record.ID, values));
+    dispatch(updateSubtipo(record.ID, newValues));
   };
 
   return (

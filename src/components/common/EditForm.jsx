@@ -36,6 +36,9 @@ const EditForm = (props) => {
     const record = {};
     for (const field in props.record) {
       const fld = props.fields.find((fld) => fld.name === field);
+      if (!fld) {
+        console.log(field);
+      }
       record[field] =
         fld.type === "date"
           ? formatInputDate(props.record[field])
@@ -49,7 +52,7 @@ const EditForm = (props) => {
       notification({
         message: "Datos guardados",
         description: "Los datos se guardaron satisfactoriamente",
-        type: "info",
+        type: "success",
       });
       props.history.goBack();
     }

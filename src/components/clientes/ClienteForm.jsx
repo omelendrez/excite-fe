@@ -5,7 +5,12 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addCliente, updateCliente } from "../../redux/actions";
-import { getSelectList, statuses, interior } from "../../utils/helpers";
+import {
+  getSelectList,
+  statuses,
+  interior,
+  cleanFields,
+} from "../../utils/helpers";
 
 const ClienteEdit = (props) => {
   const record = props.location.state.record;
@@ -20,10 +25,12 @@ const ClienteEdit = (props) => {
   const transportes = useSelector((state) => state.transportes);
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
+
     if (!record.ID) {
-      return dispatch(addCliente(values));
+      return dispatch(addCliente(newValues));
     }
-    dispatch(updateCliente(record.ID, values));
+    dispatch(updateCliente(record.ID, newValues));
   };
 
   return (

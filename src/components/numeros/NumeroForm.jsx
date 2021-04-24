@@ -5,6 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addNumero, updateNumero } from "../../redux/actions";
+import { cleanFields } from "../../utils/helpers";
 
 const NumeroForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -14,10 +15,11 @@ const NumeroForm = (props) => {
   const { loading, success, error } = numeros;
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      return dispatch(addNumero(values));
+      return dispatch(addNumero(newValues));
     }
-    dispatch(updateNumero(record.ID, values));
+    dispatch(updateNumero(record.ID, newValues));
   };
 
   return (

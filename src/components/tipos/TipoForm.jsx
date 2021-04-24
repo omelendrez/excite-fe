@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addTipo, updateTipo } from "../../redux/actions";
-import { getSelectList, statuses } from "../../utils/helpers";
+import { getSelectList, statuses, cleanFields } from "../../utils/helpers";
 
 const TipoForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -16,10 +16,11 @@ const TipoForm = (props) => {
   const provincias = useSelector((state) => state.provincias);
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      return dispatch(addTipo(values));
+      return dispatch(addTipo(newValues));
     }
-    dispatch(updateTipo(record.ID, values));
+    dispatch(updateTipo(record.ID, newValues));
   };
 
   return (

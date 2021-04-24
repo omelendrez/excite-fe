@@ -5,21 +5,22 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addConcepto, updateConcepto } from "../../redux/actions";
-import { getSelectList } from "../../utils/helpers";
+import { getSelectList, cleanFields } from "../../utils/helpers";
 
 const ConceptoForm = (props) => {
   const record = props.record || props.location.state.record;
   const title = `${record.ID ? "Modificando" : "Agregando"} concepto`;
   const dispatch = useDispatch();
-  const numeros = useSelector((state) => state.numeros);
-  const { loading, success, error } = numeros;
+  const conceptos = useSelector((state) => state.conceptos);
+  const { loading, success, error } = conceptos;
   const clientes = useSelector((state) => state.clientes);
 
   const onFinish = (values) => {
+    const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      return dispatch(addConcepto(values));
+      return dispatch(addConcepto(newValues));
     }
-    dispatch(updateConcepto(record.ID, values));
+    dispatch(updateConcepto(record.ID, newValues));
   };
 
   return (

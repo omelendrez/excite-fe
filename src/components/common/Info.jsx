@@ -5,6 +5,7 @@ import { getSelectList } from "../../utils/helpers";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 import { formatDate, formatAmount } from "../../utils/helpers";
+import "./info.css";
 
 const Info = (props) => {
   const globalState = useSelector((state) => state);
@@ -12,7 +13,7 @@ const Info = (props) => {
   return (
     <>
       <Row>
-        <Col span={18}>
+        <Col span={24}>
           <Descriptions title={props.title} layout="vertical" bordered>
             {props.data
               .filter((field) => field.title)
@@ -48,7 +49,7 @@ const Info = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col offset={3} span={10}>
+        <Col span={2}>
           {props.onEdit && <EditButton handleEdit={props.onEdit} />}
         </Col>
         <Col>
