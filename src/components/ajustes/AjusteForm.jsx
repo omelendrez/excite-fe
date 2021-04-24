@@ -5,7 +5,7 @@ import EditForm from "../common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addAjuste, updateAjuste } from "../../redux/actions";
-import { getSelectList, formatInputDate } from "../../utils/helpers";
+import { getSelectList } from "../../utils/helpers";
 
 const AjusteForm = (props) => {
   const record = props.record || props.location.state.record;
@@ -27,7 +27,7 @@ const AjusteForm = (props) => {
       <Header title={title} onBack={props.history && props.history.goBack} />
       <EditForm
         fields={fields}
-        record={{ ...record, AJUFEC: formatInputDate(record.AJUFEC) }}
+        record={record}
         loading={loading}
         success={success}
         error={error}

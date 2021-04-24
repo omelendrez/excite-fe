@@ -7,6 +7,7 @@ import Alert from "../common/Alert";
 import notification from "../common/notification";
 import Info from "../common/Info";
 import { getAjuste, deleteAjuste } from "../../redux/actions";
+import { formatDate } from "../../utils/helpers";
 import fields from "./fields";
 
 const Ajuste = (props) => {
@@ -28,7 +29,10 @@ const Ajuste = (props) => {
     if (record) {
       const info = fields.map((field) => ({
         title: field.title,
-        value: record[field.name],
+        value:
+          field.type === "date"
+            ? formatDate(record[field.name])
+            : record[field.name],
         options: field.options,
       }));
       setInfo(info);

@@ -6,6 +6,7 @@ import InputField from "./InputField";
 import notification from "./notification";
 import Tipos from "../transportes/TransporteForm";
 import Subtipos from "../subtipos/SubtipoForm";
+import { formatInputDate } from "../../utils/helpers";
 
 const components = {
   Tipos,
@@ -16,6 +17,7 @@ const EditForm = (props) => {
   const [form] = Form.useForm();
   const [modalVisible, setmodalVisible] = useState(false);
   const [componentName, setComponentName] = useState("");
+  const [record, setRecord] = useState(null);
 
   const onReset = () => {
     form.resetFields();
@@ -29,6 +31,18 @@ const EditForm = (props) => {
   const FormComponent = componentName.length
     ? components[componentName.charAt(0).toUpperCase() + componentName.slice(1)]
     : null;
+
+  useEffect(() => {
+    const record = {};
+    for (const field in props.record) {
+      const fld = props.fields.find((fld) => fld.name === field);
+      record[field] =
+        fld.type === "date"
+          ? formatInputDate(props.record[field])
+          : props.record[field];
+    }
+    setRecord(record);
+  }, [props]);
 
   useEffect(() => {
     if (props.success) {
@@ -53,12 +67,14 @@ const EditForm = (props) => {
     style: { left: "-15vw", top: 10 },
   };
 
+  if (!record) return null;
+
   return (
     <>
       <Form
         form={form}
         onFinish={props.onFinish}
-        initialValues={props.record}
+        initialValues={record}
         labelCol={{
           span: props.maximize ? 5 : 2,
         }}
@@ -71,7 +87,7 @@ const EditForm = (props) => {
             <InputField
               key={field.name}
               field={field}
-              record={props.record}
+              record={record}
               optionsModels={props.optionsModels}
               addOption={() => toggleModal(field.options)}
             />

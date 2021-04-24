@@ -21,7 +21,6 @@ const Info = (props) => {
                     ? globalState[field.options].records
                     : [];
                   const valuesList = getSelectList(field.options, data);
-
                   value = field.value
                     ? valuesList.find((item) => item.id === field.value).text
                     : value;
