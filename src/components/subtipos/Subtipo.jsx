@@ -30,6 +30,7 @@ const Subtipo = (props) => {
         title: field.title,
         value: record[field.name],
         options: field.options,
+        type: field.type,
       }));
       setInfo(info);
     }

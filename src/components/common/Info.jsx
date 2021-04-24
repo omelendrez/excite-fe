@@ -4,9 +4,11 @@ import { Descriptions, Row, Col } from "antd";
 import { getSelectList } from "../../utils/helpers";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
+import { formatDate } from "../../utils/helpers";
 
 const Info = (props) => {
   const globalState = useSelector((state) => state);
+
   return (
     <>
       <Row>
@@ -15,14 +17,18 @@ const Info = (props) => {
             {props.data
               .filter((field) => field.title)
               .map((field, index) => {
-                let value = field.value;
+                let value =
+                  field.type === "date" ? formatDate(field.value) : field.value;
                 if (field.options) {
                   const data = globalState[field.options]
                     ? globalState[field.options].records
                     : [];
                   const valuesList = getSelectList(field.options, data);
+                  const content = valuesList.find(
+                    (item) => item.id === field.value
+                  );
                   value = field.value
-                    ? valuesList.find((item) => item.id === field.value).text
+                    ? `${content.id} - ${content.text}`
                     : value;
                 }
                 return (
