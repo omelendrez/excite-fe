@@ -4,7 +4,7 @@ const Notification = (props) => {
   notification[props.type]({
     message: props.message,
     description: props.description,
-    placement: "topLeft",
+    placement: "bottomLeft",
   });
 };
 
