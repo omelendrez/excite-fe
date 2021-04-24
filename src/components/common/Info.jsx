@@ -4,7 +4,7 @@ import { Descriptions, Row, Col } from "antd";
 import { getSelectList } from "../../utils/helpers";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
-import { formatDate } from "../../utils/helpers";
+import { formatDate, formatAmount } from "../../utils/helpers";
 
 const Info = (props) => {
   const globalState = useSelector((state) => state);
@@ -17,19 +17,25 @@ const Info = (props) => {
             {props.data
               .filter((field) => field.title)
               .map((field, index) => {
-                let value =
-                  field.type === "date" ? formatDate(field.value) : field.value;
+                let value;
+                switch (field.type) {
+                  case "date":
+                    value = formatDate(field.value);
+                    break;
+                  case "amount":
+                    value = formatAmount(field.value);
+                    break;
+                  default:
+                    value = field.value;
+                    break;
+                }
                 if (field.options) {
                   const data = globalState[field.options]
                     ? globalState[field.options].records
                     : [];
                   const valuesList = getSelectList(field.options, data);
-                  const content = valuesList.find(
-                    (item) => item.id === field.value
-                  );
-                  value = field.value
-                    ? `${content.id} - ${content.text}`
-                    : value;
+                  const content = valuesList.find((item) => item.id === value);
+                  value = content ? `${content.id} - ${content.text}` : value;
                 }
                 return (
                   <Descriptions.Item key={index} label={field.title}>

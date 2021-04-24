@@ -4,7 +4,7 @@ import "moment/locale/es";
 export const sortColumn = (a, b, fieldName) =>
   a[fieldName] < b[fieldName] ? -1 : a[fieldName] > b[fieldName] ? 1 : 0;
 
-export const formatAmount = (value) =>
+export const formatAmount = (value = 0) =>
   value.toLocaleString(undefined, {
     minimumFractionDigits: 2,
   });
