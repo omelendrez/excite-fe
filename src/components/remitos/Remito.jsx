@@ -30,7 +30,7 @@ const Tipo = (props) => {
   }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
-    if (record) {
+    if (record && record.REMNUM) {
       dispatch(getItems(record.REMNUM));
       const info = setFields(fields, record);
       setInfo(info);
