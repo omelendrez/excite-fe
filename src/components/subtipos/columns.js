@@ -1,3 +1,4 @@
+import { Tag } from "antd";
 import { Link } from "react-router-dom";
 import { sortColumn } from "../../utils/helpers";
 
@@ -39,6 +40,19 @@ export const columns = (props) => {
     {
       dataIndex: "SUBTIPEST",
       title: "Estado",
+      render: (text) => {
+        let color = "green";
+        if (text !== "Activo") {
+          color = "red";
+        }
+        return (
+          <span>
+            <Tag color={color} key={text}>
+              {text.toUpperCase()}
+            </Tag>
+          </span>
+        );
+      },
     },
   ];
 };

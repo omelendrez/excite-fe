@@ -41,6 +41,7 @@ import Ajuste from "../components/ajustes/Ajuste";
 import AjusteForm from "../components/ajustes/AjusteForm";
 
 import Remitos from "../components/remitos/Remitos";
+import Remito from "../components/remitos/Remito";
 
 import Conceptos from "../components/conceptos/Conceptos";
 import Concepto from "../components/conceptos/Concepto";
@@ -123,6 +124,7 @@ const Routes = () => {
 
       {/* Remitos */}
       <Route exact path="/remitos" component={Remitos} />
+      <Route exact path="/remitos/:id" component={Remito} />
 
       {/* Números */}
       <Route exact path="/ultimos-numeros" component={Numeros} />

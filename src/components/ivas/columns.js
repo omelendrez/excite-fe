@@ -1,5 +1,6 @@
-import { sortColumn } from "../../utils/helpers";
+import { Tag } from "antd";
 import { Link } from "react-router-dom";
+import { sortColumn } from "../../utils/helpers";
 
 const columns = [
   {
@@ -20,6 +21,19 @@ const columns = [
   {
     title: "Estado",
     dataIndex: "IVAEST",
+    render: (text) => {
+      let color = "green";
+      if (text !== "Activo") {
+        color = "red";
+      }
+      return (
+        <span>
+          <Tag color={color} key={text}>
+            {text.toUpperCase()}
+          </Tag>
+        </span>
+      );
+    },
   },
 ];
 

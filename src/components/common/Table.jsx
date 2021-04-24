@@ -38,6 +38,13 @@ const Table = (props) => {
     .map((field) => field.title)
     .join(", ");
 
+  const paginationProps = {
+    position: ["bottomCenter"],
+    showTotal: (total, range) => `${total} registros`,
+    hideOnSinglePage: true,
+    showQuickJumper: true,
+  };
+
   return (
     <>
       <BackTop />
@@ -54,13 +61,7 @@ const Table = (props) => {
         <Col span={3}>{props.onAdd && <AddButton onAdd={props.onAdd} />}</Col>
       </Row>
       <AntdTable
-        pagination={{
-          position: ["bottomCenter"],
-          showTotal: (total, range) => `${total} registros`,
-          hideOnSinglePage: true,
-          showQuickJumper: true,
-        }}
-        size="small"
+        pagination={paginationProps}
         sticky={true}
         tableLayout="fixed"
         {...newProps}

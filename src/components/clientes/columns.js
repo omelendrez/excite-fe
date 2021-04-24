@@ -1,3 +1,4 @@
+import { Tag } from "antd";
 import { Link } from "react-router-dom";
 import { sortColumn, statuses } from "../../utils/helpers";
 
@@ -52,6 +53,19 @@ export const columns = () => {
       onFilter: (value, record) =>
         record.CLIEST.toLowerCase() === value.toLowerCase(),
       filters: status,
+      render: (text) => {
+        let color = "green";
+        if (text !== "Activo") {
+          color = "red";
+        }
+        return (
+          <span>
+            <Tag color={color} key={text}>
+              {text.toUpperCase()}
+            </Tag>
+          </span>
+        );
+      },
     },
   ];
 };
