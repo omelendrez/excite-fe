@@ -35,7 +35,6 @@ const vendedoresReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        success: false,
         error: null,
       };
     case types.GET_VENDEDORES_PRODUCTOS_SUCCESS:

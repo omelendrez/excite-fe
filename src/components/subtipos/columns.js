@@ -1,7 +1,7 @@
-import { sortColumn } from "../../utils/helpers";
 import { Link } from "react-router-dom";
+import { sortColumn } from "../../utils/helpers";
 
-const columns = (props) => {
+export const columns = (props) => {
   const tipos = (
     props.tipos &&
     props.tipos.map((tipo) => ({

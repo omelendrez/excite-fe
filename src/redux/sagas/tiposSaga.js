@@ -18,6 +18,14 @@ function getTipos() {
     });
 }
 
+function getTiposSubtipos(id) {
+  return getRecords(`${endpoint}-subtipos/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 function getTipo(id) {
   return getRecordById(endpoint, id)
     .then((response) => response)
@@ -60,6 +68,21 @@ function* fetchTiposSaga() {
   } catch (error) {
     yield put({
       type: types.GET_TIPOS_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
+function* fetchTiposSubtiposSaga(action) {
+  try {
+    const records = yield call(getTiposSubtipos, action.id);
+    yield put({
+      type: types.GET_TIPOS_SUBTIPOS_SUCCESS,
+      payload: records,
+    });
+  } catch (error) {
+    yield put({
+      type: types.GET_TIPOS_SUBTIPOS_FAILED,
       payload: error.message,
     });
   }
@@ -127,6 +150,7 @@ function* deleteTipoSaga(action) {
 
 function* tiposSaga() {
   yield takeEvery(types.GET_TIPOS_REQUEST, fetchTiposSaga);
+  yield takeEvery(types.GET_TIPOS_SUBTIPOS_REQUEST, fetchTiposSubtiposSaga);
   yield takeEvery(types.GET_TIPO_REQUEST, fetchTipoSaga);
   yield takeEvery(types.ADD_TIPO_REQUEST, addTipoSaga);
   yield takeEvery(types.UPDATE_TIPO_REQUEST, updateTipoSaga);

@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Layout } from "antd";
+import { Layout, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
+import Table from "../common/Table";
 import Info from "../common/Info";
 import notification from "../common/notification";
-import { getTipo, deleteTipo } from "../../redux/actions";
+import { getTipo, deleteTipo, getTiposSubtipos } from "../../redux/actions";
 import fields from "./fields";
 import { setFields } from "../../utils/helpers";
+import { columns as subtiposColumns } from "../subtipos/columns";
+
+const { TabPane } = Tabs;
 
 const Tipo = (props) => {
   const dispatch = useDispatch();
   const tipos = useSelector((state) => state.tipos);
-  const { loading, success, record, error } = tipos;
+  const { loading, success, record, error, subtipos } = tipos;
   const [url, setUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
@@ -27,10 +31,11 @@ const Tipo = (props) => {
 
   useEffect(() => {
     if (record) {
+      dispatch(getTiposSubtipos(record.TIPCOD));
       const info = setFields(fields, record);
       setInfo(info);
     }
-  }, [record]);
+  }, [dispatch, record]);
 
   useEffect(() => {
     if (success && record.message) {
@@ -64,19 +69,42 @@ const Tipo = (props) => {
     );
   }
 
+  const subtiposTableProps = {
+    loading,
+    columns: subtiposColumns({ tipos: tipos.records }),
+    dataSource: subtipos,
+    rowKey: "ID",
+  };
+
   return (
     <Layout>
-      <Header title={"Tipo"} onBack={props.history.goBack} loading={loading} />
-      {error && <Alert message="Error" description={error} type="error" />}
-      <Info
-        title={info.TRANOM}
-        fields={fields}
-        data={info}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        success={success}
-        history={props.history}
+      <Header
+        title={`Tipo ${record.TIPCOD} - ${record.TIPDES}`}
+        onBack={props.history.goBack}
+        loading={loading}
       />
+      {error && <Alert message="Error" description={error} type="error" />}
+      <div className="card-container">
+        <Tabs>
+          <TabPane tab="Info" key="1">
+            <Info
+              title={info.TIPDES}
+              fields={fields}
+              data={info}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              success={success}
+              history={props.history}
+            />
+          </TabPane>
+          <TabPane
+            tab={`Subtipos asociados (${tipos.subtipos.length})`}
+            key="2"
+          >
+            <Table {...subtiposTableProps} />
+          </TabPane>
+        </Tabs>
+      </div>
     </Layout>
   );
 };

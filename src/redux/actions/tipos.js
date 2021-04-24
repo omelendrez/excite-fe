@@ -6,6 +6,13 @@ export const getTipos = () => {
   };
 };
 
+export const getTiposSubtipos = (id) => {
+  return {
+    type: types.GET_TIPOS_SUBTIPOS_REQUEST,
+    id,
+  };
+};
+
 export const getTipo = (id) => {
   return {
     type: types.GET_TIPO_REQUEST,
@@ -34,4 +41,3 @@ export const deleteTipo = (id) => {
     id,
   };
 };
-

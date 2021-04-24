@@ -1,7 +1,7 @@
 import { sortColumn } from "../../utils/helpers";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
- const columns = () =>[
+const columns = () => [
   {
     title: "Tipo",
     dataIndex: "TIPCOD",
@@ -12,11 +12,16 @@ import { Link } from "react-router-dom"
     dataIndex: "TIPDES",
     sorter: (a, b) => sortColumn(a, b, "TIPDES"),
     searchable: true,
-    render: (text, record) => (
-      <Link to={`/tipos/${record.ID}`}>
-        {text || "*** sin nombre ***"}
-      </Link>
-    ),
+    render: (text, record) =>
+      record.SUBTIPOS > 0 ? (
+        <Link to={`/tipos/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
+      ) : (
+        text
+      ),
+  },
+  {
+    title: "Subtipos",
+    dataIndex: "SUBTIPOS",
   },
   {
     dataIndex: "TIPEST",
@@ -24,4 +29,4 @@ import { Link } from "react-router-dom"
   },
 ];
 
-export default columns
+export default columns;
