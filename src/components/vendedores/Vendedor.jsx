@@ -14,6 +14,7 @@ import {
   getActiveClientes,
 } from "../../redux/actions";
 import fields from "./fields";
+import { setFields } from "../../utils/helpers";
 import { columns as clientColumns } from "../clientes/columns";
 const { TabPane } = Tabs;
 
@@ -37,12 +38,7 @@ const Vendedor = (props) => {
     if (record.ID) {
       dispatch(getActiveClientes(record.VENCOD));
       dispatch(getVendedoresProductos(record.VENCOD));
-      const info = fields.map((field) => ({
-        title: field.title,
-        value: record[field.name],
-        options: field.options,
-        type: field.type,
-      }));
+      const info = setFields(fields, record);
       setInfo(info);
     }
   }, [dispatch, record]);

@@ -8,6 +8,7 @@ import Info from "../common/Info";
 import notification from "../common/notification";
 import { getTransporte, deleteTransporte } from "../../redux/actions";
 import fields from "./fields";
+import { setFields } from "../../utils/helpers";
 
 const Transporte = (props) => {
   const dispatch = useDispatch();
@@ -26,12 +27,7 @@ const Transporte = (props) => {
 
   useEffect(() => {
     if (record) {
-      const info = fields.map((field) => ({
-        title: field.title,
-        value: record[field.name],
-        options: field.options,
-        type: field.type,
-      }));
+      const info = setFields(fields, record);
       setInfo(info);
     }
   }, [record]);

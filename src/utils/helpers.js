@@ -127,3 +127,12 @@ export const getSelectList = (modelName, data) => {
   }
   return createSelectList(table, field.id, field.text, field.status);
 };
+
+export const setFields = (fields, record) => {
+  return fields.map((field) => ({
+    title: field.title,
+    value: record[field.name],
+    options: field.options,
+    type: field.type,
+  }));
+};
