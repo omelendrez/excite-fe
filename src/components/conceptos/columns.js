@@ -3,6 +3,11 @@ import { formatAmount, formatDate, sortColumn } from "../../utils/helpers";
 
 const columns = () => [
   {
+    title: "ID",
+    dataIndex: "ID",
+    width: 90,
+  },
+  {
     dataIndex: "CONNUM",
     title: "Número",
     sorter: (a, b) => sortColumn(a, b, "CONNUM"),
@@ -10,11 +15,14 @@ const columns = () => [
       <Link to={`/conceptos/${record.ID}`}>{text}</Link>
     ),
     searchable: true,
+    width: 100,
   },
   {
     dataIndex: "CONFEC",
     title: "Fecha",
     render: (text) => formatDate(text),
+    width: 120,
+    align: "center",
   },
   {
     dataIndex: "CLINOM",

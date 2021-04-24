@@ -7,6 +7,8 @@ const columns = () => [
     title: "Tipo",
     dataIndex: "TIPCOD",
     sorter: (a, b) => sortColumn(a, b, "TIPCOD"),
+    width: 100,
+    align: "center",
   },
   {
     title: "Descripción",
@@ -19,10 +21,13 @@ const columns = () => [
       ) : (
         text
       ),
+    width: 300,
   },
   {
     title: "Subtipos",
     dataIndex: "SUBTIPOS",
+    align: "center",
+    width: 90,
   },
   {
     dataIndex: "TIPEST",

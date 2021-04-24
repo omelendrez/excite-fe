@@ -8,6 +8,7 @@ const columns = [
     dataIndex: "IVACOD",
     sorter: (a, b) => sortColumn(a, b, "IVACOD"),
     searchable: true,
+    width: 80,
   },
   {
     title: "Nombre",
@@ -17,6 +18,7 @@ const columns = [
       <Link to={`/ivas/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
     ),
     searchable: true,
+    width: 300,
   },
   {
     title: "Estado",

@@ -8,22 +8,26 @@ const columns = () => [
     sorter: (a, b) => sortColumn(a, b, "AJUNUM"),
     render: (text, record) => <Link to={`/ajustes/${record.ID}`}>{text}</Link>,
     searchable: true,
+    width: 100,
+    align: "center",
   },
   {
     dataIndex: "AJUFEC",
     title: "Fecha",
     render: (text) => formatDate(text),
+    width: 120,
+    align: "center",
   },
   {
     dataIndex: "PRODDES",
     title: "Producto",
     render: (text, record) => `${record.PRODCOD} - ${record.PRODDES}`,
     searchable: true,
+    width: 300,
   },
   {
     dataIndex: "AJUCAN",
     title: "Cantidad",
-    align: "right",
   },
 ];
 

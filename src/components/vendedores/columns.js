@@ -15,6 +15,8 @@ const columns = () => {
       title: "Código",
       dataIndex: "VENCOD",
       searchable: true,
+      width: 90,
+      align: "center",
     },
     {
       title: "Nombre",

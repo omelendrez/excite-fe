@@ -15,6 +15,7 @@ export const columns = () => {
       dataIndex: "CLICOD",
       title: "Código",
       searchable: true,
+      width: 80,
     },
     {
       dataIndex: "CLINOM",
@@ -25,11 +26,6 @@ export const columns = () => {
           {text || "*** sin nombre ***"}
         </Link>
       ),
-      searchable: true,
-    },
-    {
-      dataIndex: "VENNOM",
-      title: "Vendedor",
       searchable: true,
     },
     {

@@ -5,6 +5,7 @@ export const columns = [
     dataIndex: "IVAFEC",
     key: "IVAFEC",
     render: (text) => formatDate(text),
+    width: 120,
   },
   {
     title: "Porcentaje",

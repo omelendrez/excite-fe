@@ -15,6 +15,7 @@ const columns = () => {
       title: "Código",
       dataIndex: "TRACOD",
       searchable: true,
+      width: 80,
     },
     {
       title: "Nombre",

@@ -8,23 +8,28 @@ export const columns = [
     sorter: (a, b) => sortColumn(a, b, "REMNUM"),
     render: (text, record) => <Link to={`/remitos/${record.ID}`}>{text}</Link>,
     searchable: true,
+    width: 100,
   },
   {
     dataIndex: "REMFEC",
     title: "Fecha",
     render: (text) => formatDate(text),
+    width: 120,
+    align: "center",
   },
   {
     dataIndex: "ESTDES",
     title: "Estado",
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "ESTDES"),
+    width: 200,
   },
   {
     dataIndex: "VENNOM",
     title: "Vendedor",
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "VENNOM"),
+    width: 300,
   },
   {
     dataIndex: "CLINOM",

@@ -49,7 +49,7 @@ const Info = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col span={2}>
+        <Col span={3}>
           {props.onEdit && <EditButton handleEdit={props.onEdit} />}
         </Col>
         <Col>

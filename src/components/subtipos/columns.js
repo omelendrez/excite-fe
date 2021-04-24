@@ -19,12 +19,16 @@ export const columns = (props) => {
       onFilter: (value, record) => record.TIPCOD === value,
       filters: tipos,
       searchable: true,
+      width: 100,
+      align: "center",
     },
     {
       title: "Subtipo",
       dataIndex: "SUBTIPCOD",
       sorter: (a, b) => sortColumn(a, b, "SUBTIPCOD"),
       searchable: true,
+      width: 100,
+      align: "center",
     },
     {
       title: "Descripción",
@@ -36,6 +40,7 @@ export const columns = (props) => {
         </Link>
       ),
       searchable: true,
+      width: 300,
     },
     {
       dataIndex: "SUBTIPEST",

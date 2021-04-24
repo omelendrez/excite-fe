@@ -30,6 +30,7 @@ const columns = (props) => {
       title: "Código",
       sorter: (a, b) => sortColumn(a, b, "PRODCOD"),
       searchable: true,
+      width: 100,
     },
     {
       dataIndex: "PRODDES",
@@ -62,7 +63,7 @@ const columns = (props) => {
       dataIndex: "PRODPRE",
       title: "Precio",
       render: (value) => formatAmount(value),
-      align: "right",
+      width: 120,
     },
     {
       dataIndex: "PRODEST",
