@@ -50,7 +50,7 @@ const Table = (props) => {
       <BackTop />
       <Row>
         {props.columns.filter((field) => field.searchable).length > 0 && (
-          <Col span={21}>
+          <Col>
             <Search
               className="table-search"
               onSearch={onSearch}
@@ -58,7 +58,7 @@ const Table = (props) => {
             />
           </Col>
         )}
-        <Col span={3}>{props.onAdd && <AddButton onAdd={props.onAdd} />}</Col>
+        <Col offset={1}>{props.onAdd && <AddButton onAdd={props.onAdd} />}</Col>
       </Row>
       <AntdTable
         pagination={paginationProps}

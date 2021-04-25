@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Layout, Tabs } from "antd";
+import { Layout, Space, Tabs, Typography, Table as AntdTable } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Alert from "../common/Alert";
 import Table from "../common/Table";
 import Info from "../common/Info";
+import EditButton from "../common/EditButton";
 import notification from "../common/notification";
 import { getRemito, getItems, deleteRemito } from "../../redux/actions";
 import fields from "./fields";
 import { setFields } from "../../utils/helpers";
 import { formatAmount } from "../../utils/helpers";
+import "./remito.css";
 
 const { TabPane } = Tabs;
+const { Text } = Typography;
 
 const Tipo = (props) => {
   const dispatch = useDispatch();
@@ -72,28 +75,75 @@ const Tipo = (props) => {
     );
   }
 
+  const onAddItem = () => {
+    setUrl(`/remitos/${record.REMNUM}/add/item`);
+  };
+
   const itemsColumns = [
     {
       dataIndex: "PRODDES",
       title: "Producto",
+      searchable: true,
+      width: 300,
     },
     {
       dataIndex: "REMCAN",
       title: "Cantidad",
+      width: 100,
     },
     {
       dataIndex: "REMPRE",
       title: "Precio",
       render: (text, record) => formatAmount(text),
       align: "right",
+      width: 120,
+    },
+    {
+      dataIndex: "REMTOT",
+      title: "Total",
+      render: (text, record) => formatAmount(record.REMCAN * record.REMPRE),
+      align: "right",
+      width: 120,
+    },
+    {
+      dataIndex: "actions",
+      render: () => (
+        <Space>
+          <EditButton />
+        </Space>
+      ),
     },
   ];
+
+  const itemsSummary = (pageData) => {
+    let totalAmount = 0;
+    let items = 0;
+    pageData.forEach((item) => {
+      totalAmount += item.REMCAN * item.REMPRE;
+      items++;
+    });
+
+    return (
+      <AntdTable.Summary.Row className="summary-row">
+        <AntdTable.Summary.Cell>Total</AntdTable.Summary.Cell>
+        <AntdTable.Summary.Cell>
+          <Text type="primary">{items}</Text>
+        </AntdTable.Summary.Cell>
+        <AntdTable.Summary.Cell align="right" colSpan={2}>
+          <Text type="primary">{formatAmount(totalAmount)}</Text>
+        </AntdTable.Summary.Cell>
+      </AntdTable.Summary.Row>
+    );
+  };
 
   const itemsTableProps = {
     loading,
     columns: itemsColumns,
     dataSource: items,
     rowKey: "ID",
+    onAdd: onAddItem,
+    summary: itemsSummary,
+    pagination: false,
   };
 
   return (

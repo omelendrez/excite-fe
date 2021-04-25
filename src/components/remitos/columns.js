@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { sortColumn, formatDate } from "../../utils/helpers";
+import { sortColumn, formatDate, formatAmount } from "../../utils/helpers";
 
 export const columns = [
   {
@@ -36,5 +36,16 @@ export const columns = [
     title: "Cliente",
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
+  },
+  {
+    dataIndex: "REMQTY",
+    title: "Items",
+    align: "right",
+  },
+  {
+    dataIndex: "REMTOT",
+    title: "Total",
+    render: (text, record) => formatAmount(text),
+    align: "right",
   },
 ];
