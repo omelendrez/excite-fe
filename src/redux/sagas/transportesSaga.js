@@ -19,7 +19,7 @@ function getTransportes() {
 }
 
 function getTransporte(id) {
-  return getRecordById(endpoint, id)
+  return getRecordById(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -43,7 +43,7 @@ function updateTransporte(newData) {
 }
 
 function deleteTransporte(id) {
-  return deleteRecord(endpoint, id)
+  return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;

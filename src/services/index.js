@@ -9,19 +9,10 @@ export const getRecords = (endpoint) => {
   });
 };
 
-export const getActiveRecords = (endpoint, id) => {
+export const getRecordById = (endpoint) => {
   return new Promise((resolve, reject) => {
     api
-      .get(`${endpoint}-activos/${id}`)
-      .then((response) => resolve(response.data))
-      .catch((error) => reject(error));
-  });
-};
-
-export const getRecordById = (endpoint, id) => {
-  return new Promise((resolve, reject) => {
-    api
-      .get(`${endpoint}/${id}`)
+      .get(endpoint)
       .then((response) => resolve(response.data))
       .catch((error) => reject(error));
   });
@@ -45,10 +36,10 @@ export const updateRecord = (endpoint, record) => {
   });
 };
 
-export const deleteRecord = (endpoint, id) => {
+export const deleteRecord = (endpoint) => {
   return new Promise((resolve, reject) => {
     api
-      .delete(`${endpoint}/${id}`)
+      .delete(endpoint)
       .then((response) => resolve(response.data))
       .catch((error) => reject(error));
   });

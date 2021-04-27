@@ -42,6 +42,7 @@ import AjusteForm from "../components/ajustes/AjusteForm";
 
 import Remitos from "../components/remitos/Remitos";
 import Remito from "../components/remitos/Remito";
+import ItemForm from "../components/remitos/ItemForm";
 
 import Conceptos from "../components/conceptos/Conceptos";
 import Concepto from "../components/conceptos/Concepto";
@@ -125,6 +126,8 @@ const Routes = () => {
       {/* Remitos */}
       <Route exact path="/remitos" component={Remitos} />
       <Route exact path="/remitos/:id" component={Remito} />
+      <Route exact path="/remitos/items/add/item" component={ItemForm} />
+      <Route exact path="/remitos/items/edit/:id" component={ItemForm} />
 
       {/* Números */}
       <Route exact path="/ultimos-numeros" component={Numeros} />

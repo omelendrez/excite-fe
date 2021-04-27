@@ -13,6 +13,7 @@ import numerosSaga from "./numerosSaga";
 import remitosSaga from "./remitosSaga";
 import productosSaga from "./productosSaga";
 import provinciasSaga from "./provinciasSaga";
+import estadosSaga from "./estadosSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -30,5 +31,6 @@ export default function* rootSaga() {
     remitosSaga(),
     productosSaga(),
     provinciasSaga(),
+    estadosSaga(),
   ]);
 }

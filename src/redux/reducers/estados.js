@@ -6,22 +6,22 @@ const initialState = {
   error: null,
 };
 
-const provinciasReducer = (state = initialState, action) => {
+const estadosReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_PROVINCIAS_REQUEST:
+    case types.GET_ESTADOS_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
       };
-    case types.GET_PROVINCIAS_SUCCESS:
+    case types.GET_ESTADOS_SUCCESS:
       return {
         ...state,
         loading: false,
         records: action.payload,
         error: null,
       };
-    case types.GET_PROVINCIAS_FAILED:
+    case types.GET_ESTADOS_FAILED:
       return {
         ...state,
         loading: false,
@@ -33,4 +33,4 @@ const provinciasReducer = (state = initialState, action) => {
   }
 };
 
-export default provinciasReducer;
+export default estadosReducer;

@@ -4,6 +4,7 @@ const initialState = {
   records: [],
   record: {},
   items: [],
+  item: {},
   loading: false,
   error: null,
 };
@@ -48,6 +49,32 @@ const remitosReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case types.GET_ITEM_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case types.GET_ITEM_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        item: action.payload,
+        error: null,
+      };
+    case types.GET_ITEM_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case types.CLEAN_ITEM:
+      return {
+        ...state,
+        loading: false,
+        item: action.data,
+        error: null,
+      };
     case types.GET_REMITO_REQUEST:
       return {
         ...state,
@@ -65,6 +92,28 @@ const remitosReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        error: action.payload,
+      };
+    case types.DELETE_REMITO_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        success: false,
+        error: null,
+      };
+    case types.DELETE_REMITO_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        record: action.payload,
+        error: null,
+      };
+    case types.DELETE_REMITO_FAILED:
+      return {
+        ...state,
+        loading: false,
+        success: false,
         error: action.payload,
       };
 

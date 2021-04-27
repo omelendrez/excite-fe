@@ -6,7 +6,7 @@
     "status": "CLIEST"
   },
   {
-    "model": "estados",
+    "model": "statuses",
     "id": "id",
     "text": "text"
   },
@@ -60,5 +60,10 @@
     "id": "VENCOD",
     "text": "VENNOM",
     "status": "VENEST"
+  },
+  {
+    "model": "estados",
+    "id": "ESTCOD",
+    "text": "ESTDES"
   }
 ]

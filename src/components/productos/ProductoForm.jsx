@@ -43,7 +43,7 @@ const ProductoForm = (props) => {
           tipos: getSelectList("tipos", tipos.records),
           subtipos: getSelectList("subtipos", subtipos.records),
           sexos: getSelectList("sexos", sexos),
-          estados: getSelectList("estados", statuses),
+          statuses: getSelectList("statuses", statuses),
         }}
         history={props.history}
       />

@@ -15,7 +15,7 @@ const fields = [
     name: "IVAEST",
     title: "Estado",
     type: "select",
-    options: "estados",
+    options: "statuses",
     rules: [{ required: true }],
   },
   {

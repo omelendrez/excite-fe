@@ -67,7 +67,7 @@ const fields = [
     name: "PRODEST",
     title: "Estado",
     type: "select",
-    options: "estados",
+    options: "statuses",
   },
 ];
 

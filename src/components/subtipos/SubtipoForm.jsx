@@ -36,7 +36,7 @@ const SubtipoForm = (props) => {
         maximize={props.maximize}
         optionsModels={{
           tipos: getSelectList("tipos", tipos.records),
-          estados: getSelectList("estados", statuses),
+          statuses: getSelectList("statuses", statuses),
         }}
         history={props.history}
       />

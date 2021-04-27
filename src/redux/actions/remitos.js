@@ -20,9 +20,45 @@ export const getRemito = (id) => {
   };
 };
 
+export const getItem = (id) => {
+  return {
+    type: types.GET_ITEM_REQUEST,
+    id,
+  };
+};
+
+export const cleanItem = (data) => {
+  return {
+    type: types.CLEAN_ITEM,
+    data,
+  };
+};
+
 export const deleteRemito = (id) => {
   return {
     type: types.DELETE_REMITO_REQUEST,
+    id,
+  };
+};
+
+export const addItem = (newData) => {
+  return {
+    type: types.ADD_ITEM_REQUEST,
+    newData,
+  };
+};
+
+export const updateItem = (id, newData) => {
+  return {
+    type: types.UPDATE_ITEM_REQUEST,
+    id,
+    newData,
+  };
+};
+
+export const deleteItem = (id) => {
+  return {
+    type: types.DELETE_ITEM_REQUEST,
     id,
   };
 };

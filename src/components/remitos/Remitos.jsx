@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
-import { getRemitos } from "../../redux/actions";
+import {
+  getRemitos,
+  getEstados,
+  getClientes,
+  getVendedores,
+} from "../../redux/actions";
 const { columns } = require(`./columns`);
 
 const Remitos = () => {
@@ -13,6 +18,9 @@ const Remitos = () => {
   const { loading, records, error } = remitos;
 
   useEffect(() => {
+    dispatch(getVendedores());
+    dispatch(getClientes());
+    dispatch(getEstados());
     dispatch(getRemitos());
   }, [dispatch]);
 

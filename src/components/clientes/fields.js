@@ -83,7 +83,7 @@ const fields = [
     name: "CLIEST",
     title: "Estado",
     type: "select",
-    options: "estados",
+    options: "statuses",
   },
 
   {

@@ -2,7 +2,6 @@ import { put, takeEvery, call } from "redux-saga/effects";
 import * as types from "../types";
 import {
   getRecords,
-  getActiveRecords,
   getRecordById,
   addRecord,
   updateRecord,
@@ -20,7 +19,7 @@ function getClientes() {
 }
 
 function getActiveClientes(id) {
-  return getActiveRecords(endpoint, id)
+  return getRecordById(`${endpoint}-activos/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -28,7 +27,7 @@ function getActiveClientes(id) {
 }
 
 function getCliente(id) {
-  return getRecordById(endpoint, id)
+  return getRecordById(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -52,7 +51,7 @@ function updateCliente(newData) {
 }
 
 function deleteCliente(id) {
-  return deleteRecord(endpoint, id)
+  return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;

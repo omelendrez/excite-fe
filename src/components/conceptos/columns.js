@@ -3,11 +3,6 @@ import { formatAmount, formatDate, sortColumn } from "../../utils/helpers";
 
 const columns = () => [
   {
-    title: "ID",
-    dataIndex: "ID",
-    width: 90,
-  },
-  {
     dataIndex: "CONNUM",
     title: "Número",
     sorter: (a, b) => sortColumn(a, b, "CONNUM"),

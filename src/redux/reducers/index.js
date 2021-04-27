@@ -13,6 +13,7 @@ import numerosReducer from "./numeros";
 import remitosReducer from "./remitos";
 import productosReducer from "./productos";
 import provinciasReducer from "./provincias";
+import estadosReducer from "./estados";
 
 const rootReducer = combineReducers({
   transportes: transportesReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   remitos: remitosReducer,
   productos: productosReducer,
   provincias: provinciasReducer,
+  estados: estadosReducer,
 });
 
 export default rootReducer;

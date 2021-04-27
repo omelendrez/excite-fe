@@ -23,7 +23,7 @@ const fields = [
     name: "SUBTIPEST",
     title: "Estado",
     type: "select",
-    options: "estados",
+    options: "statuses",
     rules: [{ required: true }],
   },
   {

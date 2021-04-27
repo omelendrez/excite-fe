@@ -41,7 +41,7 @@ const VendedorEdit = (props) => {
         optionsModels={{
           provincias: getSelectList("provincias", provincias.records),
           interior: getSelectList("interior", interior),
-          estados: getSelectList("estados", statuses),
+          statuses: getSelectList("statuses", statuses),
         }}
         history={props.history}
       />

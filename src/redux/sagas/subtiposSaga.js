@@ -1,7 +1,13 @@
 import { put, takeEvery, call } from "redux-saga/effects";
 import * as types from "../types";
-import { getRecords, getRecordById, addRecord, updateRecord, deleteRecord } from "../../services";
-const endpoint="subtipos"
+import {
+  getRecords,
+  getRecordById,
+  addRecord,
+  updateRecord,
+  deleteRecord,
+} from "../../services";
+const endpoint = "subtipos";
 
 function getSubtipos() {
   return getRecords(endpoint)
@@ -11,7 +17,7 @@ function getSubtipos() {
     });
 }
 function getSubtipo(id) {
-  return getRecordById(endpoint, id)
+  return getRecordById(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -35,7 +41,7 @@ function updateSubtipo(newData) {
 }
 
 function deleteSubtipo(id) {
-  return deleteRecord(endpoint, id)
+  return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;

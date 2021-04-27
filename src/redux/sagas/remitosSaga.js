@@ -13,7 +13,15 @@ function getRemitos() {
 }
 
 function getRemito(id) {
-  return getRecordById(endpoint, id)
+  return getRecordById(`${endpoint}/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+function getItem(id) {
+  return getRecordById(`${endpoint}/items/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -21,7 +29,7 @@ function getRemito(id) {
 }
 
 function getItems(id) {
-  return getRecordById(`${endpoint}-items`, id)
+  return getRecordById(`${endpoint}/${id}/items`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -29,7 +37,7 @@ function getItems(id) {
 }
 
 function deleteRemito(id) {
-  return deleteRecord(endpoint, id)
+  return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -81,6 +89,21 @@ function* fetchItemsSaga(action) {
   }
 }
 
+function* fetchItemSaga(action) {
+  try {
+    const record = yield call(getItem, action.id);
+    yield put({
+      type: types.GET_ITEM_SUCCESS,
+      payload: record,
+    });
+  } catch (error) {
+    yield put({
+      type: types.GET_ITEM_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
 function* deleteRemitoSaga(action) {
   try {
     const record = yield call(deleteRemito, action.id);
@@ -100,6 +123,7 @@ function* remitosSaga() {
   yield takeEvery(types.GET_REMITOS_REQUEST, fetchRemitosSaga);
   yield takeEvery(types.GET_REMITO_REQUEST, fetchRemitoSaga);
   yield takeEvery(types.GET_ITEMS_REQUEST, fetchItemsSaga);
+  yield takeEvery(types.GET_ITEM_REQUEST, fetchItemSaga);
   yield takeEvery(types.DELETE_REMITO_REQUEST, deleteRemitoSaga);
 }
 

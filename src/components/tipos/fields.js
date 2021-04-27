@@ -15,7 +15,7 @@ const fields = [
     name: "TIPEST",
     title: "Estado",
     type: "select",
-    options: "estados",
+    options: "statuses",
     rules: [{ required: true }],
   },
   {

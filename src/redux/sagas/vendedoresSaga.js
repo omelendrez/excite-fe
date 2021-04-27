@@ -27,7 +27,7 @@ function getVendedoresProductos(id) {
 }
 
 function getVendedor(id) {
-  return getRecordById(endpoint, id)
+  return getRecordById(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -51,7 +51,7 @@ function updateVendedor(newData) {
 }
 
 function deleteVendedor(id) {
-  return deleteRecord(endpoint, id)
+  return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;

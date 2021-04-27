@@ -50,7 +50,7 @@ const fields = [
     name: "TRAEST",
     title: "Estado",
     type: "select",
-    options: "estados",
+    options: "statuses",
   },
   {
     name: "ID",

@@ -50,7 +50,7 @@ export const getSelectList = (modelName, data) => {
   let table = data;
   const field = tableFields.find((model) => model.model === modelName);
   switch (modelName) {
-    case "estados":
+    case "statuses":
       table = statuses;
       break;
     case "sexos":

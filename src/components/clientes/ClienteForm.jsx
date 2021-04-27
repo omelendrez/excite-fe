@@ -46,7 +46,7 @@ const ClienteEdit = (props) => {
         optionsModels={{
           ivas: getSelectList("ivas", ivas.records),
           vendedores: getSelectList("vendedores", vendedores.records),
-          estados: getSelectList("estados", statuses),
+          statuses: getSelectList("statuses", statuses),
           interior: getSelectList("interior", interior),
           transportes: getSelectList("transportes", transportes.records),
           provincias: getSelectList("provincias", provincias.records),

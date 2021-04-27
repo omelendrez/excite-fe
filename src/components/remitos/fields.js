@@ -14,7 +14,8 @@ const fields = [
   {
     name: "ESTCOD",
     title: "Estado",
-    type: "text",
+    type: "select",
+    options: "estados",
   },
   {
     name: "VENCOD",

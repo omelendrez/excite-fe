@@ -27,7 +27,7 @@ function getTiposSubtipos(id) {
 }
 
 function getTipo(id) {
-  return getRecordById(endpoint, id)
+  return getRecordById(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -51,7 +51,7 @@ function updateTipo(newData) {
 }
 
 function deleteTipo(id) {
-  return deleteRecord(endpoint, id)
+  return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
