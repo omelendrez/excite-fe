@@ -36,7 +36,7 @@ const TransporteForm = (props) => {
         maximize={props.maximize}
         optionsModels={{
           provincias: getSelectList("provincias", provincias.records),
-          estados: getSelectList("estados", statuses),
+          statuses: getSelectList("statuses", statuses),
         }}
         history={props.history}
       />
