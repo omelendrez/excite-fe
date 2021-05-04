@@ -89,7 +89,7 @@ function* fetchRemitoSaga(action) {
     });
   } catch (error) {
     yield put({
-      type: types.GET_REMITOS_FAILED,
+      type: types.GET_REMITO_FAILED,
       payload: error.message,
     });
   }
@@ -132,6 +132,9 @@ function* deleteRemitoSaga(action) {
       type: types.DELETE_REMITO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.REMITOS_RESET,
+    });
   } catch (error) {
     yield put({
       type: types.DELETE_REMITO_FAILED,
@@ -147,6 +150,9 @@ function* updateItemSaga(action) {
       type: types.UPDATE_ITEM_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.REMITOS_RESET,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_ITEM_FAILED,
@@ -161,6 +167,9 @@ function* deleteItemSaga(action) {
     yield put({
       type: types.DELETE_ITEM_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.REMITOS_RESET,
     });
   } catch (error) {
     yield put({

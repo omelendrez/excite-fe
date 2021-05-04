@@ -42,6 +42,7 @@ const Remito = (props) => {
         description: "El registro fue eliminado con éxito",
         type: "success",
       });
+      props.history.goBack();
     }
     if (error) {
       notification({

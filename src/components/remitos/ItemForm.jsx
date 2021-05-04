@@ -8,11 +8,12 @@ import { addItem, updateItem } from "../../redux/actions";
 import { getSelectList, cleanFields } from "../../utils/helpers";
 
 const ItemForm = (props) => {
-  const { item } = useSelector((state) => state.remitos);
+  const { item, loading, success, error } = useSelector(
+    (state) => state.remitos
+  );
   const title = `${item.ID ? "Modificando" : "Agregando"} item`;
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.productos);
-
   const onFinish = (values) => {
     const newValues = cleanFields(fields, values);
     if (!item.ID) {
@@ -29,6 +30,9 @@ const ItemForm = (props) => {
         record={item}
         onFinish={onFinish}
         maximize={props.maximize}
+        loading={loading}
+        success={success}
+        error={error}
         optionsModels={{
           productos: getSelectList("productos", productos.records),
         }}

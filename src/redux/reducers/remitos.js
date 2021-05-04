@@ -6,6 +6,7 @@ const initialState = {
   items: [],
   item: {},
   loading: false,
+  success: false,
   error: null,
 };
 
@@ -159,6 +160,13 @@ const remitosReducer = (state = initialState, action) => {
         loading: false,
         success: false,
         error: action.payload,
+      };
+    case types.REMITOS_RESET:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: null,
       };
     default:
       return state;
