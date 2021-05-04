@@ -1,6 +1,11 @@
 import { put, takeEvery, call } from "redux-saga/effects";
 import * as types from "../types";
-import { getRecords, getRecordById, deleteRecord } from "../../services";
+import {
+  getRecords,
+  getRecordById,
+  updateRecord,
+  deleteRecord,
+} from "../../services";
 
 const endpoint = "remitos";
 
@@ -38,6 +43,14 @@ function getItems(id) {
 
 function deleteRemito(id) {
   return deleteRecord(`${endpoint}/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+function updateItem(newData) {
+  return updateRecord(`${endpoint}/items`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -127,6 +140,21 @@ function* deleteRemitoSaga(action) {
   }
 }
 
+function* updateItemSaga(action) {
+  try {
+    const record = yield call(updateItem, action.newData);
+    yield put({
+      type: types.UPDATE_ITEM_SUCCESS,
+      payload: record,
+    });
+  } catch (error) {
+    yield put({
+      type: types.UPDATE_ITEM_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
 function* deleteItemSaga(action) {
   try {
     const record = yield call(deleteItem, action.id);
@@ -148,6 +176,7 @@ function* remitosSaga() {
   yield takeEvery(types.GET_ITEMS_REQUEST, fetchItemsSaga);
   yield takeEvery(types.GET_ITEM_REQUEST, fetchItemSaga);
   yield takeEvery(types.DELETE_REMITO_REQUEST, deleteRemitoSaga);
+  yield takeEvery(types.UPDATE_ITEM_REQUEST, updateItemSaga);
   yield takeEvery(types.DELETE_ITEM_REQUEST, deleteItemSaga);
 }
 
