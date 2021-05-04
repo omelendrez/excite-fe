@@ -42,7 +42,6 @@ const Remito = (props) => {
         description: "El registro fue eliminado con éxito",
         type: "success",
       });
-      props.history.goBack();
     }
     if (error) {
       notification({
@@ -74,7 +73,6 @@ const Remito = (props) => {
               data={info}
               onDelete={remitos.items.length === 0 ? handleDelete : null}
               success={success}
-              history={props.history}
             />
           </TabPane>
           <TabPane tab={`Items (${remitos.items.length})`} key="2">

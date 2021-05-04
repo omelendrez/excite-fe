@@ -54,7 +54,7 @@ const EditForm = (props) => {
         description: "Los datos se guardaron satisfactoriamente",
         type: "success",
       });
-      props.history.goBack();
+      props.history && props.history.goBack();
     }
     if (props.error) {
       notification({
