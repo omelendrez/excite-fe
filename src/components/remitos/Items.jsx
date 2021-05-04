@@ -7,7 +7,12 @@ import Table from "../common/Table";
 import Alert from "../common/Alert";
 import { formatAmount } from "../../utils/helpers";
 import columns from "./itemsColumns";
-import { getItem, cleanItem, getProductos } from "../../redux/actions";
+import {
+  getItem,
+  cleanItem,
+  getProductos,
+  deleteItem,
+} from "../../redux/actions";
 
 const { Text } = Typography;
 
@@ -40,6 +45,10 @@ const Remitos = (props) => {
     }, 100);
   };
 
+  const handleDelete = (record) => {
+    dispatch(deleteItem(record.ID));
+  };
+
   if (!!editUrl) {
     return (
       <Redirect
@@ -70,7 +79,7 @@ const Remitos = (props) => {
 
   const tableProps = {
     loading,
-    columns: columns({ handleEdit: handleEdit }),
+    columns: columns({ handleEdit: handleEdit, handleDelete: handleDelete }),
     dataSource: items,
     rowKey: "ID",
     onAdd: onAdd,

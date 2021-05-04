@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
 import { Layout, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
@@ -7,7 +6,7 @@ import Alert from "../common/Alert";
 import Items from "./Items";
 import Info from "../common/Info";
 import notification from "../common/notification";
-import { getRemito, getItems } from "../../redux/actions";
+import { getRemito, getItems, deleteRemito } from "../../redux/actions";
 import fields from "./fields";
 import { setFields } from "../../utils/helpers";
 import "./remito.css";
@@ -18,7 +17,6 @@ const Remito = (props) => {
   const dispatch = useDispatch();
   const remitos = useSelector((state) => state.remitos);
   const { loading, success, record, error } = remitos;
-  const [url, setUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
     value: "",
@@ -44,7 +42,6 @@ const Remito = (props) => {
         description: "El registro fue eliminado con éxito",
         type: "success",
       });
-      props.history.goBack();
     }
     if (error) {
       notification({
@@ -55,18 +52,9 @@ const Remito = (props) => {
     }
   }, [success, record, error, props.history]);
 
-  const handleEdit = () => {
-    setUrl(`/remitos/edit/${props.match.params.id}`);
+  const handleDelete = () => {
+    dispatch(deleteRemito(props.match.params.id));
   };
-
-  if (!!url) {
-    return (
-      <Redirect
-        push
-        to={{ pathname: url, state: { record: remitos.record } }}
-      />
-    );
-  }
 
   return (
     <Layout>
@@ -83,7 +71,7 @@ const Remito = (props) => {
               title={info.REMNUM}
               fields={fields}
               data={info}
-              onEdit={handleEdit}
+              onDelete={remitos.items.length === 0 ? handleDelete : null}
               success={success}
               history={props.history}
             />

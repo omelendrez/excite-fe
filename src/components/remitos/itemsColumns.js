@@ -1,5 +1,6 @@
 import { Space } from "antd";
 import EditButton from "../common/EditButton";
+import DeleteButton from "../common/DeleteButton";
 import { formatAmount } from "../../utils/helpers";
 
 const itemsColumns = (props) => {
@@ -34,6 +35,7 @@ const itemsColumns = (props) => {
       render: (text, record) => (
         <Space>
           <EditButton handleEdit={() => props.handleEdit(record)} />
+          <DeleteButton handleDelete={() => props.handleDelete(record)} />
         </Space>
       ),
     },

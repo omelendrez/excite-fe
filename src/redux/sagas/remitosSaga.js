@@ -44,6 +44,14 @@ function deleteRemito(id) {
     });
 }
 
+function deleteItem(id) {
+  return deleteRecord(`${endpoint}/items/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 function* fetchRemitosSaga() {
   try {
     const records = yield call(getRemitos);
@@ -119,12 +127,28 @@ function* deleteRemitoSaga(action) {
   }
 }
 
+function* deleteItemSaga(action) {
+  try {
+    const record = yield call(deleteItem, action.id);
+    yield put({
+      type: types.DELETE_ITEM_SUCCESS,
+      payload: record,
+    });
+  } catch (error) {
+    yield put({
+      type: types.DELETE_ITEM_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
 function* remitosSaga() {
   yield takeEvery(types.GET_REMITOS_REQUEST, fetchRemitosSaga);
   yield takeEvery(types.GET_REMITO_REQUEST, fetchRemitoSaga);
   yield takeEvery(types.GET_ITEMS_REQUEST, fetchItemsSaga);
   yield takeEvery(types.GET_ITEM_REQUEST, fetchItemSaga);
   yield takeEvery(types.DELETE_REMITO_REQUEST, deleteRemitoSaga);
+  yield takeEvery(types.DELETE_ITEM_REQUEST, deleteItemSaga);
 }
 
 export default remitosSaga;

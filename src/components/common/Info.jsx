@@ -49,12 +49,16 @@ const Info = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col span={3}>
-          {props.onEdit && <EditButton handleEdit={props.onEdit} />}
-        </Col>
-        <Col>
-          {props.onDelete && <DeleteButton handleDelete={props.onDelete} />}
-        </Col>
+        {props.onEdit && (
+          <Col span={3}>
+            <EditButton handleEdit={props.onEdit} />
+          </Col>
+        )}
+        {props.onDelete && (
+          <Col>
+            <DeleteButton handleDelete={props.onDelete} />
+          </Col>
+        )}
       </Row>
     </>
   );
