@@ -48,10 +48,9 @@ export const addItem = (newData) => {
   };
 };
 
-export const updateItem = (id, newData) => {
+export const updateItem = (newData) => {
   return {
     type: types.UPDATE_ITEM_REQUEST,
-    id,
     newData,
   };
 };

@@ -33,6 +33,10 @@ const EditForm = (props) => {
     : null;
 
   useEffect(() => {
+    form.resetFields();
+  }, [record, form]);
+
+  useEffect(() => {
     const record = {};
     for (const field in props.record) {
       const fld = props.fields.find((fld) => fld.name === field);

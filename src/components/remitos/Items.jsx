@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
 import { Layout, Table as AntdTable, Typography } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import Table from "../common/Table";
 import Alert from "../common/Alert";
+import Drawer from "../common/Drawer";
+import ItemForm from "./ItemForm";
 import { formatAmount } from "../../utils/helpers";
 import columns from "./itemsColumns";
 import {
+  getItems,
   getItem,
   cleanItem,
   getProductos,
@@ -19,47 +21,38 @@ const { Text } = Typography;
 const Remitos = (props) => {
   const dispatch = useDispatch();
   const remitos = useSelector((state) => state.remitos);
-  const { loading, items, item, error } = remitos;
-  const [addUrl, setAddUrl] = useState("");
-  const [editUrl, setEditUrl] = useState("");
+  const { loading, items, item, error, success } = remitos;
+  const [showDrawer, setShowDrawer] = useState(false);
+  const [currentItem, setCurrentItem] = useState({});
 
   useEffect(() => {
     dispatch(getProductos());
   }, [dispatch]);
 
+  useEffect(() => {
+    setCurrentItem(item);
+  }, [item]);
+
   const onAdd = () => {
     dispatch(cleanItem({ REMNUM: props.ID }));
-    setTimeout(() => {
-      setAddUrl(`/remitos/items/add/item`);
-    }, 100);
+    setShowDrawer(true);
   };
 
-  if (!!addUrl) {
-    return <Redirect push to={addUrl} />;
-  }
+  const handleClose = () => {
+    setShowDrawer(false);
+  };
 
   const handleEdit = (record) => {
     dispatch(getItem(record.ID));
-    setTimeout(() => {
-      setEditUrl(`/remitos/items/edit/${record.ID}`);
-    }, 100);
+    setShowDrawer(true);
   };
 
   const handleDelete = (record) => {
     dispatch(deleteItem(record.ID));
+    setTimeout(() => {
+      dispatch(getItems(record.REMNUM));
+    });
   };
-
-  if (!!editUrl) {
-    return (
-      <Redirect
-        push
-        to={{
-          pathname: editUrl,
-          state: { record: item },
-        }}
-      />
-    );
-  }
 
   const summary = (pageData) => {
     let totalAmount = 0;
@@ -88,12 +81,27 @@ const Remitos = (props) => {
   };
 
   return (
-    <Layout>
-      <Header title="Items" />
-      {error && <Alert message="Error" description={error} type="error" />}
+    <>
+      <Layout>
+        <Header title="Items" />
+        {error && <Alert message="Error" description={error} type="error" />}
 
-      <Table {...tableProps} />
-    </Layout>
+        <Table {...tableProps} />
+      </Layout>
+      <Drawer
+        isDrawerVisible={showDrawer}
+        handleClose={handleClose}
+        title={`${item.ID ? "Modificando" : "Agregando"} item`}
+      >
+        <ItemForm
+          closeDrawer={handleClose}
+          item={currentItem}
+          success={success}
+          error={error}
+          loading={loading}
+        />
+      </Drawer>
+    </>
   );
 };
 

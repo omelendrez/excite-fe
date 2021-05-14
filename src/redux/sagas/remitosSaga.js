@@ -144,6 +144,10 @@ function* deleteRemitoSaga(action) {
     yield put({
       type: types.REMITOS_RESET,
     });
+    yield put({
+      type: types.GET_ITEMS_REQUEST,
+      id: record.REMNUM,
+    });
   } catch (error) {
     yield put({
       type: types.DELETE_REMITO_FAILED,
