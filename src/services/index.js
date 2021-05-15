@@ -28,7 +28,6 @@ export const addRecord = (endpoint, record) => {
 };
 
 export const updateRecord = (endpoint, record) => {
-  console.log(record);
   return new Promise((resolve, reject) => {
     api
       .put(`${endpoint}/${record.ID}`, record)

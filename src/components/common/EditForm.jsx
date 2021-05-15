@@ -41,7 +41,7 @@ const EditForm = (props) => {
     for (const field in props.record) {
       const fld = props.fields.find((fld) => fld.name === field);
       if (!fld) {
-        console.log(field);
+        console.error(field);
       }
       record[field] =
         fld.type === "date"

@@ -66,10 +66,11 @@ function updateItem(newData) {
     });
 }
 
-function deleteItem(id) {
-  return deleteRecord(`${endpoint}/items/${id}`)
+function deleteItem(record) {
+  return deleteRecord(`${endpoint}/items/${record.ID}`)
     .then((response) => response)
     .catch((error) => {
+      console.error(error);
       throw error;
     });
 }
@@ -194,16 +195,19 @@ function* updateItemSaga(action) {
 
 function* deleteItemSaga(action) {
   try {
-    const record = action;
+    const { record } = action;
 
-    yield call(deleteItem, action.ID);
+    yield call(deleteItem, record);
     yield put({
       type: types.DELETE_ITEM_SUCCESS,
       payload: record,
     });
     yield put({
       type: types.GET_ITEMS_REQUEST,
-      id: action.REMNUM,
+      id: record.REMNUM,
+    });
+    yield put({
+      type: types.REMITOS_RESET,
     });
   } catch (error) {
     yield put({

@@ -82,27 +82,3 @@ export const cleanFields = (fields, record) => {
   });
   return values;
 };
-
-const logTypes = {
-  success: "background:green;color:white;padding:3px",
-  warning: "background:orange;color:white;padding:3px",
-  error: "background:red;color:white;padding:3px",
-  info: "background:#B2CAD7;color:black;padding:3px",
-  default: "",
-};
-
-const consoleLog = (msg, type) => {
-  let result = msg;
-  if (typeof msg === "object") {
-    result = JSON.stringify(msg, null, " ");
-  }
-  console.log(`%c${result}`, logTypes[type]);
-};
-
-export const log = {
-  success: (msg) => consoleLog(msg, "success"),
-  warning: (msg) => consoleLog(msg, "warning"),
-  error: (msg) => consoleLog(msg, "error"),
-  info: (msg) => consoleLog(msg, "info"),
-  log: (msg) => consoleLog(msg, "default"),
-};

@@ -6,7 +6,7 @@ import Table from "components/common/Table";
 import Alert from "components/common/Alert";
 import Drawer from "components/common/Drawer";
 import ItemForm from "./ItemForm";
-import { formatAmount, log } from "utils/helpers";
+import { formatAmount } from "utils/helpers";
 import columns from "./itemsColumns";
 import { getItem, cleanItem, getProductos, deleteItem } from "redux/actions";
 
@@ -70,8 +70,6 @@ const Remitos = (props) => {
     summary,
     pagination: false,
   };
-
-  log.log(items);
 
   return (
     <>
