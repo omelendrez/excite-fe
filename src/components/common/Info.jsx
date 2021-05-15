@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Descriptions, Row, Col } from "antd";
-import { getSelectList } from "../../utils/helpers";
+import { getSelectList } from "utils/helpers";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
-import { formatDate, formatAmount } from "../../utils/helpers";
+import { formatDate, formatAmount } from "utils/helpers";
 import "./info.css";
 
 const Info = (props) => {

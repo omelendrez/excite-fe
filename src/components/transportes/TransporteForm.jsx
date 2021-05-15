@@ -1,11 +1,11 @@
 import React from "react";
 import { Layout } from "antd";
-import Header from "../common/Header";
-import EditForm from "../common/EditForm";
+import Header from "components/common/Header";
+import EditForm from "components/common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
-import { addTransporte, updateTransporte } from "../../redux/actions";
-import { getSelectList, statuses, cleanFields } from "../../utils/helpers";
+import { addTransporte, updateTransporte } from "redux/actions";
+import { getSelectList, statuses, cleanFields } from "utils/helpers";
 
 const TransporteForm = (props) => {
   const record = props.record || props.location.state.record;

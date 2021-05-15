@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 import { Link } from "react-router-dom";
-import { sortColumn } from "../../utils/helpers";
+import { sortColumn } from "utils/helpers";
 
 const columns = [
   {

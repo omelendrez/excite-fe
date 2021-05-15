@@ -1,12 +1,12 @@
 import { put, takeEvery, call } from "redux-saga/effects";
-import * as types from "../types";
+import * as types from "redux/types";
 import {
   addRecord,
   getRecords,
   getRecordById,
   updateRecord,
   deleteRecord,
-} from "../../services";
+} from "services";
 
 const endpoint = "remitos";
 
@@ -194,13 +194,16 @@ function* updateItemSaga(action) {
 
 function* deleteItemSaga(action) {
   try {
-    const record = yield call(deleteItem, action.id);
+    const record = action;
+
+    yield call(deleteItem, action.ID);
     yield put({
       type: types.DELETE_ITEM_SUCCESS,
       payload: record,
     });
     yield put({
-      type: types.REMITOS_RESET,
+      type: types.GET_ITEMS_REQUEST,
+      id: action.REMNUM,
     });
   } catch (error) {
     yield put({

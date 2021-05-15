@@ -1,4 +1,4 @@
-import { sortColumn, formatDate, formatAmount } from "../../utils/helpers";
+import { sortColumn, formatDate, formatAmount } from "utils/helpers";
 
 export const columns = [
   {

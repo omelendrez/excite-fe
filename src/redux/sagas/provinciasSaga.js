@@ -1,6 +1,6 @@
 import { put, takeEvery, call } from "redux-saga/effects";
-import * as types from "../types";
-import { getRecords } from "../../services";
+import * as types from "redux/types";
+import { getRecords } from "services";
 
 const endpoint = "provincias";
 

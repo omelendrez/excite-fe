@@ -1,4 +1,4 @@
-import * as types from "../types";
+import * as types from "redux/types";
 
 export const getRemitos = () => {
   return {
@@ -55,9 +55,9 @@ export const updateItem = (newData) => {
   };
 };
 
-export const deleteItem = (id) => {
+export const deleteItem = (record) => {
   return {
     type: types.DELETE_ITEM_REQUEST,
-    id,
+    record,
   };
 };

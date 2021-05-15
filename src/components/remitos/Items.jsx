@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Table as AntdTable, Typography } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../common/Header";
-import Table from "../common/Table";
-import Alert from "../common/Alert";
-import Drawer from "../common/Drawer";
+import Header from "components/common/Header";
+import Table from "components/common/Table";
+import Alert from "components/common/Alert";
+import Drawer from "components/common/Drawer";
 import ItemForm from "./ItemForm";
-import { formatAmount } from "../../utils/helpers";
+import { formatAmount, log } from "utils/helpers";
 import columns from "./itemsColumns";
-import {
-  getItems,
-  getItem,
-  cleanItem,
-  getProductos,
-  deleteItem,
-} from "../../redux/actions";
+import { getItem, cleanItem, getProductos, deleteItem } from "redux/actions";
 
 const { Text } = Typography;
 
@@ -48,10 +42,7 @@ const Remitos = (props) => {
   };
 
   const handleDelete = (record) => {
-    dispatch(deleteItem(record.ID));
-    setTimeout(() => {
-      dispatch(getItems(record.REMNUM));
-    });
+    dispatch(deleteItem(record));
   };
 
   const summary = (pageData) => {
@@ -79,6 +70,8 @@ const Remitos = (props) => {
     summary,
     pagination: false,
   };
+
+  log.log(items);
 
   return (
     <>

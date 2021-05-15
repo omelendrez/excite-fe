@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 import { Link } from "react-router-dom";
-import { sortColumn, formatAmount, statuses } from "../../utils/helpers";
+import { sortColumn, formatAmount, statuses } from "utils/helpers";
 
 const columns = (props) => {
   const tipos = (

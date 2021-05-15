@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 import { Link } from "react-router-dom";
-import { sortColumn, statuses } from "../../utils/helpers";
+import { sortColumn, statuses } from "utils/helpers";
 
 export const columns = () => {
   const status = statuses

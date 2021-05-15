@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import EditForm from "../common/EditForm";
+import EditForm from "components/common/EditForm";
 import fields from "./itemFields";
 import { useSelector, useDispatch } from "react-redux";
-import { addItem, updateItem } from "../../redux/actions";
-import { getSelectList, cleanFields } from "../../utils/helpers";
+import { addItem, updateItem } from "redux/actions";
+import { getSelectList, cleanFields } from "utils/helpers";
 
 const ItemForm = (props) => {
   const { loading, success, error } = useSelector((state) => state.remitos);

@@ -4,9 +4,9 @@ import SaveButton from "./SaveButton";
 import ResetButton from "./ResetButton";
 import InputField from "./InputField";
 import notification from "./notification";
-import Tipos from "../transportes/TransporteForm";
-import Subtipos from "../subtipos/SubtipoForm";
-import { formatInputDate } from "../../utils/helpers";
+import Tipos from "components/tipos/TipoForm";
+import Subtipos from "components/subtipos/SubtipoForm";
+import { formatInputDate } from "utils/helpers";
 
 const components = {
   Tipos,

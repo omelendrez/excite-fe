@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Layout, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../common/Header";
-import Alert from "../common/Alert";
-import Table from "../common/Table";
-import Info from "../common/Info";
-import notification from "../common/notification";
+import Header from "components/common/Header";
+import Alert from "components/common/Alert";
+import Table from "components/common/Table";
+import Info from "components/common/Info";
+import notification from "components/common/notification";
 import {
   getVendedor,
   getVendedoresProductos,
   deleteVendedor,
   getActiveClientes,
-} from "../../redux/actions";
+} from "redux/actions";
 import fields from "./fields";
-import { setFields } from "../../utils/helpers";
-import { columns as clientColumns } from "../clientes/columns";
+import { setFields } from "utils/helpers";
+import { columns as clientColumns } from "components/clientes/columns";
 const { TabPane } = Tabs;
 
 const Vendedor = (props) => {

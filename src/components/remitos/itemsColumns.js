@@ -1,7 +1,7 @@
 import { Space } from "antd";
-import EditButton from "../common/EditButton";
-import DeleteButton from "../common/DeleteButton";
-import { formatAmount } from "../../utils/helpers";
+import EditButton from "components/common/EditButton";
+import DeleteButton from "components/common/DeleteButton";
+import { formatAmount } from "utils/helpers";
 
 const itemsColumns = (props) => {
   return [

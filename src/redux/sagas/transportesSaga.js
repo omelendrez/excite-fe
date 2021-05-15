@@ -1,12 +1,12 @@
 import { put, takeEvery, call } from "redux-saga/effects";
-import * as types from "../types";
+import * as types from "redux/types";
 import {
   getRecords,
   getRecordById,
   addRecord,
   updateRecord,
   deleteRecord,
-} from "../../services";
+} from "services";
 
 const endpoint = "transportes";
 

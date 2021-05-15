@@ -1,11 +1,11 @@
 import React from "react";
 import { Layout } from "antd";
-import Header from "../common/Header";
-import EditForm from "../common/EditForm";
+import Header from "components/common/Header";
+import EditForm from "components/common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
-import { addConcepto, updateConcepto } from "../../redux/actions";
-import { getSelectList, cleanFields } from "../../utils/helpers";
+import { addConcepto, updateConcepto } from "redux/actions";
+import { getSelectList, cleanFields } from "utils/helpers";
 
 const ConceptoForm = (props) => {
   const record = props.record || props.location.state.record;

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import Header from "../common/Header";
-import Table from "../common/Table";
-import Alert from "../common/Alert";
-import { getProductos, getTipos, getSubtipos } from "../../redux/actions";
+import Header from "components/common/Header";
+import Table from "components/common/Table";
+import Alert from "components/common/Alert";
+import { getProductos, getTipos, getSubtipos } from "redux/actions";
 import fields from "./fields";
 import columns from "./columns";
 

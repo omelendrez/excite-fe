@@ -1,16 +1,11 @@
 import React from "react";
 import { Layout } from "antd";
-import Header from "../common/Header";
-import EditForm from "../common/EditForm";
+import Header from "components/common/Header";
+import EditForm from "components/common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
-import { addProducto, updateProducto } from "../../redux/actions";
-import {
-  getSelectList,
-  statuses,
-  sexos,
-  cleanFields,
-} from "../../utils/helpers";
+import { addProducto, updateProducto } from "redux/actions";
+import { getSelectList, statuses, sexos, cleanFields } from "utils/helpers";
 
 const ProductoForm = (props) => {
   const record = props.location.state.record;

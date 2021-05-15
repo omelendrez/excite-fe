@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Layout, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../common/Header";
-import Alert from "../common/Alert";
-import Table from "../common/Table";
-import Info from "../common/Info";
-import notification from "../common/notification";
-import { getTipo, deleteTipo, getTiposSubtipos } from "../../redux/actions";
+import Header from "components/common/Header";
+import Alert from "components/common/Alert";
+import Table from "components/common/Table";
+import Info from "components/common/Info";
+import notification from "components/common/notification";
+import { getTipo, deleteTipo, getTiposSubtipos } from "redux/actions";
 import fields from "./fields";
-import { setFields } from "../../utils/helpers";
-import { columns as subtiposColumns } from "../subtipos/columns";
+import { setFields } from "utils/helpers";
+import { columns as subtiposColumns } from "components/subtipos/columns";
 
 const { TabPane } = Tabs;
 

@@ -1,4 +1,4 @@
-import { formatDate } from "../../utils/helpers";
+import { formatDate } from "utils/helpers";
 export const columns = [
   {
     title: "Fecha",
