@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Layout, ConfigProvider } from "antd";
 
 import es_ES from "antd/lib/locale/es_ES";
 import "antd/dist/antd.css";
+import { useDispatch } from "react-redux";
 
 import "./App.css";
 
 import Menu from "./components/Menu";
 import Routes from "./components/Routes";
 
+import { wakeUp } from "redux/actions";
+
 const { Footer, Sider } = Layout;
 
 function App() {
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({ collapsed: false });
   const { collapsed } = state;
 
   const onCollapse = (collapsed) => {
     setState({ ...state, collapsed });
   };
+
+  useEffect(() => {
+    dispatch(wakeUp());
+  }, [dispatch]);
 
   return (
     <ConfigProvider locale={es_ES}>

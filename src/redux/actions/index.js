@@ -13,3 +13,4 @@ export * from "./transportes";
 export * from "./vendedores";
 export * from "./provincias";
 export * from "./estados";
+export * from "./wakeUp";
