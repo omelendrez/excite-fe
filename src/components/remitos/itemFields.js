@@ -11,6 +11,7 @@ const fields = [
     type: "select",
     options: "productos",
     rules: [{ required: true }],
+    updater: true,
   },
   {
     name: "REMCAN",

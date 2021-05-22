@@ -17,6 +17,10 @@ const ItemForm = (props) => {
     dispatch(updateItem(newValues));
   };
 
+  const getSelectedValue = (value) => {
+    console.log(value);
+  };
+
   useEffect(() => {
     if (success) {
       props.closeDrawer();
@@ -25,7 +29,12 @@ const ItemForm = (props) => {
 
   return (
     <EditForm
-      fields={fields}
+      fields={fields.map((field) => {
+        if (field.updater) {
+          field.getSelectedValue = getSelectedValue;
+        }
+        return field;
+      })}
       record={props.item}
       onFinish={onFinish}
       maximize={true}
