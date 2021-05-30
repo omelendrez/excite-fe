@@ -4,6 +4,7 @@ const initialState = {
   record: {},
   records: [],
   active: [],
+  tipos: [],
   loading: false,
   success: false,
   error: null,
@@ -62,7 +63,8 @@ const clientesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        record: action.payload,
+        record: action.payload.record,
+        tipos: action.payload.tipos,
         error: null,
       };
     case types.GET_CLIENTE_FAILED:

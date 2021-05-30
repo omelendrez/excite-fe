@@ -6,7 +6,7 @@ import Alert from "components/common/Alert";
 import Items from "./Items";
 import Info from "components/common/Info";
 import notification from "components/common/notification";
-import { getRemito, getItems, deleteRemito } from "redux/actions";
+import { getRemito, getItems, deleteRemito, getCliente } from "redux/actions";
 import fields from "./fields";
 import { setFields } from "utils/helpers";
 import "./remito.css";
@@ -30,6 +30,7 @@ const Remito = (props) => {
   useEffect(() => {
     if (record && record.REMNUM) {
       dispatch(getItems(record.REMNUM));
+      dispatch(getCliente(record.CLICOD));
       const info = setFields(fields, record);
       setInfo(info);
     }

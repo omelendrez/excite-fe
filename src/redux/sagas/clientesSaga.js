@@ -34,6 +34,14 @@ function getCliente(id) {
     });
 }
 
+function getClienteTipos(id) {
+  return getRecordById(`${endpoint}-tipos/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 function addCliente(newData) {
   return addRecord(endpoint, newData)
     .then((response) => response)
@@ -91,9 +99,10 @@ function* fetchActiveClientesSaga(action) {
 function* fetchClienteSaga(action) {
   try {
     const record = yield call(getCliente, action.id);
+    const tipos = yield call(getClienteTipos, record.CLICOD);
     yield put({
       type: types.GET_CLIENTE_SUCCESS,
-      payload: record,
+      payload: { record, tipos },
     });
   } catch (error) {
     yield put({
