@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EditForm from "components/common/EditForm";
 import fields from "./itemFields";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,6 +9,9 @@ const ItemForm = (props) => {
   const { loading, success, error } = useSelector((state) => state.remitos);
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.productos);
+  const clientes = useSelector((state) => state.clientes);
+  const [changeValue, setChangeValue] = useState({});
+
   const onFinish = (values) => {
     const newValues = cleanFields(fields, values);
     if (!props.item.ID) {
@@ -18,7 +21,18 @@ const ItemForm = (props) => {
   };
 
   const getSelectedValue = (value) => {
-    console.log(value);
+    const producto = productos.records.find(
+      (producto) => producto.PRODCOD === value
+    );
+    let price = producto.PRODPRE;
+    const tipo =
+      (clientes.tipos &&
+        clientes.tipos.find((tipo) => tipo.TIPCOD === producto.TIPCOD)) ||
+      null;
+    if (tipo) {
+      price = tipo.CLIPRODPRE;
+    }
+    setChangeValue({ field: "REMPRE", value: price });
   };
 
   useEffect(() => {
@@ -44,6 +58,7 @@ const ItemForm = (props) => {
       optionsModels={{
         productos: getSelectList("productos", productos.records),
       }}
+      changeValue={changeValue}
     />
   );
 };

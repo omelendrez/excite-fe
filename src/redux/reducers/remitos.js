@@ -129,7 +129,7 @@ const remitosReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         success: true,
-        record: action.payload,
+        item: action.payload,
         error: null,
       };
     case types.ADD_ITEM_FAILED:
@@ -151,7 +151,7 @@ const remitosReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         success: true,
-        record: action.payload,
+        item: action.payload,
         error: null,
       };
     case types.UPDATE_ITEM_FAILED:
@@ -173,7 +173,7 @@ const remitosReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         success: true,
-        record: action.payload,
+        item: action.payload,
         error: null,
       };
     case types.DELETE_ITEM_FAILED:

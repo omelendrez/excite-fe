@@ -38,15 +38,23 @@ const EditForm = (props) => {
 
   useEffect(() => {
     const record = {};
-    for (const field in props.record) {
-      const fld = props.fields.find((fld) => fld.name === field);
-      if (!fld) {
-        console.error(field);
+    props.fields.forEach((field) => {
+      switch (field.type) {
+        default:
+          record[field.name] = props.record[field.name] || "";
+          break;
+        case "date":
+          record[field.name] = formatInputDate(props.record[field.name] || "");
+          break;
+        case "number":
+        case "amount":
+          record[field.name] =
+            +props.record[field.name] || (field.name === "ID" ? undefined : 0);
+          break;
       }
-      record[field] =
-        fld.type === "date"
-          ? formatInputDate(props.record[field])
-          : props.record[field];
+    });
+    if (props.changeValue) {
+      record[props.changeValue.field] = props.changeValue.value;
     }
     setRecord(record);
   }, [props]);

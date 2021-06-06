@@ -84,13 +84,15 @@ const Remitos = (props) => {
         handleClose={handleClose}
         title={`${item.ID ? "Modificando" : "Agregando"} item`}
       >
-        <ItemForm
-          closeDrawer={handleClose}
-          item={currentItem}
-          success={success}
-          error={error}
-          loading={loading}
-        />
+        {!loading && (
+          <ItemForm
+            closeDrawer={handleClose}
+            item={currentItem}
+            success={success}
+            error={error}
+            loading={loading}
+          />
+        )}
       </Drawer>
     </>
   );
