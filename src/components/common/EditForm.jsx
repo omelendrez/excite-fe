@@ -53,8 +53,10 @@ const EditForm = (props) => {
           break;
       }
     });
-    if (props.changeValue) {
-      record[props.changeValue.field] = props.changeValue.value;
+    if (props.changeFieldValues && props.changeFieldValues.length) {
+      props.changeFieldValues.forEach(
+        (field) => (record[field.name] = field.value)
+      );
     }
     setRecord(record);
   }, [props]);

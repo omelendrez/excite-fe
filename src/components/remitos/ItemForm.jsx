@@ -10,7 +10,7 @@ const ItemForm = (props) => {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.productos);
   const clientes = useSelector((state) => state.clientes);
-  const [changeValue, setChangeValue] = useState({});
+  const [changeFieldValues, setChangeFieldValues] = useState([]);
 
   const onFinish = (values) => {
     const newValues = cleanFields(fields, values);
@@ -32,7 +32,11 @@ const ItemForm = (props) => {
     if (tipo) {
       price = tipo.CLIPRODPRE;
     }
-    setChangeValue({ field: "REMPRE", value: price });
+    const newFieldValues = [
+      { name: "PRODCOD", value },
+      { name: "REMPRE", value: price },
+    ];
+    setChangeFieldValues(newFieldValues);
   };
 
   useEffect(() => {
@@ -58,7 +62,7 @@ const ItemForm = (props) => {
       optionsModels={{
         productos: getSelectList("productos", productos.records),
       }}
-      changeValue={changeValue}
+      changeFieldValues={changeFieldValues}
     />
   );
 };
