@@ -17,6 +17,7 @@ const Remito = (props) => {
   const dispatch = useDispatch();
   const remitos = useSelector((state) => state.remitos);
   const { loading, success, record, error } = remitos;
+  const clientes = useSelector((state) => state.clientes);
   const infoDefault = fields.map((field) => ({
     title: field.title,
     value: "",
@@ -30,11 +31,19 @@ const Remito = (props) => {
   useEffect(() => {
     if (record && record.REMNUM) {
       dispatch(getItems(record.REMNUM));
-      dispatch(getCliente(record.CLICOD));
       const info = setFields(fields, record);
       setInfo(info);
     }
   }, [dispatch, record]);
+
+  useEffect(() => {
+    const cliente = clientes.records.find(
+      (item) => item.CLICOD === record.CLICOD
+    );
+    if (cliente) {
+      dispatch(getCliente(cliente.ID));
+    }
+  }, [record, dispatch, clientes.records]);
 
   useEffect(() => {
     if (success && record.message) {
@@ -57,6 +66,9 @@ const Remito = (props) => {
     dispatch(deleteRemito(props.match.params.id));
   };
 
+  const { record: cliente } = clientes;
+  const { CLICOD, CLINOM } = cliente;
+
   return (
     <Layout>
       <Header
@@ -65,6 +77,7 @@ const Remito = (props) => {
         loading={loading}
       />
       {error && <Alert message="Error" description={error} type="error" />}
+      {CLICOD && <Alert message={`${CLICOD} - ${CLINOM}`} />}
       <div className="card-container">
         <Tabs>
           <TabPane tab="Info" key="1">

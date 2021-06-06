@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Alert, Divider } from "antd";
 import EditForm from "components/common/EditForm";
 import fields from "./itemFields";
 import { useSelector, useDispatch } from "react-redux";
@@ -46,24 +47,30 @@ const ItemForm = (props) => {
   }, [props, success]);
 
   return (
-    <EditForm
-      fields={fields.map((field) => {
-        if (field.updater) {
-          field.getSelectedValue = getSelectedValue;
-        }
-        return field;
-      })}
-      record={props.item}
-      onFinish={onFinish}
-      maximize={true}
-      loading={loading}
-      success={success}
-      error={error}
-      optionsModels={{
-        productos: getSelectList("productos", productos.records),
-      }}
-      changeFieldValues={changeFieldValues}
-    />
+    <>
+      <EditForm
+        fields={fields.map((field) => {
+          if (field.updater) {
+            field.getSelectedValue = getSelectedValue;
+          }
+          return field;
+        })}
+        record={props.item}
+        onFinish={onFinish}
+        maximize={true}
+        loading={loading}
+        success={success}
+        error={error}
+        optionsModels={{
+          productos: getSelectList("productos", productos.records),
+        }}
+        changeFieldValues={changeFieldValues}
+      />
+      <Divider />
+      {clientes.tipos && clientes.tipos.length > 0 && (
+        <Alert message="Cliente con descuento" type="error" />
+      )}
+    </>
   );
 };
 
