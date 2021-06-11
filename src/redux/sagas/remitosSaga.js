@@ -26,6 +26,14 @@ function getRemito(id) {
     });
 }
 
+function addRemito(newData) {
+  return addRecord(`${endpoint}`, newData)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 function getItem(id) {
   return getRecordById(`${endpoint}/items/${id}`)
     .then((response) => response)
@@ -105,6 +113,27 @@ function* fetchRemitoSaga(action) {
   }
 }
 
+function* addRemitoSaga(action) {
+  try {
+    const record = yield call(addRemito, action.newData);
+    yield put({
+      type: types.ADD_REMITO_SUCCESS,
+      payload: record,
+    });
+    yield put({
+      type: types.REMITOS_RESET,
+    });
+    yield put({
+      type: types.GET_REMITO_REQUEST,
+      id: record.ID,
+    });
+  } catch (error) {
+    yield put({
+      type: types.ADD_ITEM_FAILED,
+      payload: error.message,
+    });
+  }
+}
 function* fetchItemsSaga(action) {
   try {
     const record = yield call(getItems, action.id);
@@ -228,6 +257,7 @@ function* deleteItemSaga(action) {
 function* remitosSaga() {
   yield takeEvery(types.GET_REMITOS_REQUEST, fetchRemitosSaga);
   yield takeEvery(types.GET_REMITO_REQUEST, fetchRemitoSaga);
+  yield takeEvery(types.ADD_REMITO_REQUEST, addRemitoSaga);
   yield takeEvery(types.GET_ITEMS_REQUEST, fetchItemsSaga);
   yield takeEvery(types.GET_ITEM_REQUEST, fetchItemSaga);
   yield takeEvery(types.DELETE_REMITO_REQUEST, deleteRemitoSaga);

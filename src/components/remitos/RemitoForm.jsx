@@ -4,7 +4,7 @@ import Header from "components/common/Header";
 import EditForm from "components/common/EditForm";
 import fields from "./fields";
 import { useSelector, useDispatch } from "react-redux";
-import { addTipo, updateTipo } from "redux/actions";
+import { addRemito, updateTipo } from "redux/actions";
 import { getSelectList, cleanFields } from "utils/helpers";
 
 const RemitoForm = (props) => {
@@ -20,7 +20,7 @@ const RemitoForm = (props) => {
   const onFinish = (values) => {
     const newValues = cleanFields(fields, values);
     if (!record.ID) {
-      return dispatch(addTipo(newValues));
+      return dispatch(addRemito(newValues));
     }
     dispatch(updateTipo(record.ID, newValues));
   };
