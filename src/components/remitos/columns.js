@@ -49,3 +49,5 @@ export const columns = [
     align: "right",
   },
 ];
+
+export default columns;

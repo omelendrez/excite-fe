@@ -12,6 +12,7 @@ import {
   getVendedores,
   getTransportes,
 } from "redux/actions";
+import { createNewRecord } from "utils/helpers";
 import fields from "./fields";
 import columns from "./columns";
 
@@ -42,12 +43,7 @@ const Clientes = () => {
   };
 
   if (!!url) {
-    const record = {};
-    fields
-      .filter((field) => field.name !== "ID")
-      .forEach((field) => {
-        record[field.name] = field.type === "number" ? 0 : "";
-      });
+    const record = createNewRecord(fields);
     return (
       <Redirect
         push

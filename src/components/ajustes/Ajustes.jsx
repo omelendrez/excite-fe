@@ -6,6 +6,7 @@ import Header from "components/common/Header";
 import Table from "components/common/Table";
 import Alert from "components/common/Alert";
 import { getAjustes, getProductos } from "redux/actions";
+import { createNewRecord } from "utils/helpers";
 import columns from "./columns";
 import fields from "./fields";
 
@@ -33,22 +34,7 @@ const Ajustes = () => {
   };
 
   if (!!url) {
-    const record = {};
-    fields
-      .filter((field) => field.name !== "ID")
-      .forEach((field) => {
-        switch (field.type) {
-          default:
-            record[field.name] = "";
-            break;
-          case "number":
-            record[field.name] = 0;
-            break;
-          case "date":
-            record[field.name] = undefined;
-            break;
-        }
-      });
+    const record = createNewRecord(fields);
     return (
       <Redirect
         push

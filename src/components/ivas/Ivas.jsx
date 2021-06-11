@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Table from "components/common/Table";
 import Alert from "components/common/Alert";
+import { createNewRecord } from "utils/helpers";
 import { getIvas } from "redux/actions";
 import columns from "./columns";
 import fields from "./fields";
@@ -32,12 +33,7 @@ const Ivas = () => {
   };
 
   if (!!url) {
-    const record = {};
-    fields
-      .filter((field) => field.name !== "ID")
-      .forEach((field) => {
-        record[field.name] = field.type === "number" ? 0 : "";
-      });
+    const record = createNewRecord(fields);
     return (
       <Redirect
         push

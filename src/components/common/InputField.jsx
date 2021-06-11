@@ -27,7 +27,8 @@ const InputField = (props) => {
     showSearch: true,
     placeholder: "Seleccione uno",
     optionFilterProp: "children",
-    onChange: (value) => field.getSelectedValue(value) || null,
+    onChange: (value) =>
+      field.getSelectedValue ? field.getSelectedValue(value) : null,
     filterOption: (input, option) =>
       option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0,
     filterSort: (optionA, optionB) =>

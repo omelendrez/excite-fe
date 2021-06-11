@@ -44,7 +44,9 @@ const EditForm = (props) => {
           record[field.name] = props.record[field.name] || "";
           break;
         case "date":
-          record[field.name] = formatInputDate(props.record[field.name] || "");
+          record[field.name] = formatInputDate(
+            props.record[field.name] || undefined
+          );
           break;
         case "number":
         case "amount":
@@ -100,15 +102,17 @@ const EditForm = (props) => {
         }}
       >
         {props.fields &&
-          props.fields.map((field) => (
-            <InputField
-              key={field.name}
-              field={field}
-              record={record}
-              optionsModels={props.optionsModels}
-              addOption={() => toggleModal(field.options)}
-            />
-          ))}
+          props.fields
+            .filter((field) => !field.readonly)
+            .map((field) => (
+              <InputField
+                key={field.name}
+                field={field}
+                record={record}
+                optionsModels={props.optionsModels}
+                addOption={() => toggleModal(field.options)}
+              />
+            ))}
         <Row>
           <Col offset={props.maximize ? 5 : 2} span={props.maximize ? 6 : 3}>
             <SaveButton loading={props.loading} />

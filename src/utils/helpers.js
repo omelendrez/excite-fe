@@ -82,3 +82,24 @@ export const cleanFields = (fields, record) => {
   });
   return values;
 };
+
+export const createNewRecord = (fields) => {
+  const record = {};
+  fields
+    .filter((field) => field.name !== "ID" && !field.readonly)
+    .forEach((field) => {
+      switch (field.type) {
+        default:
+          record[field.name] = "";
+          break;
+        case "number":
+          record[field.name] = 0;
+          break;
+        case "date":
+          record[field.name] = undefined;
+          break;
+      }
+    });
+
+  return record;
+};

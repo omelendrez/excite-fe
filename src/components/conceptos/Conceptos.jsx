@@ -6,6 +6,7 @@ import Header from "components/common/Header";
 import Table from "components/common/Table";
 import Alert from "components/common/Alert";
 import { getConceptos, getClientes } from "redux/actions";
+import { createNewRecord } from "utils/helpers";
 import fields from "./fields";
 import columns from "./columns";
 
@@ -33,12 +34,7 @@ const Conceptos = () => {
   };
 
   if (!!url) {
-    const record = {};
-    fields
-      .filter((field) => field.name !== "ID")
-      .forEach((field) => {
-        record[field.name] = field.type === "number" ? 0 : "";
-      });
+    const record = createNewRecord(fields);
     return (
       <Redirect
         push
