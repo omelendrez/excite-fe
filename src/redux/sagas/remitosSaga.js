@@ -123,10 +123,6 @@ function* addRemitoSaga(action) {
     yield put({
       type: types.REMITOS_RESET,
     });
-    yield put({
-      type: types.GET_REMITO_REQUEST,
-      id: record.ID,
-    });
   } catch (error) {
     yield put({
       type: types.ADD_ITEM_FAILED,
