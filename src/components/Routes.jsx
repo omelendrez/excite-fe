@@ -19,6 +19,7 @@ import IvaForm from "components/ivas/IvaForm";
 import Porciva from "components/porciva/Porciva";
 
 import Pagos from "components/pagos/Pagos";
+import Pago from "components/pagos/Pago";
 
 import Vendedores from "components/vendedores/Vendedores";
 import Vendedor from "components/vendedores/Vendedor";
@@ -87,6 +88,7 @@ const Routes = () => {
 
       {/* Pagos */}
       <Route exact path="/pagos" component={Pagos} />
+      <Route exact path="/pagos/:id" component={Pago} />
 
       {/* Vendedores */}
       <Route exact path="/vendedores" component={Vendedores} />
