@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Divider } from "antd";
+import { Alert, Divider, Space } from "antd";
 import EditForm from "components/common/EditForm";
 import fields from "./itemFields";
 import { useSelector, useDispatch } from "react-redux";
@@ -68,7 +68,9 @@ const ItemForm = (props) => {
       />
       <Divider />
       {clientes.tipos && clientes.tipos.length > 0 && (
-        <Alert message="Cliente con descuento" type="error" />
+        <Space>
+          <Alert message="Cliente con precios especiales" type="success" />
+        </Space>
       )}
     </>
   );

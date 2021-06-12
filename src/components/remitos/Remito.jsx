@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Tabs } from "antd";
+import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
 import Items from "./Items";
 import Info from "components/common/Info";
 import notification from "components/common/notification";
-import { getRemito, getItems, deleteRemito, getCliente } from "redux/actions";
+import { getRemito, getItems, deleteRemito } from "redux/actions";
 import fields from "./fields";
 import { setFields } from "utils/helpers";
 import "./remito.css";
-
-const { TabPane } = Tabs;
 
 const Remito = (props) => {
   const dispatch = useDispatch();
   const remitos = useSelector((state) => state.remitos);
   const { loading, success, record, error } = remitos;
-  const clientes = useSelector((state) => state.clientes);
   const infoDefault = fields.map((field) => ({
     title: field.title,
     value: "",
@@ -35,15 +32,6 @@ const Remito = (props) => {
       setInfo(info);
     }
   }, [dispatch, record]);
-
-  useEffect(() => {
-    const cliente = clientes.records.find(
-      (item) => item.CLICOD === record.CLICOD
-    );
-    if (cliente) {
-      dispatch(getCliente(cliente.ID));
-    }
-  }, [record, dispatch, clientes.records]);
 
   useEffect(() => {
     if (success && record.message) {
@@ -67,9 +55,6 @@ const Remito = (props) => {
     dispatch(deleteRemito(props.match.params.id));
   };
 
-  const { record: cliente } = clientes;
-  const { CLICOD, CLINOM } = cliente;
-
   return (
     <Layout>
       <Header
@@ -78,22 +63,15 @@ const Remito = (props) => {
         loading={loading}
       />
       {error && <Alert message="Error" description={error} type="error" />}
-      {CLICOD && <Alert message={`${CLICOD} - ${CLINOM}`} />}
       <div className="card-container">
-        <Tabs>
-          <TabPane tab="Info" key="1">
-            <Info
-              title={info.REMNUM}
-              fields={fields}
-              data={info}
-              onDelete={remitos.items.length === 0 ? handleDelete : null}
-              success={success}
-            />
-          </TabPane>
-          <TabPane tab={`Items (${remitos.items.length})`} key="2">
-            <Items ID={record.REMNUM} />
-          </TabPane>
-        </Tabs>
+        <Info
+          title={info.REMNUM}
+          fields={fields}
+          data={info}
+          onDelete={remitos.items.length === 0 ? handleDelete : null}
+          success={success}
+        />
+        <Items ID={record.REMNUM} />
       </div>
     </Layout>
   );
