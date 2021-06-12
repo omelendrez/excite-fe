@@ -118,6 +118,38 @@ const Pago = (props) => {
     );
   };
 
+  const remitosProps = {
+    title: "Remitos",
+    loading,
+    error,
+    items: remitos,
+    columns: remitosColumns,
+    fields: remitosFields,
+    onAdd: addRemito,
+    ItemForm,
+    showDrawer: showRemitoDrawer,
+    handleClose,
+    summary: remitosSummary,
+    handleEdit: handleEditRemito,
+    handleDelete: handleDeleteRemito,
+  };
+
+  const valoresProps = {
+    title: "Valores",
+    loading,
+    error,
+    items: valores,
+    columns: valoresColumns,
+    fields: valoresFields,
+    onAdd: addValor,
+    ItemForm,
+    showDrawer: showValorDrawer,
+    handleClose,
+    summary: valoresSummary,
+    handleEdit: handleEditValor,
+    handleDelete: handleDeleteValor,
+  };
+
   return (
     <Layout>
       <Header
@@ -133,36 +165,8 @@ const Pago = (props) => {
           data={info}
           success={success}
         />
-        <Items
-          title="Remitos"
-          loading={loading}
-          error={error}
-          items={remitos}
-          columns={remitosColumns}
-          fields={remitosFields}
-          onAdd={addRemito}
-          ItemForm={ItemForm}
-          showDrawer={showRemitoDrawer}
-          handleClose={handleClose}
-          summary={remitosSummary}
-          handleEdit={handleEditRemito}
-          handleDelete={handleDeleteRemito}
-        />
-        <Items
-          title="Valores"
-          loading={loading}
-          error={error}
-          items={valores}
-          columns={valoresColumns}
-          fields={valoresFields}
-          onAdd={addValor}
-          ItemForm={ItemForm}
-          showDrawer={showValorDrawer}
-          handleClose={handleClose}
-          summary={valoresSummary}
-          handleEdit={handleEditValor}
-          handleDelete={handleDeleteValor}
-        />
+        <Items {...remitosProps} />
+        <Items {...valoresProps} />
       </div>
     </Layout>
   );
