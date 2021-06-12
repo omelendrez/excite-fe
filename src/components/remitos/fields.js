@@ -12,10 +12,19 @@ const fields = [
     rules: [{ required: true }],
   },
   {
+    name: "CLICOD",
+    title: "Cliente",
+    type: "select",
+    rules: [{ required: true }],
+    options: "clientes",
+    updater: true,
+  },
+  {
     name: "VENCOD",
     title: "Vendedor",
     type: "select",
     options: "vendedores",
+    readonly: true,
   },
   {
     name: "REMFACNUM",
@@ -30,16 +39,11 @@ const fields = [
     readonly: true,
   },
   {
-    name: "CLICOD",
-    title: "Cliente",
-    type: "select",
-    options: "clientes",
-  },
-  {
     name: "ESTCOD",
     title: "Estado",
     type: "select",
     options: "estados",
+    readonly: true,
   },
   {
     name: "REMPAGNUM",

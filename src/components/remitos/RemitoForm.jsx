@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "antd";
 import Header from "components/common/Header";
 import EditForm from "components/common/EditForm";
@@ -10,6 +10,8 @@ import { getSelectList, cleanFields } from "utils/helpers";
 const RemitoForm = (props) => {
   const record = props.record || props.location.state.record;
   const title = `${record.ID ? "Modificando" : "Agregando"} remito`;
+  const [changeFieldValues, setChangeFieldValues] = useState([]);
+
   const dispatch = useDispatch();
   const remitos = useSelector((state) => state.remitos);
   const { loading, success, error } = remitos;
@@ -24,11 +26,31 @@ const RemitoForm = (props) => {
     }
   };
 
+  const getSelectedValue = (value) => {
+    const cliente = clientes.records.find(
+      (cliente) => cliente.CLICOD === value
+    );
+
+    let vendedor = cliente.VENCOD;
+    const newFieldValues = [
+      { name: "CLICOD", value },
+      { name: "VENCOD", value: vendedor },
+      { name: "ESTCOD", value: "S" },
+    ];
+    setChangeFieldValues(newFieldValues);
+  };
+
   return (
     <Layout>
       <Header title={title} onBack={props.history && props.history.goBack} />
       <EditForm
-        fields={fields}
+        fields={fields.map((field) => {
+          if (field.updater) {
+            field.getSelectedValue = getSelectedValue;
+          }
+          return field;
+        })}
+        changeFieldValues={changeFieldValues}
         record={record}
         loading={loading}
         success={success}

@@ -25,17 +25,17 @@ export const columns = [
     width: 200,
   },
   {
+    dataIndex: "CLINOM",
+    title: "Cliente",
+    searchable: true,
+    sorter: (a, b) => sortColumn(a, b, "CLINOM"),
+  },
+  {
     dataIndex: "VENNOM",
     title: "Vendedor",
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "VENNOM"),
     width: 300,
-  },
-  {
-    dataIndex: "CLINOM",
-    title: "Cliente",
-    searchable: true,
-    sorter: (a, b) => sortColumn(a, b, "CLINOM"),
   },
   {
     dataIndex: "REMQTY",
