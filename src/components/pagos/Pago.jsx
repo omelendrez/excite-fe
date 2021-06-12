@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout } from "antd";
+import { Layout, Table as AntdTable, Typography } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
@@ -9,8 +9,10 @@ import ItemForm from "./ItemForm";
 import notification from "components/common/notification";
 import { getPago } from "redux/actions";
 import { fields, remitosFields } from "./fields";
-import { setFields } from "utils/helpers";
+import { setFields, formatAmount } from "utils/helpers";
 import { remitosColumns, valoresColumns } from "./columns";
+
+const { Text } = Typography;
 
 const Pago = (props) => {
   const dispatch = useDispatch();
@@ -44,7 +46,6 @@ const Pago = (props) => {
   useEffect(() => {
     if (record && record.PAGNUM) {
       const info = setFields(fields, record);
-      console.log(info);
       setInfo(info);
     }
   }, [dispatch, record]);
@@ -66,6 +67,38 @@ const Pago = (props) => {
       });
     }
   }, [success, record, error, props.history]);
+
+  const remitosSummary = (pageData) => {
+    let totalAmount = 0;
+    pageData.forEach((item) => {
+      totalAmount += item.REMTOT;
+    });
+
+    return (
+      <AntdTable.Summary.Row className="summary-row">
+        <AntdTable.Summary.Cell>Total</AntdTable.Summary.Cell>
+        <AntdTable.Summary.Cell align="right" colSpan={2}>
+          <Text type="primary">{formatAmount(totalAmount)}</Text>
+        </AntdTable.Summary.Cell>
+      </AntdTable.Summary.Row>
+    );
+  };
+
+  const valoresSummary = (pageData) => {
+    let totalAmount = 0;
+    pageData.forEach((item) => {
+      totalAmount += item.PAGIMP;
+    });
+
+    return (
+      <AntdTable.Summary.Row className="summary-row">
+        <AntdTable.Summary.Cell>Total</AntdTable.Summary.Cell>
+        <AntdTable.Summary.Cell align="right" colSpan={2}>
+          <Text type="primary">{formatAmount(totalAmount)}</Text>
+        </AntdTable.Summary.Cell>
+      </AntdTable.Summary.Row>
+    );
+  };
 
   return (
     <Layout>
@@ -93,6 +126,7 @@ const Pago = (props) => {
           ItemForm={ItemForm}
           showDrawer={showRemitoDrawer}
           handleClose={handleClose}
+          summary={remitosSummary}
         />
         <Items
           title="Valores"
@@ -105,6 +139,7 @@ const Pago = (props) => {
           ItemForm={ItemForm}
           showDrawer={showValorDrawer}
           handleClose={handleClose}
+          summary={valoresSummary}
         />
       </div>
     </Layout>

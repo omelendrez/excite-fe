@@ -19,6 +19,7 @@ const Items = (props) => {
     handleClose,
     handleDelete,
     handleEdit,
+    summary,
   } = props;
   const [currentItem, setCurrentItem] = useState({});
 
@@ -32,6 +33,7 @@ const Items = (props) => {
     dataSource: items,
     rowKey: "ID",
     pagination: false,
+    summary,
     onAdd,
   };
 

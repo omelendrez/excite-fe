@@ -42,12 +42,20 @@ export const remitosColumns = (props) => {
       dataIndex: "PAGNUM",
       title: "Pago",
       searchable: true,
-      width: 120,
+      width: 90,
     },
     {
       dataIndex: "REMNUM",
       title: "Remito",
+      searchable: true,
+      width: 90,
+    },
+    {
+      title: "Importe",
+      dataIndex: "REMTOT",
+      render: (text) => formatAmount(text),
       width: 120,
+      align: "right",
     },
     {
       dataIndex: "actions",
@@ -73,7 +81,7 @@ export const valoresColumns = (props) => {
       dataIndex: "PAGNUM",
       title: "Pago",
       searchable: true,
-      width: 120,
+      width: 90,
     },
     {
       dataIndex: "PAGSEC",
@@ -85,21 +93,25 @@ export const valoresColumns = (props) => {
       title: "Importe",
       render: (text) => formatAmount(text),
       width: 120,
+      align: "right",
     },
     {
       dataIndex: "PAGTIP",
       title: "Tipo de pago",
+      searchable: true,
       width: 120,
     },
     {
       dataIndex: "PAGCHEBAN",
       title: "Banco",
-      width: 260,
+      searchable: true,
+      width: 120,
     },
     {
       dataIndex: "PAGCHENUM",
       title: "Nro. de cheque",
-      width: 200,
+      searchable: true,
+      width: 120,
     },
     {
       dataIndex: "actions",
