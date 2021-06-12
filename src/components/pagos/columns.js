@@ -32,6 +32,7 @@ export const columns = [
     title: "Total",
     dataIndex: "TOTAL",
     render: (text) => formatAmount(text),
+    sorter: (a, b) => sortColumn(a, b, "TOTAL"),
     align: "right",
   },
 ];
@@ -109,7 +110,7 @@ export const valoresColumns = (props) => {
     },
     {
       dataIndex: "PAGCHENUM",
-      title: "Nro. de cheque",
+      title: "Cheque #",
       searchable: true,
       width: 120,
     },

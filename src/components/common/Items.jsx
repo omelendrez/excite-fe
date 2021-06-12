@@ -15,13 +15,15 @@ const Items = (props) => {
     title,
     onAdd,
     ItemForm,
-    showDrawer,
-    handleClose,
     handleDelete,
     handleEdit,
-    summary,
   } = props;
+  const [showDrawer, setShowDrawer] = useState(false);
   const [currentItem, setCurrentItem] = useState({});
+
+  const handleClose = () => {
+    setShowDrawer(false);
+  };
 
   useEffect(() => {
     setCurrentItem(item);
@@ -33,7 +35,6 @@ const Items = (props) => {
     dataSource: items,
     rowKey: "ID",
     pagination: false,
-    summary,
     onAdd,
   };
 

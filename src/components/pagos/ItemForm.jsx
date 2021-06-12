@@ -46,6 +46,8 @@ const ItemForm = (props) => {
     }
   }, [props, success]);
 
+  console.log(props);
+
   return (
     <>
       <EditForm

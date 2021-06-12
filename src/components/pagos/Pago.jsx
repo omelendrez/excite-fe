@@ -8,7 +8,7 @@ import Info from "components/common/Info";
 import ItemForm from "./ItemForm";
 import notification from "components/common/notification";
 import { getPago } from "redux/actions";
-import { fields, remitosFields } from "./fields";
+import { fields, remitosFields, valoresFields } from "./fields";
 import { setFields, formatAmount } from "utils/helpers";
 import { remitosColumns, valoresColumns } from "./columns";
 
@@ -37,6 +37,24 @@ const Pago = (props) => {
   const handleClose = () => {
     setShowRemitoDrawer(false);
     setShowValorDrawer(false);
+  };
+
+  const handleEditRemito = (record) => {
+    console.log(record);
+    setShowRemitoDrawer(true);
+  };
+
+  const handleDeleteRemito = (record) => {
+    console.log(record);
+  };
+
+  const handleEditValor = (record) => {
+    console.log(record);
+    setShowValorDrawer(true);
+  };
+
+  const handleDeleteValor = (record) => {
+    console.log(record);
   };
 
   useEffect(() => {
@@ -127,6 +145,8 @@ const Pago = (props) => {
           showDrawer={showRemitoDrawer}
           handleClose={handleClose}
           summary={remitosSummary}
+          handleEdit={handleEditRemito}
+          handleDelete={handleDeleteRemito}
         />
         <Items
           title="Valores"
@@ -134,12 +154,14 @@ const Pago = (props) => {
           error={error}
           items={valores}
           columns={valoresColumns}
-          fields={remitosFields}
+          fields={valoresFields}
           onAdd={addValor}
           ItemForm={ItemForm}
           showDrawer={showValorDrawer}
           handleClose={handleClose}
           summary={valoresSummary}
+          handleEdit={handleEditValor}
+          handleDelete={handleDeleteValor}
         />
       </div>
     </Layout>

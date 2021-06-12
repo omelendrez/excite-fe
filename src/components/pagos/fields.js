@@ -44,3 +44,23 @@ export const remitosFields = [
     hidden: true,
   },
 ];
+
+export const valoresFields = [
+  {
+    name: "PAGNUM",
+    title: "Número de pago",
+    type: "number",
+    readonly: true,
+  },
+  {
+    name: "REMNUM",
+    title: "Remito",
+    type: "number",
+    rules: [{ required: true }],
+  },
+  {
+    name: "ID",
+    type: "number",
+    hidden: true,
+  },
+];
