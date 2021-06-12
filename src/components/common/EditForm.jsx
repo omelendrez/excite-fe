@@ -102,17 +102,15 @@ const EditForm = (props) => {
         }}
       >
         {props.fields &&
-          props.fields
-            .filter((field) => !field.readonly)
-            .map((field) => (
-              <InputField
-                key={field.name}
-                field={field}
-                record={record}
-                optionsModels={props.optionsModels}
-                addOption={() => toggleModal(field.options)}
-              />
-            ))}
+          props.fields.map((field) => (
+            <InputField
+              key={field.name}
+              field={field}
+              record={record}
+              optionsModels={props.optionsModels}
+              addOption={() => toggleModal(field.options)}
+            />
+          ))}
         <Row>
           <Col offset={props.maximize ? 5 : 2} span={props.maximize ? 6 : 3}>
             <SaveButton loading={props.loading} />

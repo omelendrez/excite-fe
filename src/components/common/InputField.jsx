@@ -58,7 +58,7 @@ const InputField = (props) => {
     ),
   };
 
-  if (field.hidden) {
+  if (field.hidden || field.readonly) {
     return (
       <Form.Item name={[field.name]} noStyle>
         <Input type="hidden" />

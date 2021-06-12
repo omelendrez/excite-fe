@@ -77,7 +77,10 @@ export const cleanFields = (fields, record) => {
   const values = {};
   fields.forEach((field) => {
     if (!field.hidden || field.name === "ID") {
-      values[field.name] = record[field.name];
+      values[field.name] =
+        field.type !== "date"
+          ? record[field.name]
+          : moment(record[field.name]).format("YYYY-MM-DD");
     }
   });
   return values;

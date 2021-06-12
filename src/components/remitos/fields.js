@@ -54,6 +54,12 @@ const fields = [
     readonly: true,
   },
   {
+    name: "REMEMI",
+    title: "Emitido",
+    type: "text",
+    readonly: true,
+  },
+  {
     name: "ID",
     type: "number",
     hidden: true,
