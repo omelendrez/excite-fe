@@ -14,6 +14,7 @@ const Items = (props) => {
     error,
     items,
     item,
+    fields,
     columns,
     title,
     onAdd,
@@ -23,11 +24,13 @@ const Items = (props) => {
     handleDelete,
     handleEdit,
     summaryField,
+    optionsModels,
+    onFinish,
   } = props;
   const [currentItem, setCurrentItem] = useState({});
 
   useEffect(() => {
-    setCurrentItem(item);
+    setCurrentItem({ ...item });
   }, [item]);
 
   const summary = (pageData) => {
@@ -67,7 +70,9 @@ const Items = (props) => {
       <Drawer
         isDrawerVisible={showDrawer}
         handleClose={handleClose}
-        title={`${item && item.ID ? "Modificando" : "Agregando"} item`}
+        title={`${
+          currentItem && currentItem.ID ? "Modificando" : "Agregando"
+        } registro`}
       >
         <ItemForm
           closeDrawer={handleClose}
@@ -75,6 +80,9 @@ const Items = (props) => {
           success={success}
           error={error}
           loading={loading}
+          fields={fields}
+          optionsModels={optionsModels}
+          onFinish={onFinish}
         />
       </Drawer>
     </>

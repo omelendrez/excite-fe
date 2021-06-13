@@ -53,10 +53,36 @@ export const valoresFields = [
     readonly: true,
   },
   {
-    name: "REMNUM",
-    title: "Remito",
-    type: "number",
+    name: "PAGTIP",
+    title: "Tipo de pago",
+    type: "select",
     rules: [{ required: true }],
+    options: "tiposPago",
+  },
+  {
+    name: "PAGSEC",
+    title: "Secuencia",
+    type: "number",
+  },
+  {
+    name: "PAGIMP",
+    title: "Importe",
+    type: "amount",
+  },
+  {
+    name: "PAGCHEBAN",
+    title: "Banco",
+    type: "string",
+  },
+  {
+    name: "PAGCHENUM",
+    title: "Cheque #",
+    type: "string",
+  },
+  {
+    name: "PAGCHEEST",
+    title: "Estado cheque",
+    type: "string",
   },
   {
     name: "ID",

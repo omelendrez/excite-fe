@@ -125,7 +125,7 @@ function* addRemitoSaga(action) {
     });
   } catch (error) {
     yield put({
-      type: types.ADD_ITEM_FAILED,
+      type: types.ADD_REMITO_FAILED,
       payload: error.message,
     });
   }

@@ -46,6 +46,13 @@ export const interior = [
   { id: "INTERIOR", text: "INTERIOR" },
 ];
 
+export const tiposPago = [
+  { id: "Efectivo", text: "Efectivo" },
+  { id: "Cheque", text: "Cheque" },
+  { id: "Otros", text: "Otros" },
+  { id: "Deposito", text: "Depósito" },
+];
+
 export const getSelectList = (modelName, data) => {
   let table = data;
   const field = tableFields.find((model) => model.model === modelName);

@@ -5,17 +5,36 @@ import Header from "components/common/Header";
 import Alert from "components/common/Alert";
 import Items from "components/common/Items";
 import Info from "components/common/Info";
-import ItemForm from "./ItemForm";
+import ItemForm from "components/common/ItemForm";
 import notification from "components/common/notification";
-import { getPago } from "redux/actions";
+import {
+  getPago,
+  cleanPagoRemito,
+  cleanPagoValor,
+  getPagoRemito,
+  getPagoValor,
+  deletePagoRemito,
+  deletePagoValor,
+  addPagoRemito,
+  addPagoValor,
+  updatePagoRemito,
+  updatePagoValor,
+} from "redux/actions";
 import { fields, remitosFields, valoresFields } from "./fields";
-import { setFields } from "utils/helpers";
+import {
+  setFields,
+  getSelectList,
+  tiposPago,
+  cleanFields,
+} from "utils/helpers";
+
 import { remitosColumns, valoresColumns } from "./columns";
 
 const Pago = (props) => {
   const dispatch = useDispatch();
   const pagos = useSelector((state) => state.pagos);
-  const { loading, success, record, error, remitos, valores } = pagos;
+  const { loading, success, record, error, remitos, valores, remito, valor } =
+    pagos;
   const [showRemitoDrawer, setShowRemitoDrawer] = useState(false);
   const [showValorDrawer, setShowValorDrawer] = useState(false);
   const infoDefault = fields.map((field) => ({
@@ -24,11 +43,30 @@ const Pago = (props) => {
   }));
   const [info, setInfo] = useState(infoDefault);
 
+  const onFinishRemito = (values) => {
+    const newValues = cleanFields(remitosFields, values);
+    console.log(newValues);
+    if (!newValues.ID) {
+      return dispatch(addPagoRemito(newValues));
+    }
+    dispatch(updatePagoRemito(newValues));
+  };
+
+  const onFinishValor = (values) => {
+    const newValues = cleanFields(valoresFields, values);
+    if (!newValues.ID) {
+      return dispatch(addPagoValor(newValues));
+    }
+    dispatch(updatePagoValor(newValues));
+  };
+
   const addRemito = () => {
+    dispatch(cleanPagoRemito({ PAGNUM: props.ID }));
     setShowRemitoDrawer(true);
   };
 
   const addValor = () => {
+    dispatch(cleanPagoValor({ PAGNUM: props.ID }));
     setShowValorDrawer(true);
   };
 
@@ -37,8 +75,12 @@ const Pago = (props) => {
     setShowValorDrawer(false);
   };
 
+  const handleDeletePago = (record) => {
+    dispatch(deletePagoRemito(record.ID));
+  };
+
   const handleEditRemito = (record) => {
-    console.log(record);
+    dispatch(getPagoRemito(record.ID));
     setShowRemitoDrawer(true);
   };
 
@@ -47,12 +89,14 @@ const Pago = (props) => {
   };
 
   const handleEditValor = (record) => {
-    console.log(record);
+    dispatch(getPagoValor(record.ID));
     setShowValorDrawer(true);
   };
 
   const handleDeleteValor = (record) => {
-    console.log(record);
+    if (record.ID) {
+      dispatch(deletePagoValor(record.ID));
+    }
   };
 
   useEffect(() => {
@@ -84,10 +128,15 @@ const Pago = (props) => {
     }
   }, [success, record, error, props.history]);
 
+  const commonProps = {
+    loading,
+    success,
+    error,
+  };
+
   const remitosProps = {
     title: "Remitos",
-    loading,
-    error,
+    item: remito,
     items: remitos,
     columns: remitosColumns,
     fields: remitosFields,
@@ -98,12 +147,12 @@ const Pago = (props) => {
     summaryField: "REMTOT",
     handleEdit: handleEditRemito,
     handleDelete: handleDeleteRemito,
+    onFinish: onFinishRemito,
   };
 
   const valoresProps = {
     title: "Valores",
-    loading,
-    error,
+    item: valor,
     items: valores,
     columns: valoresColumns,
     fields: valoresFields,
@@ -114,6 +163,10 @@ const Pago = (props) => {
     summaryField: "PAGIMP",
     handleEdit: handleEditValor,
     handleDelete: handleDeleteValor,
+    optionsModels: {
+      tiposPago: getSelectList("tiposPago", tiposPago),
+    },
+    onFinish: onFinishValor,
   };
 
   return (
@@ -130,9 +183,12 @@ const Pago = (props) => {
           fields={fields}
           data={info}
           success={success}
+          onDelete={
+            remitos.length + valores.length === 0 ? handleDeletePago : null
+          }
         />
-        <Items {...remitosProps} />
-        <Items {...valoresProps} />
+        <Items {...remitosProps} {...commonProps} />
+        <Items {...valoresProps} {...commonProps} />
       </div>
     </Layout>
   );

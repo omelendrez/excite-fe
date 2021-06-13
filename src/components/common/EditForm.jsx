@@ -17,7 +17,7 @@ const EditForm = (props) => {
   const [form] = Form.useForm();
   const [modalVisible, setmodalVisible] = useState(false);
   const [componentName, setComponentName] = useState("");
-  const [record, setRecord] = useState(null);
+  const [record, setRecord] = useState({});
 
   const onReset = () => {
     form.resetFields();

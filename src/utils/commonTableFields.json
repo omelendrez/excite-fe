@@ -65,5 +65,10 @@
     "model": "estados",
     "id": "ESTCOD",
     "text": "ESTDES"
+  },
+  {
+    "model": "tiposPago",
+    "id": "id",
+    "text": "text"
   }
 ]
