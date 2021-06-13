@@ -223,6 +223,9 @@ function* addPagoRemitoSaga(action) {
       type: types.GET_PAGO_REQUEST,
       id: state.pagos.record.ID,
     });
+    yield put({
+      type: types.PAGOS_RESET,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_PAGO_REMITO_FAILED,
@@ -257,7 +260,7 @@ function* updatePagoRemitoSaga(action) {
 function* deletePagoRemitoSaga(action) {
   try {
     const state = yield select();
-    const remito = yield call(deletePagoRemito, action.id);
+    const remito = yield call(deletePagoRemito, action.record);
     yield put({
       type: types.DELETE_PAGO_REMITO_SUCCESS,
       payload: remito,
@@ -341,7 +344,7 @@ function* updatePagoValorSaga(action) {
 function* deletePagoValorSaga(action) {
   try {
     const state = yield select();
-    const record = yield call(deletePagoValor, action.id);
+    const record = yield call(deletePagoValor, action.record);
     yield put({
       type: types.DELETE_PAGO_VALOR_SUCCESS,
       payload: record,

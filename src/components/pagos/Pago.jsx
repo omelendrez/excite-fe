@@ -45,7 +45,6 @@ const Pago = (props) => {
 
   const onFinishRemito = (values) => {
     const newValues = cleanFields(remitosFields, values);
-    console.log(newValues);
     if (!newValues.ID) {
       return dispatch(addPagoRemito(newValues));
     }
@@ -61,12 +60,12 @@ const Pago = (props) => {
   };
 
   const addRemito = () => {
-    dispatch(cleanPagoRemito({ PAGNUM: props.ID }));
+    dispatch(cleanPagoRemito({ PAGNUM: record.PAGNUM }));
     setShowRemitoDrawer(true);
   };
 
   const addValor = () => {
-    dispatch(cleanPagoValor({ PAGNUM: props.ID }));
+    dispatch(cleanPagoValor({ PAGNUM: record.PAGNUM }));
     setShowValorDrawer(true);
   };
 
@@ -84,19 +83,17 @@ const Pago = (props) => {
     setShowRemitoDrawer(true);
   };
 
-  const handleDeleteRemito = (record) => {
-    console.log(record);
-  };
-
   const handleEditValor = (record) => {
     dispatch(getPagoValor(record.ID));
     setShowValorDrawer(true);
   };
 
+  const handleDeleteRemito = (record) => {
+    dispatch(deletePagoRemito(record));
+  };
+
   const handleDeleteValor = (record) => {
-    if (record.ID) {
-      dispatch(deletePagoValor(record.ID));
-    }
+    dispatch(deletePagoValor(record));
   };
 
   useEffect(() => {
