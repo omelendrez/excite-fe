@@ -24,6 +24,7 @@ function getPago(id) {
       throw error;
     });
 }
+
 function addPago(newData) {
   return addRecord(`${endpoint}`, newData)
     .then((response) => response)
@@ -32,8 +33,8 @@ function addPago(newData) {
     });
 }
 
-function deletePago(record) {
-  return deleteRecord(`${endpoint}/${record.ID}`)
+function deletePago(id) {
+  return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
       console.error(error);

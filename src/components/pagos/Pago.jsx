@@ -10,6 +10,7 @@ import ItemForm from "components/common/ItemForm";
 
 import {
   getPago,
+  deletePago,
   cleanPagoRemito,
   cleanPagoValor,
   getPagoRemito,
@@ -114,8 +115,8 @@ const Pago = (props) => {
     setShowDrawer(false);
   };
 
-  const handleDeletePago = (record) => {
-    dispatch(deletePagoRemito(record.ID));
+  const handleDeletePago = () => {
+    dispatch(deletePago(props.match.params.id));
   };
 
   const handleEditRemito = (record) => {

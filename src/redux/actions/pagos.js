@@ -14,10 +14,17 @@ export const getPago = (id) => {
   };
 };
 
-export const deletePago = (record) => {
+export const addPago = (newData) => {
+  return {
+    type: types.ADD_PAGO_REQUEST,
+    newData,
+  };
+};
+
+export const deletePago = (id) => {
   return {
     type: types.DELETE_PAGO_REQUEST,
-    record,
+    id,
   };
 };
 

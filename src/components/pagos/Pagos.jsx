@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Table from "components/common/Table";
 import Alert from "components/common/Alert";
-import { getPagos } from "redux/actions";
+import { getPagos, getClientes } from "redux/actions";
 import { columns } from "./columns.js";
 import { fields } from "./fields";
 import { createNewRecord } from "utils/helpers";
@@ -18,6 +18,7 @@ const Pagos = () => {
 
   useEffect(() => {
     dispatch(getPagos());
+    dispatch(getClientes());
   }, [dispatch]);
 
   const onAdd = () => {
