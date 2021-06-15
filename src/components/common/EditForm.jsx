@@ -65,11 +65,6 @@ const EditForm = (props) => {
 
   useEffect(() => {
     if (props.success) {
-      notification({
-        message: "Datos guardados",
-        description: "Los datos se guardaron satisfactoriamente",
-        type: "success",
-      });
       props.history && props.history.goBack();
     }
     if (props.error) {

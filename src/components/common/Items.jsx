@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Layout, Table as AntdTable, Typography } from "antd";
 import Header from "./Header";
 import Table from "./Table";
-import Drawer from "./Drawer";
 import Alert from "./Alert";
 import { formatAmount } from "utils/helpers";
 const { Text } = Typography;
@@ -10,28 +9,15 @@ const { Text } = Typography;
 const Items = (props) => {
   const {
     loading,
-    success,
     error,
     items,
-    item,
-    fields,
     columns,
     title,
     onAdd,
-    ItemForm,
-    showDrawer,
-    handleClose,
     handleDelete,
     handleEdit,
     summaryField,
-    optionsModels,
-    onFinish,
   } = props;
-  const [currentItem, setCurrentItem] = useState({});
-
-  useEffect(() => {
-    setCurrentItem({ ...item });
-  }, [item]);
 
   const summary = (pageData) => {
     let totalAmount = 0;
@@ -60,32 +46,12 @@ const Items = (props) => {
   };
 
   return (
-    <>
-      <Layout>
-        <Header title={title} />
-        {error && <Alert message="Error" description={error} type="error" />}
+    <Layout>
+      <Header title={title} />
+      {error && <Alert message="Error" description={error} type="error" />}
 
-        <Table {...tableProps} />
-      </Layout>
-      <Drawer
-        isDrawerVisible={showDrawer}
-        handleClose={handleClose}
-        title={`${
-          currentItem && currentItem.ID ? "Modificando" : "Agregando"
-        } registro`}
-      >
-        <ItemForm
-          closeDrawer={handleClose}
-          item={currentItem}
-          success={success}
-          error={error}
-          loading={loading}
-          fields={fields}
-          optionsModels={optionsModels}
-          onFinish={onFinish}
-        />
-      </Drawer>
-    </>
+      <Table {...tableProps} />
+    </Layout>
   );
 };
 
