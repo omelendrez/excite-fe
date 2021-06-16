@@ -27,7 +27,10 @@ const Table = (props) => {
               .toLowerCase()
               .includes(search.toLowerCase())
           ) {
-            filtered.push(record);
+            const exists = filtered.find((r) => r.ID === record.ID);
+            if (!exists) {
+              filtered.push(record);
+            }
           }
         })
     );
@@ -42,7 +45,7 @@ const Table = (props) => {
   const paginationProps = {
     position: ["bottomCenter"],
     showTotal: (total, range) => `${total} registros`,
-    hideOnSinglePage: true,
+    // hideOnSinglePage: true,
     showQuickJumper: true,
   };
 
