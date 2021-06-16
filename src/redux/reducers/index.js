@@ -14,6 +14,7 @@ import remitosReducer from "./remitos";
 import productosReducer from "./productos";
 import provinciasReducer from "./provincias";
 import estadosReducer from "./estados";
+import wakeUpReducer from "./wakeUp";
 
 const rootReducer = combineReducers({
   transportes: transportesReducer,
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   productos: productosReducer,
   provincias: provinciasReducer,
   estados: estadosReducer,
+  wakeUp: wakeUpReducer,
 });
 
 export default rootReducer;

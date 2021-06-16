@@ -65,6 +65,7 @@ const Table = (props) => {
         pagination={paginationProps}
         sticky={true}
         tableLayout="fixed"
+        loading={props.loading}
         {...newProps}
       />
       <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>

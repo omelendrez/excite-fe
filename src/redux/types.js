@@ -1,5 +1,7 @@
 // Wake-up backend
-export const WAKE_UP = "WAKE_UP";
+export const WAKE_UP_REQUEST = "WAKE_UP_REQUEST";
+export const WAKE_UP_SUCCESS = "WAKE_UP_SUCCESS";
+export const WAKE_UP_FAILED = "WAKE_UP_FAILED";
 
 // Transportes
 export const GET_TRANSPORTES_REQUEST = "GET_TRANSPORTES_REQUEST";

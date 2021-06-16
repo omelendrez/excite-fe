@@ -40,12 +40,6 @@ export const columns = [
 export const remitosColumns = (props) => {
   return [
     {
-      dataIndex: "PAGNUM",
-      title: "Pago",
-      searchable: true,
-      width: 90,
-    },
-    {
       dataIndex: "REMNUM",
       title: "Remito",
       searchable: true,
@@ -78,12 +72,6 @@ export const remitosColumns = (props) => {
 
 export const valoresColumns = (props) => {
   return [
-    {
-      dataIndex: "PAGNUM",
-      title: "Pago",
-      searchable: true,
-      width: 90,
-    },
     {
       dataIndex: "PAGSEC",
       title: "#",
