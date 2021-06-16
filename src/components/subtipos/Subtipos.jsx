@@ -26,12 +26,17 @@ const Subtipos = () => {
     setUrl(`/subtipos/add/subtipo`);
   };
 
+  const onPrint = () => {
+    console.log("Printing...");
+  };
+
   const tableProps = {
     loading,
     columns: columns({ tipos: tipos.records }),
     dataSource: records,
     rowKey: "ID",
     onAdd,
+    onPrint,
   };
 
   if (!!url) {

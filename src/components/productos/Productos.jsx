@@ -30,12 +30,17 @@ const Productos = () => {
     setUrl(`/productos/add/producto`);
   };
 
+  const onPrint = () => {
+    console.log("Printing...");
+  };
+
   const tableProps = {
     loading,
     columns: columns({ tipos: tipos.records, subtipos: subtipos.records }),
     dataSource: records,
     rowKey: "ID",
     onAdd,
+    onPrint,
   };
 
   if (!!url) {

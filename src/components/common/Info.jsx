@@ -4,6 +4,7 @@ import { Descriptions, Row, Col } from "antd";
 import { getSelectList } from "utils/helpers";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
+import PrintButton from "./PrintButton";
 import { formatDate, formatAmount } from "utils/helpers";
 import "./info.css";
 
@@ -57,6 +58,11 @@ const Info = (props) => {
         {props.onDelete && (
           <Col>
             <DeleteButton handleDelete={props.onDelete} />
+          </Col>
+        )}
+        {props.onPrint && (
+          <Col>
+            <PrintButton handlePrint={props.onPrint} />
           </Col>
         )}
       </Row>

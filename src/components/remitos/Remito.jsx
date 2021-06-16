@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout } from "antd";
+import { Layout, Divider } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
@@ -55,6 +55,10 @@ const Remito = (props) => {
     dispatch(deleteRemito(props.match.params.id));
   };
 
+  const handlePrint = () => {
+    console.log("Printing...");
+  };
+
   return (
     <Layout>
       <Header
@@ -70,7 +74,9 @@ const Remito = (props) => {
           data={info}
           onDelete={remitos.items.length === 0 ? handleDelete : null}
           success={success}
+          onPrint={handlePrint}
         />
+        <Divider />
         <Items ID={record.REMNUM} />
       </div>
     </Layout>

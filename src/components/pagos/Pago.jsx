@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout } from "antd";
+import { Layout, Divider } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
@@ -119,6 +119,10 @@ const Pago = (props) => {
     dispatch(deletePago(props.match.params.id));
   };
 
+  const handlePrintPago = () => {
+    console.log("Printing...");
+  };
+
   const handleEditRemito = (record) => {
     dispatch(getPagoRemito(record.ID));
     setShowDrawer(true);
@@ -182,8 +186,13 @@ const Pago = (props) => {
           onDelete={
             remitos.length + valores.length === 0 ? handleDeletePago : null
           }
+          onPrint={
+            remitos.length + valores.length !== 0 ? handlePrintPago : null
+          }
         />
+        <Divider />
         <Items {...remitosProps} {...commonProps} />
+        <Divider />
         <Items {...valoresProps} {...commonProps} />
       </div>
       <Drawer

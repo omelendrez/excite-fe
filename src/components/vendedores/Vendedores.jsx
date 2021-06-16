@@ -25,12 +25,17 @@ const Vendedores = () => {
     setUrl(`/vendedores/add/vendedor`);
   };
 
+  const onPrint = () => {
+    console.log("Printing...");
+  };
+
   const tableProps = {
     loading,
     columns: columns(),
     dataSource: records,
     rowKey: "ID",
     onAdd,
+    onPrint,
   };
 
   if (!!url) {

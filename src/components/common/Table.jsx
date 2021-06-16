@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table as AntdTable, BackTop, Row, Col } from "antd";
 import Search from "./Search";
 import AddButton from "./AddButton";
+import PrintButton from "./PrintButton";
 
 const Table = (props) => {
   const [newProps, setNewProps] = useState({});
@@ -66,6 +67,7 @@ const Table = (props) => {
         tableLayout="fixed"
         {...newProps}
       />
+      <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>
     </>
   );
 };

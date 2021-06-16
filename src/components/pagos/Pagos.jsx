@@ -25,6 +25,10 @@ const Pagos = () => {
     setUrl(`/pagos/add/pago`);
   };
 
+  const onPrint = () => {
+    console.log("Printing...");
+  };
+
   if (!!url) {
     const record = createNewRecord(fields);
     return (
@@ -46,6 +50,7 @@ const Pagos = () => {
     dataSource: records,
     rowKey: "ID",
     onAdd,
+    onPrint,
   };
 
   return (

@@ -25,12 +25,17 @@ const Tipos = () => {
     setUrl(`/tipos/add/tipo`);
   };
 
+  const onPrint = () => {
+    console.log("Printing...");
+  };
+
   const tableProps = {
     loading,
     columns: columns(),
     dataSource: records,
     rowKey: "ID",
     onAdd,
+    onPrint,
   };
 
   if (!!url) {

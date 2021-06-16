@@ -25,12 +25,17 @@ const Transportes = () => {
     setUrl(`/transportes/add/transporte`);
   };
 
+  const onPrint = () => {
+    console.log("Printing...");
+  };
+
   const tableProps = {
     loading,
     columns: columns(),
     dataSource: records,
     rowKey: "ID",
     onAdd,
+    onPrint,
   };
 
   if (!!url) {
