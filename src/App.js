@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Layout, ConfigProvider, Spin } from "antd";
+import { Layout, ConfigProvider } from "antd";
 
 import es_ES from "antd/lib/locale/es_ES";
 import "antd/dist/antd.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import "./App.css";
 
@@ -17,9 +17,6 @@ const { Footer, Sider } = Layout;
 
 function App() {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.wakeUp);
-
-  console.log(loading);
 
   const [state, setState] = useState({ collapsed: false });
   const { collapsed } = state;
@@ -31,10 +28,6 @@ function App() {
   useEffect(() => {
     dispatch(wakeUp());
   }, [dispatch]);
-
-  if (loading) {
-    return <Spin />;
-  }
 
   return (
     <ConfigProvider locale={es_ES}>

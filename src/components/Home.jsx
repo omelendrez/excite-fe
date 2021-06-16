@@ -1,12 +1,20 @@
 import React from "react";
-import { Layout } from "antd";
+import { Layout, Spin } from "antd";
+import { useSelector } from "react-redux";
 import "./home.css";
 
 const Home = () => {
+  const { loading } = useSelector((state) => state.wakeUp);
+
   return (
-    <Layout>
-      <div className="home" />
-    </Layout>
+    <>
+      {loading && (
+        <div className="spinner">
+          <Spin size="large" />
+        </div>
+      )}
+      <Layout>{!loading && <div className="home" />}</Layout>
+    </>
   );
 };
 
