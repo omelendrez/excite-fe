@@ -10,7 +10,7 @@ const DeleteButton = (props) => {
       cancelText="No"
       onConfirm={props.handleDelete}
     >
-      <Button icon={<DeleteOutlined />} danger>
+      <Button icon={<DeleteOutlined />} danger shape="round">
         Eliminar
       </Button>
     </Popconfirm>

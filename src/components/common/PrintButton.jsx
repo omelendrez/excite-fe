@@ -7,7 +7,7 @@ const PrintButton = (props) => {
     message.error("Implementación en progreso");
   };
   return (
-    <Button icon={<PrinterOutlined />} onClick={handlePrint}>
+    <Button icon={<PrinterOutlined />} onClick={handlePrint} shape="round">
       Imprimir
     </Button>
   );

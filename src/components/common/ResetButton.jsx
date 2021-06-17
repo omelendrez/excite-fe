@@ -4,7 +4,7 @@ import { UndoOutlined } from "@ant-design/icons";
 
 const EditButton = (props) => {
   return (
-    <Button icon={<UndoOutlined />} onClick={props.handleReset}>
+    <Button icon={<UndoOutlined />} onClick={props.handleReset} shape="round">
       Deshacer
     </Button>
   );

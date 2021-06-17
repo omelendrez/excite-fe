@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Divider } from "antd";
+import { Layout, Collapse } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
@@ -7,7 +7,6 @@ import Drawer from "components/common/Drawer";
 import Items from "components/common/Items";
 import Info from "components/common/Info";
 import ItemForm from "components/common/ItemForm";
-
 import {
   getPago,
   deletePago,
@@ -29,8 +28,9 @@ import {
   tiposPago,
   cleanFields,
 } from "utils/helpers";
-
 import { remitosColumns, valoresColumns } from "./columns";
+
+const { Panel } = Collapse;
 
 const Pago = (props) => {
   const dispatch = useDispatch();
@@ -144,11 +144,9 @@ const Pago = (props) => {
   const commonProps = {
     loading,
     success,
-    error,
   };
 
   const remitosProps = {
-    title: "Remitos",
     items: remitos,
     columns: remitosColumns,
     fields: remitosFields,
@@ -159,7 +157,6 @@ const Pago = (props) => {
   };
 
   const valoresProps = {
-    title: "Valores",
     items: valores,
     columns: valoresColumns,
     fields: valoresFields,
@@ -178,22 +175,32 @@ const Pago = (props) => {
       />
       {error && <Alert message="Error" description={error} type="error" />}
       <div className="card-container">
-        <Info
-          title={info.PAGNUM}
-          fields={fields}
-          data={info}
-          success={success}
-          onDelete={
-            remitos.length + valores.length === 0 ? handleDeletePago : null
-          }
-          onPrint={
-            remitos.length + valores.length !== 0 ? handlePrintPago : null
-          }
-        />
-        <Divider />
-        <Items {...remitosProps} {...commonProps} />
-        <Divider />
-        <Items {...valoresProps} {...commonProps} />
+        <Collapse defaultActiveKey={["1"]} ghost>
+          <Panel key="1" header="Detalle de Pago" className="panel">
+            <Info
+              title={info.PAGNUM}
+              fields={fields}
+              data={info}
+              success={success}
+              onDelete={
+                remitos.length + valores.length === 0 ? handleDeletePago : null
+              }
+              onPrint={
+                remitos.length + valores.length !== 0 ? handlePrintPago : null
+              }
+            />
+          </Panel>
+        </Collapse>
+        <Collapse ghost>
+          <Panel key="1" header="Remitos">
+            <Items {...remitosProps} {...commonProps} />
+          </Panel>
+        </Collapse>
+        <Collapse ghost>
+          <Panel key="1" header="Valores">
+            <Items {...valoresProps} {...commonProps} />
+          </Panel>
+        </Collapse>
       </div>
       <Drawer
         isDrawerVisible={showDrawer}

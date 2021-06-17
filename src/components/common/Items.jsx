@@ -1,18 +1,13 @@
 import React from "react";
-import { Layout, Table as AntdTable, Typography } from "antd";
-import Header from "./Header";
+import { Table as AntdTable } from "antd";
 import Table from "./Table";
-import Alert from "./Alert";
 import { formatAmount } from "utils/helpers";
-const { Text } = Typography;
 
 const Items = (props) => {
   const {
     loading,
-    error,
     items,
     columns,
-    title,
     onAdd,
     handleDelete,
     handleEdit,
@@ -28,8 +23,8 @@ const Items = (props) => {
     return (
       <AntdTable.Summary.Row className="summary-row">
         <AntdTable.Summary.Cell>Total</AntdTable.Summary.Cell>
-        <AntdTable.Summary.Cell align="right" colSpan={2}>
-          <Text type="primary">{formatAmount(totalAmount)}</Text>
+        <AntdTable.Summary.Cell align="right" colSpan={1}>
+          {formatAmount(totalAmount)}
         </AntdTable.Summary.Cell>
       </AntdTable.Summary.Row>
     );
@@ -42,16 +37,14 @@ const Items = (props) => {
     rowKey: "ID",
     pagination: false,
     onAdd,
+    size: "small",
     summary: summaryField ? summary : null,
   };
 
   return (
-    <Layout>
-      <Header title={title} />
-      {error && <Alert message="Error" description={error} type="error" />}
-
+    <>
       <Table {...tableProps} />
-    </Layout>
+    </>
   );
 };
 

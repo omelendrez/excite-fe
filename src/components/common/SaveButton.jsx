@@ -4,7 +4,13 @@ import { SaveOutlined } from "@ant-design/icons";
 
 const SaveButton = (props) => {
   return (
-    <Button type="primary" icon={<SaveOutlined />} htmlType="submit" {...props}>
+    <Button
+      type="primary"
+      icon={<SaveOutlined />}
+      shape="round"
+      htmlType="submit"
+      {...props}
+    >
       Guardar
     </Button>
   );

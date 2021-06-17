@@ -12,3 +12,14 @@
 .site-layout .site-layout-background {
   background: #fff;
 }
+
+.ant-collapse-header {
+  background-color: #d9e3da;
+  font-weight: 700;
+}
+
+.summary-row,
+.summary-row span {
+  color: #234 !important;
+  font-weight: 700;
+}

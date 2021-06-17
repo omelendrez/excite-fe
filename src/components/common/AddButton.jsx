@@ -4,7 +4,12 @@ import { PlusOutlined } from "@ant-design/icons";
 
 const SaveButton = (props) => {
   return (
-    <Button type="primary" icon={<PlusOutlined />} onClick={props.onAdd}>
+    <Button
+      type="primary"
+      icon={<PlusOutlined />}
+      onClick={props.onAdd}
+      shape="round"
+    >
       Agregar
     </Button>
   );

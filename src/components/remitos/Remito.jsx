@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Divider } from "antd";
+import { Layout, Collapse } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
@@ -9,7 +9,8 @@ import notification from "components/common/notification";
 import { getRemito, getItems, deleteRemito } from "redux/actions";
 import fields from "./fields";
 import { setFields } from "utils/helpers";
-import "./remito.css";
+
+const { Panel } = Collapse;
 
 const Remito = (props) => {
   const dispatch = useDispatch();
@@ -68,16 +69,22 @@ const Remito = (props) => {
       />
       {error && <Alert message="Error" description={error} type="error" />}
       <div className="card-container">
-        <Info
-          title={info.REMNUM}
-          fields={fields}
-          data={info}
-          onDelete={remitos.items.length === 0 ? handleDelete : null}
-          success={success}
-          onPrint={handlePrint}
-        />
-        <Divider />
-        <Items ID={record.REMNUM} />
+        <Collapse defaultActiveKey={["1"]} ghost>
+          <Panel key="1" header="Detalle de Pago">
+            <Info
+              fields={fields}
+              data={info}
+              onDelete={remitos.items.length === 0 ? handleDelete : null}
+              success={success}
+              onPrint={handlePrint}
+            />
+          </Panel>
+        </Collapse>
+        <Collapse ghost>
+          <Panel key="1" header="Productos">
+            <Items ID={record.REMNUM} />
+          </Panel>
+        </Collapse>
       </div>
     </Layout>
   );
