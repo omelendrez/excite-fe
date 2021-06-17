@@ -191,12 +191,12 @@ const Pago = (props) => {
             />
           </Panel>
         </Collapse>
-        <Collapse ghost>
+        <Collapse defaultActiveKey={["1"]} ghost>
           <Panel key="1" header="Remitos">
             <Items {...remitosProps} {...commonProps} />
           </Panel>
         </Collapse>
-        <Collapse ghost>
+        <Collapse defaultActiveKey={["1"]} ghost>
           <Panel key="1" header="Valores">
             <Items {...valoresProps} {...commonProps} />
           </Panel>

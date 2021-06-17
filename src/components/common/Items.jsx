@@ -12,6 +12,7 @@ const Items = (props) => {
     handleDelete,
     handleEdit,
     summaryField,
+    colSpan,
   } = props;
 
   const summary = (pageData) => {
@@ -23,7 +24,7 @@ const Items = (props) => {
     return (
       <AntdTable.Summary.Row className="summary-row">
         <AntdTable.Summary.Cell>Total</AntdTable.Summary.Cell>
-        <AntdTable.Summary.Cell align="right" colSpan={1}>
+        <AntdTable.Summary.Cell align="right" colSpan={colSpan || 1}>
           {formatAmount(totalAmount)}
         </AntdTable.Summary.Cell>
       </AntdTable.Summary.Row>
