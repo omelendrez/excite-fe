@@ -205,6 +205,13 @@ const remitosReducer = (state = initialState, action) => {
         success: false,
         error: action.payload,
       };
+    case types.REMITOS_RESET:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: null,
+      };
     default:
       return state;
   }

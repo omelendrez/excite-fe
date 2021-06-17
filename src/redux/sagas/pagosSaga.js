@@ -167,6 +167,9 @@ function* addPagoSaga(action) {
       type: types.ADD_PAGO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.PAGOS_RESET,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_PAGO_FAILED,
@@ -181,6 +184,9 @@ function* deletePagoSaga(action) {
     yield put({
       type: types.DELETE_PAGO_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.PAGOS_RESET,
     });
   } catch (error) {
     yield put({
@@ -218,6 +224,9 @@ function* addPagoRemitoSaga(action) {
       type: types.GET_PAGO_REQUEST,
       id: state.pagos.record.ID,
     });
+    yield put({
+      type: types.PAGOS_RESET,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_PAGO_REMITO_FAILED,
@@ -238,6 +247,9 @@ function* updatePagoRemitoSaga(action) {
       type: types.GET_PAGO_REQUEST,
       id: state.pagos.record.ID,
     });
+    yield put({
+      type: types.PAGOS_RESET,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_PAGO_REMITO_FAILED,
@@ -257,6 +269,9 @@ function* deletePagoRemitoSaga(action) {
     yield put({
       type: types.GET_PAGO_REQUEST,
       id: state.pagos.record.ID,
+    });
+    yield put({
+      type: types.PAGOS_RESET,
     });
   } catch (error) {
     yield put({
@@ -293,6 +308,9 @@ function* addPagoValorSaga(action) {
       type: types.GET_PAGO_REQUEST,
       id: state.pagos.record.ID,
     });
+    yield put({
+      type: types.PAGOS_RESET,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_PAGO_VALOR_FAILED,
@@ -313,6 +331,9 @@ function* updatePagoValorSaga(action) {
       type: types.GET_PAGO_REQUEST,
       id: state.pagos.record.ID,
     });
+    yield put({
+      type: types.PAGOS_RESET,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_PAGO_VALOR_FAILED,
@@ -332,6 +353,9 @@ function* deletePagoValorSaga(action) {
     yield put({
       type: types.GET_PAGO_REQUEST,
       id: state.pagos.record.ID,
+    });
+    yield put({
+      type: types.PAGOS_RESET,
     });
   } catch (error) {
     yield put({
