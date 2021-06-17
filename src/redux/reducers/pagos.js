@@ -297,13 +297,6 @@ const pagosReducer = (state = initialState, action) => {
         success: false,
         error: action.payload,
       };
-    case types.PAGOS_RESET:
-      return {
-        ...state,
-        loading: false,
-        success: false,
-        error: null,
-      };
 
     default:
       return state;
