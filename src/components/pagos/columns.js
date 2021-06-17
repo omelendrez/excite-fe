@@ -66,6 +66,11 @@ export const remitosColumns = (props) => {
       align: "right",
     },
     {
+      dataIndex: "ESTDES",
+      title: "Estado",
+      width: 200,
+    },
+    {
       dataIndex: "actions",
       render: (text, record) => (
         <Space>
