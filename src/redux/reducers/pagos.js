@@ -4,6 +4,7 @@ const initialState = {
   records: [],
   record: {},
   remitos: [],
+  pendingRemitos: [],
   remito: {},
   valores: [],
   valor: {},
@@ -42,13 +43,14 @@ const pagosReducer = (state = initialState, action) => {
 
     // Pago
     case types.GET_PAGO_SUCCESS:
-      const { record, remitos, valores } = action.payload;
+      const { record, remitos, valores, pendingRemitos } = action.payload;
       return {
         ...state,
         loading: false,
         record,
         remitos,
         valores,
+        pendingRemitos,
         error: null,
       };
     case types.GET_PAGO_FAILED:

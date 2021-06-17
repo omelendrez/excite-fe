@@ -132,3 +132,37 @@ export const valoresColumns = (props) => {
     },
   ];
 };
+
+export const pendingRemitosColumns = (props) => {
+  return [
+    {
+      dataIndex: "REMNUM",
+      title: "Remito",
+      width: 90,
+      key: "REMNUM",
+    },
+    {
+      title: "Fecha",
+      dataIndex: "REMFEC",
+      render: (text) => formatDate(text),
+      width: 110,
+      key: "REMFEC",
+    },
+    {
+      title: "Importe",
+      dataIndex: "REMTOT",
+      render: (text) => formatAmount(text),
+      width: 110,
+      align: "right",
+      key: "REMTOT",
+    },
+    {
+      title: "Descuento",
+      dataIndex: "REMDES",
+      render: (text) => formatAmount(text),
+      width: 110,
+      align: "right",
+      key: "REMDES",
+    },
+  ];
+};

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Collapse } from "antd";
+import { Layout, Collapse, Divider } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
@@ -7,12 +7,12 @@ import Drawer from "components/common/Drawer";
 import Items from "components/common/Items";
 import Info from "components/common/Info";
 import ItemForm from "components/common/ItemForm";
+import Table from "components/common/Table";
+import SaveButton from "components/common/SaveButton";
 import {
   getPago,
   deletePago,
-  cleanPagoRemito,
   cleanPagoValor,
-  getPagoRemito,
   getPagoValor,
   deletePagoRemito,
   deletePagoValor,
@@ -28,7 +28,11 @@ import {
   tiposPago,
   cleanFields,
 } from "utils/helpers";
-import { remitosColumns, valoresColumns } from "./columns";
+import {
+  remitosColumns,
+  valoresColumns,
+  pendingRemitosColumns,
+} from "./columns";
 
 const { Panel } = Collapse;
 
@@ -39,10 +43,22 @@ const Pago = (props) => {
     value: "",
   }));
   const pagos = useSelector((state) => state.pagos);
-  const { loading, success, record, error, remitos, valores, remito, valor } =
-    pagos;
+  const {
+    loading,
+    success,
+    record,
+    error,
+    remitos,
+    valores,
+    remito,
+    valor,
+    pendingRemitos,
+  } = pagos;
+
   const [showDrawer, setShowDrawer] = useState(false);
+  const [showRemitoDrawer, setShowRemitoDrawer] = useState(false);
   const [currentItem, setCurrentItem] = useState({});
+  const [selectedRemitos, setSelectedRemitos] = useState([]);
   const [info, setInfo] = useState(infoDefault);
 
   useEffect(() => {
@@ -102,8 +118,7 @@ const Pago = (props) => {
   }, [success, record, props.history]);
 
   const addRemito = () => {
-    dispatch(cleanPagoRemito({ PAGNUM: record.PAGNUM }));
-    setShowDrawer(true);
+    setShowRemitoDrawer(true);
   };
 
   const addValor = () => {
@@ -115,17 +130,16 @@ const Pago = (props) => {
     setShowDrawer(false);
   };
 
+  const handleRemitosClose = () => {
+    setShowRemitoDrawer(false);
+  };
+
   const handleDeletePago = () => {
     dispatch(deletePago(props.match.params.id));
   };
 
   const handlePrintPago = () => {
     console.log("Printing...");
-  };
-
-  const handleEditRemito = (record) => {
-    dispatch(getPagoRemito(record.ID));
-    setShowDrawer(true);
   };
 
   const handleEditValor = (record) => {
@@ -141,6 +155,14 @@ const Pago = (props) => {
     dispatch(deletePagoValor(record));
   };
 
+  const guardarRemitos = () => {
+    selectedRemitos.forEach((id) => {
+      dispatch(addPagoRemito({ PAGNUM: record.PAGNUM, REMNUM: id }));
+    });
+    setSelectedRemitos([]);
+    setShowRemitoDrawer(false);
+  };
+
   const commonProps = {
     loading,
     success,
@@ -152,7 +174,6 @@ const Pago = (props) => {
     fields: remitosFields,
     onAdd: addRemito,
     summaryField: "REMTOT",
-    handleEdit: handleEditRemito,
     handleDelete: handleDeleteRemito,
   };
 
@@ -164,6 +185,27 @@ const Pago = (props) => {
     summaryField: "PAGIMP",
     handleEdit: handleEditValor,
     handleDelete: handleDeleteValor,
+  };
+
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      setSelectedRemitos(selectedRowKeys);
+    },
+    // getCheckboxProps: (record) => ({
+    //   disabled: record.name === "Disabled User",
+    //   // Column configuration not to be checked
+    //   name: record.name,
+    // }),
+  };
+
+  const pendingRemitosProps = {
+    loading,
+    columns: pendingRemitosColumns(),
+    dataSource: pendingRemitos,
+    rowKey: "REMNUM",
+    pagination: false,
+    size: "small",
+    rowSelection,
   };
 
   return (
@@ -220,6 +262,19 @@ const Pago = (props) => {
             optionsModels={currentItem.optionsModels}
             onFinish={currentItem.onFinish}
           />
+        )}
+      </Drawer>
+      <Drawer
+        isDrawerVisible={showRemitoDrawer}
+        handleClose={handleRemitosClose}
+        title="Remitos"
+      >
+        <Table {...pendingRemitosProps} />
+        {pendingRemitos.length > 0 && (
+          <>
+            <Divider />
+            <SaveButton onClick={guardarRemitos} />
+          </>
         )}
       </Drawer>
     </Layout>

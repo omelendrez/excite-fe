@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
-const SaveButton = (props) => {
+const AddButton = (props) => {
   return (
     <Button
       type="primary"
@@ -15,4 +15,4 @@ const SaveButton = (props) => {
   );
 };
 
-export default SaveButton;
+export default AddButton;

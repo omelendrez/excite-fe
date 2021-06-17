@@ -43,6 +43,14 @@ function deletePago(id) {
 }
 
 // Pago Remito
+function getPendingRemitos(id) {
+  return getRecordById(`${endpoint}/${id}/remitos/pending`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 function getPagosRemitos(id) {
   return getRecordById(`${endpoint}/${id}/remitos`)
     .then((response) => response)
@@ -148,9 +156,10 @@ function* fetchPagoSaga(action) {
     const record = yield call(getPago, action.id);
     const remitos = yield call(getPagosRemitos, record.PAGNUM);
     const valores = yield call(getPagosValores, record.PAGNUM);
+    const pendingRemitos = yield call(getPendingRemitos, record.CLICOD);
     yield put({
       type: types.GET_PAGO_SUCCESS,
-      payload: { record, remitos, valores },
+      payload: { record, remitos, valores, pendingRemitos },
     });
   } catch (error) {
     yield put({
@@ -197,6 +206,7 @@ function* deletePagoSaga(action) {
 }
 
 // Pago Remito
+
 function* fetchPagoRemitoSaga(action) {
   try {
     const record = yield call(getPagoRemito, action.id);
