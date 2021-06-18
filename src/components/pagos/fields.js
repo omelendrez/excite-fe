@@ -68,6 +68,7 @@ export const valoresFields = [
     name: "PAGIMP",
     title: "Importe",
     type: "amount",
+    rules: [{ required: true }],
   },
   {
     name: "PAGCHEBAN",

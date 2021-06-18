@@ -53,17 +53,17 @@ export const remitosColumns = (props) => {
       align: "right",
     },
     {
-      title: "Fecha",
-      dataIndex: "REMFEC",
-      render: (text) => formatDate(text),
-      width: 110,
-    },
-    {
       title: "Descuento",
       dataIndex: "REMDES",
       render: (text) => formatAmount(text),
       width: 110,
       align: "right",
+    },
+    {
+      title: "Fecha",
+      dataIndex: "REMFEC",
+      render: (text) => formatDate(text),
+      width: 100,
     },
     {
       dataIndex: "ESTDES",
@@ -74,9 +74,6 @@ export const remitosColumns = (props) => {
       dataIndex: "actions",
       render: (text, record) => (
         <Space>
-          <EditButton
-            handleEdit={() => props.handleEdit && props.handleEdit(record)}
-          />
           <DeleteButton
             handleDelete={() =>
               props.handleDelete && props.handleDelete(record)

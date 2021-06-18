@@ -18,7 +18,6 @@ import {
   deletePagoValor,
   addPagoRemito,
   addPagoValor,
-  updatePagoRemito,
   updatePagoValor,
 } from "redux/actions";
 import { fields, remitosFields, valoresFields } from "./fields";
@@ -50,14 +49,13 @@ const Pago = (props) => {
     error,
     remitos,
     valores,
-    remito,
     valor,
     pendingRemitos,
   } = pagos;
 
-  const [showDrawer, setShowDrawer] = useState(false);
+  const [showValorDrawer, setShowValorDrawer] = useState(false);
   const [showRemitoDrawer, setShowRemitoDrawer] = useState(false);
-  const [currentItem, setCurrentItem] = useState({});
+  const [valorItem, setValorItem] = useState({});
   const [selectedRemitos, setSelectedRemitos] = useState([]);
   const [info, setInfo] = useState(infoDefault);
 
@@ -73,24 +71,6 @@ const Pago = (props) => {
   }, [dispatch, record]);
 
   useEffect(() => {
-    const onFinishRemito = (values) => {
-      const newValues = cleanFields(remitosFields, values);
-      if (!newValues.ID) {
-        return dispatch(addPagoRemito(newValues));
-      }
-      dispatch(updatePagoRemito(newValues));
-    };
-
-    if (remito.PAGNUM) {
-      setCurrentItem({
-        item: remito,
-        onFinish: onFinishRemito,
-        fields: remitosFields,
-      });
-    }
-  }, [dispatch, remito]);
-
-  useEffect(() => {
     const onFinishValor = (values) => {
       const newValues = cleanFields(valoresFields, values);
       if (!newValues.ID) {
@@ -100,7 +80,7 @@ const Pago = (props) => {
     };
 
     if (valor.PAGNUM) {
-      setCurrentItem({
+      setValorItem({
         item: valor,
         onFinish: onFinishValor,
         fields: valoresFields,
@@ -123,11 +103,11 @@ const Pago = (props) => {
 
   const addValor = () => {
     dispatch(cleanPagoValor({ PAGNUM: record.PAGNUM }));
-    setShowDrawer(true);
+    setShowValorDrawer(true);
   };
 
-  const handleClose = () => {
-    setShowDrawer(false);
+  const handleValorClose = () => {
+    setShowValorDrawer(false);
   };
 
   const handleRemitosClose = () => {
@@ -144,7 +124,7 @@ const Pago = (props) => {
 
   const handleEditValor = (record) => {
     dispatch(getPagoValor(record.ID));
-    setShowDrawer(true);
+    setShowValorDrawer(true);
   };
 
   const handleDeleteRemito = (record) => {
@@ -191,11 +171,6 @@ const Pago = (props) => {
     onChange: (selectedRowKeys, selectedRows) => {
       setSelectedRemitos(selectedRowKeys);
     },
-    // getCheckboxProps: (record) => ({
-    //   disabled: record.name === "Disabled User",
-    //   // Column configuration not to be checked
-    //   name: record.name,
-    // }),
   };
 
   const pendingRemitosProps = {
@@ -245,22 +220,22 @@ const Pago = (props) => {
         </Collapse>
       </div>
       <Drawer
-        isDrawerVisible={showDrawer}
-        handleClose={handleClose}
+        isDrawerVisible={showValorDrawer}
+        handleClose={handleValorClose}
         title={`${
-          currentItem && currentItem.ID ? "Modificando" : "Agregando"
+          valorItem && valorItem.ID ? "Modificando" : "Agregando"
         } registro`}
       >
-        {currentItem.fields && (
+        {valorItem.fields && (
           <ItemForm
-            closeDrawer={handleClose}
-            item={currentItem.item}
+            closeDrawer={handleValorClose}
+            item={valor}
             success={success}
             error={error}
             loading={loading}
-            fields={currentItem.fields}
-            optionsModels={currentItem.optionsModels}
-            onFinish={currentItem.onFinish}
+            fields={valorItem.fields}
+            optionsModels={valorItem.optionsModels}
+            onFinish={valorItem.onFinish}
           />
         )}
       </Drawer>
