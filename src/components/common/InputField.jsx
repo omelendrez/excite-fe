@@ -17,7 +17,7 @@ const InputField = (props) => {
   const { field, optionsModels } = props;
 
   const commonProps = {
-    style: { width: field.width },
+    style: { width: field.type === "amount" ? 180 : field.width },
     readOnly: field.readonly,
     maxLength: field.size,
     rows: field.rows,
