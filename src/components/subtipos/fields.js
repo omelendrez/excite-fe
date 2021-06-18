@@ -22,7 +22,7 @@ const fields = [
     type: "text",
     rules: [{ required: true }],
   },
-  {git 
+  {
     name: "SUBTIPEST",
     title: "Estado",
     type: "select",
