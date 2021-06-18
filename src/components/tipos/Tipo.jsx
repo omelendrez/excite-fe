@@ -85,7 +85,7 @@ const Tipo = (props) => {
       />
       {error && <Alert message="Error" description={error} type="error" />}
       <div className="card-container">
-        <Tabs tabPosition="bottom">
+        <Tabs tabPosition="right">
           <TabPane tab="Info" key="1">
             <Info
               title={info.TIPDES}
