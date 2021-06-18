@@ -7,6 +7,7 @@ import notification from "./notification";
 import Tipos from "components/tipos/TipoForm";
 import Subtipos from "components/subtipos/SubtipoForm";
 import { formatInputDate } from "utils/helpers";
+import "./editForm.css";
 
 const components = {
   Tipos,
@@ -90,7 +91,7 @@ const EditForm = (props) => {
         onFinish={props.onFinish}
         initialValues={record}
         labelCol={{
-          span: props.maximize ? 5 : 2,
+          span: props.maximize ? 5 : 3,
         }}
         wrapperCol={{
           span: props.maximize ? 16 : 8,

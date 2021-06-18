@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Descriptions, Row, Col, Spin } from "antd";
+import { Row, Col, Spin } from "antd";
 import { getSelectList } from "utils/helpers";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
@@ -17,7 +17,7 @@ const Info = (props) => {
     <>
       <Row>
         <Col span={24}>
-          <Descriptions layout="vertical" bordered>
+          <div>
             {props.data
               .filter((field) => field.title)
               .map((field, index) => {
@@ -42,12 +42,13 @@ const Info = (props) => {
                   value = content ? `${content.id} - ${content.text}` : value;
                 }
                 return (
-                  <Descriptions.Item key={index} label={field.title}>
-                    <strong>{value}</strong>
-                  </Descriptions.Item>
+                  <div className="info-row" key={index}>
+                    <div className="info-label">{field.title}</div>
+                    <div className="info-value">{value}</div>
+                  </div>
                 );
               })}
-          </Descriptions>
+          </div>
           <br />
         </Col>
       </Row>
