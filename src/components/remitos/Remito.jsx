@@ -76,11 +76,11 @@ const Remito = (props) => {
               data={info}
               onDelete={remitos.items.length === 0 ? handleDelete : null}
               success={success}
-              onPrint={handlePrint}
+              onPrint={remitos.items.length !== 0 ? handlePrint : null}
             />
           </Panel>
         </Collapse>
-        <Collapse ghost>
+        <Collapse ghost defaultActiveKey={["1"]} ghost>
           <Panel key="1" header="Productos">
             <Items ID={record.REMNUM} />
           </Panel>
