@@ -80,7 +80,7 @@ const Remito = (props) => {
             />
           </Panel>
         </Collapse>
-        <Collapse ghost defaultActiveKey={["1"]} ghost>
+        <Collapse defaultActiveKey={["1"]} ghost>
           <Panel key="1" header="Productos">
             <Items ID={record.REMNUM} />
           </Panel>
