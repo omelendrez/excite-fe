@@ -5,13 +5,16 @@ const fields = [
     type: "select",
     options: "tipos",
     rules: [{ required: true }],
+    size: 4,
+    width: 200,
   },
   {
     name: "SUBTIPCOD",
     title: "Subtipo",
     type: "text",
     rules: [{ required: true }],
-    size: 3,
+    size: 6,
+    width: 200,
   },
   {
     name: "SUBTIPDES",

@@ -4,6 +4,8 @@ const fields = [
     title: "Tipo",
     type: "text",
     rules: [{ required: true }],
+    size: 4,
+    width: 80,
   },
   {
     name: "TIPDES",
