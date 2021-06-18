@@ -401,7 +401,7 @@ function* deletePagoValorSaga(action) {
   try {
     const state = yield select();
     const record = yield call(deletePagoValor, action.record);
-    console.log(action.record);
+
     yield put({
       type: types.DELETE_PAGO_VALOR_SUCCESS,
       payload: record,
