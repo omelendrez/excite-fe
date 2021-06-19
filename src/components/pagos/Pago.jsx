@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Collapse, Divider } from "antd";
+import { Layout, Collapse, Divider, Statistic, Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
@@ -58,17 +58,28 @@ const Pago = (props) => {
   const [valorItem, setValorItem] = useState({});
   const [selectedRemitos, setSelectedRemitos] = useState([]);
   const [info, setInfo] = useState(infoDefault);
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     dispatch(getPago(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
+    const totRemitos =
+      remitos.length > 0
+        ? remitos.reduce((acc, cur) => acc + cur.REMTOT, 0)
+        : 0;
+    const totValores =
+      valores.length > 0
+        ? valores.reduce((acc, cur) => acc + cur.PAGIMP, 0)
+        : 0;
+    setBalance(totValores - totRemitos);
+
     if (record && record.PAGNUM) {
       const info = setFields(fields, record);
       setInfo(info);
     }
-  }, [dispatch, record]);
+  }, [dispatch, record, remitos, valores]);
 
   useEffect(() => {
     const onFinishValor = (values) => {
@@ -190,10 +201,22 @@ const Pago = (props) => {
         onBack={props.history.goBack}
         loading={loading}
       />
+      <Row>
+        <Col offset={20}>
+          <Statistic
+            value={balance}
+            precision={2}
+            loading={loading}
+            title="Balance"
+            valueStyle={balance < 0 ? { color: "#cf1322" } : {}}
+          />
+        </Col>
+      </Row>
+
       {error && <Alert message="Error" description={error} type="error" />}
       <div className="card-container">
         <Collapse defaultActiveKey={["1"]} ghost>
-          <Panel key="1" header="Detalle de Pago" className="panel">
+          <Panel key="1" header="Detalle" className="panel">
             <Info
               title={info.PAGNUM}
               fields={fields}

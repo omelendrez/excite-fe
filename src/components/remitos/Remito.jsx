@@ -70,7 +70,7 @@ const Remito = (props) => {
       {error && <Alert message="Error" description={error} type="error" />}
       <div className="card-container">
         <Collapse defaultActiveKey={["1"]} ghost>
-          <Panel key="1" header="Detalle de Pago">
+          <Panel key="1" header="Detalle">
             <Info
               fields={fields}
               data={info}
