@@ -63,6 +63,7 @@ export const valoresFields = [
     name: "PAGSEC",
     title: "Secuencia",
     type: "number",
+    readonly: true,
   },
   {
     name: "PAGIMP",

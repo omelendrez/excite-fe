@@ -337,7 +337,12 @@ function* fetchPagoValorSaga(action) {
 function* addPagoValorSaga(action) {
   try {
     const state = yield select();
-    const record = yield call(addPagoValor, action.newData);
+    console.log(state.pagos.valores);
+    const PAGSEC = !!state.pagos.valores.length
+      ? state.pagos.valores[state.pagos.valores.length - 1].PAGSEC + 1
+      : 1;
+    const newRecord = { ...action.newData, PAGSEC };
+    const record = yield call(addPagoValor, newRecord);
     yield put({
       type: types.ADD_PAGO_VALOR_SUCCESS,
       payload: record,
@@ -401,7 +406,6 @@ function* deletePagoValorSaga(action) {
   try {
     const state = yield select();
     const record = yield call(deletePagoValor, action.record);
-
     yield put({
       type: types.DELETE_PAGO_VALOR_SUCCESS,
       payload: record,
