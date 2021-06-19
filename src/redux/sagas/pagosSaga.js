@@ -342,7 +342,7 @@ function* addPagoValorSaga(action) {
       type: types.ADD_PAGO_VALOR_SUCCESS,
       payload: record,
     });
-    let totalValores = state.pagos.valores.reduce(
+    const totalValores = state.pagos.valores.reduce(
       (acc, cur) => acc + cur.PAGIMP,
       record.PAGIMP || 0
     );
@@ -375,7 +375,7 @@ function* updatePagoValorSaga(action) {
       type: types.UPDATE_PAGO_VALOR_SUCCESS,
       payload: valor,
     });
-    let totalValores = state.pagos.valores
+    const totalValores = state.pagos.valores
       .filter((record) => record.ID !== valor.ID)
       .reduce((acc, cur) => acc + cur.PAGIMP, valor.PAGIMP || 0);
     yield call(changeRemitoStatus, {
@@ -406,7 +406,7 @@ function* deletePagoValorSaga(action) {
       type: types.DELETE_PAGO_VALOR_SUCCESS,
       payload: record,
     });
-    let totalValores = state.pagos.valores
+    const totalValores = state.pagos.valores
       .filter((record) => record.ID !== action.record.ID)
       .reduce((acc, cur) => acc + cur.PAGIMP, 0);
     yield call(changeRemitoStatus, {
