@@ -113,6 +113,13 @@ const ajustesReducer = (state = initialState, action) => {
         success: false,
         error: action.payload,
       };
+    case types.RESET_AJUSTES:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: null,
+      };
 
     default:
       return state;

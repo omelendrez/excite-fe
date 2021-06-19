@@ -34,11 +34,6 @@ const Ajuste = (props) => {
 
   useEffect(() => {
     if (success && record.message) {
-      notification({
-        message: "Registro eliminado",
-        description: "El registro fue eliminado con éxito",
-        type: "success",
-      });
       props.history.goBack();
     }
     if (error) {

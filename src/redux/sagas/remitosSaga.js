@@ -1,4 +1,4 @@
-import { put, takeEvery, call } from "redux-saga/effects";
+import { put, takeEvery, call, select } from "redux-saga/effects";
 import * as types from "redux/types";
 import {
   addRecord,
@@ -66,7 +66,7 @@ function addItem(newData) {
     });
 }
 
-function updateItem(newData) {
+export function updateItem(newData) {
   return updateRecord(`${endpoint}/items`, newData)
     .then((response) => response)
     .catch((error) => {
@@ -76,6 +76,18 @@ function updateItem(newData) {
 
 function deleteItem(record) {
   return deleteRecord(`${endpoint}/items/${record.ID}`)
+    .then((response) => response)
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
+}
+
+export function updateStock({ ID, PRODSTO }) {
+  return updateRecord("productos", {
+    ID,
+    PRODSTO,
+  })
     .then((response) => response)
     .catch((error) => {
       console.error(error);
@@ -180,17 +192,34 @@ function* deleteRemitoSaga(action) {
 
 function* addItemSaga(action) {
   try {
+    const state = yield select();
     const record = yield call(addItem, action.newData);
     yield put({
       type: types.ADD_ITEM_SUCCESS,
       payload: record,
     });
-    yield put({
-      type: types.REMITOS_RESET,
-    });
+    const { PRODCOD, REMCAN } = action.newData;
+    const producto = state.productos.records.find(
+      (product) => product.PRODCOD === PRODCOD
+    );
+
+    if (producto) {
+      const { ID, PRODSTO: stock } = producto;
+      const PRODSTO = stock - REMCAN;
+      yield call(updateStock, {
+        ID,
+        PRODSTO,
+      });
+    }
     yield put({
       type: types.GET_ITEMS_REQUEST,
       id: record.REMNUM,
+    });
+    yield put({
+      type: types.GET_PRODUCTOS_REQUEST,
+    });
+    yield put({
+      type: types.REMITOS_RESET,
     });
   } catch (error) {
     yield put({
@@ -224,9 +253,21 @@ function* updateItemSaga(action) {
 
 function* deleteItemSaga(action) {
   try {
+    const state = yield select();
     const { record } = action;
-
     yield call(deleteItem, record);
+    const { PRODCOD, REMCAN } = state.remitos.item;
+    const producto = state.productos.records.find(
+      (product) => product.PRODCOD === PRODCOD
+    );
+    if (producto) {
+      const { ID, PRODSTO: stock } = producto;
+      const PRODSTO = stock + REMCAN;
+      yield call(updateStock, {
+        ID,
+        PRODSTO,
+      });
+    }
     yield put({
       type: types.DELETE_ITEM_SUCCESS,
       payload: record,
@@ -234,6 +275,9 @@ function* deleteItemSaga(action) {
     yield put({
       type: types.GET_ITEMS_REQUEST,
       id: record.REMNUM,
+    });
+    yield put({
+      type: types.GET_PRODUCTOS_REQUEST,
     });
     yield put({
       type: types.REMITOS_RESET,

@@ -1,4 +1,4 @@
-import { put, takeEvery, call } from "redux-saga/effects";
+import { put, takeEvery, call, select } from "redux-saga/effects";
 import * as types from "redux/types";
 import {
   getRecords,
@@ -7,6 +7,8 @@ import {
   updateRecord,
   deleteRecord,
 } from "services";
+
+import { updateStock } from "redux/sagas/remitosSaga";
 
 const endpoint = "ajustes";
 
@@ -82,10 +84,33 @@ function* fetchAjusteSaga(action) {
 
 function* addAjusteSaga(action) {
   try {
+    const state = yield select();
     const record = yield call(addAjuste, action.newData);
     yield put({
       type: types.ADD_AJUSTE_SUCCESS,
       payload: record,
+    });
+    const { PRODCOD, AJUCAN } = action.newData;
+    const producto = state.productos.records.find(
+      (product) => product.PRODCOD === PRODCOD
+    );
+
+    if (producto) {
+      const { ID, PRODSTO: stock } = producto;
+      const PRODSTO = stock + AJUCAN;
+      yield call(updateStock, {
+        ID,
+        PRODSTO,
+      });
+    }
+    yield put({
+      type: types.GET_AJUSTES_REQUEST,
+    });
+    yield put({
+      type: types.GET_PRODUCTOS_REQUEST,
+    });
+    yield put({
+      type: types.RESET_AJUSTES,
     });
   } catch (error) {
     yield put({
@@ -97,10 +122,35 @@ function* addAjusteSaga(action) {
 
 function* updateAjusteSaga(action) {
   try {
+    const state = yield select();
     const record = yield call(updateAjuste, action.newData);
     yield put({
       type: types.UPDATE_AJUSTE_SUCCESS,
       payload: record,
+    });
+    const { ID, PRODCOD, AJUCAN: newVal } = action.newData;
+    const ajuste = state.ajustes.records.find((ajuste) => ajuste.ID === ID);
+    const prevVal = ajuste.AJUCAN;
+    const producto = state.productos.records.find(
+      (product) => product.PRODCOD === PRODCOD
+    );
+
+    if (producto) {
+      const { ID, PRODSTO: stock } = producto;
+      const PRODSTO = stock - prevVal + newVal;
+      yield call(updateStock, {
+        ID,
+        PRODSTO,
+      });
+    }
+    yield put({
+      type: types.GET_AJUSTES_REQUEST,
+    });
+    yield put({
+      type: types.GET_PRODUCTOS_REQUEST,
+    });
+    yield put({
+      type: types.RESET_AJUSTES,
     });
   } catch (error) {
     yield put({
@@ -112,10 +162,34 @@ function* updateAjusteSaga(action) {
 
 function* deleteAjusteSaga(action) {
   try {
+    const state = yield select();
     const record = yield call(deleteAjuste, action.id);
     yield put({
       type: types.DELETE_AJUSTE_SUCCESS,
       payload: record,
+    });
+    const { PRODCOD, AJUCAN } = state.ajustes.record;
+    const producto = state.productos.records.find(
+      (product) => product.PRODCOD === PRODCOD
+    );
+    console.log(AJUCAN, producto.PRODSTO);
+
+    if (producto) {
+      const { ID, PRODSTO: stock } = producto;
+      const PRODSTO = stock - AJUCAN;
+      yield call(updateStock, {
+        ID,
+        PRODSTO,
+      });
+    }
+    yield put({
+      type: types.GET_AJUSTES_REQUEST,
+    });
+    yield put({
+      type: types.GET_PRODUCTOS_REQUEST,
+    });
+    yield put({
+      type: types.RESET_AJUSTES,
     });
   } catch (error) {
     yield put({
