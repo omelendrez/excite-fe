@@ -26,7 +26,7 @@ const Ivas = () => {
 
   const tableProps = {
     loading,
-    columns,
+    columns: columns(),
     dataSource: records,
     rowKey: "ID",
     onAdd,

@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 import { Link } from "react-router-dom";
-import { sortColumn } from "utils/helpers";
+import { sortColumn, statuses } from "utils/helpers";
 
 export const columns = (props) => {
   const tipos = (
@@ -10,6 +10,12 @@ export const columns = (props) => {
       value: tipo.TIPCOD,
     }))
   ).sort((a, b) => sortColumn(a, b, "text"));
+  const status = statuses
+    .map((status) => ({
+      text: status.text,
+      value: status.text,
+    }))
+    .sort((a, b) => sortColumn(a, b, "text"));
 
   return [
     {
@@ -45,6 +51,9 @@ export const columns = (props) => {
     {
       dataIndex: "SUBTIPEST",
       title: "Estado",
+      onFilter: (value, record) =>
+        record.SUBTIPEST.toLowerCase() === value.toLowerCase(),
+      filters: status,
       render: (text) => {
         let color = "green";
         if (text !== "Activo") {

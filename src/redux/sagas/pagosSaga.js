@@ -337,7 +337,6 @@ function* fetchPagoValorSaga(action) {
 function* addPagoValorSaga(action) {
   try {
     const state = yield select();
-    console.log(state.pagos.valores);
     const PAGSEC = !!state.pagos.valores.length
       ? state.pagos.valores[state.pagos.valores.length - 1].PAGSEC + 1
       : 1;
