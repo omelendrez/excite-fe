@@ -41,7 +41,7 @@ export const remitosColumns = (props) => {
   return [
     {
       dataIndex: "REMNUM",
-      title: "Remito",
+      title: "Número",
       searchable: true,
       width: 90,
     },
@@ -139,7 +139,7 @@ export const pendingRemitosColumns = (props) => {
   return [
     {
       dataIndex: "REMNUM",
-      title: "Remito",
+      title: "Presupuesto",
       width: 90,
       key: "REMNUM",
     },

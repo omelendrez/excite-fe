@@ -63,7 +63,7 @@ const Remito = (props) => {
   return (
     <Layout>
       <Header
-        title={`Remito ${record.REMNUM}`}
+        title={`Presupuesto ${record.REMNUM}`}
         onBack={props.history.goBack}
         loading={loading}
       />

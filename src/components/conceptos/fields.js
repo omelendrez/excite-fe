@@ -15,6 +15,7 @@ const fields = [
     name: "CONDES",
     title: "Descripción",
     type: "text",
+    size: 60,
   },
   {
     name: "CONCLI",

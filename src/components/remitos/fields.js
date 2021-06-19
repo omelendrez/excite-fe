@@ -1,7 +1,7 @@
 const fields = [
   {
     name: "REMNUM",
-    title: "Número de remito",
+    title: "Presupuesto",
     type: "number",
     readonly: true,
   },
@@ -47,7 +47,7 @@ const fields = [
   },
   {
     name: "REMPAGNUM",
-    title: "Número de pago",
+    title: "Pago",
     type: "number",
     readonly: true,
   },

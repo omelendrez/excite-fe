@@ -209,7 +209,7 @@ const Pago = (props) => {
           </Panel>
         </Collapse>
         <Collapse defaultActiveKey={["1"]} ghost>
-          <Panel key="1" header="Remitos">
+          <Panel key="1" header="Presupuestos">
             <Items {...remitosProps} {...commonProps} />
           </Panel>
         </Collapse>
@@ -242,7 +242,7 @@ const Pago = (props) => {
       <Drawer
         isDrawerVisible={showRemitoDrawer}
         handleClose={handleRemitosClose}
-        title="Remitos"
+        title="Presupuestos"
       >
         <Table {...pendingRemitosProps} />
         {pendingRemitos.length > 0 && (

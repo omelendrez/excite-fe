@@ -19,6 +19,7 @@ const fields = [
     title: "Código",
     type: "text",
     width: 100,
+    size: 8,
   },
   {
     name: "PRODDES",

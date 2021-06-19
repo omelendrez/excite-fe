@@ -23,7 +23,7 @@ const createSelectList = (records, id, text, filter = null) => {
       if (!uniqueList.find((item) => item.id === record[id])) {
         uniqueList.push({
           id: record[id],
-          text: record[text],
+          text: `${record[id]} - ${record[text]}`,
         });
       }
     });
@@ -36,9 +36,9 @@ export const statuses = [
 ];
 
 export const sexos = [
-  { id: "", text: "INDEFINIDO" },
-  { id: "FEMENINO", text: "FEMENINO" },
-  { id: "MASCULINO", text: "MASCULINO" },
+  { id: "I", text: "INDEFINIDO" },
+  { id: "F", text: "FEMENINO" },
+  { id: "M", text: "MASCULINO" },
 ];
 
 export const interior = [

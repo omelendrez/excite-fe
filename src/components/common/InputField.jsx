@@ -86,7 +86,10 @@ const InputField = (props) => {
     case "number":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <InputNumber {...commonProps} />
+          <InputNumber
+            {...commonProps}
+            onFocus={(event) => event.target.select()}
+          />
         </Form.Item>
       );
     case "amount":
@@ -96,6 +99,7 @@ const InputField = (props) => {
             formatter={(value) =>
               `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
+            onFocus={(event) => event.target.select()}
             parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
             {...commonProps}
           />

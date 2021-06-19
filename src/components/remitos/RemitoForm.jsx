@@ -9,7 +9,7 @@ import { getSelectList, cleanFields } from "utils/helpers";
 
 const RemitoForm = (props) => {
   const record = props.record || props.location.state.record;
-  const title = `${record.ID ? "Modificando" : "Agregando"} remito`;
+  const title = `${record.ID ? "Modificando" : "Agregando"} presupuesto`;
   const [changeFieldValues, setChangeFieldValues] = useState([]);
 
   const dispatch = useDispatch();

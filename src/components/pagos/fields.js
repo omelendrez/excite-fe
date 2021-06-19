@@ -28,13 +28,13 @@ export const fields = [
 export const remitosFields = [
   {
     name: "PAGNUM",
-    title: "Número de pago",
+    title: "Pago",
     type: "number",
     readonly: true,
   },
   {
     name: "REMNUM",
-    title: "Remito",
+    title: "Presupuesto",
     type: "number",
     rules: [{ required: true }],
   },
@@ -48,7 +48,7 @@ export const remitosFields = [
 export const valoresFields = [
   {
     name: "PAGNUM",
-    title: "Número de pago",
+    title: "Pago",
     type: "number",
     readonly: true,
   },

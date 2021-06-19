@@ -58,7 +58,7 @@ const Remitos = () => {
 
   return (
     <Layout>
-      <Header title="Remitos" />
+      <Header title="Presupuestos" />
       {error && <Alert message="Error" description={error} type="error" />}
 
       <Table {...tableProps} />
