@@ -60,6 +60,11 @@ const columns = (props) => {
       filters: subtipos,
     },
     {
+      dataIndex: "PRODSTO",
+      title: "Stock",
+      width: 120,
+    },
+    {
       dataIndex: "PRODPRE",
       title: "Precio",
       render: (value) => formatAmount(value),
