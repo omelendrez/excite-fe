@@ -1,0 +1,40 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+.logo {
+  height: 32px;
+  margin: 16px;
+  background-image: url(./logo23.JPG);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.site-layout {
+  .site-layout-background {
+    background: #fff;
+  }
+}
+
+.ant-collapse-header {
+  background-color: #d9e3da;
+  font-weight: 700;
+}
+
+.summary-row,
+.summary-row {
+  span {
+    color: #234 !important;
+    font-weight: 700;
+  }
+}
+
+@media print {
+  .ant-layout,
+  .ant-modal-mask,
+  .no-print {
+    display: none !important;
+  }
+  .ant-modal-content {
+    box-shadow: none;
+  }
+}

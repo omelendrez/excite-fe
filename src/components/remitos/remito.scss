@@ -1,0 +1,12 @@
+@media print {
+  .ant-modal-close,
+  .ant-modal-footer {
+    display: none;
+  }
+
+  @page {
+    margin: 0;
+    padding: 0;
+    size: portrait;
+  }
+}

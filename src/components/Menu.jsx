@@ -15,7 +15,12 @@ const { SubMenu } = AntdMenu;
 
 const Menu = () => {
   return (
-    <AntdMenu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
+    <AntdMenu
+      theme="dark"
+      defaultSelectedKeys={["0"]}
+      mode="inline"
+      className="no-print"
+    >
       <AntdMenu.Item key="0" icon={<HomeOutlined />}>
         Home
         <Link to="/" />

@@ -6,11 +6,12 @@ import Alert from "components/common/Alert";
 import Items from "./Items";
 import Info from "components/common/Info";
 import Modal from "components/common/Modal";
-import Presupuesto from "components/reportes/Presupuesto";
+import Presupuesto from "components/reportes/presupuesto/Presupuesto";
 import notification from "components/common/notification";
 import { getRemito, getItems, deleteRemito } from "redux/actions";
 import fields from "./fields";
 import { setFields } from "utils/helpers";
+import "./remito.scss";
 
 const { Panel } = Collapse;
 
@@ -72,7 +73,7 @@ const Remito = (props) => {
           loading={loading}
         />
         {error && <Alert message="Error" description={error} type="error" />}
-        <div className="card-container">
+        <div className="card-container no-print">
           <Collapse defaultActiveKey={["1"]} ghost>
             <Panel key="1" header="Detalle">
               <Info
@@ -91,7 +92,13 @@ const Remito = (props) => {
           </Collapse>
         </div>
       </Layout>
-      <Modal isModalVisible={showPrint} onClose={handlePrint}>
+      <Modal
+        isModalVisible={showPrint}
+        onClose={handlePrint}
+        width="900px"
+        okText="Imprimir"
+        onOk={() => window.print()}
+      >
         <Presupuesto title={record.REMNUM} />
       </Modal>
     </>

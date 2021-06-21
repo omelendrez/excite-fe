@@ -6,7 +6,7 @@ import es_ES from "antd/lib/locale/es_ES";
 import "antd/dist/antd.css";
 import { useDispatch } from "react-redux";
 
-import "./App.css";
+import "./App.scss";
 
 import Menu from "./components/Menu";
 import Routes from "./components/Routes";

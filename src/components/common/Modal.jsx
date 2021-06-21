@@ -2,14 +2,16 @@ import React from "react";
 import { Modal as AntdModal } from "antd";
 
 const Modal = (props) => {
-  const { title, isModalVisible, onClose } = props;
+  const { title, isModalVisible, onClose, width, okText, onOk } = props;
   return (
     <AntdModal
-      width="40vw"
+      style={{ top: 20 }}
+      width={width || "40vw"}
       title={title || ""}
       visible={isModalVisible}
       onCancel={onClose}
-      footer={null}
+      onOk={onOk}
+      okText={okText}
     >
       {props.children}
     </AntdModal>
