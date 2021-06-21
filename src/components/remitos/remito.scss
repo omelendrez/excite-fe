@@ -1,5 +1,7 @@
+.ant-modal-close {
+  display: none;
+}
 @media print {
-  .ant-modal-close,
   .ant-modal-footer {
     display: none;
   }

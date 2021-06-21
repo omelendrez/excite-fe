@@ -8,7 +8,17 @@ import Info from "components/common/Info";
 import Modal from "components/common/Modal";
 import Presupuesto from "components/reportes/presupuesto/Presupuesto";
 import notification from "components/common/notification";
-import { getRemito, getItems, deleteRemito } from "redux/actions";
+import {
+  getRemito,
+  getItems,
+  deleteRemito,
+  getClientes,
+  getCliente,
+  getVendedores,
+  getProvincias,
+  getIvas,
+  getTransportes,
+} from "redux/actions";
 import fields from "./fields";
 import { setFields } from "utils/helpers";
 import "./remito.scss";
@@ -32,6 +42,12 @@ const Remito = (props) => {
 
   useEffect(() => {
     if (record && record.REMNUM) {
+      dispatch(getClientes());
+      dispatch(getVendedores());
+      dispatch(getProvincias());
+      dispatch(getIvas());
+      dispatch(getTransportes());
+      dispatch(getCliente(record.CLICOD));
       dispatch(getItems(record.REMNUM));
       const info = setFields(fields, record);
       setInfo(info);

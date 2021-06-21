@@ -6,11 +6,14 @@ export const sortColumn = (a, b, fieldName) =>
   a[fieldName] < b[fieldName] ? -1 : a[fieldName] > b[fieldName] ? 1 : 0;
 
 export const formatAmount = (value = 0) =>
-  value.toLocaleString(undefined, {
+  value.toLocaleString("es-AR", {
+    maximumFractionDigits: 2,
     minimumFractionDigits: 2,
   });
 
 export const formatDate = (date) => moment(date).format("L");
+export const formatDateNow = () => moment().format("DD/MM/YY");
+export const formatTimeNow = () => moment().format("HH:MM");
 //export const formatDate = (date) => moment(date).add(-3, "hours").format("L");  // For local environment
 
 export const formatInputDate = (date) => moment(date);
