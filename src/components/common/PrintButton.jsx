@@ -3,11 +3,15 @@ import { Button, message } from "antd";
 import { PrinterOutlined } from "@ant-design/icons";
 
 const PrintButton = (props) => {
-  const handlePrint = () => {
+  const noHandlePrint = () => {
     message.error("Implementación en progreso");
   };
   return (
-    <Button icon={<PrinterOutlined />} onClick={handlePrint} shape="round">
+    <Button
+      icon={<PrinterOutlined />}
+      onClick={props.handlePrint || noHandlePrint}
+      shape="round"
+    >
       Imprimir
     </Button>
   );

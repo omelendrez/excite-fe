@@ -5,6 +5,8 @@ import Header from "components/common/Header";
 import Alert from "components/common/Alert";
 import Items from "./Items";
 import Info from "components/common/Info";
+import Modal from "components/common/Modal";
+import Presupuesto from "components/reportes/Presupuesto";
 import notification from "components/common/notification";
 import { getRemito, getItems, deleteRemito } from "redux/actions";
 import fields from "./fields";
@@ -21,6 +23,7 @@ const Remito = (props) => {
     value: "",
   }));
   const [info, setInfo] = useState(infoDefault);
+  const [showPrint, setShowPrint] = useState(false);
 
   useEffect(() => {
     dispatch(getRemito(props.match.params.id));
@@ -57,36 +60,41 @@ const Remito = (props) => {
   };
 
   const handlePrint = () => {
-    console.log("Printing...");
+    setShowPrint(!showPrint);
   };
 
   return (
-    <Layout>
-      <Header
-        title={`Presupuesto ${record.REMNUM}`}
-        onBack={props.history.goBack}
-        loading={loading}
-      />
-      {error && <Alert message="Error" description={error} type="error" />}
-      <div className="card-container">
-        <Collapse defaultActiveKey={["1"]} ghost>
-          <Panel key="1" header="Detalle">
-            <Info
-              fields={fields}
-              data={info}
-              onDelete={remitos.items.length === 0 ? handleDelete : null}
-              success={success}
-              onPrint={remitos.items.length !== 0 ? handlePrint : null}
-            />
-          </Panel>
-        </Collapse>
-        <Collapse defaultActiveKey={["1"]} ghost>
-          <Panel key="1" header="Productos">
-            <Items ID={record.REMNUM} />
-          </Panel>
-        </Collapse>
-      </div>
-    </Layout>
+    <>
+      <Layout>
+        <Header
+          title={`Presupuesto ${record.REMNUM}`}
+          onBack={props.history.goBack}
+          loading={loading}
+        />
+        {error && <Alert message="Error" description={error} type="error" />}
+        <div className="card-container">
+          <Collapse defaultActiveKey={["1"]} ghost>
+            <Panel key="1" header="Detalle">
+              <Info
+                fields={fields}
+                data={info}
+                onDelete={remitos.items.length === 0 ? handleDelete : null}
+                success={success}
+                onPrint={remitos.items.length !== 0 ? handlePrint : null}
+              />
+            </Panel>
+          </Collapse>
+          <Collapse defaultActiveKey={["1"]} ghost>
+            <Panel key="1" header="Productos">
+              <Items ID={record.REMNUM} />
+            </Panel>
+          </Collapse>
+        </div>
+      </Layout>
+      <Modal isModalVisible={showPrint} onClose={handlePrint}>
+        <Presupuesto title={record.REMNUM} />
+      </Modal>
+    </>
   );
 };
 
