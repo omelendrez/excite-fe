@@ -5,6 +5,9 @@ import { getSelectList } from "utils/helpers";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 import PrintButton from "./PrintButton";
+import PaymentsButton from "./PaymentsButton";
+import ConceptsButton from "./ConceptsButton";
+import QuotationsButton from "./QuotationsButton";
 import { formatDate, formatAmount } from "utils/helpers";
 import "./info.css";
 
@@ -54,7 +57,7 @@ const Info = (props) => {
       </Row>
       <Row>
         {props.onEdit && (
-          <Col span={3}>
+          <Col>
             <EditButton handleEdit={props.onEdit} />
           </Col>
         )}
@@ -66,6 +69,21 @@ const Info = (props) => {
         {props.onPrint && (
           <Col>
             <PrintButton handlePrint={props.onPrint} />
+          </Col>
+        )}
+        {props.onQuotations && (
+          <Col>
+            <QuotationsButton handleQuotations={props.onQuotations} />
+          </Col>
+        )}
+        {props.onConcepts && (
+          <Col>
+            <ConceptsButton handleConcepts={props.onConcepts} />
+          </Col>
+        )}
+        {props.onPayments && (
+          <Col>
+            <PaymentsButton handlePayments={props.onPayments} />
           </Col>
         )}
       </Row>

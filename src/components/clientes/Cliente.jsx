@@ -34,11 +34,6 @@ const Cliente = (props) => {
 
   useEffect(() => {
     if (success && record.message) {
-      notification({
-        message: "Registro eliminado",
-        description: "El registro fue eliminado con éxito",
-        type: "success",
-      });
       props.history.goBack();
     }
     if (error) {
@@ -56,6 +51,10 @@ const Cliente = (props) => {
 
   const handleDelete = () => {
     dispatch(deleteCliente(props.match.params.id));
+  };
+
+  const handlePayments = () => {
+    console.log("Payments");
   };
 
   if (!!url) {
@@ -81,6 +80,9 @@ const Cliente = (props) => {
         data={info}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        onPayments={handlePayments}
+        onQuotations={handlePayments}
+        onConcepts={handlePayments}
         success={success}
         history={props.history}
         loading={loading}

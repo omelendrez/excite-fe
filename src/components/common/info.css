@@ -20,3 +20,7 @@
   display: inline-block;
   font-weight: 600;
 }
+
+.ant-col {
+  margin-right: 20px;
+}
