@@ -14,6 +14,24 @@ const components = {
   Subtipos,
 };
 
+const fieldsChanged = {
+  fields: [],
+  add(field) {
+    if (!this.fields.includes(field)) {
+      this.fields = [...this.fields, field];
+    }
+  },
+  remove(field) {
+    this.fields = this.fields.filter((f) => f !== field);
+  },
+  removeAll() {
+    this.fields = [];
+  },
+  get() {
+    return this.fields;
+  },
+};
+
 const handleKey = (e) => {
   const inputs = document.getElementsByTagName("input");
   let increment = 0;
@@ -50,12 +68,20 @@ const EditForm = (props) => {
     const key = Object.keys(change)[0];
     const value = Object.values(change)[0];
     if (record[key] !== value) {
-      setSubmitDisabled(false);
+      fieldsChanged.add(key);
+    } else {
+      fieldsChanged.remove(key);
+    }
+    if (!!fieldsChanged.get().length) {
+      if (submitDisabled) setSubmitDisabled(false);
+    } else {
+      if (!submitDisabled) setSubmitDisabled(true);
     }
   };
 
   const onReset = () => {
     form.resetFields();
+    fieldsChanged.removeAll();
     setSubmitDisabled(true);
   };
 
