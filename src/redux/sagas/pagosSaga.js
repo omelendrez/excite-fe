@@ -134,13 +134,14 @@ function deletePagoValor(record) {
     });
 }
 
-function changeRemitoStatus({ totalValores, remitos }) {
+function changeRemitoStatus({ totalValores, remitos, REMPAGNUM = 0 }) {
   let total = totalValores;
   remitos.forEach((remito) => {
     if (total >= remito.REMTOT) {
       updateRecord("remitos", {
         ID: remito.REMID,
         ESTCOD: "Q",
+        REMPAGNUM,
       })
         .then((response) => response)
         .catch((error) => {
@@ -152,6 +153,7 @@ function changeRemitoStatus({ totalValores, remitos }) {
       updateRecord("remitos", {
         ID: remito.REMID,
         ESTCOD: "S",
+        REMPAGNUM: 0,
       })
         .then((response) => response)
         .catch((error) => {
@@ -368,6 +370,7 @@ function* addPagoValorSaga(action) {
     yield call(changeRemitoStatus, {
       totalValores,
       remitos: state.pagos.remitos,
+      REMPAGNUM: state.pagos.record.PAGNUM,
     });
 
     yield put({
@@ -403,6 +406,7 @@ function* updatePagoValorSaga(action) {
     yield call(changeRemitoStatus, {
       totalValores,
       remitos: state.pagos.remitos,
+      REMPAGNUM: state.pagos.record.PAGNUM,
     });
     yield put({
       type: types.GET_PAGO_REQUEST,
@@ -436,6 +440,7 @@ function* deletePagoValorSaga(action) {
     yield call(changeRemitoStatus, {
       totalValores,
       remitos: state.pagos.remitos,
+      REMPAGNUM: state.pagos.record.PAGNUM,
     });
     yield put({
       type: types.GET_PAGO_REQUEST,
