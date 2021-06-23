@@ -61,11 +61,6 @@ const Info = (props) => {
             <EditButton handleEdit={props.onEdit} />
           </Col>
         )}
-        {props.onDelete && (
-          <Col>
-            <DeleteButton handleDelete={props.onDelete} />
-          </Col>
-        )}
         {props.onPrint && (
           <Col>
             <PrintButton handlePrint={props.onPrint} />
@@ -84,6 +79,11 @@ const Info = (props) => {
         {props.onPayments && (
           <Col>
             <PaymentsButton handlePayments={props.onPayments} />
+          </Col>
+        )}
+        {props.onDelete && (
+          <Col>
+            <DeleteButton handleDelete={props.onDelete} />
           </Col>
         )}
       </Row>

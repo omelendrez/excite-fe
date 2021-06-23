@@ -61,6 +61,9 @@ function* wakeUpSaga() {
     yield put({
       type: types.GET_IVAS_REQUEST,
     });
+    yield put({
+      type: types.GET_PORCIVA_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.WAKE_UP_FAILED,
