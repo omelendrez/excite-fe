@@ -133,6 +133,9 @@ function* addRemitoSaga(action) {
       payload: record,
     });
     yield put({
+      type: types.GET_REMITOS_REQUEST,
+    });
+    yield put({
       type: types.REMITOS_RESET,
     });
   } catch (error) {
@@ -180,6 +183,9 @@ function* deleteRemitoSaga(action) {
       payload: record,
     });
     yield put({
+      type: types.GET_REMITOS_REQUEST,
+    });
+    yield put({
       type: types.REMITOS_RESET,
     });
   } catch (error) {
@@ -219,6 +225,9 @@ function* addItemSaga(action) {
       type: types.GET_PRODUCTOS_REQUEST,
     });
     yield put({
+      type: types.GET_REMITOS_REQUEST,
+    });
+    yield put({
       type: types.REMITOS_RESET,
     });
   } catch (error) {
@@ -237,11 +246,14 @@ function* updateItemSaga(action) {
       payload: record,
     });
     yield put({
-      type: types.REMITOS_RESET,
-    });
-    yield put({
       type: types.GET_ITEMS_REQUEST,
       id: record.REMNUM,
+    });
+    yield put({
+      type: types.GET_REMITOS_REQUEST,
+    });
+    yield put({
+      type: types.REMITOS_RESET,
     });
   } catch (error) {
     yield put({
@@ -278,6 +290,9 @@ function* deleteItemSaga(action) {
     });
     yield put({
       type: types.GET_PRODUCTOS_REQUEST,
+    });
+    yield put({
+      type: types.GET_REMITOS_REQUEST,
     });
     yield put({
       type: types.REMITOS_RESET,

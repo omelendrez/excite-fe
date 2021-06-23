@@ -8,17 +8,7 @@ import Info from "components/common/Info";
 import Modal from "components/common/Modal";
 import Presupuesto from "components/reportes/presupuesto/Presupuesto";
 import notification from "components/common/notification";
-import {
-  getRemito,
-  getItems,
-  deleteRemito,
-  getClientes,
-  getCliente,
-  getVendedores,
-  getProvincias,
-  getIvas,
-  getTransportes,
-} from "redux/actions";
+import { getRemito, getItems, deleteRemito, getCliente } from "redux/actions";
 import fields from "./fields";
 import { setFields } from "utils/helpers";
 import "./remito.scss";
@@ -28,6 +18,7 @@ const { Panel } = Collapse;
 const Remito = (props) => {
   const dispatch = useDispatch();
   const remitos = useSelector((state) => state.remitos);
+  const { records: clientes } = useSelector((state) => state.clientes);
   const { loading, success, record, error } = remitos;
   const infoDefault = fields.map((field) => ({
     title: field.title,
@@ -42,17 +33,13 @@ const Remito = (props) => {
 
   useEffect(() => {
     if (record && record.REMNUM) {
-      dispatch(getClientes());
-      dispatch(getVendedores());
-      dispatch(getProvincias());
-      dispatch(getIvas());
-      dispatch(getTransportes());
-      dispatch(getCliente(record.CLICOD));
+      const cli = clientes.find((c) => c.CLICOD === record.CLICOD);
+      dispatch(getCliente(cli.ID));
       dispatch(getItems(record.REMNUM));
       const info = setFields(fields, record);
       setInfo(info);
     }
-  }, [dispatch, record]);
+  }, [dispatch, record, clientes]);
 
   useEffect(() => {
     if (success && record.message) {
