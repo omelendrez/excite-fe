@@ -14,13 +14,14 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const InputField = (props) => {
-  const { field, optionsModels } = props;
+  const { field, optionsModels, handleKey } = props;
 
   const commonProps = {
     style: { width: field.type === "amount" ? 180 : field.width },
     readOnly: field.readonly,
     maxLength: field.size,
     rows: field.rows,
+    onKeyDown: handleKey,
   };
 
   const selectProps = {

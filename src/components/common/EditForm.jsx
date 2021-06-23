@@ -14,14 +14,49 @@ const components = {
   Subtipos,
 };
 
+const handleKey = (e) => {
+  const inputs = document.getElementsByTagName("input");
+  let increment = 0;
+  switch (e.code) {
+    case "ArrowDown":
+      increment = 1;
+      break;
+    case "ArrowUp":
+      increment = -1;
+      break;
+    default:
+      return;
+  }
+  let curIndex = 0;
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i] === e.target) {
+      curIndex = i;
+      break;
+    }
+  }
+  if (curIndex >= 0 && curIndex < inputs.length - 1) {
+    inputs[curIndex + increment].focus();
+  }
+};
+
 const EditForm = (props) => {
   const [form] = Form.useForm();
   const [modalVisible, setmodalVisible] = useState(false);
   const [componentName, setComponentName] = useState("");
   const [record, setRecord] = useState({});
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+
+  const handleChange = (change) => {
+    const key = Object.keys(change)[0];
+    const value = Object.values(change)[0];
+    if (record[key] !== value) {
+      setSubmitDisabled(false);
+    }
+  };
 
   const onReset = () => {
     form.resetFields();
+    setSubmitDisabled(true);
   };
 
   const toggleModal = (options) => {
@@ -96,10 +131,12 @@ const EditForm = (props) => {
         wrapperCol={{
           span: props.maximize ? 16 : 8,
         }}
+        onValuesChange={handleChange}
       >
         {props.fields &&
           props.fields.map((field) => (
             <InputField
+              handleKey={handleKey}
               key={field.name}
               field={field}
               record={record}
@@ -109,7 +146,7 @@ const EditForm = (props) => {
           ))}
         <Row>
           <Col offset={props.maximize ? 5 : 2} span={props.maximize ? 6 : 3}>
-            <SaveButton loading={props.loading} />
+            <SaveButton loading={props.loading} disabled={submitDisabled} />
           </Col>
           <Col>
             <ResetButton handleReset={onReset} />
