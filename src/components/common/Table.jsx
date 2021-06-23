@@ -69,6 +69,7 @@ const Table = (props) => {
         sticky={true}
         tableLayout="fixed"
         loading={props.loading}
+        size="small"
         {...newProps}
       />
       <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>
