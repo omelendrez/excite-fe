@@ -8,7 +8,7 @@ import Drawer from "components/common/Drawer";
 import ItemForm from "./ItemForm";
 import { formatAmount } from "utils/helpers";
 import columns from "./itemsColumns";
-import { getItem, cleanItem, getProductos, deleteItem } from "redux/actions";
+import { getItem, cleanItem, deleteItem } from "redux/actions";
 
 const { Text } = Typography;
 
@@ -18,10 +18,6 @@ const Remitos = (props) => {
   const { loading, items, item, error, success } = remitos;
   const [showDrawer, setShowDrawer] = useState(false);
   const [currentItem, setCurrentItem] = useState({});
-
-  useEffect(() => {
-    dispatch(getProductos());
-  }, [dispatch]);
 
   useEffect(() => {
     setCurrentItem(item);
