@@ -205,6 +205,9 @@ function* addPagoSaga(action) {
       payload: record,
     });
     yield put({
+      type: types.GET_PAGOS_REQUEST,
+    });
+    yield put({
       type: types.PAGOS_RESET,
     });
   } catch (error) {
@@ -221,6 +224,9 @@ function* deletePagoSaga(action) {
     yield put({
       type: types.DELETE_PAGO_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.GET_PAGOS_REQUEST,
     });
     yield put({
       type: types.PAGOS_RESET,
@@ -263,6 +269,9 @@ function* addPagoRemitoSaga(action) {
       id: state.pagos.record.ID,
     });
     yield put({
+      type: types.GET_PAGOS_REQUEST,
+    });
+    yield put({
       type: types.PAGOS_RESET,
     });
   } catch (error) {
@@ -286,6 +295,9 @@ function* updatePagoRemitoSaga(action) {
       id: state.pagos.record.ID,
     });
     yield put({
+      type: types.GET_PAGOS_REQUEST,
+    });
+    yield put({
       type: types.PAGOS_RESET,
     });
   } catch (error) {
@@ -307,6 +319,9 @@ function* deletePagoRemitoSaga(action) {
     yield put({
       type: types.GET_PAGO_REQUEST,
       id: state.pagos.record.ID,
+    });
+    yield put({
+      type: types.GET_PAGOS_REQUEST,
     });
     yield put({
       type: types.PAGOS_RESET,
@@ -360,6 +375,9 @@ function* addPagoValorSaga(action) {
       id: state.pagos.record.ID,
     });
     yield put({
+      type: types.GET_PAGOS_REQUEST,
+    });
+    yield put({
       type: types.PAGOS_RESET,
     });
   } catch (error) {
@@ -391,6 +409,9 @@ function* updatePagoValorSaga(action) {
       id: state.pagos.record.ID,
     });
     yield put({
+      type: types.GET_PAGOS_REQUEST,
+    });
+    yield put({
       type: types.PAGOS_RESET,
     });
   } catch (error) {
@@ -419,6 +440,9 @@ function* deletePagoValorSaga(action) {
     yield put({
       type: types.GET_PAGO_REQUEST,
       id: state.pagos.record.ID,
+    });
+    yield put({
+      type: types.GET_PAGOS_REQUEST,
     });
     yield put({
       type: types.PAGOS_RESET,

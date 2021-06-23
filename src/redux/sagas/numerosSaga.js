@@ -87,6 +87,9 @@ function* addNumeroSaga(action) {
       type: types.ADD_NUMERO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_NUMEROS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_NUMERO_FAILED,
@@ -102,6 +105,9 @@ function* updateNumeroSaga(action) {
       type: types.UPDATE_NUMERO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_NUMEROS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_NUMERO_FAILED,
@@ -116,6 +122,9 @@ function* deleteNumeroSaga(action) {
     yield put({
       type: types.DELETE_NUMERO_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.GET_NUMEROS_REQUEST,
     });
   } catch (error) {
     yield put({

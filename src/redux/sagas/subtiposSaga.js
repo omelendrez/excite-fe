@@ -84,6 +84,9 @@ function* addSubtipoSaga(action) {
       type: types.ADD_SUBTIPO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_SUBTIPOS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_SUBTIPO_FAILED,
@@ -99,6 +102,9 @@ function* updateSubtipoSaga(action) {
       type: types.UPDATE_SUBTIPO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_SUBTIPOS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_SUBTIPO_FAILED,
@@ -113,6 +119,9 @@ function* deleteSubtipoSaga(action) {
     yield put({
       type: types.DELETE_SUBTIPO_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.GET_SUBTIPOS_REQUEST,
     });
   } catch (error) {
     yield put({

@@ -110,6 +110,9 @@ function* addVendedorSaga(action) {
       type: types.ADD_VENDEDOR_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_VENDEDORES_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_VENDEDOR_FAILED,
@@ -125,6 +128,9 @@ function* updateVendedorSaga(action) {
       type: types.UPDATE_VENDEDOR_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_VENDEDORES_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_VENDEDOR_FAILED,
@@ -139,6 +145,9 @@ function* deleteVendedorSaga(action) {
     yield put({
       type: types.DELETE_VENDEDOR_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.GET_VENDEDORES_REQUEST,
     });
   } catch (error) {
     yield put({

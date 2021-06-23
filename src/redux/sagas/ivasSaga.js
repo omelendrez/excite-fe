@@ -86,6 +86,9 @@ function* addIvaSaga(action) {
       type: types.ADD_IVA_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_IVAS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_IVA_FAILED,
@@ -101,6 +104,9 @@ function* updateIvaSaga(action) {
       type: types.UPDATE_IVA_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_IVAS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_IVA_FAILED,
@@ -115,6 +121,9 @@ function* deleteIvaSaga(action) {
     yield put({
       type: types.DELETE_IVA_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.GET_IVAS_REQUEST,
     });
   } catch (error) {
     yield put({

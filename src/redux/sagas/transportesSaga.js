@@ -87,6 +87,9 @@ function* addTransporteSaga(action) {
       type: types.ADD_TRANSPORTE_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_TRANSPORTES_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_TRANSPORTE_FAILED,
@@ -102,6 +105,9 @@ function* updateTransporteSaga(action) {
       type: types.UPDATE_TRANSPORTE_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_TRANSPORTES_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_TRANSPORTE_FAILED,
@@ -116,6 +122,9 @@ function* deleteTransporteSaga(action) {
     yield put({
       type: types.DELETE_TRANSPORTE_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.GET_TRANSPORTES_REQUEST,
     });
   } catch (error) {
     yield put({

@@ -87,6 +87,9 @@ function* addProductoSaga(action) {
       type: types.ADD_PRODUCTO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_PRODUCTOS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_PRODUCTO_FAILED,
@@ -102,6 +105,9 @@ function* updateProductoSaga(action) {
       type: types.UPDATE_PRODUCTO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_PRODUCTOS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_PRODUCTO_FAILED,
@@ -116,6 +122,9 @@ function* deleteProductoSaga(action) {
     yield put({
       type: types.DELETE_PRODUCTO_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.GET_PRODUCTOS_REQUEST,
     });
   } catch (error) {
     yield put({

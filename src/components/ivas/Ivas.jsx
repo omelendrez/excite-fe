@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Layout } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Table from "components/common/Table";
 import Alert from "components/common/Alert";
 import { createNewRecord } from "utils/helpers";
-import { getIvas } from "redux/actions";
 import columns from "./columns";
 import fields from "./fields";
 
 const Ivas = () => {
-  const dispatch = useDispatch();
   const ivas = useSelector((state) => state.ivas);
   const { loading, records, error } = ivas;
   const [url, setUrl] = useState("");
-
-  useEffect(() => {
-    dispatch(getIvas());
-  }, [dispatch]);
 
   const onAdd = () => {
     setUrl(`/ivas/add/iva`);

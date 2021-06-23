@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Layout } from "antd";
 import { Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Table from "components/common/Table";
 import Alert from "components/common/Alert";
-import { getPagos, getClientes } from "redux/actions";
 import { columns } from "./columns.js";
 import { fields } from "./fields";
 import { createNewRecord } from "utils/helpers";
 
 const Pagos = () => {
-  const dispatch = useDispatch();
   const pagos = useSelector((state) => state.pagos);
   const { loading, records, error } = pagos;
   const [url, setUrl] = useState("");
-
-  useEffect(() => {
-    dispatch(getPagos());
-    dispatch(getClientes());
-  }, [dispatch]);
 
   const onAdd = () => {
     setUrl(`/pagos/add/pago`);

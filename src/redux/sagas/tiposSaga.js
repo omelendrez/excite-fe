@@ -110,6 +110,9 @@ function* addTipoSaga(action) {
       type: types.ADD_TIPO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_TIPOS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_TIPO_FAILED,
@@ -125,6 +128,9 @@ function* updateTipoSaga(action) {
       type: types.UPDATE_TIPO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_TIPOS_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_TIPO_FAILED,
@@ -139,6 +145,9 @@ function* deleteTipoSaga(action) {
     yield put({
       type: types.DELETE_TIPO_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.GET_TIPOS_REQUEST,
     });
   } catch (error) {
     yield put({

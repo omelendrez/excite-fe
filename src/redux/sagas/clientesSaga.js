@@ -119,6 +119,9 @@ function* addClienteSaga(action) {
       type: types.ADD_CLIENTE_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_CLIENTES_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.ADD_CLIENTE_FAILED,
@@ -134,6 +137,9 @@ function* updateClienteSaga(action) {
       type: types.UPDATE_CLIENTE_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_CLIENTES_REQUEST,
+    });
   } catch (error) {
     yield put({
       type: types.UPDATE_CLIENTE_FAILED,
@@ -148,6 +154,9 @@ function* deleteClienteSaga(action) {
     yield put({
       type: types.DELETE_CLIENTE_SUCCESS,
       payload: record,
+    });
+    yield put({
+      type: types.GET_CLIENTES_REQUEST,
     });
   } catch (error) {
     yield put({
