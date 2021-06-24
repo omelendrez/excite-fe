@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Layout, Table as AntdTable, Typography } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
-import Table from "components/common/Table";
+import EditableTable from "components/common/EditableTable";
 import Alert from "components/common/Alert";
 import Drawer from "components/common/Drawer";
 import ItemForm from "./ItemForm";
 import { formatAmount } from "utils/helpers";
-import columns from "./itemsColumns";
-import { getItem, cleanItem, deleteItem } from "redux/actions";
+// import columns from "./itemsColumns";
+// import { getItem, cleanItem, deleteItem } from "redux/actions";
+import { cleanItem } from "redux/actions";
 
 const { Text } = Typography;
 
@@ -32,14 +33,14 @@ const Remitos = (props) => {
     setShowDrawer(false);
   };
 
-  const handleEdit = (record) => {
-    dispatch(getItem(record.ID));
-    setShowDrawer(true);
-  };
+  // const handleEdit = (record) => {
+  //   dispatch(getItem(record.ID));
+  //   setShowDrawer(true);
+  // };
 
-  const handleDelete = (record) => {
-    dispatch(deleteItem(record));
-  };
+  // const handleDelete = (record) => {
+  //   dispatch(deleteItem(record));
+  // };
 
   const summary = (pageData) => {
     let totalAmount = 0;
@@ -59,7 +60,6 @@ const Remitos = (props) => {
 
   const tableProps = {
     loading,
-    columns: columns({ handleEdit: handleEdit, handleDelete: handleDelete }),
     dataSource: items,
     rowKey: "ID",
     onAdd: onAdd,
@@ -70,10 +70,9 @@ const Remitos = (props) => {
   return (
     <>
       <Layout>
-        <Header title="Items" />
+        <Header />
         {error && <Alert message="Error" description={error} type="error" />}
-
-        <Table {...tableProps} />
+        {!loading && <EditableTable {...tableProps} />}
       </Layout>
       <Drawer
         isDrawerVisible={showDrawer}
