@@ -15,7 +15,7 @@ const { Option } = Select;
 
 const InputField = (props) => {
   const { field, optionsModels, handleKey } = props;
-  console.log(props);
+
   const commonProps = {
     style: { width: field.type === "amount" ? 180 : field.width },
     readOnly: field.readonly,
@@ -23,6 +23,7 @@ const InputField = (props) => {
     rows: field.rows,
     onKeyDown: handleKey,
     rules: field.rules,
+    aligh: field.aligh,
   };
 
   const selectProps = {

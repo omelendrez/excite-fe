@@ -6,10 +6,7 @@ export const sortColumn = (a, b, fieldName) =>
   a[fieldName] < b[fieldName] ? -1 : a[fieldName] > b[fieldName] ? 1 : 0;
 
 export const formatAmount = (value = 0) =>
-  value.toLocaleString("es-AR", {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  });
+  `$ ${value.toFixed(2)}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 export const formatDate = (date) => moment(date).format("L");
 export const formatDateNow = () => moment().format("DD/MM/YY");

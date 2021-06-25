@@ -9,6 +9,7 @@ const AddButton = (props) => {
       icon={<PlusOutlined />}
       onClick={props.onAdd}
       shape="round"
+      disabled={props.disabled}
     >
       Agregar
     </Button>
