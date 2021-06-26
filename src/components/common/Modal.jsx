@@ -5,8 +5,7 @@ const Modal = (props) => {
   const { title, isModalVisible, onClose, width, okText, onOk } = props;
   return (
     <AntdModal
-      style={{ top: 20 }}
-      width={width || "40vw"}
+      width={width}
       title={title || ""}
       visible={isModalVisible}
       onCancel={onClose}

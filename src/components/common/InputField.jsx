@@ -20,10 +20,10 @@ const InputField = (props) => {
     style: { width: field.type === "amount" ? 180 : field.width },
     readOnly: field.readonly,
     maxLength: field.size,
-    rows: field.rows,
     onKeyDown: handleKey,
     rules: field.rules,
     aligh: field.aligh,
+    rows: field.rows, // textarea
   };
 
   const selectProps = {

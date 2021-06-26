@@ -8,6 +8,7 @@ import PrintButton from "./PrintButton";
 import PaymentsButton from "./PaymentsButton";
 import ConceptsButton from "./ConceptsButton";
 import QuotationsButton from "./QuotationsButton";
+import PriceButton from "./PriceButton";
 import { formatDate, formatAmount } from "utils/helpers";
 import "./info.css";
 
@@ -79,6 +80,11 @@ const Info = (props) => {
         {props.onPayments && (
           <Col>
             <PaymentsButton handlePayments={props.onPayments} />
+          </Col>
+        )}
+        {props.onPrice && (
+          <Col>
+            <PriceButton onPrice={props.onPrice} />
           </Col>
         )}
         {props.onDelete && (

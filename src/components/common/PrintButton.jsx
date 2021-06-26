@@ -9,7 +9,7 @@ const PrintButton = (props) => {
   return (
     <Button
       icon={<PrinterOutlined />}
-      onClick={props.handlePrint || noHandlePrint}
+      onClick={props.onPrint || noHandlePrint}
       shape="round"
     >
       Imprimir
