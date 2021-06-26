@@ -41,3 +41,11 @@ export const deleteTipo = (id) => {
     id,
   };
 };
+
+export const changePrice = (id, newData) => {
+  return {
+    type: types.CHANGE_PRICE_REQUEST,
+    id,
+    newData,
+  };
+};

@@ -4,6 +4,7 @@ const initialState = {
   records: [],
   record: {},
   subtipos: [],
+  changedPrices: 0,
   loading: false,
   error: null,
 };
@@ -112,6 +113,30 @@ const tiposReducer = (state = initialState, action) => {
         success: false,
         error: action.payload,
       };
+    case types.CHANGE_PRICE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        success: false,
+        changedPrices: 0,
+        error: null,
+      };
+    case types.CHANGE_PRICE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        changedPrices: action.payload.affectedRows,
+        error: null,
+      };
+    case types.CHANGE_PRICE_FAILED:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        changedPrices: 0,
+        error: action.payload,
+      };
     case types.DELETE_TIPO_REQUEST:
       return {
         ...state,
@@ -133,6 +158,14 @@ const tiposReducer = (state = initialState, action) => {
         loading: false,
         success: false,
         error: action.payload,
+      };
+    case types.TIPOS_RESET:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        changedPrices: 0,
+        error: null,
       };
 
     default:

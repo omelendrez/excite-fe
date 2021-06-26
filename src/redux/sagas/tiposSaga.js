@@ -50,6 +50,14 @@ function updateTipo(newData) {
     });
 }
 
+function changePrice(newData) {
+  return updateRecord(`${endpoint}/update-price`, newData)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 function deleteTipo(id) {
   return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
@@ -139,6 +147,27 @@ function* updateTipoSaga(action) {
   }
 }
 
+function* changePriceSaga(action) {
+  try {
+    const record = yield call(changePrice, action.newData);
+    yield put({
+      type: types.CHANGE_PRICE_SUCCESS,
+      payload: record,
+    });
+    yield put({
+      type: types.GET_PRODUCTOS_REQUEST,
+    });
+    yield put({
+      type: types.TIPOS_RESET,
+    });
+  } catch (error) {
+    yield put({
+      type: types.CHANGE_PRICE_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
 function* deleteTipoSaga(action) {
   try {
     const record = yield call(deleteTipo, action.id);
@@ -163,6 +192,7 @@ function* tiposSaga() {
   yield takeEvery(types.GET_TIPO_REQUEST, fetchTipoSaga);
   yield takeEvery(types.ADD_TIPO_REQUEST, addTipoSaga);
   yield takeEvery(types.UPDATE_TIPO_REQUEST, updateTipoSaga);
+  yield takeEvery(types.CHANGE_PRICE_REQUEST, changePriceSaga);
   yield takeEvery(types.DELETE_TIPO_REQUEST, deleteTipoSaga);
 }
 
