@@ -27,21 +27,29 @@ const columns = () => {
         </Link>
       ),
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       title: "Domicilio",
       dataIndex: "TRADOM",
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       title: "Localidad",
       dataIndex: "TRALOC",
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       title: "Teléfono",
       dataIndex: "TRATEL",
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "TRAEST",

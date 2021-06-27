@@ -29,13 +29,16 @@ export const columns = [
     title: "Cliente",
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
+    ellipsis: true,
+    width: 220,
   },
   {
     dataIndex: "VENNOM",
     title: "Vendedor",
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "VENNOM"),
-    width: 300,
+    ellipsis: true,
+    width: 220,
   },
   {
     dataIndex: "REMQTY",

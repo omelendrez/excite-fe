@@ -29,13 +29,14 @@ const columns = () => {
         ) : (
           text
         ),
-      width: 300,
+      ellipsis: true,
+      width: 220,
     },
     {
       title: "Subtipos",
       dataIndex: "SUBTIPOS",
       align: "center",
-      width: 90,
+      width: 120,
     },
     {
       dataIndex: "TIPEST",

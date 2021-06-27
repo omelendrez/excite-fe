@@ -15,7 +15,8 @@ const columns = () => [
       </Link>
     ),
     searchable: true,
-    width: 200,
+    ellipsis: true,
+    width: 220,
   },
   {
     title: "Número",

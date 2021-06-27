@@ -15,8 +15,7 @@ const columns = () => {
       title: "Código",
       dataIndex: "VENCOD",
       searchable: true,
-      width: 90,
-      align: "center",
+      width: 80,
     },
     {
       title: "Nombre",
@@ -28,21 +27,31 @@ const columns = () => {
           {text || "*** sin nombre ***"}
         </Link>
       ),
+      ellipsis: true,
+      width: 220,
     },
     {
       title: "Domicilio",
       dataIndex: "VENDOM",
       searchable: true,
+      ellipsis: true,
+      width: 220,
+      ellipsis: true,
+      width: 220,
     },
     {
       title: "Localidad",
       dataIndex: "VENLOC",
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       title: "Teléfono",
       dataIndex: "VENTEL",
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "VENEST",

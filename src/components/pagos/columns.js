@@ -26,7 +26,8 @@ export const columns = [
     dataIndex: "CLINOM",
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
     searchable: true,
-    width: 300,
+    ellipsis: true,
+    width: 220,
   },
   {
     title: "Total",

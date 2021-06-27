@@ -7,7 +7,7 @@ import Table from "components/common/Table";
 import Alert from "components/common/Alert";
 import { createNewRecord } from "utils/helpers";
 import fields from "./fields";
-import columns from "./columns";
+import { columns } from "./columns";
 
 const Clientes = () => {
   const clientes = useSelector((state) => state.clientes);

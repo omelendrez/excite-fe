@@ -1,6 +1,8 @@
-import { Tag } from "antd";
+import { Tag, Space } from "antd";
 import { Link } from "react-router-dom";
-import { sortColumn, statuses } from "utils/helpers";
+import EditButton from "components/common/EditButton";
+import DeleteButton from "components/common/DeleteButton";
+import { sortColumn, statuses, formatAmount } from "utils/helpers";
 
 export const columns = () => {
   const status = statuses
@@ -27,21 +29,29 @@ export const columns = () => {
         </Link>
       ),
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "CLIDOM",
       title: "Domicilio",
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "CLILOC",
       title: "Localidad",
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "CLITEL",
       title: "Teléfono",
       searchable: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "CLIEST",
@@ -66,4 +76,35 @@ export const columns = () => {
   ];
 };
 
-export default columns;
+export const tiposColumns = (props) => {
+  return [
+    {
+      dataIndex: "TIPCOD",
+      title: "Código",
+      searchable: true,
+      width: 80,
+    },
+    {
+      dataIndex: "TIPDES",
+      title: "Descripción",
+      searchable: true,
+      ellipsis: true,
+      width: 300,
+    },
+    {
+      dataIndex: "CLIPRODPRE",
+      title: "Precio especial",
+      align: "right",
+      render: (text) => formatAmount(text),
+    },
+    {
+      dataIndex: "actions",
+      render: (text, record) => (
+        <Space>
+          <EditButton handleEdit={() => props.handleEdit(record)} />
+          <DeleteButton handleDelete={() => props.handleDelete(record)} />
+        </Space>
+      ),
+    },
+  ];
+};

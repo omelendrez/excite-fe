@@ -58,7 +58,6 @@ const Tipo = (props) => {
         type: "error",
       });
     }
-    return function () {};
   }, [success, record, error, props.history]);
 
   useEffect(() => {

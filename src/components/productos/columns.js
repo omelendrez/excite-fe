@@ -42,6 +42,8 @@ const columns = (props) => {
           {text || "*** sin descripción ***"}
         </Link>
       ),
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "TIPDES",
@@ -50,6 +52,8 @@ const columns = (props) => {
       sorter: (a, b) => sortColumn(a, b, "TIPDES"),
       onFilter: (value, record) => record.TIPCOD === value,
       filters: tipos,
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "SUBTIPDES",
@@ -58,6 +62,8 @@ const columns = (props) => {
       sorter: (a, b) => sortColumn(a, b, "SUBTIPDES"),
       onFilter: (value, record) => record.SUBTIPCOD === value,
       filters: subtipos,
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "PRODSTO",

@@ -23,11 +23,15 @@ const columns = () => [
     dataIndex: "CLINOM",
     title: "Cliente",
     searchable: true,
+    ellipsis: true,
+    width: 220,
   },
   {
     dataIndex: "CONDES",
     title: "Concepto",
     searchable: true,
+    ellipsis: true,
+    width: 220,
   },
   {
     title: "Importe",

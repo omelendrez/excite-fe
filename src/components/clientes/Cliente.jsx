@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Layout } from "antd";
+import { Layout, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
-import notification from "components/common/notification";
+import Table from "components/common/Table";
 import Info from "components/common/Info";
+import notification from "components/common/notification";
 import { getCliente, deleteCliente } from "redux/actions";
 import fields from "./fields";
 import { setFields } from "utils/helpers";
+import { tiposColumns } from "./columns";
+
+const { TabPane } = Tabs;
 
 const Cliente = (props) => {
   const dispatch = useDispatch();
   const clientes = useSelector((state) => state.clientes);
-  const { loading, success, record, error } = clientes;
+  const { loading, success, record, error, tipos } = clientes;
   const [url, setUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
@@ -57,6 +61,14 @@ const Cliente = (props) => {
     console.log("Payments");
   };
 
+  const handleQuotations = () => {
+    console.log("Quotations");
+  };
+
+  const handleConcepts = () => {
+    console.log("Concepts");
+  };
+
   if (!!url) {
     return (
       <Redirect
@@ -66,27 +78,56 @@ const Cliente = (props) => {
     );
   }
 
+  const onEdit = (record) => {
+    console.log(record);
+  };
+
+  const onAdd = () => {
+    console.log("Adding tipo");
+  };
+
+  const onDelete = (record) => {
+    console.log(record);
+  };
+
+  const tiposTableProps = {
+    loading,
+    columns: tiposColumns({ handleEdit: onEdit, handleDelete: onDelete }),
+    dataSource: tipos,
+    rowKey: "ID",
+    onAdd,
+  };
+
   return (
     <Layout>
       <Header
-        title={"Cliente"}
+        title={`Cliente ${record.CLINOM}`}
         onBack={props.history.goBack}
         loading={loading}
       />
       {error && <Alert message="Error" description={error} type="error" />}
-      <Info
-        title={`${info[0].value} - ${info[2].value}`}
-        fields={fields}
-        data={info}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        onPayments={handlePayments}
-        onQuotations={handlePayments}
-        onConcepts={handlePayments}
-        success={success}
-        history={props.history}
-        loading={loading}
-      />
+      <Tabs tabPosition="right">
+        <TabPane tab="Info" key="1">
+          <Info
+            title={`${info[0].value} - ${info[2].value}`}
+            fields={fields}
+            data={info}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onPayments={handlePayments}
+            onQuotations={handleQuotations}
+            onConcepts={handleConcepts}
+            success={success}
+            history={props.history}
+            loading={loading}
+          />
+        </TabPane>
+        {tipos.length && (
+          <TabPane tab={`Precios especiales (${tipos.length})`} key="2">
+            <Table {...tiposTableProps} />
+          </TabPane>
+        )}
+      </Tabs>
     </Layout>
   );
 };

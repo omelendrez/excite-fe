@@ -23,7 +23,8 @@ const columns = () => [
     title: "Producto",
     render: (text, record) => `${record.PRODCOD} - ${record.PRODDES}`,
     searchable: true,
-    width: 300,
+    ellipsis: true,
+    width: 220,
   },
   {
     dataIndex: "AJUCAN",
