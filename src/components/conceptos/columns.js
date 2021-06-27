@@ -20,18 +20,24 @@ const columns = () => [
     align: "center",
   },
   {
+    dataIndex: "CONCLI",
+    title: "Código",
+    searchable: true,
+    width: 80,
+  },
+  {
     dataIndex: "CLINOM",
     title: "Cliente",
     searchable: true,
     ellipsis: true,
-    width: 220,
+    width: 180,
   },
   {
     dataIndex: "CONDES",
     title: "Concepto",
     searchable: true,
     ellipsis: true,
-    width: 220,
+    width: 180,
   },
   {
     title: "Importe",

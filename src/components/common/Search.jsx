@@ -3,15 +3,17 @@ import { Input } from "antd";
 const { Search: AntdSearch } = Input;
 
 const Search = (props) => {
-  const onSearch = (text) => {
-    props.onSearch(text);
+  const handleChange = (e) => {
+    const search = e.target?.value || "";
+    props.onSearch(search);
   };
   return (
     <AntdSearch
       className="search"
       placeholder={`Buscar por ${props.searchPlaceholder}`}
-      onSearch={onSearch}
+      onSearch={handleChange}
       allowClear
+      onChange={handleChange}
       style={{ width: 500, marginBottom: 10 }}
     />
   );

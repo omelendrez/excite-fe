@@ -43,7 +43,7 @@ const columns = (props) => {
         </Link>
       ),
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       dataIndex: "TIPDES",
@@ -53,7 +53,7 @@ const columns = (props) => {
       onFilter: (value, record) => record.TIPCOD === value,
       filters: tipos,
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       dataIndex: "SUBTIPDES",
@@ -63,7 +63,7 @@ const columns = (props) => {
       onFilter: (value, record) => record.SUBTIPCOD === value,
       filters: subtipos,
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       dataIndex: "PRODSTO",

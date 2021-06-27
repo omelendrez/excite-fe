@@ -22,12 +22,18 @@ export const columns = [
     align: "center",
   },
   {
+    dataIndex: "CLICOD",
+    title: "Código",
+    searchable: true,
+    width: 80,
+  },
+  {
     title: "Cliente",
     dataIndex: "CLINOM",
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
     searchable: true,
     ellipsis: true,
-    width: 220,
+    width: 180,
   },
   {
     title: "Total",

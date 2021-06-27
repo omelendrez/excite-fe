@@ -10,7 +10,7 @@ const itemsColumns = (props) => {
       title: "Producto",
       searchable: true,
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       dataIndex: "REMCAN",

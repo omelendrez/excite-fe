@@ -47,7 +47,7 @@ export const columns = (props) => {
       ),
       searchable: true,
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       dataIndex: "SUBTIPEST",

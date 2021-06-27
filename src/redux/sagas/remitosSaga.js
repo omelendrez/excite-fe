@@ -253,10 +253,10 @@ function* updateItemSaga(action) {
       id: record.REMNUM,
     });
     yield put({
-      type: types.GET_REMITOS_REQUEST,
+      type: types.GET_PRODUCTOS_REQUEST,
     });
     yield put({
-      type: types.REMITOS_RESET,
+      type: types.GET_REMITOS_REQUEST,
     });
   } catch (error) {
     yield put({

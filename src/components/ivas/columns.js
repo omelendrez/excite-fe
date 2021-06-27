@@ -27,7 +27,7 @@ const columns = () => {
       ),
       searchable: true,
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       dataIndex: "IVAEST",

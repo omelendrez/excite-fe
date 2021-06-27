@@ -28,28 +28,28 @@ const columns = () => {
         </Link>
       ),
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       title: "Domicilio",
       dataIndex: "VENDOM",
       searchable: true,
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       title: "Localidad",
       dataIndex: "VENLOC",
       searchable: true,
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       title: "Teléfono",
       dataIndex: "VENTEL",
       searchable: true,
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       dataIndex: "VENEST",

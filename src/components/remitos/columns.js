@@ -25,12 +25,24 @@ export const columns = [
     width: 200,
   },
   {
+    dataIndex: "CLICOD",
+    title: "Código",
+    searchable: true,
+    width: 80,
+  },
+  {
     dataIndex: "CLINOM",
     title: "Cliente",
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
     ellipsis: true,
-    width: 220,
+    width: 180,
+  },
+  {
+    dataIndex: "VENCOD",
+    title: "Código",
+    searchable: true,
+    width: 80,
   },
   {
     dataIndex: "VENNOM",
@@ -38,7 +50,7 @@ export const columns = [
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "VENNOM"),
     ellipsis: true,
-    width: 220,
+    width: 180,
   },
   {
     dataIndex: "REMQTY",

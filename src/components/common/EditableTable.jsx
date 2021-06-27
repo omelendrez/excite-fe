@@ -177,7 +177,7 @@ const EditableTable = (props) => {
       title: "Descripción",
       hideOnEdit: true,
       ellipsis: true,
-      width: 220,
+      width: 180,
     },
     {
       dataIndex: "REMCAN",
@@ -256,25 +256,23 @@ const EditableTable = (props) => {
     },
   ];
 
-  const mergedColumns = columns
-    //.filter((c) => (editingKey !== "" && !c.hideOnEdit) || editingKey === "")
-    .map((col) => {
-      if (!col.editable) {
-        return col;
-      }
-      return {
-        ...col,
-        onCell: (record) => ({
-          record,
-          inputType: col.inputType,
-          dataIndex: col.dataIndex,
-          title: col.title,
-          editing: isEditing(record),
-          optionsModels: col.optionsModels,
-          options: col.options,
-        }),
-      };
-    });
+  const mergedColumns = columns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+    return {
+      ...col,
+      onCell: (record) => ({
+        record,
+        inputType: col.inputType,
+        dataIndex: col.dataIndex,
+        title: col.title,
+        editing: isEditing(record),
+        optionsModels: col.optionsModels,
+        options: col.options,
+      }),
+    };
+  });
 
   return (
     <Form form={form} component={false}>

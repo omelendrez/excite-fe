@@ -19,12 +19,17 @@ const columns = () => [
     align: "center",
   },
   {
+    dataIndex: "PRODCOD",
+    title: "Código",
+    searchable: true,
+    width: 80,
+  },
+  {
     dataIndex: "PRODDES",
     title: "Producto",
-    render: (text, record) => `${record.PRODCOD} - ${record.PRODDES}`,
     searchable: true,
     ellipsis: true,
-    width: 220,
+    width: 180,
   },
   {
     dataIndex: "AJUCAN",
