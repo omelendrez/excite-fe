@@ -9,7 +9,7 @@ import { createNewRecord } from "utils/helpers";
 import columns from "./columns";
 import fields from "./fields";
 
-const Ivas = () => {
+const Ivas = (props) => {
   const ivas = useSelector((state) => state.ivas);
   const { loading, records, error } = ivas;
   const [url, setUrl] = useState("");
@@ -43,7 +43,7 @@ const Ivas = () => {
 
   return (
     <Layout>
-      <Header title="Ivas" />
+      <Header title="Ivas" onBack={props.history.goBack} />
       {error && <Alert message="Error" description={error} type="error" />}
 
       <Table {...tableProps} />

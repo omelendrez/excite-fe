@@ -9,7 +9,7 @@ import { createNewRecord } from "utils/helpers";
 import columns from "./columns";
 import fields from "./fields";
 
-const Subtipos = () => {
+const Subtipos = (props) => {
   const subtipos = useSelector((state) => state.subtipos);
   const tipos = useSelector((state) => state.tipos);
   const [url, setUrl] = useState("");
@@ -49,7 +49,7 @@ const Subtipos = () => {
 
   return (
     <Layout>
-      <Header title="Subtipos" />
+      <Header title="Subtipos" onBack={props.history.goBack} />
 
       {error && <Alert message="Error" description={error} type="error" />}
 

@@ -1,9 +1,10 @@
 import React from "react";
 import { Layout, Spin } from "antd";
 import { useSelector } from "react-redux";
+import Header from "./common/Header";
 import "./home.css";
 
-const Home = () => {
+const Home = (props) => {
   const { loading } = useSelector((state) => state.wakeUp);
 
   return (
@@ -13,7 +14,10 @@ const Home = () => {
           <Spin size="large" />
         </div>
       )}
-      <Layout>{!loading && <div className="home" />}</Layout>
+      <Layout>
+        <Header title="Home" />
+        {!loading && <div className="home" />}
+      </Layout>
     </>
   );
 };

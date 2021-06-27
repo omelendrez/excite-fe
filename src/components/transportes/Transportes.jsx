@@ -9,7 +9,7 @@ import { createNewRecord } from "utils/helpers";
 import fields from "./fields";
 import columns from "./columns";
 
-const Transportes = () => {
+const Transportes = (props) => {
   const transportes = useSelector((state) => state.transportes);
   const [url, setUrl] = useState("");
   const { loading, records, error } = transportes;
@@ -48,7 +48,7 @@ const Transportes = () => {
 
   return (
     <Layout>
-      <Header title="Transportes" />
+      <Header title="Transportes" onBack={props.history.goBack} />
       {error && <Alert message="Error" description={error} type="error" />}
       <Table {...tableProps} />
     </Layout>

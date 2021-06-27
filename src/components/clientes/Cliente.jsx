@@ -58,15 +58,15 @@ const Cliente = (props) => {
   };
 
   const handlePayments = () => {
-    console.log("Payments");
+    setUrl("/pagos");
   };
 
   const handleQuotations = () => {
-    console.log("Quotations");
+    setUrl("/remitos");
   };
 
   const handleConcepts = () => {
-    console.log("Concepts");
+    setUrl("/conceptos");
   };
 
   if (!!url) {

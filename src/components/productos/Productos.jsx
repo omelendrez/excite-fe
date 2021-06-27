@@ -9,7 +9,7 @@ import { createNewRecord } from "utils/helpers";
 import fields from "./fields";
 import columns from "./columns";
 
-const Productos = () => {
+const Productos = (props) => {
   const productos = useSelector((state) => state.productos);
   const tipos = useSelector((state) => state.tipos);
   const subtipos = useSelector((state) => state.subtipos);
@@ -51,7 +51,7 @@ const Productos = () => {
 
   return (
     <Layout>
-      <Header title="Productos" />
+      <Header title="Productos" onBack={props.history.goBack} />
       {error && <Alert message="Error" description={error} type="error" />}
 
       <Table {...tableProps} />

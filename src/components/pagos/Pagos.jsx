@@ -9,7 +9,7 @@ import { columns } from "./columns.js";
 import { fields } from "./fields";
 import { createNewRecord } from "utils/helpers";
 
-const Pagos = () => {
+const Pagos = (props) => {
   const pagos = useSelector((state) => state.pagos);
   const { loading, records, error } = pagos;
   const [url, setUrl] = useState("");
@@ -48,7 +48,7 @@ const Pagos = () => {
 
   return (
     <Layout>
-      <Header title="Pagos" />
+      <Header title="Pagos" onBack={props.history.goBack} />
       {error && <Alert message="Error" description={error} type="error" />}
 
       <Table {...tableProps} />

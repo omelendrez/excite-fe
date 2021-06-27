@@ -6,7 +6,7 @@ import Table from "components/common/Table";
 import Alert from "components/common/Alert";
 const { columns } = require(`./columns`);
 
-const Porciva = () => {
+const Porciva = (props) => {
   const porciva = useSelector((state) => state.porciva);
   const { loading, records, error } = porciva;
 
@@ -19,7 +19,7 @@ const Porciva = () => {
 
   return (
     <Layout>
-      <Header title="Porciva" />
+      <Header title="Porciva" onBack={props.history.goBack} />
       {error && <Alert message="Error" description={error} type="error" />}
 
       <Table {...tableProps} />

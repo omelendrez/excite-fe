@@ -9,7 +9,7 @@ import { createNewRecord } from "utils/helpers";
 import fields from "./fields";
 import columns from "./columns";
 
-const Numeros = () => {
+const Numeros = (props) => {
   const numeros = useSelector((state) => state.numeros);
   const [url, setUrl] = useState("");
   const { loading, records, error } = numeros;
@@ -43,7 +43,7 @@ const Numeros = () => {
 
   return (
     <Layout>
-      <Header title="Números" />
+      <Header title="Números" onBack={props.history.goBack} />
       {error && <Alert message="Error" description={error} type="error" />}
 
       <Table {...tableProps} />
