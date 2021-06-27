@@ -14,7 +14,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const InputField = (props) => {
-  const { field, optionsModels, setIsModalVisible } = props;
+  const { field, optionsModels, handleModal, defaultOpen } = props;
 
   const handleKey = (e) => {
     const inputs = document.getElementsByTagName("input");
@@ -26,7 +26,7 @@ const InputField = (props) => {
         increment = 1;
         break;
       case "F4":
-        setIsModalVisible && setIsModalVisible(true);
+        handleModal && handleModal();
         break;
       default:
         return;
@@ -130,7 +130,12 @@ const InputField = (props) => {
     case "select":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <Select {...selectProps} {...commonProps}>
+          <Select
+            {...selectProps}
+            {...commonProps}
+            defaultOpen={defaultOpen}
+            autoFocus={defaultOpen}
+          >
             {optionsModels &&
               optionsModels[field.options].map((option) => (
                 <Option key={option.id} value={option.id}>

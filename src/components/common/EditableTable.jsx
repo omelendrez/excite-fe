@@ -11,6 +11,7 @@ import {
   Button,
   Space,
   Divider,
+  Modal as AntdModal,
 } from "antd";
 import InputField from "./InputField";
 import Modal from "./Modal";
@@ -36,6 +37,7 @@ const EditableTable = (props) => {
   const handleSelectedValue = (value) => setSelectedValue(value);
 
   const onOk = () => {
+    if (!selectedValue) return;
     const value = selectedValue;
     const producto = productos.records.find(
       (producto) => producto.PRODCOD === value
@@ -47,6 +49,14 @@ const EditableTable = (props) => {
       null;
     if (tipo) {
       price = tipo.CLIPRODPRE;
+    }
+
+    if (price === 0) {
+      const errorAlert = AntdModal.error();
+      errorAlert.update({
+        title: "Producto sin precio",
+        content: "Atención, el producto seleccionado no tiene precio asignado",
+      });
     }
 
     form.setFields([{ name: "PRODCOD", value }]);
@@ -108,6 +118,10 @@ const EditableTable = (props) => {
     setIsModalVisible(false);
   };
 
+  const handleModal = () => {
+    setIsModalVisible(true);
+  };
+
   useEffect(() => {
     const inputs = document.getElementsByTagName("input");
     if (inputs.length) inputs[0].focus();
@@ -142,7 +156,7 @@ const EditableTable = (props) => {
       title: "Producto",
       editable: true,
       width: 100,
-      setIsModalVisible,
+      handleModal,
     },
     {
       dataIndex: "PRODDES",
@@ -241,7 +255,7 @@ const EditableTable = (props) => {
           dataIndex: col.dataIndex,
           title: col.title,
           editing: isEditing(record),
-          setIsModalVisible: col.setIsModalVisible,
+          handleModal: col.handleModal,
         };
       },
     };
@@ -279,7 +293,11 @@ const EditableTable = (props) => {
         onOk={onOk}
       >
         <Form form={searchForm}>
-          <InputField field={field} optionsModels={field.optionsModels} />
+          <InputField
+            field={field}
+            optionsModels={field.optionsModels}
+            defaultOpen
+          />
         </Form>
       </Modal>
     </>

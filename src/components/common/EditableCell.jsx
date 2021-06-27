@@ -10,7 +10,7 @@ const EditableCell = ({
   children,
   optionsModels,
   options,
-  setIsModalVisible,
+  handleModal,
   ...restProps
 }) => {
   const fieldProps = {
@@ -31,7 +31,7 @@ const EditableCell = ({
         <InputField
           field={fieldProps}
           optionsModels={optionsModels}
-          setIsModalVisible={setIsModalVisible}
+          handleModal={handleModal}
         />
       ) : (
         children
