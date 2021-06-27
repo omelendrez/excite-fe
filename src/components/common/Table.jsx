@@ -45,8 +45,10 @@ const Table = (props) => {
   const paginationProps = {
     position: ["bottomCenter"],
     showTotal: (total, range) => `${total} registros`,
-    // hideOnSinglePage: true,
-    showQuickJumper: true,
+    hideOnSinglePage: true,
+    pageSizeOptions: [5, 10, 15, 20, 50, 100],
+    showLessItems: true,
+    size: "small",
   };
 
   return (
@@ -70,7 +72,6 @@ const Table = (props) => {
         tableLayout="fixed"
         loading={props.loading}
         size="small"
-        className="virtual-table"
         bordered
         {...newProps}
       />
