@@ -72,7 +72,7 @@ const Table = (props) => {
         tableLayout="fixed"
         loading={props.loading}
         size="small"
-        bordered
+        scroll={{ y: "70vh" }}
         {...newProps}
       />
       <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>
