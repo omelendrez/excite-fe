@@ -64,7 +64,7 @@ const Info = (props) => {
         )}
         {props.onPrint && (
           <Col>
-            <PrintButton handlePrint={props.onPrint} />
+            <PrintButton onPrint={props.onPrint} />
           </Col>
         )}
         {props.onQuotations && (
