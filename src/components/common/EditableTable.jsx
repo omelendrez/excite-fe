@@ -1,3 +1,6 @@
+/**
+ * This table solves a specific problem but it has to be refactored to make it more generic
+ */
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -10,113 +13,83 @@ import {
   Divider,
 } from "antd";
 import InputField from "./InputField";
+import Modal from "./Modal";
 import { formatAmount, getSelectList, cleanFields } from "utils/helpers";
 import { addItem, updateItem } from "redux/actions";
 import AddButton from "./AddButton";
+import EditableCell from "./EditableCell";
 import "./editableTable.scss";
-
-const handleKey = (e) => {
-  const inputs = document.getElementsByTagName("input");
-
-  let increment = 0;
-
-  switch (e.code) {
-    case "NumpadEnter":
-      increment = 1;
-      break;
-    default:
-      return;
-  }
-  let curIndex = 0;
-  for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i] === e.target) {
-      curIndex = i;
-      break;
-    }
-  }
-  if (curIndex >= 0 && curIndex < inputs.length - 1) {
-    inputs[curIndex + increment].focus();
-  }
-};
-
-const EditableCell = ({
-  editing,
-  dataIndex,
-  title,
-  inputType,
-  record,
-  index,
-  children,
-  optionsModels,
-  options,
-  ...restProps
-}) => {
-  const fieldProps = {
-    type: inputType,
-    name: dataIndex,
-    key: dataIndex,
-    rules: [
-      {
-        required: true,
-        message: `Debe ingresar ${title}!`,
-      },
-    ],
-    options,
-  };
-  return (
-    <td {...restProps}>
-      {editing ? (
-        <InputField
-          field={fieldProps}
-          handleKey={handleKey}
-          optionsModels={optionsModels}
-        />
-      ) : (
-        children
-      )}
-    </td>
-  );
-};
-
-const fields = [
-  {
-    name: "REMNUM",
-    title: "Número de remito",
-    type: "number",
-    readonly: true,
-  },
-  {
-    name: "PRODCOD",
-    title: "Producto",
-    type: "select",
-    options: "productos",
-    updater: true,
-  },
-  {
-    name: "REMCAN",
-    title: "Cantidad",
-    type: "number",
-  },
-  {
-    name: "REMPRE",
-    title: "Precio",
-    type: "amount",
-  },
-  {
-    name: "ID",
-    type: "number",
-    hidden: true,
-  },
-];
 
 const EditableTable = (props) => {
   const { dataSource, rowKey, handleDelete } = props;
   const [form] = Form.useForm();
+  const [searchForm] = Form.useForm();
   const [data, setData] = useState(dataSource);
   const [editingKey, setEditingKey] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const productos = useSelector((state) => state.productos);
   const { record: remito } = useSelector((state) => state.remitos);
+  const { records: clientes } = useSelector((state) => state.clientes);
   const dispatch = useDispatch();
+  const [selectedValue, setSelectedValue] = useState(null);
+
+  const handleSelectedValue = (value) => setSelectedValue(value);
+
+  const onOk = () => {
+    const value = selectedValue;
+    const producto = productos.records.find(
+      (producto) => producto.PRODCOD === value
+    );
+    let price = producto.PRODPRE;
+    const tipo =
+      (clientes.tipos &&
+        clientes.tipos.find((tipo) => tipo.TIPCOD === producto.TIPCOD)) ||
+      null;
+    if (tipo) {
+      price = tipo.CLIPRODPRE;
+    }
+
+    form.setFields([{ name: "PRODCOD", value }]);
+    form.setFields([{ name: "REMPRE", value: price }]);
+
+    setIsModalVisible(false);
+  };
+
+  const fields = [
+    {
+      name: "REMNUM",
+      title: "Número de remito",
+      type: "number",
+      readonly: true,
+    },
+    {
+      name: "PRODCOD",
+      title: "Producto",
+      type: "select",
+      options: "productos",
+      updater: true,
+      optionsModels: {
+        productos: getSelectList("productos", productos.records),
+      },
+      getSelectedValue: handleSelectedValue,
+      rules: [{ required: true }],
+    },
+    {
+      name: "REMCAN",
+      title: "Cantidad",
+      type: "number",
+    },
+    {
+      name: "REMPRE",
+      title: "Precio",
+      type: "amount",
+    },
+    {
+      name: "ID",
+      type: "number",
+      hidden: true,
+    },
+  ];
 
   const isEditing = (record) => record.ID === editingKey;
 
@@ -129,6 +102,10 @@ const EditableTable = (props) => {
     const newData = data.filter((d) => d.ID !== 0);
     setData(newData);
     setEditingKey("");
+  };
+
+  const onCancelModal = () => {
+    setIsModalVisible(false);
   };
 
   useEffect(() => {
@@ -163,14 +140,9 @@ const EditableTable = (props) => {
     {
       dataIndex: "PRODCOD",
       title: "Producto",
-      inputType: "select",
-      options: "productos",
-      updater: false,
       editable: true,
-      optionsModels: {
-        productos: getSelectList("productos", productos.records),
-      },
-      width: 80,
+      width: 100,
+      setIsModalVisible,
     },
     {
       dataIndex: "PRODDES",
@@ -262,40 +234,55 @@ const EditableTable = (props) => {
     }
     return {
       ...col,
-      onCell: (record) => ({
-        record,
-        inputType: col.inputType,
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-        optionsModels: col.optionsModels,
-        options: col.options,
-      }),
+      onCell: (record) => {
+        return {
+          record,
+          inputType: col.inputType,
+          dataIndex: col.dataIndex,
+          title: col.title,
+          editing: isEditing(record),
+          setIsModalVisible: col.setIsModalVisible,
+        };
+      },
     };
   });
 
+  const field = fields.find((f) => f.name === "PRODCOD");
+
   return (
-    <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={false}
-        rowKey={rowKey}
-        size="small"
-        tableLayout="fixed"
-      />
-      <Divider />
-      <Space>
-        <AddButton onAdd={handleAdd} disabled={editingKey !== ""} />
-      </Space>
-    </Form>
+    <>
+      <Form form={form} component={false}>
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          dataSource={data}
+          columns={mergedColumns}
+          rowClassName="editable-row"
+          pagination={false}
+          rowKey={rowKey}
+          size="small"
+          tableLayout="fixed"
+        />
+        <Divider />
+        <Space>
+          <AddButton onAdd={handleAdd} disabled={editingKey !== ""} />
+        </Space>
+      </Form>
+      <Modal
+        title="Buscar producto"
+        isModalVisible={isModalVisible}
+        onClose={onCancelModal}
+        onOk={onOk}
+      >
+        <Form form={searchForm}>
+          <InputField field={field} optionsModels={field.optionsModels} />
+        </Form>
+      </Modal>
+    </>
   );
 };
 

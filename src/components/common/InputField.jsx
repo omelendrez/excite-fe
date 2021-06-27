@@ -14,7 +14,34 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const InputField = (props) => {
-  const { field, optionsModels, handleKey } = props;
+  const { field, optionsModels, setIsModalVisible } = props;
+
+  const handleKey = (e) => {
+    const inputs = document.getElementsByTagName("input");
+
+    let increment = 0;
+
+    switch (e.code) {
+      case "NumpadEnter":
+        increment = 1;
+        break;
+      case "F4":
+        setIsModalVisible && setIsModalVisible(true);
+        break;
+      default:
+        return;
+    }
+    let curIndex = 0;
+    for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i] === e.target) {
+        curIndex = i;
+        break;
+      }
+    }
+    if (curIndex >= 0 && curIndex < inputs.length - 1) {
+      inputs[curIndex + increment].focus();
+    }
+  };
 
   const commonProps = {
     style: { width: field.width },
@@ -22,7 +49,8 @@ const InputField = (props) => {
     maxLength: field.size,
     onKeyDown: handleKey,
     rules: field.rules,
-    aligh: field.aligh,
+    align: field.align,
+    execute: field.execute,
     rows: field.rows, // textarea
   };
 
