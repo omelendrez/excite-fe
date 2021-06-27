@@ -36,8 +36,6 @@ const columns = () => {
       searchable: true,
       ellipsis: true,
       width: 220,
-      ellipsis: true,
-      width: 220,
     },
     {
       title: "Localidad",

@@ -17,7 +17,7 @@ const InputField = (props) => {
   const { field, optionsModels, handleKey } = props;
 
   const commonProps = {
-    style: { width: field.type === "amount" ? 180 : field.width },
+    style: { width: field.width },
     readOnly: field.readonly,
     maxLength: field.size,
     onKeyDown: handleKey,
@@ -84,15 +84,6 @@ const InputField = (props) => {
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
           <TextArea rows={field.rows} {...commonProps} />
-        </Form.Item>
-      );
-    case "number":
-      return (
-        <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <InputNumber
-            {...commonProps}
-            onFocus={(event) => event.target.select()}
-          />
         </Form.Item>
       );
     case "amount":

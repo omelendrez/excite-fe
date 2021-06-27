@@ -71,6 +71,7 @@ const Table = (props) => {
         loading={props.loading}
         size="small"
         className="virtual-table"
+        bordered
         {...newProps}
       />
       <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>

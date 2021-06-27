@@ -17,15 +17,12 @@ import "./editableTable.scss";
 
 const handleKey = (e) => {
   const inputs = document.getElementsByTagName("input");
+
   let increment = 0;
 
   switch (e.code) {
     case "NumpadEnter":
-    case "ArrowRight":
       increment = 1;
-      break;
-    case "ArrowLeft":
-      increment = -1;
       break;
     default:
       return;
@@ -52,7 +49,6 @@ const EditableCell = ({
   children,
   optionsModels,
   options,
-  editingKey,
   ...restProps
 }) => {
   const fieldProps = {
@@ -154,7 +150,8 @@ const EditableTable = (props) => {
   const handleAdd = () => {
     const row = {};
     fields.forEach(
-      (column) => (row[column.name] = column.type === "number" ? 0 : "")
+      (column) =>
+        (row[column.name] = "number-amount".includes(column.type) ? 0 : "")
     );
     row["REMNUM"] = remito.REMNUM;
     const newData = [...data, row];
@@ -173,11 +170,14 @@ const EditableTable = (props) => {
       optionsModels: {
         productos: getSelectList("productos", productos.records),
       },
+      width: 80,
     },
     {
       dataIndex: "PRODDES",
       title: "Descripción",
       hideOnEdit: true,
+      ellipsis: true,
+      width: 220,
     },
     {
       dataIndex: "REMCAN",
@@ -185,6 +185,7 @@ const EditableTable = (props) => {
       inputType: "number",
       editable: true,
       align: "center",
+      width: 80,
     },
     {
       dataIndex: "REMPRE",
@@ -193,12 +194,14 @@ const EditableTable = (props) => {
       render: (text, _) => formatAmount(text),
       editable: true,
       align: "right",
+      width: 120,
     },
     {
       dataIndex: "REMTOT",
       title: "Total",
       render: (_, record) => formatAmount(record.REMCAN * record.REMPRE),
       align: "right",
+      width: 120,
     },
     {
       dataIndex: "operation",
@@ -206,16 +209,15 @@ const EditableTable = (props) => {
         const editable = isEditing(record);
         return editable ? (
           <span>
-            <Button
-              type="link"
+            <input
+              type="button"
               onClick={() => save(record.ID, record.REMNUM)}
-              className="ant-btn ant-btn-link"
+              className="ant-btn-link"
               style={{
                 marginRight: 8,
               }}
-            >
-              Guardar
-            </Button>
+              value="Guardar"
+            />
             <Popconfirm
               title={
                 record.ID === 0
@@ -255,7 +257,7 @@ const EditableTable = (props) => {
   ];
 
   const mergedColumns = columns
-    .filter((c) => (editingKey !== "" && !c.hideOnEdit) || editingKey === "")
+    //.filter((c) => (editingKey !== "" && !c.hideOnEdit) || editingKey === "")
     .map((col) => {
       if (!col.editable) {
         return col;
