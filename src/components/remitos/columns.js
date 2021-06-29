@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Popconfirm, Typography, Button } from "antd";
 import { sortColumn, formatDate, formatAmount } from "utils/helpers";
 
 export const columns = [
@@ -65,4 +66,105 @@ export const columns = [
   },
 ];
 
-export default columns;
+export const itemColumns = (props) => {
+  const {
+    save,
+    edit,
+    handleDelete,
+    handleModal,
+    isEditing,
+    cancel,
+    editingKey,
+  } = props;
+  return [
+    {
+      dataIndex: "PRODCOD",
+      title: "Producto",
+      editable: true,
+      width: 100,
+      handleModal,
+    },
+    {
+      dataIndex: "PRODDES",
+      title: "Descripción",
+      hideOnEdit: true,
+      ellipsis: true,
+      width: 180,
+    },
+    {
+      dataIndex: "REMCAN",
+      title: "Cantidad",
+      inputType: "number",
+      editable: true,
+      align: "center",
+      width: 80,
+    },
+    {
+      dataIndex: "REMPRE",
+      title: "Precio",
+      inputType: "amount",
+      render: (text, _) => formatAmount(text),
+      editable: true,
+      align: "right",
+      width: 120,
+    },
+    {
+      dataIndex: "REMTOT",
+      title: "Total",
+      render: (_, record) => formatAmount(record.REMCAN * record.REMPRE),
+      align: "right",
+      width: 120,
+    },
+    {
+      dataIndex: "operation",
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <span>
+            <input
+              type="button"
+              onClick={() => save(record.ID, record.REMNUM)}
+              className="ant-btn-link"
+              style={{
+                marginRight: 8,
+              }}
+              value="Guardar"
+            />
+            <Popconfirm
+              title={
+                record.ID === 0
+                  ? "Cancela agregar registro?"
+                  : "Cancela modificación?"
+              }
+              onConfirm={cancel}
+              okText="Si"
+              cancelText="No"
+            >
+              <Button type="link">Cancelar</Button>
+            </Popconfirm>
+          </span>
+        ) : (
+          <span>
+            <Typography.Link
+              disabled={editingKey !== ""}
+              onClick={() => edit(record)}
+            >
+              Modificar
+            </Typography.Link>
+            <Popconfirm
+              title="Confirma eliminar registro?"
+              onConfirm={() => handleDelete(record)}
+              okText="Si"
+              cancelText="No"
+              okType="danger"
+            >
+              <Button type="link" disabled={editingKey !== ""}>
+                Eliminar
+              </Button>
+            </Popconfirm>
+          </span>
+        );
+      },
+    },
+  ];
+};

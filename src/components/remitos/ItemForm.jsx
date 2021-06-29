@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Divider, Space } from "antd";
 import EditForm from "components/common/EditForm";
-import fields from "./itemFields";
+import { itemFields } from "./fields";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem, updateItem } from "redux/actions";
 import { getSelectList, cleanFields } from "utils/helpers";
@@ -14,7 +14,7 @@ const ItemForm = (props) => {
   const [changeFieldValues, setChangeFieldValues] = useState([]);
 
   const onFinish = (values) => {
-    const newValues = cleanFields(fields, values);
+    const newValues = cleanFields(itemFields, values);
     if (!props.item.ID) {
       return dispatch(addItem(newValues));
     }
@@ -49,7 +49,7 @@ const ItemForm = (props) => {
   return (
     <>
       <EditForm
-        fields={fields.map((field) => {
+        fields={itemFields.map((field) => {
           if (field.updater) {
             field.getSelectedValue = getSelectedValue;
           }

@@ -7,8 +7,8 @@ import Table from "components/common/Table";
 import Alert from "components/common/Alert";
 import { createNewRecord } from "utils/helpers";
 
-import columns from "./columns";
-import fields from "./fields";
+import { columns } from "./columns";
+import { fields } from "./fields";
 
 const Remitos = (props) => {
   const remitos = useSelector((state) => state.remitos);

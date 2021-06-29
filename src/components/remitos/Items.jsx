@@ -6,6 +6,8 @@ import EditableTable from "components/common/EditableTable";
 import Alert from "components/common/Alert";
 import { formatAmount } from "utils/helpers";
 import { deleteItem } from "redux/actions";
+import { itemFields } from "./fields";
+import { itemColumns } from "./columns";
 
 const { Text } = Typography;
 
@@ -36,7 +38,9 @@ const Remitos = (props) => {
   const tableProps = {
     loading,
     dataSource: items,
+    fields: itemFields,
     rowKey: "ID",
+    columns: itemColumns,
     summary,
     pagination: false,
     handleDelete,

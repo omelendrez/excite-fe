@@ -9,7 +9,7 @@ import Modal from "components/common/Modal";
 import Presupuesto from "components/reportes/presupuesto/Presupuesto";
 import notification from "components/common/notification";
 import { getRemito, getItems, deleteRemito, getCliente } from "redux/actions";
-import fields from "./fields";
+import { fields } from "./fields";
 import { setFields } from "utils/helpers";
 import "./remito.scss";
 

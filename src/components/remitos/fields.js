@@ -1,4 +1,6 @@
-const fields = [
+import { getSelectList } from "utils/helpers";
+
+export const fields = [
   {
     name: "REMNUM",
     title: "Presupuesto",
@@ -70,4 +72,41 @@ const fields = [
   },
 ];
 
-export default fields;
+export const itemFields = (props) => {
+  const { productos, handleSelectedValue } = props;
+  return [
+    {
+      name: "REMNUM",
+      title: "Número de remito",
+      type: "number",
+      readonly: true,
+    },
+    {
+      name: "PRODCOD",
+      title: "Producto",
+      type: "select",
+      options: "productos",
+      updater: true,
+      optionsModels: {
+        productos: getSelectList("productos", productos.records),
+      },
+      getSelectedValue: handleSelectedValue,
+      rules: [{ required: true }],
+    },
+    {
+      name: "REMCAN",
+      title: "Cantidad",
+      type: "number",
+    },
+    {
+      name: "REMPRE",
+      title: "Precio",
+      type: "amount",
+    },
+    {
+      name: "ID",
+      type: "number",
+      hidden: true,
+    },
+  ];
+};

@@ -3,26 +3,18 @@
  */
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Table,
-  Popconfirm,
-  Form,
-  Typography,
-  Button,
-  Space,
-  Divider,
-  Modal as AntdModal,
-} from "antd";
+import { Table, Form, Space, Divider, Modal as AntdModal } from "antd";
 import InputField from "./InputField";
 import Modal from "./Modal";
-import { formatAmount, getSelectList, cleanFields } from "utils/helpers";
+import { formatAmount, cleanFields } from "utils/helpers";
 import { addItem, updateItem } from "redux/actions";
 import AddButton from "./AddButton";
 import EditableCell from "./EditableCell";
+import TableSummary from "./TableSummary";
 import "./editableTable.scss";
 
 const EditableTable = (props) => {
-  const { dataSource, rowKey, handleDelete } = props;
+  const { dataSource, rowKey, handleDelete, fields, columns } = props;
   const [form] = Form.useForm();
   const [searchForm] = Form.useForm();
   const [data, setData] = useState(dataSource);
@@ -35,6 +27,8 @@ const EditableTable = (props) => {
   const [selectedValue, setSelectedValue] = useState(null);
 
   const handleSelectedValue = (value) => setSelectedValue(value);
+
+  const fieldsList = fields({ productos, handleSelectedValue });
 
   const onOk = () => {
     if (!selectedValue) return;
@@ -64,42 +58,6 @@ const EditableTable = (props) => {
 
     setIsModalVisible(false);
   };
-
-  const fields = [
-    {
-      name: "REMNUM",
-      title: "Número de remito",
-      type: "number",
-      readonly: true,
-    },
-    {
-      name: "PRODCOD",
-      title: "Producto",
-      type: "select",
-      options: "productos",
-      updater: true,
-      optionsModels: {
-        productos: getSelectList("productos", productos.records),
-      },
-      getSelectedValue: handleSelectedValue,
-      rules: [{ required: true }],
-    },
-    {
-      name: "REMCAN",
-      title: "Cantidad",
-      type: "number",
-    },
-    {
-      name: "REMPRE",
-      title: "Precio",
-      type: "amount",
-    },
-    {
-      name: "ID",
-      type: "number",
-      hidden: true,
-    },
-  ];
 
   const isEditing = (record) => record.ID === editingKey;
 
@@ -131,7 +89,7 @@ const EditableTable = (props) => {
     const row = await form.validateFields();
     row["ID"] = id;
     row["REMNUM"] = remito;
-    const newValues = cleanFields(fields, row);
+    const newValues = cleanFields(fieldsList, row);
     if (!row.ID) {
       return dispatch(addItem(newValues));
     }
@@ -140,7 +98,7 @@ const EditableTable = (props) => {
 
   const handleAdd = () => {
     const row = {};
-    fields.forEach(
+    fieldsList.forEach(
       (column) =>
         (row[column.name] = "number-amount".includes(column.type) ? 0 : "")
     );
@@ -150,99 +108,15 @@ const EditableTable = (props) => {
     setData(newData);
   };
 
-  const columns = [
-    {
-      dataIndex: "PRODCOD",
-      title: "Producto",
-      editable: true,
-      width: 100,
-      handleModal,
-    },
-    {
-      dataIndex: "PRODDES",
-      title: "Descripción",
-      hideOnEdit: true,
-      ellipsis: true,
-      width: 180,
-    },
-    {
-      dataIndex: "REMCAN",
-      title: "Cantidad",
-      inputType: "number",
-      editable: true,
-      align: "center",
-      width: 80,
-    },
-    {
-      dataIndex: "REMPRE",
-      title: "Precio",
-      inputType: "amount",
-      render: (text, _) => formatAmount(text),
-      editable: true,
-      align: "right",
-      width: 120,
-    },
-    {
-      dataIndex: "REMTOT",
-      title: "Total",
-      render: (_, record) => formatAmount(record.REMCAN * record.REMPRE),
-      align: "right",
-      width: 120,
-    },
-    {
-      dataIndex: "operation",
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <input
-              type="button"
-              onClick={() => save(record.ID, record.REMNUM)}
-              className="ant-btn-link"
-              style={{
-                marginRight: 8,
-              }}
-              value="Guardar"
-            />
-            <Popconfirm
-              title={
-                record.ID === 0
-                  ? "Cancela agregar registro?"
-                  : "Cancela modificación?"
-              }
-              onConfirm={cancel}
-              okText="Si"
-              cancelText="No"
-            >
-              <Button type="link">Cancelar</Button>
-            </Popconfirm>
-          </span>
-        ) : (
-          <span>
-            <Typography.Link
-              disabled={editingKey !== ""}
-              onClick={() => edit(record)}
-            >
-              Modificar
-            </Typography.Link>
-            <Popconfirm
-              title="Confirma eliminar registro?"
-              onConfirm={() => handleDelete(record)}
-              okText="Si"
-              cancelText="No"
-              okType="danger"
-            >
-              <Button type="link" disabled={editingKey !== ""}>
-                Eliminar
-              </Button>
-            </Popconfirm>
-          </span>
-        );
-      },
-    },
-  ];
-
-  const mergedColumns = columns.map((col) => {
+  const mergedColumns = columns({
+    save,
+    edit,
+    handleDelete,
+    handleModal,
+    isEditing,
+    cancel,
+    editingKey,
+  }).map((col) => {
     if (!col.editable) {
       return col;
     }
@@ -261,7 +135,12 @@ const EditableTable = (props) => {
     };
   });
 
-  const field = fields.find((f) => f.name === "PRODCOD");
+  const field = fieldsList.find((f) => f.name === "PRODCOD");
+
+  const totalAmount = data.reduce(
+    (acc, cur) => acc + cur.REMCAN * cur.REMPRE,
+    0
+  );
 
   return (
     <>
@@ -280,6 +159,9 @@ const EditableTable = (props) => {
           rowKey={rowKey}
           size="small"
           tableLayout="fixed"
+          summary={() => (
+            <TableSummary total={formatAmount(totalAmount)} colSpan={4} />
+          )}
         />
         <Divider />
         <Space>
