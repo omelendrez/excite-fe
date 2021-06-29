@@ -5,6 +5,7 @@ const initialState = {
   records: [],
   active: [],
   tipos: [],
+  saldos: [],
   loading: false,
   success: false,
   error: null,
@@ -65,6 +66,7 @@ const clientesReducer = (state = initialState, action) => {
         loading: false,
         record: action.payload.record,
         tipos: action.payload.tipos,
+        saldos: action.payload.saldos,
         error: null,
       };
     case types.GET_CLIENTE_FAILED:

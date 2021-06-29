@@ -6,6 +6,7 @@ import Header from "components/common/Header";
 import Alert from "components/common/Alert";
 import Table from "components/common/Table";
 import Info from "components/common/Info";
+import ClientBalance from "components/common/ClientBalance";
 import notification from "components/common/notification";
 import { getCliente, deleteCliente } from "redux/actions";
 import fields from "./fields";
@@ -17,7 +18,7 @@ const { TabPane } = Tabs;
 const Cliente = (props) => {
   const dispatch = useDispatch();
   const clientes = useSelector((state) => state.clientes);
-  const { loading, success, record, error, tipos } = clientes;
+  const { loading, success, record, error, tipos, saldos } = clientes;
   const [url, setUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
@@ -98,6 +99,9 @@ const Cliente = (props) => {
     onAdd,
   };
 
+  const balance = saldos.reduce((acc, cur) => acc + cur.AMOUNT, 0);
+  const newSaldos = [...saldos, { TYPE: "Balance Actual", AMOUNT: balance }];
+
   return (
     <Layout>
       <Header
@@ -105,6 +109,7 @@ const Cliente = (props) => {
         onBack={props.history.goBack}
         loading={loading}
       />
+
       {error && <Alert message="Error" description={error} type="error" />}
       <Tabs tabPosition="right">
         <TabPane tab="Info" key="1">
@@ -127,6 +132,9 @@ const Cliente = (props) => {
             <Table {...tiposTableProps} />
           </TabPane>
         )}
+        <TabPane tab="Balance" key="3">
+          <ClientBalance columns={newSaldos} />
+        </TabPane>
       </Tabs>
     </Layout>
   );

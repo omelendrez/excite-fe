@@ -42,6 +42,14 @@ function getClienteTipos(id) {
     });
 }
 
+function getClienteSaldos(id) {
+  return getRecordById(`${endpoint}-saldos/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 function addCliente(newData) {
   return addRecord(endpoint, newData)
     .then((response) => response)
@@ -100,9 +108,10 @@ function* fetchClienteSaga(action) {
   try {
     const record = yield call(getCliente, action.id);
     const tipos = yield call(getClienteTipos, record.CLICOD);
+    const saldos = yield call(getClienteSaldos, record.CLICOD);
     yield put({
       type: types.GET_CLIENTE_SUCCESS,
-      payload: { record, tipos },
+      payload: { record, tipos, saldos },
     });
   } catch (error) {
     yield put({
