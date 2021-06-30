@@ -9,7 +9,7 @@ export const columns = [
     sorter: (a, b) => sortColumn(a, b, "REMNUM"),
     render: (text, record) => <Link to={`/remitos/${record.ID}`}>{text}</Link>,
     searchable: true,
-    width: 100,
+    width: 80,
   },
   {
     dataIndex: "REMFEC",
@@ -23,7 +23,8 @@ export const columns = [
     title: "Estado",
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "ESTDES"),
-    width: 200,
+    ellipsis: true,
+    width: 120,
   },
   {
     dataIndex: "CLICOD",
@@ -56,13 +57,36 @@ export const columns = [
   {
     dataIndex: "REMQTY",
     title: "Items",
-    align: "right",
+    align: "center",
+    width: 60,
+    ellipsis: true,
   },
   {
     dataIndex: "REMTOT",
     title: "Total",
-    render: (text, record) => formatAmount(text),
+    render: (text) => formatAmount(text),
     align: "right",
+    width: 100,
+    ellipsis: true,
+  },
+  {
+    dataIndex: "REMDES",
+    title: "Descuento",
+    render: (text) => formatAmount(text),
+    align: "right",
+    width: 100,
+    ellipsis: true,
+  },
+  {
+    title: "Neto",
+    render: (_, record) => (
+      <span style={{ color: "#002766", fontWeight: "bold" }}>
+        {formatAmount(record.REMTOT - record.REMDES)}
+      </span>
+    ),
+    align: "right",
+    width: 100,
+    ellipsis: true,
   },
 ];
 
