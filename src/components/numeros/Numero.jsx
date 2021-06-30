@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
 import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
 import Info from "components/common/Info";
 import notification from "components/common/notification";
-import { getNumero, deleteNumero } from "redux/actions";
+import { getNumero } from "redux/actions";
 import fields from "./fields";
 import { setFields } from "utils/helpers";
 
@@ -14,7 +13,6 @@ const Numero = (props) => {
   const dispatch = useDispatch();
   const numeros = useSelector((state) => state.numeros);
   const { loading, success, record, error } = numeros;
-  const [url, setUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
     value: "",
@@ -50,23 +48,6 @@ const Numero = (props) => {
     }
   }, [success, record, error, props.history]);
 
-  const handleEdit = () => {
-    setUrl(`/ultimos-numeros/edit/${props.match.params.id}`);
-  };
-
-  const handleDelete = () => {
-    dispatch(deleteNumero(props.match.params.id));
-  };
-
-  if (!!url) {
-    return (
-      <Redirect
-        push
-        to={{ pathname: url, state: { record: numeros.record } }}
-      />
-    );
-  }
-
   return (
     <Layout>
       <Header
@@ -79,8 +60,6 @@ const Numero = (props) => {
         title={info.TRANOM}
         fields={fields}
         data={info}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
         success={success}
         history={props.history}
       />
