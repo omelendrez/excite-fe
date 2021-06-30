@@ -9,6 +9,7 @@ import PaymentsButton from "./PaymentsButton";
 import ConceptsButton from "./ConceptsButton";
 import QuotationsButton from "./QuotationsButton";
 import PriceButton from "./PriceButton";
+import DiscountButton from "./DiscountButton";
 import { formatDate, formatAmount } from "utils/helpers";
 import "./info.css";
 
@@ -85,6 +86,11 @@ const Info = (props) => {
         {props.onPrice && (
           <Col>
             <PriceButton onPrice={props.onPrice} />
+          </Col>
+        )}
+        {props.onDiscount && (
+          <Col>
+            <DiscountButton onDiscount={props.onDiscount} />
           </Col>
         )}
         {props.onDelete && (

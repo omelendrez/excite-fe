@@ -53,6 +53,28 @@ const remitosReducer = (state = initialState, action) => {
         success: false,
         error: action.payload,
       };
+    case types.UPDATE_REMITO_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        success: false,
+        error: null,
+      };
+    case types.UPDATE_REMITO_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        record: action.payload,
+        error: null,
+      };
+    case types.UPDATE_REMITO_FAILED:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload,
+      };
     case types.GET_ITEMS_REQUEST:
       return {
         ...state,

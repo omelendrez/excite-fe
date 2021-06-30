@@ -52,6 +52,7 @@ const InputField = (props) => {
     align: field.align,
     execute: field.execute,
     rows: field.rows, // textarea
+    onChange: field.onChange,
   };
 
   const selectProps = {
@@ -114,12 +115,34 @@ const InputField = (props) => {
           <TextArea rows={field.rows} {...commonProps} />
         </Form.Item>
       );
+    case "percent":
+      return (
+        <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
+          <InputNumber
+            {...commonProps}
+            min={0}
+            max={100}
+            formatter={(value) => `${value}%`}
+            parser={(value) => value.replace("%", "")}
+            onFocus={(event) => event.target.select()}
+          />
+        </Form.Item>
+      );
+    case "number":
+      return (
+        <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
+          <InputNumber
+            {...commonProps}
+            onFocus={(event) => event.target.select()}
+          />
+        </Form.Item>
+      );
     case "amount":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
           <InputNumber
             formatter={(value) =>
-              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "")
             }
             onFocus={(event) => event.target.select()}
             parser={(value) => value.replace(/\$\s?|(,*)/g, "")}

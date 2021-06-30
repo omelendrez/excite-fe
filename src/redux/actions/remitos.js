@@ -13,6 +13,13 @@ export const addRemito = (newData) => {
   };
 };
 
+export const updateRemito = (newData) => {
+  return {
+    type: types.UPDATE_REMITO_REQUEST,
+    newData,
+  };
+};
+
 export const getItems = (id) => {
   return {
     type: types.GET_ITEMS_REQUEST,
