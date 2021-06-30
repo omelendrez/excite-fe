@@ -172,7 +172,6 @@ function* deleteAjusteSaga(action) {
     const producto = state.productos.records.find(
       (product) => product.PRODCOD === PRODCOD
     );
-    console.log(AJUCAN, producto.PRODSTO);
 
     if (producto) {
       const { ID, PRODSTO: stock } = producto;

@@ -4,7 +4,6 @@ import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import "./clientBalance.scss";
 
 const Balance = (props) => {
-  console.log(props.columns);
   return (
     <div className="site-statistic-card">
       <Row>
