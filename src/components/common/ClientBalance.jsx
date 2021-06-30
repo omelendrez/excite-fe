@@ -8,7 +8,7 @@ const Balance = (props) => {
     <div className="site-statistic-card">
       <Row>
         {props.columns.map((col) => (
-          <Col span={5}>
+          <Col span={5} key={col.TYPE}>
             <Card>
               <Statistic
                 title={col.TYPE}
