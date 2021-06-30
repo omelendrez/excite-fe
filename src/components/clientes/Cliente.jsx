@@ -127,7 +127,7 @@ const Cliente = (props) => {
             loading={loading}
           />
         </TabPane>
-        {tipos.length && (
+        {!!tipos.length && (
           <TabPane tab={`Precios especiales (${tipos.length})`} key="2">
             <Table {...tiposTableProps} />
           </TabPane>

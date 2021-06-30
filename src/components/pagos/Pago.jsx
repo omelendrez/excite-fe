@@ -245,9 +245,7 @@ const Pago = (props) => {
       <Drawer
         isDrawerVisible={showValorDrawer}
         handleClose={handleValorClose}
-        title={`${
-          valorItem && valorItem.ID ? "Modificando" : "Agregando"
-        } registro`}
+        title={`${valorItem.ID ? "Modificando" : "Agregando"} registro`}
       >
         {valorItem.fields && (
           <ItemForm
