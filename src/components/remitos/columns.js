@@ -121,7 +121,7 @@ export const itemColumns = (props) => {
       inputType: "number",
       editable: true,
       align: "center",
-      width: 80,
+      width: 120,
     },
     {
       dataIndex: "REMPRE",
