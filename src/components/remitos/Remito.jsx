@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Layout, Collapse, Form, Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
@@ -12,7 +12,6 @@ import notification from "components/common/notification";
 import {
   getRemito,
   updateRemito,
-  getItems,
   deleteRemito,
   getCliente,
 } from "redux/actions";
@@ -28,7 +27,7 @@ const Remito = (props) => {
     { name: "REMDES", value: 0 },
     { name: "ID", value: 0 },
   ];
-  const [form] = Form.useForm();
+  const discountForm = useRef(null);
   const dispatch = useDispatch();
   const remitos = useSelector((state) => state.remitos);
   const { records: clientes } = useSelector((state) => state.clientes);
@@ -54,7 +53,6 @@ const Remito = (props) => {
     if (record && record.REMNUM) {
       const cli = clientes.find((c) => c.CLICOD === record.CLICOD);
       dispatch(getCliente(cli.ID));
-      dispatch(getItems(record.REMNUM));
       const info = setFields(fields, record);
       setInfo(info);
       setDefaultItemValues([
@@ -168,10 +166,16 @@ const Remito = (props) => {
   ];
 
   useEffect(() => {
-    if (form) {
-      itemRecord.forEach((item) => form.setFields([item]));
+    if (discountForm.current) {
+      itemRecord.forEach((item) => discountForm.current.setFields([item]));
     }
-  }, [form, itemRecord]);
+  }, [itemRecord]);
+
+  const itemsTableProps = {
+    loading,
+    error,
+    items,
+  };
 
   return (
     <>
@@ -197,7 +201,7 @@ const Remito = (props) => {
           </Collapse>
           <Collapse defaultActiveKey={["1"]} ghost>
             <Panel key="1" header="Productos">
-              <Items ID={record.REMNUM} />
+              <Items {...itemsTableProps} />
             </Panel>
           </Collapse>
         </div>
@@ -216,11 +220,11 @@ const Remito = (props) => {
         onClose={handleDiscount}
         width="370px"
         okText="Confirmar"
-        onOk={() => form.submit()}
+        onOk={() => discountForm.current.submit()}
         title="Descuento"
         forceRender
       >
-        <Form form={form} onFinish={confirmDiscount}>
+        <Form ref={discountForm} onFinish={confirmDiscount}>
           {discountFields.map((field) => (
             <InputField field={field} key={field.name} />
           ))}

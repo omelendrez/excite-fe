@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Table as AntdTable, Typography } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Header from "components/common/Header";
 import EditableTable from "components/common/EditableTable";
 import Alert from "components/common/Alert";
@@ -13,7 +13,7 @@ const { Text } = Typography;
 
 const Remitos = (props) => {
   const dispatch = useDispatch();
-  const { loading, items, error } = useSelector((state) => state.remitos);
+  const { loading, items, error } = props;
 
   const handleDelete = (record) => {
     dispatch(deleteItem(record));
@@ -50,7 +50,7 @@ const Remitos = (props) => {
     <Layout>
       <Header />
       {error && <Alert message="Error" description={error} type="error" />}
-      {!loading && <EditableTable {...tableProps} />}
+      <EditableTable {...tableProps} />
     </Layout>
   );
 };

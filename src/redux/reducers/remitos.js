@@ -127,10 +127,12 @@ const remitosReducer = (state = initialState, action) => {
         error: null,
       };
     case types.GET_REMITO_SUCCESS:
+      const { record, items } = action.payload;
       return {
         ...state,
         loading: false,
-        record: action.payload,
+        record,
+        items,
         error: null,
       };
     case types.GET_REMITO_FAILED:

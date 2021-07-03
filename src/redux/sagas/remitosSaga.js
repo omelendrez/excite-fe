@@ -121,9 +121,10 @@ function* fetchRemitosSaga() {
 function* fetchRemitoSaga(action) {
   try {
     const record = yield call(getRemito, action.id);
+    const items = yield call(getItems, record.REMNUM);
     yield put({
       type: types.GET_REMITO_SUCCESS,
-      payload: record,
+      payload: { record, items },
     });
   } catch (error) {
     yield put({

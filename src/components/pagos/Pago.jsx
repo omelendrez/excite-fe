@@ -166,6 +166,7 @@ const Pago = (props) => {
     onAdd: addRemito,
     summaryField: "REMTOT",
     handleDelete: handleDeleteRemito,
+    colSpan: 3,
   };
 
   const valoresProps = {

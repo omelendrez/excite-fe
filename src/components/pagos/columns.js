@@ -53,20 +53,6 @@ export const remitosColumns = (props) => {
       width: 90,
     },
     {
-      title: "Importe",
-      dataIndex: "REMTOT",
-      render: (text) => formatAmount(text),
-      width: 110,
-      align: "right",
-    },
-    {
-      title: "Descuento",
-      dataIndex: "REMDES",
-      render: (text) => formatAmount(text),
-      width: 110,
-      align: "right",
-    },
-    {
       title: "Fecha",
       dataIndex: "REMFEC",
       render: (text) => formatDate(text),
@@ -75,7 +61,29 @@ export const remitosColumns = (props) => {
     {
       dataIndex: "ESTDES",
       title: "Estado",
-      width: 200,
+      width: 100,
+      ellipsis: true,
+    },
+    {
+      title: "Importe",
+      dataIndex: "REMTOT",
+      render: (text) => formatAmount(text),
+      width: 100,
+      align: "right",
+    },
+    {
+      title: "Descuento",
+      dataIndex: "REMDES",
+      render: (text) => formatAmount(text),
+      width: 100,
+      align: "right",
+    },
+    {
+      title: "Neto",
+      dataIndex: "REMNET",
+      render: (_, record) => formatAmount(record.REMTOT - record.REMDES),
+      width: 100,
+      align: "right",
     },
     {
       dataIndex: "actions",
