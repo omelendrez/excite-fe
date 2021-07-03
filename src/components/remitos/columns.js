@@ -170,7 +170,7 @@ export const itemColumns = (props) => {
         ) : (
           <span>
             <Typography.Link
-              disabled={editingKey !== ""}
+              disabled={!!editingKey}
               onClick={() => edit(record)}
             >
               Modificar
@@ -182,7 +182,7 @@ export const itemColumns = (props) => {
               cancelText="No"
               okType="danger"
             >
-              <Button type="link" disabled={editingKey !== ""}>
+              <Button type="link" disabled={!!editingKey}>
                 Eliminar
               </Button>
             </Popconfirm>

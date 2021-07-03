@@ -42,11 +42,7 @@ const Items = (props) => {
     summary: summaryField ? summary : null,
   };
 
-  return (
-    <>
-      <Table {...tableProps} />
-    </>
-  );
+  return <Table {...tableProps} />;
 };
 
 export default Items;

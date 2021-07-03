@@ -1,7 +1,7 @@
 /**
  * This table solves a specific problem but it has to be refactored to make it more generic
  */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Table, Form, Space, Divider, Modal as AntdModal } from "antd";
 import InputField from "./InputField";
@@ -14,11 +14,11 @@ import TableSummary from "./TableSummary";
 import "./editableTable.scss";
 
 const EditableTable = (props) => {
-  const { dataSource, rowKey, handleDelete, fields, columns } = props;
-  const [form] = Form.useForm();
-  const [searchForm] = Form.useForm();
+  const { dataSource, rowKey, handleDelete, fields, columns, loading } = props;
+  const form = useRef(null);
+  const searchForm = useRef(null);
   const [data, setData] = useState(dataSource);
-  const [editingKey, setEditingKey] = useState("");
+  const [editingKey, setEditingKey] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const productos = useSelector((state) => state.productos);
   const { record: remito } = useSelector((state) => state.remitos);
@@ -29,6 +29,16 @@ const EditableTable = (props) => {
   const handleSelectedValue = (value) => setSelectedValue(value);
 
   const fieldsList = fields({ productos, handleSelectedValue });
+
+  useEffect(() => {
+    const inputs = document.getElementsByTagName("input");
+    if (inputs.length) inputs[0].focus();
+  }, [editingKey]);
+
+  useEffect(() => {
+    setData(dataSource);
+    setEditingKey(null);
+  }, [dataSource, loading]);
 
   const onOk = () => {
     if (!selectedValue) return;
@@ -53,8 +63,10 @@ const EditableTable = (props) => {
       });
     }
 
-    form.setFields([{ name: "PRODCOD", value }]);
-    form.setFields([{ name: "REMPRE", value: price }]);
+    if (form.current) {
+      form.current.setFields([{ name: "PRODCOD", value }]);
+      form.current.setFields([{ name: "REMPRE", value: price }]);
+    }
 
     setIsModalVisible(false);
   };
@@ -62,14 +74,16 @@ const EditableTable = (props) => {
   const isEditing = (record) => record.ID === editingKey;
 
   const edit = (record) => {
-    form.setFieldsValue(record);
-    setEditingKey(record.ID);
+    if (form.current) {
+      form.current.setFieldsValue(record);
+      setEditingKey(record.ID);
+    }
   };
 
   const cancel = () => {
     const newData = data.filter((d) => d.ID !== 0);
     setData(newData);
-    setEditingKey("");
+    setEditingKey(null);
   };
 
   const onCancelModal = () => {
@@ -80,20 +94,17 @@ const EditableTable = (props) => {
     setIsModalVisible(true);
   };
 
-  useEffect(() => {
-    const inputs = document.getElementsByTagName("input");
-    if (inputs.length) inputs[0].focus();
-  }, [editingKey]);
-
   const save = async (id, remito) => {
-    const row = await form.validateFields();
-    row["ID"] = id;
-    row["REMNUM"] = remito;
-    const newValues = cleanFields(fieldsList, row);
-    if (!row.ID) {
-      return dispatch(addItem(newValues));
+    if (form.current) {
+      const row = await form.current.validateFields();
+      row["ID"] = id;
+      row["REMNUM"] = remito;
+      const newValues = cleanFields(fieldsList, row);
+      if (!row.ID) {
+        return dispatch(addItem(newValues));
+      }
+      dispatch(updateItem(newValues));
     }
-    dispatch(updateItem(newValues));
   };
 
   const handleAdd = () => {
@@ -103,9 +114,13 @@ const EditableTable = (props) => {
         (row[column.name] = "number-amount".includes(column.type) ? 0 : "")
     );
     row["REMNUM"] = remito.REMNUM;
+    row["REMCAN"] = 1;
     const newData = [...data, row];
     setEditingKey(0);
     setData(newData);
+    if (form.current) {
+      form.current.setFieldsValue(row);
+    }
   };
 
   const mergedColumns = columns({
@@ -144,7 +159,7 @@ const EditableTable = (props) => {
 
   return (
     <>
-      <Form form={form} component={false}>
+      <Form ref={form} component={false}>
         <Table
           components={{
             body: {
@@ -159,22 +174,23 @@ const EditableTable = (props) => {
           rowKey={rowKey}
           size="small"
           tableLayout="fixed"
+          loading={loading}
           summary={() => (
             <TableSummary total={formatAmount(totalAmount)} colSpan={4} />
           )}
         />
         <Divider />
         <Space>
-          <AddButton onAdd={handleAdd} disabled={editingKey !== ""} />
+          <AddButton onAdd={handleAdd} disabled={!!editingKey} />
         </Space>
       </Form>
       <Modal
         title="Buscar producto"
         isModalVisible={isModalVisible}
         onClose={onCancelModal}
-        onOk={onOk}
+        onOk={() => searchForm.current.submit()}
       >
-        <Form form={searchForm}>
+        <Form ref={searchForm} onFinish={onOk}>
           <InputField
             field={field}
             optionsModels={field.optionsModels}

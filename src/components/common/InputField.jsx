@@ -52,7 +52,7 @@ const InputField = (props) => {
     align: field.align,
     execute: field.execute,
     rows: field.rows, // textarea
-    onChange: field.onChange,
+    onChange: field.getSelectedValue || field.onChange,
   };
 
   const selectProps = {
