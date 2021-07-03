@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Table, Form, Space, Divider, Modal as AntdModal } from "antd";
 import InputField from "./InputField";
 import Modal from "./Modal";
-import { formatAmount, cleanFields } from "utils/helpers";
+import { cleanFields } from "utils/helpers";
 import { addItem, updateItem } from "redux/actions";
 import AddButton from "./AddButton";
 import EditableCell from "./EditableCell";
@@ -14,7 +14,15 @@ import TableSummary from "./TableSummary";
 import "./editableTable.scss";
 
 const EditableTable = (props) => {
-  const { dataSource, rowKey, handleDelete, fields, columns, loading } = props;
+  const {
+    dataSource,
+    rowKey,
+    handleDelete,
+    fields,
+    columns,
+    loading,
+    discount,
+  } = props;
   const form = useRef(null);
   const searchForm = useRef(null);
   const [data, setData] = useState(dataSource);
@@ -31,7 +39,8 @@ const EditableTable = (props) => {
   const fieldsList = fields({ productos, handleSelectedValue });
 
   useEffect(() => {
-    document.getElementsByTagName("input")[0].focus();
+    !!document.getElementsByTagName("input").length &&
+      document.getElementsByTagName("input")[0].focus();
   }, [editingKey]);
 
   useEffect(() => {
@@ -180,7 +189,7 @@ const EditableTable = (props) => {
           tableLayout="fixed"
           loading={loading}
           summary={() => (
-            <TableSummary total={formatAmount(totalAmount)} colSpan={4} />
+            <TableSummary total={totalAmount} discount={discount} colSpan={4} />
           )}
         />
         <Divider />

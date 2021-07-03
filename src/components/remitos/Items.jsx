@@ -13,7 +13,7 @@ const { Text } = Typography;
 
 const Remitos = (props) => {
   const dispatch = useDispatch();
-  const { loading, items, error } = props;
+  const { loading, items, error, discount } = props;
 
   const handleDelete = (record) => {
     dispatch(deleteItem(record));
@@ -44,6 +44,7 @@ const Remitos = (props) => {
     summary,
     pagination: false,
     handleDelete,
+    discount,
   };
 
   return (

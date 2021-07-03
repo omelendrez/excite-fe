@@ -175,6 +175,7 @@ const Remito = (props) => {
     loading,
     error,
     items,
+    discount,
   };
 
   return (
