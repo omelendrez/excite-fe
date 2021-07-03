@@ -14,7 +14,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const InputField = (props) => {
-  const { field, optionsModels, handleModal, defaultOpen } = props;
+  const { field, optionsModels, handleModal } = props;
 
   const handleKey = (e) => {
     const inputs = document.getElementsByTagName("input");
@@ -60,6 +60,8 @@ const InputField = (props) => {
     placeholder: "Seleccione uno",
     optionFilterProp: "children",
     onChange: field.getSelectedValue,
+    defaultOpen: field.defaultOpen,
+    autoFocus: !!field.defaultOpen,
     filterOption: (input, option) =>
       option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0,
     filterSort: (optionA, optionB) =>
@@ -153,12 +155,7 @@ const InputField = (props) => {
     case "select":
       return (
         <Form.Item label={field.title} name={[field.name]} rules={field.rules}>
-          <Select
-            {...selectProps}
-            {...commonProps}
-            defaultOpen={defaultOpen}
-            autoFocus={defaultOpen}
-          >
+          <Select {...selectProps} {...commonProps}>
             {optionsModels &&
               optionsModels[field.options].map((option) => (
                 <Option key={option.id} value={option.id}>

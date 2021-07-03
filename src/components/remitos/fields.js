@@ -92,6 +92,7 @@ export const itemFields = (props) => {
       },
       getSelectedValue: handleSelectedValue,
       rules: [{ required: true }],
+      defaultOpen: true,
     },
     {
       name: "REMCAN",

@@ -191,11 +191,7 @@ const EditableTable = (props) => {
         onOk={() => searchForm.current.submit()}
       >
         <Form ref={searchForm} onFinish={onOk}>
-          <InputField
-            field={field}
-            optionsModels={field.optionsModels}
-            defaultOpen
-          />
+          <InputField field={field} optionsModels={field.optionsModels} />
         </Form>
       </Modal>
     </>
