@@ -40,13 +40,14 @@ const EditableTable = (props) => {
     setEditingKey(null);
   }, [dataSource, loading]);
 
-  const onOk = () => {
+  const onSearchOk = () => {
     if (!selectedValue) return;
     const value = selectedValue;
     const producto = productos.records.find(
       (producto) => producto.PRODCOD === value
     );
     let price = producto.PRODPRE;
+    const name = producto.PRODDES;
     const tipo =
       (clientes.tipos &&
         clientes.tipos.find((tipo) => tipo.TIPCOD === producto.TIPCOD)) ||
@@ -54,6 +55,10 @@ const EditableTable = (props) => {
     if (tipo) {
       price = tipo.CLIPRODPRE;
     }
+
+    document.querySelector(
+      `tr[data-row-key="${editingKey}"] td.ant-table-cell-ellipsis`
+    ).textContent = name;
 
     if (price === 0) {
       const errorAlert = AntdModal.error();
@@ -190,7 +195,7 @@ const EditableTable = (props) => {
         onClose={onCancelModal}
         onOk={() => searchForm.current.submit()}
       >
-        <Form ref={searchForm} onFinish={onOk}>
+        <Form ref={searchForm} onFinish={onSearchOk}>
           <InputField field={field} optionsModels={field.optionsModels} />
         </Form>
       </Modal>
