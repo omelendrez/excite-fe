@@ -31,8 +31,7 @@ const EditableTable = (props) => {
   const fieldsList = fields({ productos, handleSelectedValue });
 
   useEffect(() => {
-    const inputs = document.getElementsByTagName("input");
-    if (inputs.length) inputs[0].focus();
+    document.getElementsByTagName("input")[0].focus();
   }, [editingKey]);
 
   useEffect(() => {
@@ -72,8 +71,8 @@ const EditableTable = (props) => {
       form.current.setFields([{ name: "PRODCOD", value }]);
       form.current.setFields([{ name: "REMPRE", value: price }]);
     }
-
     setIsModalVisible(false);
+    document.getElementsByTagName("input")[0].focus();
   };
 
   const isEditing = (record) => record.ID === editingKey;
