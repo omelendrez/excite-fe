@@ -1,5 +1,5 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import * as types from "redux/types";
+import * as types from "redux/actions";
 import { getRecords } from "services";
 
 const endpoint = "wake-up";

@@ -1,5 +1,5 @@
 import { put, takeEvery, call } from "redux-saga/effects";
-import * as types from "redux/types";
+import * as types from "redux/actions";
 import { getRecords } from "services";
 
 const endpoint = "estados";

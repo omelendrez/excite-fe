@@ -1,4 +1,4 @@
-import * as types from "redux/types";
+import * as types from "redux/actions";
 
 const initialState = {
   loading: false,

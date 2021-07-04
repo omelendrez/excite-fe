@@ -4,11 +4,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Table, Form, Space, Divider, Modal as AntdModal } from "antd";
-import InputField from "./InputField";
-import Modal from "./Modal";
+import InputField from "../common/InputField";
+import Modal from "../common/Modal";
 import { cleanFields } from "utils/helpers";
 import { addItem, updateItem } from "redux/actions";
-import AddButton from "./AddButton";
+import AddButton from "../common/AddButton";
 import EditableCell from "./EditableCell";
 import TableSummary from "./TableSummary";
 import "./editableTable.scss";

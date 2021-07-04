@@ -2,7 +2,7 @@ import React from "react";
 import { Layout, Table as AntdTable, Typography } from "antd";
 import { useDispatch } from "react-redux";
 import Header from "components/common/Header";
-import EditableTable from "components/common/EditableTable";
+import EditableTable from "./EditableTable";
 import Alert from "components/common/Alert";
 import { formatAmount } from "utils/helpers";
 import { deleteItem } from "redux/actions";
