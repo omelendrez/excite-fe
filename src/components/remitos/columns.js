@@ -99,14 +99,26 @@ export const itemColumns = (props) => {
     isEditing,
     cancel,
     editingKey,
+    prodcodValidator,
   } = props;
+
   return [
     {
       dataIndex: "PRODCOD",
       title: "Producto",
       editable: true,
-      width: 100,
+      width: 160,
       handleModal,
+      rules: [
+        {
+          required: true,
+          message: "Ingrese Producto",
+        },
+        {
+          validator: prodcodValidator,
+          message: "Producto no existe",
+        },
+      ],
     },
     {
       dataIndex: "PRODDES",
@@ -121,7 +133,19 @@ export const itemColumns = (props) => {
       inputType: "number",
       editable: true,
       align: "center",
-      width: 120,
+      width: 160,
+      min: 1,
+      rules: [
+        {
+          required: true,
+          message: "Ingrese Cantidad",
+        },
+        {
+          min: 1,
+          type: "number",
+          message: "Cantidad no puede ser 0",
+        },
+      ],
     },
     {
       dataIndex: "REMPRE",
@@ -130,7 +154,18 @@ export const itemColumns = (props) => {
       render: (text, _) => formatAmount(text),
       editable: true,
       align: "right",
-      width: 120,
+      width: 160,
+      rules: [
+        {
+          required: true,
+          message: "Ingrese Precio",
+        },
+        {
+          min: 1,
+          type: "number",
+          message: "Precio no puede ser 0",
+        },
+      ],
     },
     {
       dataIndex: "REMTOT",

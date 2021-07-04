@@ -48,7 +48,6 @@ const InputField = (props) => {
     readOnly: field.readonly,
     maxLength: field.size,
     onKeyDown: handleKey,
-    rules: field.rules,
     align: field.align,
     execute: field.execute,
     rows: field.rows, // textarea

@@ -3,14 +3,14 @@
  */
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Table, Form, Space, Divider, Modal as AntdModal } from "antd";
+import { Table, Form, Space, Divider } from "antd";
 import InputField from "../common/InputField";
 import Modal from "../common/Modal";
-import { cleanFields } from "utils/helpers";
-import { addItem, updateItem } from "redux/actions";
 import AddButton from "../common/AddButton";
 import EditableCell from "./EditableCell";
 import TableSummary from "./TableSummary";
+import { cleanFields } from "utils/helpers";
+import { addItem, updateItem } from "redux/actions";
 import "./editableTable.scss";
 
 const EditableTable = (props) => {
@@ -36,7 +36,39 @@ const EditableTable = (props) => {
 
   const handleSelectedValue = (value) => setSelectedValue(value);
 
-  const fieldsList = fields({ productos, handleSelectedValue });
+  const fieldsList = fields({
+    productos,
+    handleSelectedValue,
+  });
+
+  const prodcodValidator = (params) => {
+    const { field: fieldName } = params;
+    const value = form.current.getFieldValue(fieldName);
+    return new Promise((resolve, reject) => {
+      const producto = productos.records.find(
+        (producto) => producto.PRODCOD === value
+      );
+      let price = producto.PRODPRE;
+      const name = producto.PRODDES;
+      const tipo =
+        (clientes.tipos &&
+          clientes.tipos.find((tipo) => tipo.TIPCOD === producto.TIPCOD)) ||
+        null;
+      if (tipo) {
+        price = tipo.CLIPRODPRE;
+      }
+      const element = `tr[data-row-key="${editingKey}"] td.ant-table-cell-ellipsis`;
+      if (!!producto) {
+        document.querySelector(element).textContent = name;
+        form.current.setFields([{ name: "REMPRE", value: price }]);
+        return resolve();
+      } else {
+        document.querySelector(element).textContent = "";
+        form.current.setFields([{ name: "REMPRE", value: 0 }]);
+        return reject();
+      }
+    });
+  };
 
   useEffect(() => {
     !!document.getElementsByTagName("input").length &&
@@ -67,14 +99,6 @@ const EditableTable = (props) => {
     document.querySelector(
       `tr[data-row-key="${editingKey}"] td.ant-table-cell-ellipsis`
     ).textContent = name;
-
-    if (price === 0) {
-      const errorAlert = AntdModal.error();
-      errorAlert.update({
-        title: "Producto sin precio",
-        content: "Atención, el producto seleccionado no tiene precio asignado",
-      });
-    }
 
     if (form.current) {
       form.current.setFields([{ name: "PRODCOD", value }]);
@@ -144,10 +168,12 @@ const EditableTable = (props) => {
     isEditing,
     cancel,
     editingKey,
+    prodcodValidator,
   }).map((col) => {
     if (!col.editable) {
       return col;
     }
+
     return {
       ...col,
       onCell: (record) => {
@@ -158,6 +184,8 @@ const EditableTable = (props) => {
           title: col.title,
           editing: isEditing(record),
           handleModal: col.handleModal,
+          rules: col.rules,
+          onBlur: () => form.current?.validateFields(),
         };
       },
     };

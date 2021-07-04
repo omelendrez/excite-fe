@@ -11,6 +11,8 @@ const Modal = (props) => {
       onCancel={onClose}
       onOk={onOk}
       okText={okText}
+      focusTriggerAfterClose
+      autoFocusButton="ok"
     >
       {props.children}
     </AntdModal>

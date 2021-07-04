@@ -91,7 +91,6 @@ export const itemFields = (props) => {
         productos: getSelectList("productos", productos.records),
       },
       getSelectedValue: handleSelectedValue,
-      rules: [{ required: true }],
       defaultOpen: true,
     },
     {

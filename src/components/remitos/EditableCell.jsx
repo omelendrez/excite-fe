@@ -3,7 +3,6 @@ import InputField from "../common/InputField";
 const EditableCell = ({
   editing,
   dataIndex,
-  title,
   inputType,
   record,
   index,
@@ -11,20 +10,17 @@ const EditableCell = ({
   optionsModels,
   options,
   handleModal,
+  rules,
   ...restProps
 }) => {
   const fieldProps = {
     type: inputType,
     name: dataIndex,
     key: dataIndex,
-    rules: [
-      {
-        required: true,
-        message: `Debe ingresar ${title}!`,
-      },
-    ],
+    rules,
     options,
   };
+
   return (
     <td {...restProps}>
       {editing ? (
