@@ -185,7 +185,6 @@ const EditableTable = (props) => {
           editing: isEditing(record),
           handleModal: col.handleModal,
           rules: col.rules,
-          onBlur: () => form.current?.validateFields(),
         };
       },
     };
