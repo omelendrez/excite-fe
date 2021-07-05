@@ -15,16 +15,17 @@ export const columns = (props) => {
     },
     {
       dataIndex: "VENCOD",
-      title: "Vendedor",
+      title: "Vend.",
       width: 80,
-      onFilter: (value, record) => record.VENCOD === value,
-      filters: props.filter,
     },
     {
       dataIndex: "VENNOM",
       title: "Nombre",
       ellipsis: true,
       width: 180,
+      onFilter: (value, record) => record.VENCOD === value,
+      filters: props.filter,
+      filterMultiple: false,
     },
     {
       dataIndex: "CLILOC",
@@ -36,6 +37,7 @@ export const columns = (props) => {
       dataIndex: "REMNUM",
       title: "Presup.",
       width: 80,
+      align: "right",
     },
     {
       dataIndex: "REMFEC",

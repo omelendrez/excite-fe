@@ -46,6 +46,9 @@
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
+          .label {
+            font-size: 0.9em;
+          }
         }
       }
     }

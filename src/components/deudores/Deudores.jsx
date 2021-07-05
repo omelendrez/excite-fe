@@ -12,7 +12,7 @@ const Deudores = (props) => {
   const { loading, deudores, error } = remitos;
 
   const onPrint = () => {
-    console.log("Printing...");
+    window.print();
   };
 
   const summary = (pageData) => {
@@ -23,8 +23,10 @@ const Deudores = (props) => {
 
     return (
       <AntdTable.Summary.Row className="summary-row">
-        <AntdTable.Summary.Cell>Total</AntdTable.Summary.Cell>
-        <AntdTable.Summary.Cell align="right" colSpan={8}>
+        <AntdTable.Summary.Cell colSpan={6}>
+          Total documentos listados: {pageData.length}
+        </AntdTable.Summary.Cell>
+        <AntdTable.Summary.Cell align="right" colSpan={3}>
           {formatAmount(totalAmount)}
         </AntdTable.Summary.Cell>
       </AntdTable.Summary.Row>
@@ -48,6 +50,8 @@ const Deudores = (props) => {
     rowKey: "REMNUM",
     onPrint,
     summary,
+    pagination: false,
+    id: "section-to-print",
   };
 
   return (
