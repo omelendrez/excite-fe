@@ -18,6 +18,14 @@ function getRemitos() {
     });
 }
 
+function getDeudores() {
+  return getRecordById(`${endpoint}/deudores`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 function getRemito(id) {
   return getRecordById(`${endpoint}/${id}`)
     .then((response) => response)
@@ -106,9 +114,10 @@ export function updateStock({ ID, PRODSTO }) {
 function* fetchRemitosSaga() {
   try {
     const records = yield call(getRemitos);
+    const deudores = yield call(getDeudores);
     yield put({
       type: types.GET_REMITOS_SUCCESS,
-      payload: records,
+      payload: { records, deudores },
     });
   } catch (error) {
     yield put({

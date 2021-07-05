@@ -93,6 +93,11 @@ const Menu = () => {
         </AntdMenu.Item>
 
         <AntdMenu.Item key="14">
+          Deudores
+          <Link to="/deudores" />
+        </AntdMenu.Item>
+
+        <AntdMenu.Item key="15">
           Conceptos
           <Link to="/conceptos" />
         </AntdMenu.Item>
@@ -100,7 +105,7 @@ const Menu = () => {
 
       {/* Mantenimiento */}
       <SubMenu key="sub7" icon={<SettingOutlined />} title="Mantenimiento">
-        <AntdMenu.Item key="15">
+        <AntdMenu.Item key="16">
           Últimos números
           <Link to="/ultimos-numeros" />
         </AntdMenu.Item>

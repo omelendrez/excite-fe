@@ -46,6 +46,7 @@ import Remitos from "components/remitos/Remitos";
 import Remito from "components/remitos/Remito";
 import RemitoForm from "components/remitos/RemitoForm";
 import ItemForm from "components/remitos/ItemForm";
+import Deudores from "components/deudores/Deudores";
 
 import Conceptos from "components/conceptos/Conceptos";
 import Concepto from "components/conceptos/Concepto";
@@ -130,6 +131,7 @@ const Routes = () => {
 
       {/* Remitos */}
       <Route exact path="/remitos" component={Remitos} />
+      <Route exact path="/deudores" component={Deudores} />
       <Route exact path="/remitos/add/remito" component={RemitoForm} />
       <Route exact path="/remitos/:id" component={Remito} />
       <Route exact path="/remitos/items/add/item" component={ItemForm} />

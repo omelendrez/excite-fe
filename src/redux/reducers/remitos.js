@@ -5,6 +5,7 @@ const initialState = {
   record: {},
   items: [],
   item: {},
+  deudores: [],
   loading: false,
   success: false,
   error: null,
@@ -19,10 +20,12 @@ const remitosReducer = (state = initialState, action) => {
         error: null,
       };
     case types.GET_REMITOS_SUCCESS:
+      const { records, deudores } = action.payload;
       return {
         ...state,
         loading: false,
-        records: action.payload,
+        records,
+        deudores,
         error: null,
       };
     case types.GET_REMITOS_FAILED:
