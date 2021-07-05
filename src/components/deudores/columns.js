@@ -1,17 +1,6 @@
-import { formatDate, formatAmount, sortColumn } from "utils/helpers";
+import { formatDate, formatAmount } from "utils/helpers";
 
 export const columns = (props) => {
-  console.log(props);
-  const vendedores = (
-    props.filter &&
-    props.filter
-      .filter((vendedor) => vendedor.VENEST === "Activo")
-      .map((vendedor) => ({
-        text: vendedor.VENNOM,
-        value: vendedor.VENCOD,
-      }))
-  ).sort((a, b) => sortColumn(a, b, "text"));
-
   return [
     {
       dataIndex: "CLICOD",
@@ -29,7 +18,7 @@ export const columns = (props) => {
       title: "Vendedor",
       width: 80,
       onFilter: (value, record) => record.VENCOD === value,
-      filters: vendedores,
+      filters: props.filter,
     },
     {
       dataIndex: "VENNOM",
@@ -64,16 +53,15 @@ export const columns = (props) => {
     },
     {
       dataIndex: "TOTAL",
-      title: "Importe a Pagar",
+      title: "Imp. a Pagar",
       align: "right",
       width: 100,
-      render: (text) => <span className="debt">{formatAmount(text * -1)}</span>,
+      render: (text) => <span className="debt">{formatAmount(text)}</span>,
       ellipsis: true,
     },
     {
       dataIndex: "DAYS",
       title: "Atraso",
-      width: 100,
       render: (text) => <strong>{text}</strong>,
     },
   ];
