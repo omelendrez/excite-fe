@@ -50,23 +50,26 @@ const Remito = (props) => {
   }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
+    setDefaultItemValues([
+      {
+        name: "REMPER",
+        value: Math.round((record.REMDES / totalItems) * 100, 1),
+      },
+      { name: "REMDES", value: record.REMDES },
+      { name: "ID", value: record.ID },
+    ]);
+    setDiscount(record.REMDES);
+    setNetItems(totalItems - record.REMDES);
+  }, [totalItems, record]);
+
+  useEffect(() => {
     if (record && record.REMNUM) {
       const cli = clientes.find((c) => c.CLICOD === record.CLICOD);
       dispatch(getCliente(cli.ID));
       const info = setFields(fields, record);
       setInfo(info);
-      setDefaultItemValues([
-        {
-          name: "REMPER",
-          value: Math.round((record.REMDES / totalItems) * 100, 1),
-        },
-        { name: "REMDES", value: record.REMDES },
-        { name: "ID", value: record.ID },
-      ]);
-      setDiscount(record.REMDES);
-      setNetItems(totalItems - record.REMDES);
     }
-  }, [dispatch, record, clientes, totalItems]);
+  }, [dispatch, record, clientes]);
 
   useEffect(() => {
     if (items) {
