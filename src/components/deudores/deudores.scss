@@ -5,11 +5,11 @@
     color: #000;
     background-color: #fff;
     font-size: 12pt;
+    top: 0;
 
     .deudores {
       visibility: visible;
       position: absolute;
-      top: 0;
       left: 0;
       .ant-table-cell {
         border: none;

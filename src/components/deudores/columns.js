@@ -57,7 +57,7 @@ export const columns = (props) => {
       dataIndex: "TOTAL",
       title: "Imp. a Pagar",
       align: "right",
-      width: 100,
+      width: 120,
       render: (text) => <span className="debt">{formatAmount(text)}</span>,
       ellipsis: true,
     },

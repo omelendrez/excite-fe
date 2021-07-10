@@ -156,11 +156,11 @@ const Presupuesto = (props) => {
           <table>
             <thead>
               <tr>
-                <th className="right">Cantidad</th>
-                <th>Producto</th>
-                <th>Detalle</th>
-                <th className="center">Precio Unitario</th>
-                <th className="right">Importe</th>
+                <th className="cantidad right">Cantidad</th>
+                <th className="producto">Producto</th>
+                <th className="detalle">Detalle</th>
+                <th className="precio center">Precio Unitario</th>
+                <th className="importe right">Importe</th>
               </tr>
             </thead>
             <tbody>

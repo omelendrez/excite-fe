@@ -30,7 +30,9 @@
 
 @media print {
   * {
-    font: 9pt Arial, Helvetica, sans-serif;
+    /*font: 9pt Arial, Helvetica, sans-serif;*/
+    font: 9pt "Inconsolata", monospace;
+
     float: none;
   }
   body {
