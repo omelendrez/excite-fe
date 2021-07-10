@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Table as AntdTable } from "antd";
+import { Layout, Table as AntdTable, Typography } from "antd";
 import { useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Table from "components/common/Table";
@@ -7,6 +7,7 @@ import Alert from "components/common/Alert";
 import { formatAmount, sortColumn } from "utils/helpers";
 import { columns } from "./columns";
 import "./deudores.scss";
+const { Title } = Typography;
 
 const Deudores = (props) => {
   const remitos = useSelector((state) => state.remitos);
@@ -61,6 +62,7 @@ const Deudores = (props) => {
 
       {error && <Alert message="Error" description={error} type="error" />}
       <div className="deudores">
+        <Title level={5}>Test of title</Title>
         <Table {...tableProps} />
       </div>
     </Layout>

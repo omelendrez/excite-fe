@@ -66,7 +66,9 @@ const Table = (props) => {
         )}
         <Col offset={1}>{props.onAdd && <AddButton onAdd={props.onAdd} />}</Col>
       </Row>
-      <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>
+      <Row style={{ marginBottom: 10 }}>
+        <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>
+      </Row>
       <AntdTable
         pagination={paginationProps}
         sticky={true}

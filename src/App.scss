@@ -29,8 +29,17 @@
 }
 
 @media print {
+  * {
+    font: 9pt Arial, Helvetica, sans-serif;
+    float: none;
+  }
   body {
+    width: 100%;
     visibility: hidden;
+    margin: 0;
+    padding: 0;
+    background: #fff !important;
+    color: #000;
     .no-print {
       display: none !important;
     }

@@ -5,15 +5,20 @@
     color: #000;
     background-color: #fff;
     font-size: 12pt;
+
     .deudores {
       visibility: visible;
       position: absolute;
       top: 0;
       left: 0;
+      .ant-table-cell {
+        border: none;
+      }
     }
   }
+
   @page {
-    size: landscape;
+    size: A4 landscape;
     margin: 0.5cm;
   }
 }
