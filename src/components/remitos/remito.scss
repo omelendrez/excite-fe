@@ -1,17 +1,6 @@
 .ant-modal-close {
   display: none;
 }
-@media print {
-  .ant-modal-footer {
-    display: none;
-  }
-
-  @page {
-    margin: 0;
-    size: portrait;
-  }
-}
-
 .total {
   text-align: right;
 }

@@ -66,16 +66,15 @@ const Table = (props) => {
         )}
         <Col offset={1}>{props.onAdd && <AddButton onAdd={props.onAdd} />}</Col>
       </Row>
+      <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>
       <AntdTable
         pagination={paginationProps}
         sticky={true}
         tableLayout="fixed"
         loading={props.loading}
         size="small"
-        scroll={{ y: "70vh" }}
         {...newProps}
       />
-      <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>
     </>
   );
 };

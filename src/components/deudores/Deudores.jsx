@@ -6,6 +6,7 @@ import Table from "components/common/Table";
 import Alert from "components/common/Alert";
 import { formatAmount, sortColumn } from "utils/helpers";
 import { columns } from "./columns";
+import "./deudores.scss";
 
 const Deudores = (props) => {
   const remitos = useSelector((state) => state.remitos);
@@ -59,8 +60,9 @@ const Deudores = (props) => {
       <Header title="Deudores" onBack={props.history.goBack} />
 
       {error && <Alert message="Error" description={error} type="error" />}
-
-      <Table {...tableProps} />
+      <div className="deudores">
+        <Table {...tableProps} />
+      </div>
     </Layout>
   );
 };

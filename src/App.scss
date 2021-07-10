@@ -29,12 +29,10 @@
 }
 
 @media print {
-  .ant-layout,
-  .ant-modal-mask,
-  .no-print {
-    display: none !important;
-  }
-  .ant-modal-content {
-    box-shadow: none;
+  body {
+    visibility: hidden;
+    .no-print {
+      display: none !important;
+    }
   }
 }

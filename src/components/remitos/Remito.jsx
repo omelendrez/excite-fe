@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Redirect } from "react-router-dom";
 import { Layout, Collapse, Form, Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
@@ -6,7 +7,6 @@ import Alert from "components/common/Alert";
 import Items from "./Items";
 import Info from "components/common/Info";
 import Modal from "components/common/Modal";
-import Presupuesto from "components/reportes/presupuesto/Presupuesto";
 import InputField from "components/common/InputField";
 import notification from "components/common/notification";
 import {
@@ -37,13 +37,13 @@ const Remito = (props) => {
     value: "",
   }));
   const [info, setInfo] = useState(infoDefault);
-  const [showPrint, setShowPrint] = useState(false);
   const [showDiscount, setShowDiscount] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const [netItems, setNetItems] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [itemRecord, setItemRecord] = useState(defaultItemRecord);
   const [defaultItemValues, setDefaultItemValues] = useState([]);
+  const [url, setUrl] = useState("");
 
   useEffect(() => {
     dispatch(getRemito(props.match.params.id));
@@ -100,7 +100,7 @@ const Remito = (props) => {
   };
 
   const handlePrint = () => {
-    setShowPrint(!showPrint);
+    setUrl("/remitos/remito/reporte");
   };
 
   const handleDiscount = () => {
@@ -181,6 +181,16 @@ const Remito = (props) => {
     discount,
   };
 
+  if (!!url) {
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: url,
+        }}
+      />
+    );
+  }
   return (
     <>
       <Layout>
@@ -210,15 +220,6 @@ const Remito = (props) => {
           </Collapse>
         </div>
       </Layout>
-      <Modal
-        isModalVisible={showPrint}
-        onClose={handlePrint}
-        width="900px"
-        okText="Imprimir"
-        onOk={() => window.print()}
-      >
-        <Presupuesto title={record.REMNUM} />
-      </Modal>
       <Modal
         isModalVisible={showDiscount}
         onClose={handleDiscount}

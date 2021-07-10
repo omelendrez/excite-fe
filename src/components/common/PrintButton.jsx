@@ -11,6 +11,7 @@ const PrintButton = (props) => {
       icon={<PrinterOutlined />}
       onClick={props.onPrint || noHandlePrint}
       shape="round"
+      className="no-print"
     >
       Imprimir
     </Button>
