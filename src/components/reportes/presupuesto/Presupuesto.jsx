@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Result } from "antd";
@@ -17,6 +17,12 @@ const Presupuesto = (props) => {
   const { records: productos } = useSelector((state) => state.productos);
 
   const onPrint = () => window.print();
+
+  useEffect(() => {
+    if (remito.REMNUM) {
+      window.print();
+    }
+  }, [remito]);
 
   if (!remito.REMNUM) {
     return (

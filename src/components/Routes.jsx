@@ -11,6 +11,7 @@ import TransporteForm from "components/transportes/TransporteForm";
 import Clientes from "components/clientes/Clientes";
 import Cliente from "components/clientes/Cliente";
 import ClienteForm from "components/clientes/ClienteForm";
+import ClienteTipoForm from "./clientes/ClienteTipoForm";
 
 import Ivas from "components/ivas/Ivas";
 import Iva from "components/ivas/Iva";
@@ -77,7 +78,9 @@ const Routes = () => {
       {/* Clientes */}
       <Route exact path="/clientes" component={Clientes} />
       <Route exact path="/clientes/add/cliente" component={ClienteForm} />
+      <Route exact path="/clientes/add/tipo" component={ClienteTipoForm} />
       <Route exact path="/clientes/:id" component={Cliente} />
+      <Route exact path="/clientes/edit/tipo/:id" component={ClienteTipoForm} />
       <Route exact path="/clientes/edit/:id" component={ClienteForm} />
 
       {/* Iva */}

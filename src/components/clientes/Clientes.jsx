@@ -6,7 +6,7 @@ import Header from "components/common/Header";
 import Table from "components/common/Table";
 import Alert from "components/common/Alert";
 import { createNewRecord } from "utils/helpers";
-import fields from "./fields";
+import { fields } from "./fields";
 import { columns } from "./columns";
 
 const Clientes = (props) => {

@@ -1,4 +1,4 @@
-import { put, takeEvery, call } from "redux-saga/effects";
+import { put, takeEvery, call, select } from "redux-saga/effects";
 import * as types from "redux/actions";
 import {
   getRecords,
@@ -68,6 +68,30 @@ function updateCliente(newData) {
 
 function deleteCliente(id) {
   return deleteRecord(`${endpoint}/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+function addClienteTipo(newData) {
+  return addRecord(`${endpoint}-tipos`, newData)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+function updateClienteTipo(newData) {
+  return updateRecord(`${endpoint}-tipos`, newData)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+function deleteClienteTipo(id) {
+  return deleteRecord(`${endpoint}-tipos/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -175,6 +199,70 @@ function* deleteClienteSaga(action) {
   }
 }
 
+function* addClienteTipoSaga(action) {
+  try {
+    const record = yield call(addClienteTipo, action.newData);
+    yield put({
+      type: types.ADD_CLIENTE_TIPO_SUCCESS,
+      payload: record,
+    });
+    const state = yield select();
+    const { record: cliente } = state.clientes;
+    yield put({
+      type: types.GET_CLIENTE_REQUEST,
+      id: cliente.ID,
+    });
+  } catch (error) {
+    yield put({
+      type: types.ADD_CLIENTE_TIPO_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
+function* updateClienteTipoSaga(action) {
+  try {
+    const record = yield call(updateClienteTipo, action.newData);
+    yield put({
+      type: types.UPDATE_CLIENTE_TIPO_SUCCESS,
+      payload: record,
+    });
+    const state = yield select();
+    const { record: cliente } = state.clientes;
+    yield put({
+      type: types.GET_CLIENTE_REQUEST,
+      id: cliente.ID,
+    });
+  } catch (error) {
+    yield put({
+      type: types.UPDATE_CLIENTE_TIPO_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
+function* deleteClienteTipoSaga(action) {
+  try {
+    const record = yield call(deleteClienteTipo, action.id);
+
+    yield put({
+      type: types.DELETE_CLIENTE_TIPO_SUCCESS,
+      payload: record,
+    });
+    const state = yield select();
+    const { record: cliente } = state.clientes;
+    yield put({
+      type: types.GET_CLIENTE_REQUEST,
+      id: cliente.ID,
+    });
+  } catch (error) {
+    yield put({
+      type: types.DELETE_CLIENTE_TIPO_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
 function* clientesSaga() {
   yield takeEvery(types.GET_CLIENTES_REQUEST, fetchClientesSaga);
   yield takeEvery(types.GET_ACTIVE_CLIENTES_REQUEST, fetchActiveClientesSaga);
@@ -182,6 +270,9 @@ function* clientesSaga() {
   yield takeEvery(types.ADD_CLIENTE_REQUEST, addClienteSaga);
   yield takeEvery(types.UPDATE_CLIENTE_REQUEST, updateClienteSaga);
   yield takeEvery(types.DELETE_CLIENTE_REQUEST, deleteClienteSaga);
+  yield takeEvery(types.ADD_CLIENTE_TIPO_REQUEST, addClienteTipoSaga);
+  yield takeEvery(types.UPDATE_CLIENTE_TIPO_REQUEST, updateClienteTipoSaga);
+  yield takeEvery(types.DELETE_CLIENTE_TIPO_REQUEST, deleteClienteTipoSaga);
 }
 
 export default clientesSaga;

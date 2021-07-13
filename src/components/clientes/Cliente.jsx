@@ -8,8 +8,8 @@ import Table from "components/common/Table";
 import Info from "components/common/Info";
 import ClientBalance from "components/common/ClientBalance";
 import notification from "components/common/notification";
-import { getCliente, deleteCliente } from "redux/actions";
-import fields from "./fields";
+import { getCliente, deleteCliente, deleteClienteTipo } from "redux/actions";
+import { fields } from "./fields";
 import { setFields } from "utils/helpers";
 import { tiposColumns } from "./columns";
 
@@ -20,6 +20,7 @@ const Cliente = (props) => {
   const clientes = useSelector((state) => state.clientes);
   const { loading, success, record, error, tipos, saldos } = clientes;
   const [url, setUrl] = useState("");
+  const [tipoUrl, setTipoUrl] = useState("");
   const infoDefault = fields.map((field) => ({
     title: field.title,
     value: "",
@@ -79,24 +80,36 @@ const Cliente = (props) => {
     );
   }
 
-  const onEdit = (record) => {
-    console.log(record);
+  if (!!tipoUrl) {
+    return (
+      <Redirect
+        push
+        to={{ pathname: url, state: { record: clientes.record } }}
+      />
+    );
+  }
+
+  const onAddTipo = () => {
+    setTipoUrl(`/clientes/add/tipo`);
   };
 
-  const onAdd = () => {
-    console.log("Adding tipo");
+  const onEditTipo = (record) => {
+    setUrl(`/clientes/edit/tipo/${record.id}`);
   };
 
-  const onDelete = (record) => {
-    console.log(record);
+  const onDeleteTipo = (record) => {
+    dispatch(deleteClienteTipo(record.ID));
   };
 
   const tiposTableProps = {
     loading,
-    columns: tiposColumns({ handleEdit: onEdit, handleDelete: onDelete }),
+    columns: tiposColumns({
+      handleEdit: onEditTipo,
+      handleDelete: onDeleteTipo,
+    }),
     dataSource: tipos,
     rowKey: "ID",
-    onAdd,
+    onAdd: onAddTipo,
   };
 
   const balance = saldos.reduce((acc, cur) => acc + cur.AMOUNT, 0);

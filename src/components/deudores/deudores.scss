@@ -1,24 +1,16 @@
 @media print {
   body {
-    margin: 0;
-    padding: 0;
-    color: #000;
-    background-color: #fff;
-    font-size: 12pt;
-    top: 0;
-
     .deudores {
       visibility: visible;
       position: absolute;
       left: 0;
+      top: 0;
+      .ant-dropdown-trigger {
+        display: none;
+      }
       .ant-table-cell {
         border: none;
       }
     }
-  }
-
-  @page {
-    size: A4 landscape;
-    margin: 0.5cm;
   }
 }

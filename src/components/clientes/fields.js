@@ -1,4 +1,4 @@
-const fields = [
+export const fields = [
   {
     name: "CLICOD",
     title: "Código",
@@ -118,4 +118,18 @@ const fields = [
   },
 ];
 
-export default fields;
+export const tipoFields = [
+  {
+    name: "TIPCOD",
+    title: "Tipo",
+    type: "select",
+    options: "tipos",
+    rules: [{ required: true }],
+    allowAdd: true,
+  },
+  {
+    name: "CLIPRODPRE",
+    title: "Precio",
+    type: "amount",
+  },
+];

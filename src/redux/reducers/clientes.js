@@ -5,6 +5,7 @@ const initialState = {
   records: [],
   active: [],
   tipos: [],
+  tipo: {},
   saldos: [],
   loading: false,
   success: false,
