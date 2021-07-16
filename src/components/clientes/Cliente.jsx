@@ -8,7 +8,12 @@ import Table from "components/common/Table";
 import Info from "components/common/Info";
 import ClientBalance from "components/common/ClientBalance";
 import notification from "components/common/notification";
-import { getCliente, deleteCliente, deleteClienteTipo } from "redux/actions";
+import {
+  getCliente,
+  deleteCliente,
+  getClienteTipo,
+  deleteClienteTipo,
+} from "redux/actions";
 import { fields } from "./fields";
 import { setFields } from "utils/helpers";
 import { tiposColumns } from "./columns";
@@ -18,7 +23,7 @@ const { TabPane } = Tabs;
 const Cliente = (props) => {
   const dispatch = useDispatch();
   const clientes = useSelector((state) => state.clientes);
-  const { loading, success, record, error, tipos, saldos } = clientes;
+  const { loading, success, record, error, tipo, tipos, saldos } = clientes;
   const [url, setUrl] = useState("");
   const [tipoUrl, setTipoUrl] = useState("");
   const infoDefault = fields.map((field) => ({
@@ -51,6 +56,10 @@ const Cliente = (props) => {
     }
   }, [success, record, error, props.history]);
 
+  useEffect(() => {
+    if (tipo.ID) setTipoUrl(`/clientes/edit/tipo/${tipo.ID}`);
+  }, [tipo]);
+
   const handleEdit = () => {
     setUrl(`/clientes/edit/${props.match.params.id}`);
   };
@@ -82,10 +91,7 @@ const Cliente = (props) => {
 
   if (!!tipoUrl) {
     return (
-      <Redirect
-        push
-        to={{ pathname: url, state: { record: clientes.record } }}
-      />
+      <Redirect push to={{ pathname: tipoUrl, state: { record: tipo } }} />
     );
   }
 
@@ -94,7 +100,7 @@ const Cliente = (props) => {
   };
 
   const onEditTipo = (record) => {
-    setUrl(`/clientes/edit/tipo/${record.id}`);
+    dispatch(getClienteTipo(record.ID));
   };
 
   const onDeleteTipo = (record) => {

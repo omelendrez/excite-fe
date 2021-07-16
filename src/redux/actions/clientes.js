@@ -26,6 +26,10 @@ export const ADD_CLIENTE_TIPO_REQUEST = "ADD_CLIENTE_TIPO_REQUEST";
 export const ADD_CLIENTE_TIPO_SUCCESS = "ADD_CLIENTE_TIPO_SUCCESS";
 export const ADD_CLIENTE_TIPO_FAILED = "ADD_CLIENTE_TIPO_FAILED";
 
+export const GET_CLIENTE_TIPO_REQUEST = "GET_CLIENTE_TIPO_REQUEST";
+export const GET_CLIENTE_TIPO_SUCCESS = "GET_CLIENTE_TIPO_SUCCESS";
+export const GET_CLIENTE_TIPO_FAILED = "GET_CLIENTE_TIPO_FAILED";
+
 export const UPDATE_CLIENTE_TIPO_REQUEST = "UPDATE_CLIENTE_TIPO_REQUEST";
 export const UPDATE_CLIENTE_TIPO_SUCCESS = "UPDATE_CLIENTE_TIPO_SUCCESS";
 export const UPDATE_CLIENTE_TIPO_FAILED = "UPDATE_CLIENTE_TIPO_FAILED";
@@ -80,6 +84,13 @@ export const addClienteTipo = (newData) => {
   return {
     type: ADD_CLIENTE_TIPO_REQUEST,
     newData,
+  };
+};
+
+export const getClienteTipo = (id) => {
+  return {
+    type: GET_CLIENTE_TIPO_REQUEST,
+    id,
   };
 };
 

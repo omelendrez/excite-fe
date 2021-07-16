@@ -35,7 +35,7 @@ function getCliente(id) {
 }
 
 function getClienteTipos(id) {
-  return getRecordById(`${endpoint}-tipos/${id}`)
+  return getRecordById(`${endpoint}/${id}/tipos`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -75,7 +75,15 @@ function deleteCliente(id) {
 }
 
 function addClienteTipo(newData) {
-  return addRecord(`${endpoint}-tipos`, newData)
+  return addRecord(`${endpoint}/tipos`, newData)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+function getClienteTipo(id) {
+  return getRecordById(`${endpoint}/tipos/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -83,7 +91,7 @@ function addClienteTipo(newData) {
 }
 
 function updateClienteTipo(newData) {
-  return updateRecord(`${endpoint}-tipos`, newData)
+  return updateRecord(`${endpoint}/tipos`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -91,7 +99,7 @@ function updateClienteTipo(newData) {
 }
 
 function deleteClienteTipo(id) {
-  return deleteRecord(`${endpoint}-tipos/${id}`)
+  return deleteRecord(`${endpoint}/tipos/${id}`)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -220,6 +228,21 @@ function* addClienteTipoSaga(action) {
   }
 }
 
+function* fetchClienteTipoSaga(action) {
+  try {
+    const tipo = yield call(getClienteTipo, action.id);
+    yield put({
+      type: types.GET_CLIENTE_TIPO_SUCCESS,
+      payload: tipo,
+    });
+  } catch (error) {
+    yield put({
+      type: types.GET_CLIENTE_TIPO_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
 function* updateClienteTipoSaga(action) {
   try {
     const record = yield call(updateClienteTipo, action.newData);
@@ -271,6 +294,7 @@ function* clientesSaga() {
   yield takeEvery(types.UPDATE_CLIENTE_REQUEST, updateClienteSaga);
   yield takeEvery(types.DELETE_CLIENTE_REQUEST, deleteClienteSaga);
   yield takeEvery(types.ADD_CLIENTE_TIPO_REQUEST, addClienteTipoSaga);
+  yield takeEvery(types.GET_CLIENTE_TIPO_REQUEST, fetchClienteTipoSaga);
   yield takeEvery(types.UPDATE_CLIENTE_TIPO_REQUEST, updateClienteTipoSaga);
   yield takeEvery(types.DELETE_CLIENTE_TIPO_REQUEST, deleteClienteTipoSaga);
 }

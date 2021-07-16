@@ -120,6 +120,51 @@ const clientesReducer = (state = initialState, action) => {
         success: false,
         error: action.payload,
       };
+
+    case types.GET_CLIENTE_TIPO_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        success: false,
+        error: null,
+      };
+    case types.GET_CLIENTE_TIPO_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        tipo: action.payload,
+        error: null,
+      };
+    case types.GET_CLIENTE_TIPO_FAILED:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload,
+      };
+    case types.UPDATE_CLIENTE_TIPO_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        success: false,
+        error: null,
+      };
+    case types.UPDATE_CLIENTE_TIPO_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        tipo: action.payload,
+        error: null,
+      };
+    case types.UPDATE_CLIENTE_TIPO_FAILED:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload,
+      };
     case types.DELETE_CLIENTE_REQUEST:
       return {
         ...state,

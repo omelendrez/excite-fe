@@ -132,4 +132,9 @@ export const tipoFields = [
     title: "Precio",
     type: "amount",
   },
+  {
+    name: "ID",
+    type: "number",
+    hidden: true,
+  },
 ];

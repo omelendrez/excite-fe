@@ -8,17 +8,14 @@ import { addClienteTipo, updateClienteTipo } from "redux/actions";
 import { getSelectList, cleanFields } from "utils/helpers";
 
 const ClienteTipoForm = (props) => {
-  const record = props.location.state.record;
+  const { record } = props.location.state;
   const title = `${record.ID ? "Modificando" : "Agregando"} tipo`;
   const dispatch = useDispatch();
-  const clientes = useSelector((state) => state.clientes);
-  const { loading, success, error } = clientes;
 
   const tipos = useSelector((state) => state.tipos);
 
   const onFinish = (values) => {
     const newValues = cleanFields(tipoFields, values);
-
     if (!record.ID) {
       return dispatch(addClienteTipo(newValues));
     }
@@ -33,9 +30,6 @@ const ClienteTipoForm = (props) => {
       <EditForm
         fields={tipoFields}
         record={record}
-        loading={loading}
-        success={success}
-        error={error}
         onFinish={onFinish}
         optionsModels={{
           tipos: getSelectList("tipos", tipos.records),
