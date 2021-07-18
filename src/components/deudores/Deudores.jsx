@@ -53,8 +53,6 @@ const Deudores = (props) => {
       }
     });
 
-  console.log(deudores);
-
   const tableProps = {
     loading,
     columns: columns({
