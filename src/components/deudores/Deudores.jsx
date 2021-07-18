@@ -35,13 +35,25 @@ const Deudores = (props) => {
     );
   };
 
-  const filter = [];
+  let filter = [];
 
-  deudores.forEach((d) => {
-    if (!filter.find((f) => f.value === d.VENCOD)) {
-      filter.push({ text: d.VENNOM, value: d.VENCOD });
-    }
-  });
+  const total = {};
+
+  deudores
+    .map((deudor) => {
+      total[deudor.CLICOD] = total[deudor.CLICOD]
+        ? total[deudor.CLICOD] + deudor.TOTAL
+        : deudor.TOTAL;
+      deudor.ACCUM = total[deudor.CLICOD];
+      return deudor;
+    })
+    .forEach((d) => {
+      if (!filter.find((f) => f.value === d.VENCOD)) {
+        filter = [...filter, { text: d.VENNOM, value: d.VENCOD }];
+      }
+    });
+
+  console.log(deudores);
 
   const tableProps = {
     loading,

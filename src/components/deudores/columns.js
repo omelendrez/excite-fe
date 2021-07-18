@@ -49,9 +49,10 @@ export const columns = (props) => {
     {
       dataIndex: "REMCACNUM",
       title: "Factura",
+      align: "center",
       render: (text) => (!!text ? text : ""),
       ellipsis: true,
-      width: 120,
+      width: 80,
     },
     {
       dataIndex: "TOTAL",
@@ -59,7 +60,13 @@ export const columns = (props) => {
       align: "right",
       width: 120,
       render: (text) => <span className="debt">{formatAmount(text)}</span>,
-      ellipsis: true,
+    },
+    {
+      dataIndex: "ACCUM",
+      title: "Saldo",
+      align: "right",
+      width: 120,
+      render: (text) => <span className="debt">{formatAmount(text)}</span>,
     },
     {
       dataIndex: "DAYS",
