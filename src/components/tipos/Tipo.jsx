@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Layout, Tabs, Form, Modal as AntdModal } from "antd";
+import { Layout, Form, Modal as AntdModal, Divider, Typography } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
@@ -19,7 +19,7 @@ import fields from "./fields";
 import { setFields } from "utils/helpers";
 import { columns as subtiposColumns } from "components/subtipos/columns";
 
-const { TabPane } = Tabs;
+const { Title } = Typography;
 
 const Tipo = (props) => {
   const [form] = Form.useForm();
@@ -154,27 +154,20 @@ const Tipo = (props) => {
         />
         {error && <Alert message="Error" description={error} type="error" />}
         <div className="card-container">
-          <Tabs tabPosition="right">
-            <TabPane tab="Info" key="1">
-              <Info
-                loading={loading}
-                title={info.TIPDES}
-                fields={fields}
-                data={info}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-                success={success}
-                history={props.history}
-                onPrice={handleOpen}
-              />
-            </TabPane>
-            <TabPane
-              tab={`Subtipos asociados (${tipos.subtipos.length})`}
-              key="2"
-            >
-              <Table {...subtiposTableProps} />
-            </TabPane>
-          </Tabs>
+          <Info
+            loading={loading}
+            title={info.TIPDES}
+            fields={fields}
+            data={info}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            success={success}
+            history={props.history}
+            onPrice={handleOpen}
+          />
+          <Divider />
+          <Title level={4}>Subtipos</Title>
+          <Table {...subtiposTableProps} />
         </div>
       </Layout>
       <Modal

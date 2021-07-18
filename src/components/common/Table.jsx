@@ -34,7 +34,7 @@ const Table = (props) => {
           }
         })
     );
-    setNewProps({ ...props, dataSource: filtered });
+    setNewProps((props) => ({ ...props, dataSource: filtered }));
   };
 
   const searchPlaceholder = props.columns
