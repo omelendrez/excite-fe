@@ -1,9 +1,9 @@
-import { Tag, Space } from "antd";
+import { Tag, Space, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import EditButton from "components/common/EditButton";
 import DeleteButton from "components/common/DeleteButton";
 import { sortColumn, statuses, formatAmount } from "utils/helpers";
-import { DollarCircleOutlined } from "@ant-design/icons";
+import { DollarOutlined } from "@ant-design/icons";
 
 export const columns = () => {
   const status = statuses
@@ -12,6 +12,21 @@ export const columns = () => {
       value: status.text,
     }))
     .sort((a, b) => sortColumn(a, b, "text"));
+
+  const renderName = (record) => {
+    const name = record.CLINOM || "*** SIN NOMBRE ***";
+    const specialPrices = record.CLITIP > 0;
+    return (
+      <Link to={`/clientes/${record.ID}`}>
+        {name}{" "}
+        {specialPrices ? (
+          <Tooltip title="Tiene precios especiales">
+            <DollarOutlined />
+          </Tooltip>
+        ) : null}
+      </Link>
+    );
+  };
 
   return [
     {
@@ -24,26 +39,10 @@ export const columns = () => {
       dataIndex: "CLINOM",
       title: "Cliente",
       sorter: (a, b) => sortColumn(a, b, "CLINOM"),
-      render: (text, record) => (
-        <Link to={`/clientes/${record.ID}`}>
-          {text || "*** sin nombre ***"}
-        </Link>
-      ),
+      render: (_, record) => renderName(record),
       searchable: true,
       ellipsis: true,
       width: 180,
-    },
-    {
-      dataIndex: "CLITIP",
-      title: "",
-      render: (text) =>
-        text > 0 ? (
-          <Tag color="error">
-            <DollarCircleOutlined />
-          </Tag>
-        ) : null,
-      width: 40,
-      align: "center",
     },
     {
       dataIndex: "CLIDOM",
