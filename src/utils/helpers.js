@@ -113,3 +113,9 @@ export const createNewRecord = (fields) => {
 
   return record;
 };
+
+export const timeout = (delay = 0) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve(), delay);
+  });
+};

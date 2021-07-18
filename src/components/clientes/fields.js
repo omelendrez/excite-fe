@@ -133,6 +133,11 @@ export const tipoFields = [
     type: "amount",
   },
   {
+    name: "CLICOD",
+    type: "number",
+    readonly: true,
+  },
+  {
     name: "ID",
     type: "number",
     hidden: true,

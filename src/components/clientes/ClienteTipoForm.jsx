@@ -1,28 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Layout } from "antd";
 import Header from "components/common/Header";
 import EditForm from "components/common/EditForm";
 import { tipoFields } from "./fields";
 import { useSelector, useDispatch } from "react-redux";
-import { addClienteTipo, updateClienteTipo } from "redux/actions";
+import {
+  getClienteTipo,
+  addClienteTipo,
+  updateClienteTipo,
+} from "redux/actions";
 import { getSelectList, cleanFields } from "utils/helpers";
 
 const ClienteTipoForm = (props) => {
-  const { record } = props.location.state;
-  const title = `${record.ID ? "Modificando" : "Agregando"} tipo`;
   const dispatch = useDispatch();
-
+  const title = `${props.match.params.id ? "Modificando" : "Agregando"} tipo`;
   const tipos = useSelector((state) => state.tipos);
+  const [record, setRecord] = useState(
+    !props.match.params.id ? props.location.state.record : {}
+  );
+  const { tipo } = useSelector((state) => state.clientes);
+
+  useEffect(() => {
+    if (props.match.params.id) {
+      dispatch(getClienteTipo(props.match.params.id));
+    }
+  }, [props, dispatch]);
+
+  useEffect(() => {
+    if (props.match.params.id) {
+      setRecord((record) => ({ ...record, ...tipo }));
+    }
+  }, [props, tipo]);
 
   const onFinish = (values) => {
     const newValues = cleanFields(tipoFields, values);
-    if (!record.ID) {
-      return dispatch(addClienteTipo(newValues));
+    if (!values.ID) {
+      dispatch(addClienteTipo(newValues));
+    } else {
+      dispatch(updateClienteTipo(values.ID, newValues));
     }
-    dispatch(updateClienteTipo(record.ID, newValues));
+    setRecord({});
+    props.history.goBack();
   };
-
-  console.log(record);
 
   return (
     <Layout>

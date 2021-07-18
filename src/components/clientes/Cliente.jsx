@@ -8,12 +8,7 @@ import Table from "components/common/Table";
 import Info from "components/common/Info";
 import ClientBalance from "components/common/ClientBalance";
 import notification from "components/common/notification";
-import {
-  getCliente,
-  deleteCliente,
-  getClienteTipo,
-  deleteClienteTipo,
-} from "redux/actions";
+import { getCliente, deleteCliente, deleteClienteTipo } from "redux/actions";
 import { fields } from "./fields";
 import { setFields } from "utils/helpers";
 import { tiposColumns } from "./columns";
@@ -23,9 +18,8 @@ const { TabPane } = Tabs;
 const Cliente = (props) => {
   const dispatch = useDispatch();
   const clientes = useSelector((state) => state.clientes);
-  const { loading, success, record, error, tipo, tipos, saldos } = clientes;
-  const [url, setUrl] = useState("");
-  const [tipoUrl, setTipoUrl] = useState("");
+  const { loading, success, record, error, tipos, saldos } = clientes;
+  const [redirect, setRedirect] = useState({});
   const infoDefault = fields.map((field) => ({
     title: field.title,
     value: "",
@@ -44,9 +38,6 @@ const Cliente = (props) => {
   }, [record]);
 
   useEffect(() => {
-    if (success && record.message) {
-      props.history.goBack();
-    }
     if (error) {
       notification({
         message: "Error",
@@ -54,14 +45,14 @@ const Cliente = (props) => {
         type: "error",
       });
     }
-  }, [success, record, error, props.history]);
-
-  useEffect(() => {
-    if (tipo.ID) setTipoUrl(`/clientes/edit/tipo/${tipo.ID}`);
-  }, [tipo]);
+    setRedirect({});
+  }, [success, record, error, tipos]);
 
   const handleEdit = () => {
-    setUrl(`/clientes/edit/${props.match.params.id}`);
+    setRedirect({
+      pathname: `/clientes/edit/${props.match.params.id}`,
+      state: { record: clientes.record },
+    });
   };
 
   const handleDelete = () => {
@@ -69,38 +60,37 @@ const Cliente = (props) => {
   };
 
   const handlePayments = () => {
-    setUrl("/pagos");
+    setRedirect({
+      pathname: "/pagos",
+    });
   };
 
   const handleQuotations = () => {
-    setUrl("/remitos");
+    setRedirect({
+      pathname: "/remitos",
+    });
   };
 
   const handleConcepts = () => {
-    setUrl("/conceptos");
+    setRedirect({
+      pathname: "/conceptos",
+    });
   };
-
-  if (!!url) {
-    return (
-      <Redirect
-        push
-        to={{ pathname: url, state: { record: clientes.record } }}
-      />
-    );
-  }
-
-  if (!!tipoUrl) {
-    return (
-      <Redirect push to={{ pathname: tipoUrl, state: { record: tipo } }} />
-    );
+  if (!!redirect.pathname) {
+    return <Redirect push to={redirect} />;
   }
 
   const onAddTipo = () => {
-    setTipoUrl(`/clientes/add/tipo`);
+    setRedirect({
+      pathname: "/clientes/add/tipo",
+      state: { record: { CLICOD: record.CLICOD } },
+    });
   };
 
   const onEditTipo = (record) => {
-    dispatch(getClienteTipo(record.ID));
+    setRedirect({
+      pathname: `/clientes/edit/tipo/${record.ID}`,
+    });
   };
 
   const onDeleteTipo = (record) => {
@@ -146,11 +136,9 @@ const Cliente = (props) => {
             loading={loading}
           />
         </TabPane>
-        {!!tipos.length && (
-          <TabPane tab={`Precios especiales (${tipos.length})`} key="2">
-            <Table {...tiposTableProps} />
-          </TabPane>
-        )}
+        <TabPane tab={`Precios especiales (${tipos.length})`} key="2">
+          <Table {...tiposTableProps} />
+        </TabPane>
         <TabPane tab="Balance" key="3">
           <ClientBalance columns={newSaldos} />
         </TabPane>
