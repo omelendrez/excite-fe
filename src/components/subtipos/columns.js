@@ -29,6 +29,14 @@ export const columns = (props) => {
       align: "center",
     },
     {
+      title: "Descripción",
+      dataIndex: "TIPDES",
+      sorter: (a, b) => sortColumn(a, b, "TIPDES"),
+      searchable: true,
+      ellipsis: true,
+      width: 180,
+    },
+    {
       title: "Subtipo",
       dataIndex: "SUBTIPCOD",
       sorter: (a, b) => sortColumn(a, b, "SUBTIPCOD"),
