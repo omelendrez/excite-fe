@@ -51,14 +51,7 @@ const Tipo = (props) => {
     if (success && record.message) {
       props.history.goBack();
     }
-    if (error) {
-      notification({
-        message: "Error",
-        description: "Error al intentar eliminar el registro",
-        type: "error",
-      });
-    }
-  }, [success, record, error, props.history]);
+  }, [success, record, props.history]);
 
   useEffect(() => {
     if (changedPrices !== 0) {
