@@ -43,7 +43,7 @@ function getClienteTipos(id) {
 }
 
 function getClienteSaldos(id) {
-  return getRecordById(`${endpoint}-saldos/${id}`)
+  return getRecordById(`${endpoint}/${id}/saldos`)
     .then((response) => response)
     .catch((error) => {
       throw error;
