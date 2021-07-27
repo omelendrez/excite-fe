@@ -17,18 +17,18 @@ const columns = () => {
       sorter: (a, b) => sortColumn(a, b, "TIPCOD"),
       width: 100,
       align: "center",
-    },
-    {
-      title: "Descripción",
-      dataIndex: "TIPDES",
-      sorter: (a, b) => sortColumn(a, b, "TIPDES"),
-      searchable: true,
       render: (text, record) =>
         record.SUBTIPOS > 0 ? (
           <Link to={`/tipos/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
         ) : (
           text
         ),
+    },
+    {
+      title: "Descripción",
+      dataIndex: "TIPDES",
+      sorter: (a, b) => sortColumn(a, b, "TIPDES"),
+      searchable: true,
       ellipsis: true,
       width: 180,
     },

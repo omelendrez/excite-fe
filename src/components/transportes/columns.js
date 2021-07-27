@@ -16,16 +16,14 @@ const columns = () => {
       dataIndex: "TRACOD",
       searchable: true,
       width: 80,
+      render: (text, record) => (
+        <Link to={`/transportes/${record.ID}`}>{text}</Link>
+      ),
     },
     {
       title: "Nombre",
       dataIndex: "TRANOM",
       sorter: (a, b) => sortColumn(a, b, "TRANOM"),
-      render: (text, record) => (
-        <Link to={`/transportes/${record.ID}`}>
-          {text || "*** sin nombre ***"}
-        </Link>
-      ),
       searchable: true,
       ellipsis: true,
       width: 180,

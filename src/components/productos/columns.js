@@ -31,17 +31,15 @@ const columns = (props) => {
       sorter: (a, b) => sortColumn(a, b, "PRODCOD"),
       searchable: true,
       width: 100,
+      render: (text, record) => (
+        <Link to={`/productos/${record.ID}`}>{text}</Link>
+      ),
     },
     {
       dataIndex: "PRODDES",
       title: "Descripción",
       sorter: (a, b) => sortColumn(a, b, "PRODDES"),
       searchable: true,
-      render: (text, record) => (
-        <Link to={`/productos/${record.ID}`}>
-          {text || "*** sin descripción ***"}
-        </Link>
-      ),
       ellipsis: true,
       width: 180,
     },
