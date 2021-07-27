@@ -19,6 +19,25 @@ export const columns = (props) => {
 
   return [
     {
+      title: "Subtipo",
+      dataIndex: "SUBTIPCOD",
+      sorter: (a, b) => sortColumn(a, b, "SUBTIPCOD"),
+      searchable: true,
+      width: 100,
+      align: "center",
+      render: (text, record) => (
+        <Link to={`/subtipos/${record.ID}`}>{text}</Link>
+      ),
+    },
+    {
+      title: "Descripción",
+      dataIndex: "SUBTIPDES",
+      sorter: (a, b) => sortColumn(a, b, "SUBTIPDES"),
+      searchable: true,
+      ellipsis: true,
+      width: 180,
+    },
+    {
       title: "Tipo",
       dataIndex: "TIPCOD",
       sorter: (a, b) => sortColumn(a, b, "TIPCOD"),
@@ -32,27 +51,6 @@ export const columns = (props) => {
       title: "Descripción",
       dataIndex: "TIPDES",
       sorter: (a, b) => sortColumn(a, b, "TIPDES"),
-      searchable: true,
-      ellipsis: true,
-      width: 180,
-    },
-    {
-      title: "Subtipo",
-      dataIndex: "SUBTIPCOD",
-      sorter: (a, b) => sortColumn(a, b, "SUBTIPCOD"),
-      searchable: true,
-      width: 100,
-      align: "center",
-    },
-    {
-      title: "Descripción",
-      dataIndex: "SUBTIPDES",
-      sorter: (a, b) => sortColumn(a, b, "SUBTIPDES"),
-      render: (text, record) => (
-        <Link to={`/subtipos/${record.ID}`}>
-          {text || "*** sin nombre ***"}
-        </Link>
-      ),
       searchable: true,
       ellipsis: true,
       width: 180,

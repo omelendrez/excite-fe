@@ -5,15 +5,13 @@ const columns = () => [
     dataIndex: "ID",
     width: 50,
     align: "center",
+    render: (text, record) => (
+      <Link to={`/ultimos-numeros/${record.ID}`}>{text}</Link>
+    ),
   },
   {
     title: "Descripción",
     dataIndex: "NUMDES",
-    render: (text, record) => (
-      <Link to={`/ultimos-numeros/${record.ID}`}>
-        {text || "*** sin nombre ***"}
-      </Link>
-    ),
     searchable: true,
     ellipsis: true,
     width: 180,

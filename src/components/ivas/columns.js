@@ -17,14 +17,12 @@ const columns = () => {
       sorter: (a, b) => sortColumn(a, b, "IVACOD"),
       searchable: true,
       width: 80,
+      render: (text, record) => <Link to={`/ivas/${record.ID}`}>{text}</Link>,
     },
     {
       title: "Nombre",
       dataIndex: "IVADES",
       sorter: (a, b) => sortColumn(a, b, "IVADES"),
-      render: (text, record) => (
-        <Link to={`/ivas/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
-      ),
       searchable: true,
       ellipsis: true,
       width: 180,

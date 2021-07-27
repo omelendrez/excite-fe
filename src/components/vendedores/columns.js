@@ -16,17 +16,15 @@ const columns = () => {
       dataIndex: "VENCOD",
       searchable: true,
       width: 80,
+      render: (text, record) => (
+        <Link to={`/vendedores/${record.ID}`}>{text}</Link>
+      ),
     },
     {
       title: "Nombre",
       dataIndex: "VENNOM",
       sorter: (a, b) => sortColumn(a, b, "VENNOM"),
       searchable: true,
-      render: (text, record) => (
-        <Link to={`/vendedores/${record.ID}`}>
-          {text || "*** sin nombre ***"}
-        </Link>
-      ),
       ellipsis: true,
       width: 180,
     },
