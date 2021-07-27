@@ -74,6 +74,11 @@ export const fields = [
     type: "text",
   },
   {
+    name: "CLIFP",
+    title: "Forma de pago",
+    type: "text",
+  },
+  {
     name: "TRACOD",
     title: "Transporte",
     type: "select",
@@ -86,11 +91,6 @@ export const fields = [
     options: "statuses",
   },
 
-  {
-    name: "CLIFP",
-    type: "text",
-    hidden: true,
-  },
   {
     name: "ID",
     type: "number",
