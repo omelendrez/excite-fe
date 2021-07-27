@@ -25,12 +25,6 @@ const fields = [
     rules: [{ required: true }],
   },
   {
-    name: "AJUOBS",
-    title: "Observaciones",
-    type: "textarea",
-    rows: 2,
-  },
-  {
     name: "ID",
     type: "number",
     hidden: true,
