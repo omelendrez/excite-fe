@@ -17,14 +17,14 @@ export const columns = () => {
     const name = record.CLINOM || "*** SIN NOMBRE ***";
     const specialPrices = record.CLITIP > 0;
     return (
-      <Link to={`/clientes/${record.ID}`}>
+      <div>
         {name}{" "}
         {specialPrices ? (
           <Tooltip title="Tiene precios especiales">
-            <DollarOutlined />
+            <DollarOutlined style={{ color: "blue" }} />
           </Tooltip>
         ) : null}
-      </Link>
+      </div>
     );
   };
 
@@ -34,6 +34,9 @@ export const columns = () => {
       title: "Código",
       searchable: true,
       width: 80,
+      render: (text, record) => (
+        <Link to={`/clientes/${record.ID}`}>{text}</Link>
+      ),
     },
     {
       dataIndex: "CLINOM",
