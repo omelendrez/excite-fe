@@ -44,7 +44,7 @@ const Info = (props) => {
                     : [];
                   const valuesList = getSelectList(field.options, data);
                   const content = valuesList.find((item) => item.id === value);
-                  value = content ? `${content.text}` : `${value} - ???`;
+                  value = content ? `${content.text}` : `${value || ""} - ???`;
                 }
                 return (
                   <div className="info-row" key={index}>
