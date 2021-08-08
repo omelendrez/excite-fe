@@ -85,6 +85,12 @@ export const fields = [
     options: "transportes",
   },
   {
+    name: "CLIOBS",
+    title: "Observaciones",
+    type: "textarea",
+    rows: 4,
+  },
+  {
     name: "CLIEST",
     title: "Estado",
     type: "select",
