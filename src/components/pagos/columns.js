@@ -121,6 +121,13 @@ export const valoresColumns = (props) => {
       width: 110,
     },
     {
+      title: "Fecha",
+      dataIndex: "PAGFEC",
+      render: (text) => formatDate(text),
+      width: 110,
+      align: "center",
+    },
+    {
       dataIndex: "PAGCHEBAN",
       title: "Banco",
       searchable: true,
