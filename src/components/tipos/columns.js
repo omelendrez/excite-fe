@@ -19,7 +19,7 @@ const columns = () => {
       align: "center",
       render: (text, record) =>
         record.SUBTIPOS > 0 ? (
-          <Link to={`/tipos/${record.ID}`}>{text || "*** sin nombre ***"}</Link>
+          <Link to={`/tipos/${record.ID}`}>{text || "???"}</Link>
         ) : (
           text
         ),
