@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Layout, Typography, Divider } from "antd";
+import { Layout, Collapse } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "components/common/Header";
 import Alert from "components/common/Alert";
@@ -13,7 +13,7 @@ import { fields } from "./fields";
 import { setFields } from "utils/helpers";
 import { tiposColumns } from "./columns";
 
-const { Title } = Typography;
+const { Panel } = Collapse;
 
 const Cliente = (props) => {
   const dispatch = useDispatch();
@@ -120,27 +120,33 @@ const Cliente = (props) => {
       />
 
       {error && <Alert message="Error" description={error} type="error" />}
-      <Info
-        title={`${info[0].value} - ${info[2].value}`}
-        fields={fields}
-        data={info}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        onPayments={handlePayments}
-        onQuotations={handleQuotations}
-        onConcepts={handleConcepts}
-        success={success}
-        history={props.history}
-        loading={loading}
-      />
-      <Divider />
-      <Title level={4}>Precios especiales</Title>
-
-      <Table {...tiposTableProps} />
-      <Divider />
-      <Title level={4}>Saldos</Title>
-
-      <ClientBalance columns={newSaldos} />
+      <Collapse defaultActiveKey={["1"]} ghost>
+        <Panel key="1" header="Detalle" className="panel">
+          <Info
+            title={`${info[0].value} - ${info[2].value}`}
+            fields={fields}
+            data={info}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onPayments={handlePayments}
+            onQuotations={handleQuotations}
+            onConcepts={handleConcepts}
+            success={success}
+            history={props.history}
+            loading={loading}
+          />
+        </Panel>
+      </Collapse>
+      <Collapse defaultActiveKey={[]} ghost>
+        <Panel key="1" header="Saldos" className="panel">
+          <ClientBalance columns={newSaldos} />
+        </Panel>
+      </Collapse>
+      <Collapse defaultActiveKey={[]} ghost>
+        <Panel key="1" header="Precios Especials" className="panel">
+          <Table {...tiposTableProps} />
+        </Panel>
+      </Collapse>
     </Layout>
   );
 };
