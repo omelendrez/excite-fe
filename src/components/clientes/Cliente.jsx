@@ -108,9 +108,6 @@ const Cliente = (props) => {
     onAdd: onAddTipo,
   };
 
-  const balance = saldos.reduce((acc, cur) => acc + cur.AMOUNT, 0);
-  const newSaldos = [...saldos, { TYPE: "Balance Actual", AMOUNT: balance }];
-
   return (
     <Layout>
       <Header
@@ -120,6 +117,11 @@ const Cliente = (props) => {
       />
 
       {error && <Alert message="Error" description={error} type="error" />}
+      <Collapse defaultActiveKey={["1"]} ghost>
+        <Panel key="1" header="Saldos Globales" className="panel">
+          <ClientBalance columns={saldos} />
+        </Panel>
+      </Collapse>
       <Collapse defaultActiveKey={["1"]} ghost>
         <Panel key="1" header="Detalle" className="panel">
           <Info
@@ -135,11 +137,6 @@ const Cliente = (props) => {
             history={props.history}
             loading={loading}
           />
-        </Panel>
-      </Collapse>
-      <Collapse defaultActiveKey={[]} ghost>
-        <Panel key="1" header="Saldos" className="panel">
-          <ClientBalance columns={newSaldos} />
         </Panel>
       </Collapse>
       <Collapse defaultActiveKey={[]} ghost>

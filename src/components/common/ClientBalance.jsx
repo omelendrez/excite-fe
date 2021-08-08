@@ -3,7 +3,7 @@ import { Row, Col, Card, Statistic } from "antd";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import "./clientBalance.scss";
 
-const Balance = (props) => {
+const ClientBalance = (props) => {
   return (
     <div className="site-statistic-card">
       <Row>
@@ -30,4 +30,4 @@ const Balance = (props) => {
     </div>
   );
 };
-export default Balance;
+export default ClientBalance;
