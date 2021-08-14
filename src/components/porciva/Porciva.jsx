@@ -15,6 +15,7 @@ const Porciva = (props) => {
     columns,
     dataSource: records,
     rowKey: "ID",
+    path: props.location.pathname,
   };
 
   return (

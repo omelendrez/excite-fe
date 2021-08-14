@@ -44,3 +44,9 @@ export const deleteRecord = (endpoint) => {
       .catch((error) => reject(error));
   });
 };
+
+export const getPathProps = (path) =>
+  JSON.parse(localStorage.getItem(path.replace("/", ""))) || {};
+
+export const setPathProps = (path, props) =>
+  localStorage.setItem(path.replace("/", ""), JSON.stringify(props));

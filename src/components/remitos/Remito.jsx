@@ -179,6 +179,7 @@ const Remito = (props) => {
     error,
     items,
     discount,
+    path: props.location.pathname,
   };
 
   if (!!url) {
