@@ -30,6 +30,7 @@ const Subtipos = (props) => {
     rowKey: "ID",
     onAdd,
     onPrint,
+    path: props.location.pathname,
   };
 
   if (!!url) {

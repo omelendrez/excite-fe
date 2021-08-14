@@ -29,6 +29,7 @@ const Transportes = (props) => {
     rowKey: "ID",
     onAdd,
     onPrint,
+    path: props.location.pathname,
   };
 
   if (!!url) {

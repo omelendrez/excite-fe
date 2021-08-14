@@ -3,17 +3,24 @@ import { Table as AntdTable, BackTop, Row, Col } from "antd";
 import Search from "./Search";
 import AddButton from "./AddButton";
 import PrintButton from "./PrintButton";
+import { setPathProps, getPathProps } from "services";
 
 const Table = (props) => {
+  const path = props.path || "default";
+  const initialTableProps = getPathProps(path);
   const [newProps, setNewProps] = useState({});
+  const [dataSource, setDataSource] = useState([]);
+  const [search, setSearch] = useState(initialTableProps.search || "");
+  const [tableProps, setTableProps] = useState(initialTableProps);
 
-  useEffect(() => {
-    setNewProps(props);
-  }, [props]);
+  const onChange = (pagination, filters, sorter) => {
+    const newTableProps = { ...tableProps, pagination, filters, sorter };
+    setTableProps(newTableProps);
+  };
 
   const onSearch = (search) => {
     if (!search) {
-      return setNewProps(props);
+      return setDataSource(props.dataSource);
     }
     const filtered = [];
 
@@ -34,7 +41,7 @@ const Table = (props) => {
           }
         })
     );
-    setNewProps((props) => ({ ...props, dataSource: filtered }));
+    setDataSource(filtered);
   };
 
   const searchPlaceholder = props.columns
@@ -44,12 +51,19 @@ const Table = (props) => {
 
   const paginationProps = {
     position: ["bottomCenter"],
-    showTotal: (total, range) => `${total} registros`,
+    showTotal: (total, _) => `${total} registros`,
     hideOnSinglePage: true,
     pageSizeOptions: [5, 10, 15, 20, 50, 100],
     showLessItems: true,
     size: "small",
   };
+
+  useEffect(() => {
+    setNewProps(props);
+    setDataSource(props.dataSource);
+  }, [props]);
+
+  useEffect(() => setPathProps(path, tableProps), [tableProps, props, path]);
 
   return (
     <>
@@ -60,7 +74,10 @@ const Table = (props) => {
             <Search
               className="table-search"
               onSearch={onSearch}
+              onChange={setSearch}
               searchPlaceholder={searchPlaceholder}
+              value={search}
+              path={path}
             />
           </Col>
         )}
@@ -75,7 +92,10 @@ const Table = (props) => {
         tableLayout="fixed"
         loading={props.loading}
         size="small"
+        onChange={onChange}
         {...newProps}
+        {...tableProps}
+        dataSource={dataSource}
       />
     </>
   );

@@ -64,6 +64,7 @@ const Deudores = (props) => {
     summary,
     pagination: false,
     id: "section-to-print",
+    path: props.location.pathname,
   };
 
   return (

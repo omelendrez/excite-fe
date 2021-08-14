@@ -24,6 +24,7 @@ const Ivas = (props) => {
     dataSource: records,
     rowKey: "ID",
     onAdd,
+    path: props.location.pathname,
   };
 
   if (!!url) {
