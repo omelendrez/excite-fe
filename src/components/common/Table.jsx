@@ -6,8 +6,9 @@ import PrintButton from "./PrintButton";
 import { setPathProps, getPathProps } from "services";
 
 const Table = (props) => {
-  const path = props.path || "default";
-  const initialTableProps = getPathProps(path);
+  const { path } = props;
+  const pagePath = path || "default";
+  const initialTableProps = getPathProps(pagePath);
   const [newProps, setNewProps] = useState({});
   const [dataSource, setDataSource] = useState([]);
   const [search, setSearch] = useState(initialTableProps.search || "");
@@ -44,6 +45,8 @@ const Table = (props) => {
     setDataSource(filtered);
   };
 
+  console.log();
+
   const searchPlaceholder = props.columns
     .filter((field) => field.searchable)
     .map((field) => field.title)
@@ -63,7 +66,10 @@ const Table = (props) => {
     setDataSource(props.dataSource);
   }, [props]);
 
-  useEffect(() => setPathProps(path, tableProps), [tableProps, props, path]);
+  useEffect(
+    () => setPathProps(pagePath, tableProps),
+    [tableProps, props, pagePath]
+  );
 
   return (
     <>
@@ -77,7 +83,7 @@ const Table = (props) => {
               onChange={setSearch}
               searchPlaceholder={searchPlaceholder}
               value={search}
-              path={path}
+              path={pagePath}
             />
           </Col>
         )}
