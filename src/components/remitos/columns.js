@@ -6,7 +6,6 @@ export const columns = [
   {
     dataIndex: "REMNUM",
     title: "Número",
-    sorter: (a, b) => sortColumn(a, b, "REMNUM"),
     searchable: true,
     width: 80,
     render: (text, record) => <Link to={`/remitos/${record.ID}`}>{text}</Link>,
