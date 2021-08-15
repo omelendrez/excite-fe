@@ -5,7 +5,6 @@ const columns = () => [
   {
     dataIndex: "CONNUM",
     title: "Número",
-    sorter: (a, b) => sortColumn(a, b, "CONNUM"),
     render: (text, record) => (
       <Link to={`/conceptos/${record.ID}`}>{text}</Link>
     ),

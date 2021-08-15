@@ -14,7 +14,6 @@ const columns = () => {
     {
       title: "Código",
       dataIndex: "IVACOD",
-      sorter: (a, b) => sortColumn(a, b, "IVACOD"),
       searchable: true,
       width: 80,
       render: (text, record) => <Link to={`/ivas/${record.ID}`}>{text}</Link>,
@@ -22,7 +21,6 @@ const columns = () => {
     {
       title: "Nombre",
       dataIndex: "IVADES",
-      sorter: (a, b) => sortColumn(a, b, "IVADES"),
       searchable: true,
       ellipsis: true,
       width: 180,

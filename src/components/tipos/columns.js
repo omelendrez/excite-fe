@@ -14,7 +14,6 @@ const columns = () => {
     {
       title: "Tipo",
       dataIndex: "TIPCOD",
-      sorter: (a, b) => sortColumn(a, b, "TIPCOD"),
       width: 100,
       align: "center",
       render: (text, record) =>

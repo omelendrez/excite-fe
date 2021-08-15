@@ -28,7 +28,6 @@ const columns = (props) => {
     {
       dataIndex: "PRODCOD",
       title: "Código",
-      sorter: (a, b) => sortColumn(a, b, "PRODCOD"),
       searchable: true,
       width: 100,
       render: (text, record) => (

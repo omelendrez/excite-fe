@@ -8,7 +8,6 @@ export const columns = [
   {
     title: "Número",
     dataIndex: "PAGNUM",
-    sorter: (a, b) => sortColumn(a, b, "PAGNUM"),
     searchable: true,
     width: 90,
     align: "center",

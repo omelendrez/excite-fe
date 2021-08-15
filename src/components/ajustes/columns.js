@@ -5,7 +5,6 @@ const columns = () => [
   {
     dataIndex: "AJUNUM",
     title: "Número",
-    sorter: (a, b) => sortColumn(a, b, "AJUNUM"),
     render: (text, record) => <Link to={`/ajustes/${record.ID}`}>{text}</Link>,
     searchable: true,
     width: 100,

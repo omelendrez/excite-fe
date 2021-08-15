@@ -21,7 +21,6 @@ export const columns = (props) => {
     {
       title: "Subtipo",
       dataIndex: "SUBTIPCOD",
-      sorter: (a, b) => sortColumn(a, b, "SUBTIPCOD"),
       searchable: true,
       width: 100,
       align: "center",
