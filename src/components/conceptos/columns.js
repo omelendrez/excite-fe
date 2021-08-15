@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { formatAmount, formatDate, sortColumn } from "utils/helpers";
+import { formatAmount, formatDate } from "utils/helpers";
 
 const columns = () => [
   {
