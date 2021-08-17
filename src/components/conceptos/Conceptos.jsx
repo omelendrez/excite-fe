@@ -22,7 +22,7 @@ const Conceptos = (props) => {
     loading,
     columns: columns(),
     dataSource: records,
-    rowKey: "ID",
+    rowKey: "CONNUM",
     onAdd,
     path: props.location.pathname,
   };
