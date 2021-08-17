@@ -23,7 +23,7 @@ const Remitos = (props) => {
     loading,
     columns,
     dataSource: records,
-    rowKey: "ID",
+    rowKey: "REMNUM",
     onAdd,
     path: props.location.pathname,
   };

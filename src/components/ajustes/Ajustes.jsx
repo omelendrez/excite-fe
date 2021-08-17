@@ -22,7 +22,7 @@ const Ajustes = (props) => {
     loading,
     columns: columns(),
     dataSource: records,
-    rowKey: "ID",
+    rowKey: "AJUNUM",
     onAdd,
     path: props.location.pathname,
   };

@@ -35,7 +35,9 @@ const Table = (props) => {
               .toLowerCase()
               .includes(search.toLowerCase())
           ) {
-            const exists = filtered.find((r) => r.ID === record.ID);
+            const exists = filtered.find(
+              (r) => r[newProps.rowKey] === record[newProps.rowKey]
+            );
             if (!exists) {
               filtered.push(record);
             }
@@ -44,8 +46,6 @@ const Table = (props) => {
     );
     setDataSource(filtered);
   };
-
-  console.log();
 
   const searchPlaceholder = props.columns
     .filter((field) => field.searchable)
