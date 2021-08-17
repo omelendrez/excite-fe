@@ -26,7 +26,7 @@ const Clientes = (props) => {
     loading,
     columns: columns(),
     dataSource: records,
-    rowKey: "ID",
+    rowKey: "CLICOD",
     onAdd,
     onPrint,
     path: props.location.pathname,

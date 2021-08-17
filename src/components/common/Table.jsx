@@ -35,7 +35,12 @@ const Table = (props) => {
               .toLowerCase()
               .includes(search.toLowerCase())
           ) {
-            filtered.push(record);
+            const exists = filtered.find(
+              (r) => r[newProps.rowKey] === record[newProps.rowKey]
+            );
+            if (!exists) {
+              filtered.push(record);
+            }
           }
         })
     );
