@@ -34,9 +34,7 @@ export const columns = () => {
       title: "Código",
       searchable: true,
       width: 80,
-      render: (text, record) => (
-        <Link to={`/clientes/${record.ID}`}>{text}</Link>
-      ),
+      render: (text) => <Link to={`/clientes/${text}`}>{text}</Link>,
     },
     {
       dataIndex: "CLINOM",
