@@ -58,8 +58,8 @@ function addCliente(newData) {
     });
 }
 
-function updateCliente(newData) {
-  return updateRecord(endpoint, newData)
+function updateCliente(id, newData) {
+  return updateRecord(`${endpoint}/${id}`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -173,7 +173,7 @@ function* addClienteSaga(action) {
 
 function* updateClienteSaga(action) {
   try {
-    const record = yield call(updateCliente, action.newData);
+    const record = yield call(updateCliente, action.id, action.newData);
     yield put({
       type: types.UPDATE_CLIENTE_SUCCESS,
       payload: record,

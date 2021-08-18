@@ -22,10 +22,10 @@ const ClienteForm = (props) => {
   const onFinish = (values) => {
     const newValues = cleanFields(fields, values);
 
-    if (!record.ID) {
+    if (!record.CLICOD) {
       return dispatch(addCliente(newValues));
     }
-    dispatch(updateCliente(record.ID, newValues));
+    dispatch(updateCliente(record.CLICOD, newValues));
   };
 
   return (

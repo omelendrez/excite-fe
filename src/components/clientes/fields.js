@@ -96,12 +96,6 @@ export const fields = [
     type: "select",
     options: "statuses",
   },
-
-  {
-    name: "ID",
-    type: "number",
-    hidden: true,
-  },
   {
     name: "CLISALFEC",
     type: "date",

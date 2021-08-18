@@ -30,7 +30,7 @@ export const addRecord = (endpoint, record) => {
 export const updateRecord = (endpoint, record) => {
   return new Promise((resolve, reject) => {
     api
-      .put(`${endpoint}/${record.ID}`, record)
+      .put(`${endpoint}`, record)
       .then((response) => resolve(response.data))
       .catch((error) => reject(error));
   });
