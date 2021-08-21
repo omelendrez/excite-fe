@@ -35,7 +35,7 @@ function addTransporte(newData) {
 }
 
 function updateTransporte(newData) {
-  return updateRecord(endpoint, newData)
+  return updateRecord(`${endpoint}/${newData.ID}`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;
