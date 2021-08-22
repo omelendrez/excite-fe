@@ -84,6 +84,7 @@ export const fields = [
     title: "Transporte",
     type: "select",
     options: "transportes",
+    rules: [{ required: true }],
   },
   {
     name: "CLIOBS",
@@ -96,6 +97,7 @@ export const fields = [
     title: "Estado",
     type: "select",
     options: "statuses",
+    rules: [{ required: true }],
   },
   {
     name: "CLISALFEC",

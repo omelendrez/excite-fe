@@ -3,7 +3,10 @@ const fields = [
     name: "IVACOD",
     title: "Código",
     type: "text",
-    rules: [{ required: true }],
+    rules: [
+      { required: true },
+      { len: 1, message: "Código no puede contener más de un caracter" },
+    ],
   },
   {
     name: "IVADES",
