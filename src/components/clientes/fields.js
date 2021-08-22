@@ -3,6 +3,7 @@ export const fields = [
     name: "CLICOD",
     title: "Código",
     type: "number",
+    readonly: true,
   },
   {
     name: "VENCOD",

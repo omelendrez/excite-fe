@@ -28,6 +28,7 @@ const fields = [
     title: "Provincia",
     type: "select",
     options: "provincias",
+    rules: [{ required: true }],
   },
   {
     name: "TRATEL",
@@ -51,6 +52,7 @@ const fields = [
     title: "Estado",
     type: "select",
     options: "statuses",
+    rules: [{ required: true }],
   },
   {
     name: "ID",

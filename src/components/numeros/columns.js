@@ -10,6 +10,12 @@ const columns = () => [
     ),
   },
   {
+    title: "Código",
+    dataIndex: "NUMCOD",
+    width: 80,
+    searchable: true,
+  },
+  {
     title: "Descripción",
     dataIndex: "NUMDES",
     searchable: true,
