@@ -33,11 +33,6 @@ const fields = [
     title: "Crédito",
     type: "amount",
   },
-  {
-    name: "ID",
-    type: "number",
-    hidden: true,
-  },
 ];
 
 export default fields;

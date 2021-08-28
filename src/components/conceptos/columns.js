@@ -6,7 +6,7 @@ const columns = () => [
     dataIndex: "CONNUM",
     title: "Número",
     render: (text, record) => (
-      <Link to={`/conceptos/${record.ID}`}>{text}</Link>
+      <Link to={`/conceptos/${record.CONNUM}`}>{text}</Link>
     ),
     searchable: true,
     width: 100,

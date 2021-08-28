@@ -65,11 +65,6 @@ export const fields = [
     type: "text",
     readonly: true,
   },
-  {
-    name: "ID",
-    type: "number",
-    hidden: true,
-  },
 ];
 
 export const itemFields = (props) => {
@@ -102,11 +97,6 @@ export const itemFields = (props) => {
       name: "REMPRE",
       title: "Precio",
       type: "amount",
-    },
-    {
-      name: "ID",
-      type: "number",
-      hidden: true,
     },
   ];
 };

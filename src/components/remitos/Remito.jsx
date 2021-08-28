@@ -64,8 +64,7 @@ const Remito = (props) => {
 
   useEffect(() => {
     if (record && record.REMNUM) {
-      const cli = clientes.find((c) => c.CLICOD === record.CLICOD);
-      dispatch(getCliente(cli.ID));
+      dispatch(getCliente(record.CLICOD));
       const info = setFields(fields, record);
       setInfo(info);
     }
@@ -179,6 +178,7 @@ const Remito = (props) => {
     error,
     items,
     discount,
+    rowKey: "ID",
     path: props.location.pathname,
   };
 

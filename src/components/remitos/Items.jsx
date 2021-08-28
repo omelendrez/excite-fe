@@ -39,7 +39,7 @@ const Remitos = (props) => {
     loading,
     dataSource: items,
     fields: itemFields,
-    rowKey: "ID",
+    rowKey: "PRODCOD",
     columns: itemColumns,
     summary,
     pagination: false,
