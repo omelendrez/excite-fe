@@ -85,6 +85,7 @@ export const valoresFields = [
     name: "PAGCHEEST",
     title: "Estado cheque",
     type: "string",
+    size: 1,
   },
   {
     name: "ID",

@@ -118,7 +118,7 @@ function addPagoValor(newData) {
 }
 
 function updatePagoValor(newData) {
-  return updateRecord(`${endpoint}/valores`, newData)
+  return updateRecord(`${endpoint}/valores/${newData.ID}`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;

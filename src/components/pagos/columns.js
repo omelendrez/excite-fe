@@ -11,7 +11,9 @@ export const columns = [
     searchable: true,
     width: 90,
     align: "center",
-    render: (text, record) => <Link to={`/pagos/${record.ID}`}>{text}</Link>,
+    render: (text, record) => (
+      <Link to={`/pagos/${record.PAGNUM}`}>{text}</Link>
+    ),
   },
   {
     title: "Fecha",

@@ -87,6 +87,7 @@ const Pago = (props) => {
       if (!newValues.ID) {
         return dispatch(addPagoValor(newValues));
       }
+      console.log(newValues);
       dispatch(updatePagoValor(newValues));
     };
 
