@@ -41,7 +41,7 @@ const Pagos = (props) => {
     loading,
     columns,
     dataSource: records,
-    rowKey: "ID",
+    rowKey: "PAGNUM",
     onAdd,
     onPrint,
     path: props.location.pathname,
