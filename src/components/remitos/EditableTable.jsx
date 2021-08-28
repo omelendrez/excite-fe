@@ -153,7 +153,7 @@ const EditableTable = (props) => {
     row["REMNUM"] = remito.REMNUM;
     row["REMCAN"] = 1;
     const newData = [...data, row];
-    setEditingKey(0); //TODO: Find ID for current editing record (not PRODCOD)
+    setEditingKey("");
     setData(newData);
     if (form.current) {
       form.current.setFieldsValue(row);
@@ -221,7 +221,7 @@ const EditableTable = (props) => {
         />
         <Divider />
         <Space>
-          <AddButton onAdd={handleAdd} disabled={!!editingKey} />
+          <AddButton onAdd={handleAdd} disabled={editingKey !== null} />
         </Space>
       </Form>
       <Modal

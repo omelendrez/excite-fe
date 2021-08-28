@@ -100,7 +100,7 @@ function deleteItem(record) {
 }
 
 export function updateStock({ ID, PRODSTO }) {
-  return updateRecord("productos", {
+  return updateRecord(`productos/${ID}`, {
     ID,
     PRODSTO,
   })
