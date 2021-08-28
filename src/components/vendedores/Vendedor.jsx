@@ -7,12 +7,7 @@ import Alert from "components/common/Alert";
 import Table from "components/common/Table";
 import Info from "components/common/Info";
 import notification from "components/common/notification";
-import {
-  getVendedor,
-  getVendedoresProductos,
-  deleteVendedor,
-  getActiveClientes,
-} from "redux/actions";
+import { getVendedor, deleteVendedor, getActiveClientes } from "redux/actions";
 import fields from "./fields";
 import { setFields } from "utils/helpers";
 import { columns as clientColumns } from "components/clientes/columns";
@@ -37,7 +32,6 @@ const Vendedor = (props) => {
   useEffect(() => {
     if (record.ID) {
       dispatch(getActiveClientes(record.VENCOD));
-      dispatch(getVendedoresProductos(record.VENCOD));
       const info = setFields(fields, record);
       setInfo(info);
     }
@@ -85,22 +79,6 @@ const Vendedor = (props) => {
     rowKey: "ID",
   };
 
-  const productosTableProps = {
-    loading,
-    columns: [
-      {
-        title: "Tipo",
-        dataIndex: "TIPDES",
-      },
-      {
-        title: "Comisión",
-        dataIndex: "VENCOM",
-      },
-    ],
-    dataSource: vendedores.productos,
-    rowKey: "ID",
-  };
-
   return (
     <Layout>
       <Header
@@ -124,12 +102,6 @@ const Vendedor = (props) => {
           </TabPane>
           <TabPane tab={`Clientes (${clientes.active.length})`} key="2">
             <Table {...clientesTableProps} />
-          </TabPane>
-          <TabPane
-            tab={`Productos asociados (${vendedores.productos.length})`}
-            key="3"
-          >
-            <Table {...productosTableProps} />
           </TabPane>
         </Tabs>
       </div>

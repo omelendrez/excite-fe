@@ -17,7 +17,7 @@ const AjusteForm = (props) => {
 
   const onFinish = (values) => {
     const newValues = cleanFields(fields, values);
-    if (!record.ID) {
+    if (!record.AJUNUM) {
       return dispatch(addAjuste(newValues));
     }
     dispatch(updateAjuste(record.ID, newValues));

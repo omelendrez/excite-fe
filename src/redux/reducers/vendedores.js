@@ -3,7 +3,6 @@ import * as types from "redux/actions";
 const initialState = {
   record: {},
   records: [],
-  productos: [],
   loading: false,
   success: false,
   error: null,
@@ -26,25 +25,6 @@ const vendedoresReducer = (state = initialState, action) => {
         error: null,
       };
     case types.GET_VENDEDORES_FAILED:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case types.GET_VENDEDORES_PRODUCTOS_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: null,
-      };
-    case types.GET_VENDEDORES_PRODUCTOS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        productos: action.payload,
-        error: null,
-      };
-    case types.GET_VENDEDORES_PRODUCTOS_FAILED:
       return {
         ...state,
         loading: false,

@@ -5,7 +5,9 @@ const columns = () => [
   {
     dataIndex: "AJUNUM",
     title: "Número",
-    render: (text, record) => <Link to={`/ajustes/${record.ID}`}>{text}</Link>,
+    render: (text, record) => (
+      <Link to={`/ajustes/${record.AJUNUM}`}>{text}</Link>
+    ),
     searchable: true,
     width: 100,
     align: "center",

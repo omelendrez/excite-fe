@@ -17,7 +17,7 @@ const ConceptoForm = (props) => {
 
   const onFinish = (values) => {
     const newValues = cleanFields(fields, values);
-    if (!record.ID) {
+    if (!record.CONNUM) {
       return dispatch(addConcepto(newValues));
     }
     dispatch(updateConcepto(record.ID, newValues));

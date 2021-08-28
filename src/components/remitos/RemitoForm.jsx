@@ -21,7 +21,7 @@ const RemitoForm = (props) => {
 
   const onFinish = (values) => {
     const newValues = cleanFields(fields, values);
-    if (!record.ID) {
+    if (!record.REMNUM) {
       dispatch(addRemito(newValues));
     }
   };

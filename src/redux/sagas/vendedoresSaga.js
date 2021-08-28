@@ -18,14 +18,6 @@ function getVendedores() {
     });
 }
 
-function getVendedoresProductos(id) {
-  return getRecords(`${endpoint}-productos/${id}`)
-    .then((response) => response)
-    .catch((error) => {
-      throw error;
-    });
-}
-
 function getVendedor(id) {
   return getRecordById(`${endpoint}/${id}`)
     .then((response) => response)
@@ -68,21 +60,6 @@ function* fetchVendedoresSaga() {
   } catch (error) {
     yield put({
       type: types.GET_VENDEDORES_FAILED,
-      payload: error.message,
-    });
-  }
-}
-
-function* fetchVendedoresProductosSaga(action) {
-  try {
-    const records = yield call(getVendedoresProductos, action.id);
-    yield put({
-      type: types.GET_VENDEDORES_PRODUCTOS_SUCCESS,
-      payload: records,
-    });
-  } catch (error) {
-    yield put({
-      type: types.GET_VENDEDORES_PRODUCTOS_FAILED,
       payload: error.message,
     });
   }
@@ -159,10 +136,6 @@ function* deleteVendedorSaga(action) {
 
 function* vendedoresSaga() {
   yield takeEvery(types.GET_VENDEDORES_REQUEST, fetchVendedoresSaga);
-  yield takeEvery(
-    types.GET_VENDEDORES_PRODUCTOS_REQUEST,
-    fetchVendedoresProductosSaga
-  );
   yield takeEvery(types.GET_VENDEDOR_REQUEST, fetchVendedorSaga);
   yield takeEvery(types.ADD_VENDEDOR_REQUEST, addVendedorSaga);
   yield takeEvery(types.UPDATE_VENDEDOR_REQUEST, updateVendedorSaga);

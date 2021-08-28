@@ -108,12 +108,12 @@ const EditableTable = (props) => {
     document.getElementsByTagName("input")[0].focus();
   };
 
-  const isEditing = (record) => record.ID === editingKey;
+  const isEditing = (record) => record.PRODCOD === editingKey;
 
   const edit = (record) => {
     if (form.current) {
       form.current.setFieldsValue(record);
-      setEditingKey(record.ID);
+      setEditingKey(record.PRODCOD);
     }
   };
 
@@ -153,7 +153,7 @@ const EditableTable = (props) => {
     row["REMNUM"] = remito.REMNUM;
     row["REMCAN"] = 1;
     const newData = [...data, row];
-    setEditingKey(0);
+    setEditingKey(0); //TODO: Find ID for current editing record (not PRODCOD)
     setData(newData);
     if (form.current) {
       form.current.setFieldsValue(row);

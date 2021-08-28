@@ -24,11 +24,6 @@ const fields = [
     type: "number",
     rules: [{ required: true }],
   },
-  {
-    name: "ID",
-    type: "number",
-    hidden: true,
-  },
 ];
 
 export default fields;

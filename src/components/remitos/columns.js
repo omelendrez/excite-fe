@@ -8,7 +8,9 @@ export const columns = [
     title: "Número",
     searchable: true,
     width: 80,
-    render: (text, record) => <Link to={`/remitos/${record.ID}`}>{text}</Link>,
+    render: (text, record) => (
+      <Link to={`/remitos/${record.REMNUM}`}>{text}</Link>
+    ),
   },
   {
     dataIndex: "REMFEC",
