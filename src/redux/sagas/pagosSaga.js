@@ -76,7 +76,7 @@ function addPagoRemito(newData) {
 }
 
 function updatePagoRemito(newData) {
-  return updateRecord(`${endpoint}/remitos`, newData)
+  return updateRecord(`${endpoint}/remitos/${newData.ID}`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -138,8 +138,7 @@ function changeRemitoStatus({ totalValores, remitos, REMPAGNUM = 0 }) {
   let total = totalValores;
   remitos.forEach((remito) => {
     if (total >= remito.REMTOT) {
-      updateRecord("remitos", {
-        ID: remito.REMID,
+      updateRecord(`remitos/${remito.REMNUM}`, {
         ESTCOD: "Q",
         REMPAGNUM,
       })
@@ -150,8 +149,7 @@ function changeRemitoStatus({ totalValores, remitos, REMPAGNUM = 0 }) {
         });
       total = total - remito.REMTOT;
     } else {
-      updateRecord("remitos", {
-        ID: remito.REMID,
+      updateRecord(`remitos/${remito.REMNUM}`, {
         ESTCOD: "S",
         REMPAGNUM: 0,
       })
@@ -268,7 +266,7 @@ function* addPagoRemitoSaga(action) {
     });
     yield put({
       type: types.GET_PAGO_REQUEST,
-      id: state.pagos.record.ID,
+      id: state.pagos.record.PAGNUM,
     });
     yield put({
       type: types.GET_PAGOS_REQUEST,
@@ -294,7 +292,7 @@ function* updatePagoRemitoSaga(action) {
     });
     yield put({
       type: types.GET_PAGO_REQUEST,
-      id: state.pagos.record.ID,
+      id: state.pagos.record.PAGNUM,
     });
     yield put({
       type: types.GET_PAGOS_REQUEST,
@@ -320,7 +318,7 @@ function* deletePagoRemitoSaga(action) {
     });
     yield put({
       type: types.GET_PAGO_REQUEST,
-      id: state.pagos.record.ID,
+      id: state.pagos.record.PAGNUM,
     });
     yield put({
       type: types.GET_PAGOS_REQUEST,
@@ -375,7 +373,7 @@ function* addPagoValorSaga(action) {
 
     yield put({
       type: types.GET_PAGO_REQUEST,
-      id: state.pagos.record.ID,
+      id: state.pagos.record.PAGNUM,
     });
     yield put({
       type: types.GET_PAGOS_REQUEST,
@@ -396,25 +394,31 @@ function* updatePagoValorSaga(action) {
   try {
     const state = yield select();
     const valor = yield call(updatePagoValor, action.newData);
+
     yield put({
       type: types.UPDATE_PAGO_VALOR_SUCCESS,
       payload: valor,
     });
+
     const totalValores = state.pagos.valores
       .filter((record) => record.ID !== valor.ID)
       .reduce((acc, cur) => acc + cur.PAGIMP, valor.PAGIMP || 0);
+
     yield call(changeRemitoStatus, {
       totalValores,
       remitos: state.pagos.remitos,
       REMPAGNUM: state.pagos.record.PAGNUM,
     });
+
     yield put({
       type: types.GET_PAGO_REQUEST,
-      id: state.pagos.record.ID,
+      id: state.pagos.record.PAGNUM,
     });
+
     yield put({
       type: types.GET_PAGOS_REQUEST,
     });
+
     yield put({
       type: types.PAGOS_RESET,
     });
@@ -444,7 +448,7 @@ function* deletePagoValorSaga(action) {
     });
     yield put({
       type: types.GET_PAGO_REQUEST,
-      id: state.pagos.record.ID,
+      id: state.pagos.record.PAGNUM,
     });
     yield put({
       type: types.GET_PAGOS_REQUEST,
