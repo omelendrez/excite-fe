@@ -6,16 +6,21 @@ import PrintButton from "./PrintButton";
 import { setPathProps, getPathProps } from "services";
 
 const Table = (props) => {
-  const { path } = props;
+  const { path, pagination } = props;
   const pagePath = path || "default";
-  const initialTableProps = getPathProps(pagePath);
+  const initialTableProps = pagination ? getPathProps(pagePath) : {};
   const [newProps, setNewProps] = useState({});
   const [dataSource, setDataSource] = useState([]);
   const [search, setSearch] = useState(initialTableProps.search || "");
   const [tableProps, setTableProps] = useState(initialTableProps);
 
   const onChange = (pagination, filters, sorter) => {
-    const newTableProps = { ...tableProps, pagination, filters, sorter };
+    const newTableProps = {
+      ...tableProps,
+      pagination: props.pagination ? pagination : false,
+      filters,
+      sorter,
+    };
     setTableProps(newTableProps);
   };
 
@@ -93,7 +98,7 @@ const Table = (props) => {
         <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>
       </Row>
       <AntdTable
-        pagination={paginationProps}
+        pagination={props.pagination ? paginationProps : undefined}
         sticky={true}
         tableLayout="fixed"
         loading={props.loading}

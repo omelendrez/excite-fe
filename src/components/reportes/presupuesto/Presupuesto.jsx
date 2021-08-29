@@ -162,18 +162,20 @@ const Presupuesto = (props) => {
           <table>
             <thead>
               <tr>
-                <th className="cantidad right">Cantidad</th>
-                <th className="producto">Producto</th>
+                <th></th>
+                <th className="cantidad center">Cantidad</th>
+                <th className="producto center">Producto</th>
                 <th className="detalle">Detalle</th>
-                <th className="precio center">Precio Unitario</th>
+                <th className="precio right">Precio Unitario</th>
                 <th className="importe right">Importe</th>
               </tr>
             </thead>
             <tbody>
               {items.map((item, index) => (
                 <tr key={index}>
-                  <td className="right">{item.REMCAN}</td>
-                  <td>{item.PRODCOD}</td>
+                  <td></td>
+                  <td className="center">{item.REMCAN}</td>
+                  <td className="center">{item.PRODCOD}</td>
                   <td>
                     {productos.find((p) => p.PRODCOD === item.PRODCOD).PRODDES}
                   </td>
@@ -186,7 +188,7 @@ const Presupuesto = (props) => {
             </tbody>
             <tfoot>
               <tr className="bold">
-                <td>Total de Productos:</td>
+                <td colSpan={2}>Total de Productos:</td>
                 <td>{items.reduce((acc, cur) => acc + cur.REMCAN, 0)}</td>
                 <td colSpan="2">SubTotal del Presupuesto:</td>
                 <td className="right courier">
