@@ -63,6 +63,7 @@ const fields = [
     title: "Estado",
     type: "select",
     options: "statuses",
+    rules: [{ required: true }],
   },
   {
     name: "ID",
