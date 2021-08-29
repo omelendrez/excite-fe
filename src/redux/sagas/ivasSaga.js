@@ -34,7 +34,7 @@ function addIva(newData) {
 }
 
 function updateIva(newData) {
-  return updateRecord(endpoint, newData)
+  return updateRecord(`${endpoint}/${newData.ID}`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;

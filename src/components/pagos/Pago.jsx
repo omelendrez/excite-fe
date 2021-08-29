@@ -87,7 +87,6 @@ const Pago = (props) => {
       if (!newValues.ID) {
         return dispatch(addPagoValor(newValues));
       }
-      console.log(newValues);
       dispatch(updatePagoValor(newValues));
     };
 
@@ -168,6 +167,7 @@ const Pago = (props) => {
     summaryField: "REMTOT",
     handleDelete: handleDeleteRemito,
     colSpan: 3,
+    rowKeys: "REMNUM",
   };
 
   const valoresProps = {
@@ -247,7 +247,9 @@ const Pago = (props) => {
       <Drawer
         isDrawerVisible={showValorDrawer}
         handleClose={handleValorClose}
-        title={`${valorItem.ID ? "Modificando" : "Agregando"} registro`}
+        title={`${
+          valorItem?.item?.ID ? "Modificando" : "Agregando"
+        } registro de pago`}
       >
         {valorItem.fields && (
           <ItemForm
