@@ -91,7 +91,7 @@ function getClienteTipo(id) {
 }
 
 function updateClienteTipo(newData) {
-  return updateRecord(`${endpoint}/tipos`, newData)
+  return updateRecord(`${endpoint}/tipos/${newData.ID}`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;
@@ -214,11 +214,14 @@ function* addClienteTipoSaga(action) {
       type: types.ADD_CLIENTE_TIPO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_CLIENTES_REQUEST,
+    });
     const state = yield select();
     const { record: cliente } = state.clientes;
     yield put({
       type: types.GET_CLIENTE_REQUEST,
-      id: cliente.ID,
+      id: cliente.CLICOD,
     });
   } catch (error) {
     yield put({
@@ -254,7 +257,7 @@ function* updateClienteTipoSaga(action) {
     const { record: cliente } = state.clientes;
     yield put({
       type: types.GET_CLIENTE_REQUEST,
-      id: cliente.ID,
+      id: cliente.CLICOD,
     });
   } catch (error) {
     yield put({
@@ -272,11 +275,14 @@ function* deleteClienteTipoSaga(action) {
       type: types.DELETE_CLIENTE_TIPO_SUCCESS,
       payload: record,
     });
+    yield put({
+      type: types.GET_CLIENTES_REQUEST,
+    });
     const state = yield select();
     const { record: cliente } = state.clientes;
     yield put({
       type: types.GET_CLIENTE_REQUEST,
-      id: cliente.ID,
+      id: cliente.CLICOD,
     });
   } catch (error) {
     yield put({
