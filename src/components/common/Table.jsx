@@ -17,7 +17,6 @@ const Table = (props) => {
   const onChange = (pagination, filters, sorter) => {
     const newTableProps = {
       ...tableProps,
-      pagination: props.pagination ? pagination : false,
       filters,
       sorter,
     };
