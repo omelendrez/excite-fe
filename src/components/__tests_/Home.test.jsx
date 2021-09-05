@@ -1,15 +1,10 @@
-// src/test/Home.test.jsx
 import React from "react";
-// Replace this with the appropriate location of your component
 import Home from "../Home";
-// Replace this with the appropriate location of your testing utility
 import renderConnected from "../../utils/test/renderConnected";
 
 describe("<Home/>", () => {
   let wrapper, getByText;
-  const initialState = {
-    // ... Add your initial testing state here
-  };
+  const initialState = {};
 
   beforeEach(() => {
     const utils = renderConnected(<Home />, { initialState });
