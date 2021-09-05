@@ -1,16 +1,27 @@
+// src/test/Home.test.jsx
 import React from "react";
-import { Provider } from "react-redux";
+// Replace this with the appropriate location of your component
 import Home from "../Home";
-import renderer from "react-test-renderer";
-import store from "redux/store";
+// Replace this with the appropriate location of your testing utility
+import renderConnected from "../../utils/test/renderConnected";
 
-test("renders correctly", () => {
-  const tree = renderer
-    .create(
-      <Provider store={store}>
-        <Home />
-      </Provider>
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+describe("<Home/>", () => {
+  let wrapper, getByText;
+  const initialState = {
+    // ... Add your initial testing state here
+  };
+
+  beforeEach(() => {
+    const utils = renderConnected(<Home />, { initialState });
+    wrapper = utils.container;
+    getByText = utils.getByText;
+  });
+
+  it("renders the component", () => {
+    expect(wrapper.querySelector(".home")).toBeTruthy();
+  });
+
+  it("matches snapshot", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
 });

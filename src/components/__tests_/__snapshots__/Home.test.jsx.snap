@@ -1,11 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
-<section
-  className="ant-layout"
->
-  <div
-    className="home"
-  />
-</section>
+exports[`<Home/> matches snapshot 1`] = `
+<div>
+  <section
+    class="ant-layout"
+  >
+    <div
+      class="home"
+    />
+  </section>
+</div>
 `;
