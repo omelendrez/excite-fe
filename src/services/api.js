@@ -5,7 +5,7 @@ const api = axios.create({
     Accept: "application/json",
     "Content-Type": "application/json",
   },
-  baseURL: process.env.REACT_APP_BACKEND_URL || "http://excite-pc:3000",
+  baseURL: process.env.REACT_APP_BACKEND_URL || "http://localhost:3000",
 });
 
 export default api;
