@@ -11,7 +11,7 @@ export const columns = (props) => {
       dataIndex: "CLINOM",
       title: "Nombre",
       ellipsis: true,
-      width: 180,
+      width: 280,
     },
     {
       dataIndex: "VENCOD",

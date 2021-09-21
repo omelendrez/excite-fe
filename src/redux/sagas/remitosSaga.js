@@ -43,7 +43,7 @@ function addRemito(newData) {
 }
 
 export function updateRemito(newData) {
-  return updateRecord(`${endpoint}`, newData)
+  return updateRecord(`${endpoint}/${newData.REMNUM}`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;

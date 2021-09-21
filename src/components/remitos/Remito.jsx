@@ -61,7 +61,7 @@ const Remito = (props) => {
     setDiscount(record.REMDES);
     setNetItems(totalItems - record.REMDES);
   }, [totalItems, record]);
-
+  
   useEffect(() => {
     if (record && record.REMNUM) {
       dispatch(getCliente(record.CLICOD));
@@ -114,6 +114,8 @@ const Remito = (props) => {
     itemRecord
       .filter((i) => i.name !== "REMPER")
       .forEach((i) => (update[i.name] = i.value));
+    update['REMNUM'] = props.match.params.id
+    update['CLICOD'] = record.CLICOD
     dispatch(updateRemito(update));
     setItemRecord(defaultItemValues);
     setDiscount(record.REMDES);

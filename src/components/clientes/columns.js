@@ -43,7 +43,7 @@ export const columns = () => {
       render: (_, record) => renderName(record),
       searchable: true,
       ellipsis: true,
-      width: 180,
+      width: 280,
     },
     {
       dataIndex: "CLIDOM",

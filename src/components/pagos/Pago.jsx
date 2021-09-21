@@ -67,11 +67,11 @@ const Pago = (props) => {
   useEffect(() => {
     const totRemitos =
       remitos.length > 0
-        ? remitos.reduce((acc, cur) => acc + cur.REMTOT, 0)
+        ? remitos.reduce((acc, cur) => acc + parseFloat(cur.REMTOT) - cur.REMDES, 0)
         : 0;
     const totValores =
       valores.length > 0
-        ? valores.reduce((acc, cur) => acc + cur.PAGIMP, 0)
+        ? valores.reduce((acc, cur) => acc + parseFloat(cur.PAGIMP), 0)
         : 0;
     setBalance(totValores - totRemitos);
 

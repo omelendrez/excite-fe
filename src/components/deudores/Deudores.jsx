@@ -20,7 +20,7 @@ const Deudores = (props) => {
   const summary = (pageData) => {
     let totalAmount = 0;
     pageData.forEach((item) => {
-      totalAmount += item.TOTAL;
+      totalAmount += parseFloat(item.TOTAL);
     });
 
     return (

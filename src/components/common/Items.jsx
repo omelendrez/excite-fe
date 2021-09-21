@@ -18,7 +18,7 @@ const Items = (props) => {
   const summary = (pageData) => {
     let totalAmount = 0;
     pageData.forEach((item) => {
-      totalAmount += item[summaryField];
+      totalAmount += parseFloat(item[summaryField]);
     });
 
     return (

@@ -34,7 +34,7 @@ export const columns = [
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
     searchable: true,
     ellipsis: true,
-    width: 180,
+    width: 280,
   },
   {
     title: "Total",

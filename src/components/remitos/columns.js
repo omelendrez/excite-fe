@@ -39,7 +39,7 @@ export const columns = [
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, "CLINOM"),
     ellipsis: true,
-    width: 180,
+    width: 280,
   },
   {
     dataIndex: "VENCOD",
