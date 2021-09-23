@@ -98,8 +98,10 @@ const Remito = (props) => {
     dispatch(deleteRemito(props.match.params.id));
   };
 
-  const handlePrint = () => {
-    setUrl("/remitos/remito/reporte");
+  const handlePrint = (e) => {
+    console.log(items)
+    // setUrl("/remitos/remito/reporte");
+    console.log(e)
   };
 
   const handleDiscount = () => {
@@ -211,7 +213,7 @@ const Remito = (props) => {
                 data={info}
                 onDelete={items.length === 0 ? handleDelete : null}
                 success={success}
-                onPrint={items.length !== 0 ? handlePrint : null}
+                onPrintRemito={items.length !== 0 ? handlePrint : null}
                 onDiscount={items.length !== 0 ? handleDiscount : null}
               />
             </Panel>

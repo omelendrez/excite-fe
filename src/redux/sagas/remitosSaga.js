@@ -66,6 +66,14 @@ function getItems(id) {
     });
 }
 
+function getItemsCompact(id) {
+  return getRecordById(`${endpoint}/${id}/items/compact`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 function deleteRemito(id) {
   return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
@@ -131,9 +139,10 @@ function* fetchRemitoSaga(action) {
   try {
     const record = yield call(getRemito, action.id);
     const items = yield call(getItems, record.REMNUM);
+    const compact = yield call(getItemsCompact, record.REMNUM);
     yield put({
       type: types.GET_REMITO_SUCCESS,
-      payload: { record, items },
+      payload: { record, items, compact },
     });
   } catch (error) {
     yield put({

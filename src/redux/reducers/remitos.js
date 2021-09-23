@@ -4,6 +4,7 @@ const initialState = {
   records: [],
   record: {},
   items: [],
+  compact: [],
   item: {},
   deudores: [],
   loading: false,
@@ -130,12 +131,13 @@ const remitosReducer = (state = initialState, action) => {
         error: null,
       };
     case types.GET_REMITO_SUCCESS:
-      const { record, items } = action.payload;
+      const { record, items, compact } = action.payload;
       return {
         ...state,
         loading: false,
         record,
         items,
+        compact,
         error: null,
       };
     case types.GET_REMITO_FAILED:
