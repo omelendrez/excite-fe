@@ -1,4 +1,8 @@
-$print-font: "Inconsolata", monospace;
+$print-font: 'Inconsolata', monospace;
+
+:root {
+  --total-row: 510px;
+}
 
 .presupuesto {
   width: 8.5in;
@@ -149,12 +153,9 @@ $print-font: "Inconsolata", monospace;
         }
       }
       tfoot {
-        font-family: Roboto;
         border-top: 1px solid #000;
-        tr {
-          td {
-            padding-top: 18px;
-          }
+        .subtotal-title {
+          text-align: right;
         }
       }
     }
@@ -167,7 +168,7 @@ $print-font: "Inconsolata", monospace;
     flex-direction: column;
     align-items: center;
     .total-top {
-      width: 400px;
+      width: var(--total-row);
       display: flex;
       flex-direction: row;
       border-bottom: 1px solid #000;
@@ -181,7 +182,7 @@ $print-font: "Inconsolata", monospace;
       }
     }
     .total-bottom {
-      width: 400px;
+      width: var(--total-row);
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
@@ -224,7 +225,7 @@ $print-font: "Inconsolata", monospace;
   text-align: right;
   width: 110px;
   &::after {
-    content: ":";
+    content: ':';
   }
 }
 

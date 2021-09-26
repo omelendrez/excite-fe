@@ -191,8 +191,10 @@ const Presupuesto = (props) => {
             <tfoot>
               <tr className="bold">
                 <td colSpan={2}>Total de Productos:</td>
-                <td>{records.reduce((acc, cur) => acc + cur.REMCAN, 0)}</td>
-                <td colSpan="2">SubTotal del Presupuesto:</td>
+                <td>{records.reduce((acc, cur) => acc + parseFloat(cur.REMCAN), 0)}</td>
+                <td colSpan="2" className="subtotal-title">
+                  SubTotal del Presupuesto:
+                </td>
                 <td className="right courier">
                   {formatAmount(
                     records.reduce(
@@ -202,6 +204,16 @@ const Presupuesto = (props) => {
                   )}
                 </td>
               </tr>
+              {remito.REMDES > 0 && (
+                <tr className="bold">
+                  <td colSpan="5" className="subtotal-title">
+                    Descuento (-):
+                  </td>
+                  <td className="right courier">
+                    {formatAmount(remito.REMDES)}
+                  </td>
+                </tr>
+              )}
             </tfoot>
           </table>
         </div>
@@ -217,7 +229,8 @@ const Presupuesto = (props) => {
             <div className="label">Total a Pagar</div>
             <div className="value">
               {formatAmount(
-                records.reduce((acc, cur) => acc + cur.REMCAN * cur.REMPRE, 0)
+                records.reduce((acc, cur) => acc + cur.REMCAN * cur.REMPRE, 0) -
+                  remito.REMDES
               )}
             </div>
           </div>
