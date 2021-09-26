@@ -53,7 +53,11 @@ const Presupuesto = (props) => {
             ))}
             <div className="document-name">
               <div className="document-name-header">PRESUPUESTO</div>
-              <div className="document-name-sub-header">(detallado)</div>
+              <div className="document-name-sub-header">
+                (
+                {props.location.state.source === '1' ? 'detallado' : 'resumido'}
+                )
+              </div>
             </div>
           </div>
           <div className="header-right">
@@ -191,7 +195,12 @@ const Presupuesto = (props) => {
             <tfoot>
               <tr className="bold">
                 <td colSpan={2}>Total de Productos:</td>
-                <td>{records.reduce((acc, cur) => acc + parseFloat(cur.REMCAN), 0)}</td>
+                <td>
+                  {records.reduce(
+                    (acc, cur) => acc + parseFloat(cur.REMCAN),
+                    0
+                  )}
+                </td>
                 <td colSpan="2" className="subtotal-title">
                   SubTotal del Presupuesto:
                 </td>
