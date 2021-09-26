@@ -73,7 +73,7 @@ const Deudores = (props) => {
 
       {error && <Alert message="Error" description={error} type="error" />}
       <div className="deudores">
-        <Title level={5}>Listado de Deudores</Title>
+        <Title level={5}>Presupuestos Adeudados</Title>
         <Table {...tableProps} />
       </div>
     </Layout>
