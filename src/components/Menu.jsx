@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Menu as AntdMenu } from "antd";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Menu as AntdMenu } from 'antd'
 import {
   SettingOutlined,
   TeamOutlined,
@@ -9,15 +9,16 @@ import {
   IdcardOutlined,
   ShoppingOutlined,
   FileTextOutlined,
-} from "@ant-design/icons";
+  FundProjectionScreenOutlined
+} from '@ant-design/icons'
 
-const { SubMenu } = AntdMenu;
+const { SubMenu } = AntdMenu
 
 const Menu = () => {
   return (
     <AntdMenu
       theme="dark"
-      defaultSelectedKeys={["0"]}
+      defaultSelectedKeys={['0']}
       mode="inline"
       className="no-print"
     >
@@ -87,31 +88,43 @@ const Menu = () => {
 
       {/* Documentos */}
       <SubMenu key="sub6" icon={<FileTextOutlined />} title="Documentos">
-        <AntdMenu.Item key="13">
+        <AntdMenu.Item key="12">
           Presupuestos y Facturas
           <Link to="/remitos" />
         </AntdMenu.Item>
 
-        <AntdMenu.Item key="14">
+        <AntdMenu.Item key="13">
           Deudores
           <Link to="/deudores" />
         </AntdMenu.Item>
 
-        <AntdMenu.Item key="15">
+        <AntdMenu.Item key="14">
           Conceptos
           <Link to="/conceptos" />
         </AntdMenu.Item>
       </SubMenu>
 
-      {/* Mantenimiento */}
-      <SubMenu key="sub7" icon={<SettingOutlined />} title="Mantenimiento">
+      <SubMenu key="sub8" icon={<FundProjectionScreenOutlined />} title="Reporte de Ventas">
+        <AntdMenu.Item key="15">
+          Ventas por Producto
+          <Link to="/prductos/ventas" />
+        </AntdMenu.Item>
+
         <AntdMenu.Item key="16">
+          Ventas por Subtipo
+          <Link to="/prductos/subtipo" />
+        </AntdMenu.Item>
+      </SubMenu>
+
+      {/* Mantenimiento */}
+      <SubMenu key="sub9" icon={<SettingOutlined />} title="Mantenimiento">
+        <AntdMenu.Item key="17">
           Últimos números
           <Link to="/ultimos-numeros" />
         </AntdMenu.Item>
       </SubMenu>
     </AntdMenu>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu
