@@ -1,28 +1,32 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Result } from "antd";
-import PrintButton from "components/common/PrintButton";
-import { formatDateNow, formatTimeNow, formatAmount } from "utils/helpers";
-import "./presupuesto.scss";
-import headers from "./headers.json";
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Result } from 'antd'
+import BackButton from 'components/common/BackButton'
+import { formatDateNow, formatTimeNow, formatAmount } from 'utils/helpers'
+import './presupuesto.scss'
+import headers from './headers.json'
 
 const Presupuesto = (props) => {
-  const { record: remito, items } = useSelector((state) => state.remitos);
-  const { record: cliente } = useSelector((state) => state.clientes);
-  const { records: vendedores } = useSelector((state) => state.vendedores);
-  const { records: provincias } = useSelector((state) => state.provincias);
-  const { records: ivas } = useSelector((state) => state.ivas);
-  const { records: transportes } = useSelector((state) => state.transportes);
-  const { records: productos } = useSelector((state) => state.productos);
+  const {
+    record: remito,
+    items,
+    compact
+  } = useSelector((state) => state.remitos)
+  const { record: cliente } = useSelector((state) => state.clientes)
+  const { records: vendedores } = useSelector((state) => state.vendedores)
+  const { records: provincias } = useSelector((state) => state.provincias)
+  const { records: ivas } = useSelector((state) => state.ivas)
+  const { records: transportes } = useSelector((state) => state.transportes)
+  const records = props.location.state.source === '1' ? items : compact
 
-  const onPrint = () => window.print();
+  const onBack = () => props.history.goBack()
 
   useEffect(() => {
     if (remito.REMNUM) {
-      window.print();
+      window.print()
     }
-  }, [remito]);
+  }, [remito])
 
   if (!remito.REMNUM) {
     return (
@@ -36,7 +40,7 @@ const Presupuesto = (props) => {
           </Link>
         }
       ></Result>
-    );
+    )
   }
   return (
     <>
@@ -73,7 +77,7 @@ const Presupuesto = (props) => {
                   PRESUPUESTO N.
                 </div>
                 <div className="value bold courier">
-                  {remito.REMNUM.toString().padStart(8, "0")}
+                  {remito.REMNUM.toString().padStart(8, '0')}
                 </div>
               </div>
               <div className="sub-header-bottom-row">
@@ -171,14 +175,12 @@ const Presupuesto = (props) => {
               </tr>
             </thead>
             <tbody>
-              {items.map((item, index) => (
+              {records.map((item, index) => (
                 <tr key={index}>
                   <td></td>
                   <td className="center">{item.REMCAN}</td>
                   <td className="center">{item.PRODCOD}</td>
-                  <td>
-                    {productos.find((p) => p.PRODCOD === item.PRODCOD).PRODDES}
-                  </td>
+                  <td>{item.PRODDES}</td>
                   <td className="right">{formatAmount(item.REMPRE)}</td>
                   <td className="right">
                     {formatAmount(item.REMCAN * item.REMPRE)}
@@ -189,11 +191,14 @@ const Presupuesto = (props) => {
             <tfoot>
               <tr className="bold">
                 <td colSpan={2}>Total de Productos:</td>
-                <td>{items.reduce((acc, cur) => acc + cur.REMCAN, 0)}</td>
+                <td>{records.reduce((acc, cur) => acc + cur.REMCAN, 0)}</td>
                 <td colSpan="2">SubTotal del Presupuesto:</td>
                 <td className="right courier">
                   {formatAmount(
-                    items.reduce((acc, cur) => acc + cur.REMCAN * cur.REMPRE, 0)
+                    records.reduce(
+                      (acc, cur) => acc + cur.REMCAN * cur.REMPRE,
+                      0
+                    )
                   )}
                 </td>
               </tr>
@@ -212,15 +217,15 @@ const Presupuesto = (props) => {
             <div className="label">Total a Pagar</div>
             <div className="value">
               {formatAmount(
-                items.reduce((acc, cur) => acc + cur.REMCAN * cur.REMPRE, 0)
+                records.reduce((acc, cur) => acc + cur.REMCAN * cur.REMPRE, 0)
               )}
             </div>
           </div>
         </div>
       </div>
-      <PrintButton onPrint={onPrint} />
+      <BackButton onBack={onBack} />
     </>
-  );
-};
+  )
+}
 
-export default Presupuesto;
+export default Presupuesto

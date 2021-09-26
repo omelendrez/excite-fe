@@ -1,190 +1,190 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Redirect } from "react-router-dom";
-import { Layout, Collapse, Form, Row, Col } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import Header from "components/common/Header";
-import Alert from "components/common/Alert";
-import Items from "./Items";
-import Info from "components/common/Info";
-import Modal from "components/common/Modal";
-import InputField from "components/common/InputField";
-import notification from "components/common/notification";
+import React, { useEffect, useState, useRef } from 'react'
+import { Redirect } from 'react-router-dom'
+import { Layout, Collapse, Form, Row, Col } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import Header from 'components/common/Header'
+import Alert from 'components/common/Alert'
+import Items from './Items'
+import Info from 'components/common/Info'
+import Modal from 'components/common/Modal'
+import InputField from 'components/common/InputField'
+import notification from 'components/common/notification'
 import {
   getRemito,
   updateRemito,
   deleteRemito,
-  getCliente,
-} from "redux/actions";
-import { fields } from "./fields";
-import { setFields, formatAmount } from "utils/helpers";
-import "./remito.scss";
+  getCliente
+} from 'redux/actions'
+import { fields } from './fields'
+import { setFields, formatAmount } from 'utils/helpers'
+import './remito.scss'
 
-const { Panel } = Collapse;
+const { Panel } = Collapse
 
 const Remito = (props) => {
   const defaultItemRecord = [
-    { name: "REMPER", value: 0 },
-    { name: "REMDES", value: 0 },
-    { name: "ID", value: 0 },
-  ];
-  const discountForm = useRef(null);
-  const dispatch = useDispatch();
-  const remitos = useSelector((state) => state.remitos);
-  const { records: clientes } = useSelector((state) => state.clientes);
-  const { loading, success, record, error, items } = remitos;
+    { name: 'REMPER', value: 0 },
+    { name: 'REMDES', value: 0 },
+    { name: 'ID', value: 0 }
+  ]
+  const discountForm = useRef(null)
+  const dispatch = useDispatch()
+  const remitos = useSelector((state) => state.remitos)
+  const { records: clientes } = useSelector((state) => state.clientes)
+  const { loading, success, record, error, items } = remitos
   const infoDefault = fields.map((field) => ({
     title: field.title,
-    value: "",
-  }));
-  const [info, setInfo] = useState(infoDefault);
-  const [showDiscount, setShowDiscount] = useState(false);
-  const [totalItems, setTotalItems] = useState(0);
-  const [netItems, setNetItems] = useState(0);
-  const [discount, setDiscount] = useState(0);
-  const [itemRecord, setItemRecord] = useState(defaultItemRecord);
-  const [defaultItemValues, setDefaultItemValues] = useState([]);
-  const [url, setUrl] = useState("");
+    value: ''
+  }))
+  const [info, setInfo] = useState(infoDefault)
+  const [showDiscount, setShowDiscount] = useState(false)
+  const [totalItems, setTotalItems] = useState(0)
+  const [netItems, setNetItems] = useState(0)
+  const [discount, setDiscount] = useState(0)
+  const [itemRecord, setItemRecord] = useState(defaultItemRecord)
+  const [defaultItemValues, setDefaultItemValues] = useState([])
+  const [url, setUrl] = useState('')
+  const [source, setSource] = useState('1')
 
   useEffect(() => {
-    dispatch(getRemito(props.match.params.id));
-  }, [dispatch, props.match.params.id]);
+    dispatch(getRemito(props.match.params.id))
+  }, [dispatch, props.match.params.id])
 
   useEffect(() => {
     setDefaultItemValues([
       {
-        name: "REMPER",
-        value: Math.round((record.REMDES / totalItems) * 100, 1),
+        name: 'REMPER',
+        value: Math.round((record.REMDES / totalItems) * 100, 1)
       },
-      { name: "REMDES", value: record.REMDES },
-      { name: "ID", value: record.ID },
-    ]);
-    setDiscount(record.REMDES);
-    setNetItems(totalItems - record.REMDES);
-  }, [totalItems, record]);
-  
+      { name: 'REMDES', value: record.REMDES },
+      { name: 'ID', value: record.ID }
+    ])
+    setDiscount(record.REMDES)
+    setNetItems(totalItems - record.REMDES)
+  }, [totalItems, record])
+
   useEffect(() => {
     if (record && record.REMNUM) {
-      dispatch(getCliente(record.CLICOD));
-      const info = setFields(fields, record);
-      setInfo(info);
+      dispatch(getCliente(record.CLICOD))
+      const info = setFields(fields, record)
+      setInfo(info)
     }
-  }, [dispatch, record, clientes]);
+  }, [dispatch, record, clientes])
 
   useEffect(() => {
     if (items) {
       const newTotalItems = items.reduce(
         (acc, cur) => acc + cur.REMPRE * cur.REMCAN,
         0
-      );
-      setTotalItems(newTotalItems);
-      setNetItems(newTotalItems);
+      )
+      setTotalItems(newTotalItems)
+      setNetItems(newTotalItems)
     }
-  }, [items]);
+  }, [items])
 
   useEffect(() => {
     if (success && record.message) {
-      props.history.goBack();
+      props.history.goBack()
     }
     if (error) {
       notification({
-        message: "Error",
-        description: "Error al intentar eliminar el registro",
-        type: "error",
-      });
+        message: 'Error',
+        description: 'Error al intentar eliminar el registro',
+        type: 'error'
+      })
     }
-  }, [success, record, error, props.history]);
+  }, [success, record, error, props.history])
 
   const handleDelete = () => {
-    dispatch(deleteRemito(props.match.params.id));
-  };
+    dispatch(deleteRemito(props.match.params.id))
+  }
 
   const handlePrint = (e) => {
-    console.log(items)
-    // setUrl("/remitos/remito/reporte");
-    console.log(e)
-  };
+    setSource(e.key)
+    setUrl('/remitos/remito/reporte')
+  }
 
   const handleDiscount = () => {
-    setItemRecord(defaultItemValues);
-    setDiscount(record.REMDES);
-    setNetItems(totalItems - record.REMDES);
-    setShowDiscount(!showDiscount);
-  };
+    setItemRecord(defaultItemValues)
+    setDiscount(record.REMDES)
+    setNetItems(totalItems - record.REMDES)
+    setShowDiscount(!showDiscount)
+  }
 
   const confirmDiscount = () => {
-    const update = {};
+    const update = {}
     itemRecord
-      .filter((i) => i.name !== "REMPER")
-      .forEach((i) => (update[i.name] = i.value));
+      .filter((i) => i.name !== 'REMPER')
+      .forEach((i) => (update[i.name] = i.value))
     update['REMNUM'] = props.match.params.id
     update['CLICOD'] = record.CLICOD
-    dispatch(updateRemito(update));
-    setItemRecord(defaultItemValues);
-    setDiscount(record.REMDES);
-    setNetItems(totalItems - record.REMDES);
-    setShowDiscount(!showDiscount);
-  };
+    dispatch(updateRemito(update))
+    setItemRecord(defaultItemValues)
+    setDiscount(record.REMDES)
+    setNetItems(totalItems - record.REMDES)
+    setShowDiscount(!showDiscount)
+  }
 
   const handleChange = (field, value) => {
-    if (!value) value = 0;
+    if (!value) value = 0
     switch (field) {
-      case "REMPER":
-        const newDiscount = (totalItems * value) / 100;
-        setDiscount(newDiscount);
-        setNetItems(totalItems - newDiscount);
+      case 'REMPER':
+        const newDiscount = (totalItems * value) / 100
+        setDiscount(newDiscount)
+        setNetItems(totalItems - newDiscount)
         setItemRecord([
-          { name: "REMPER", value },
-          { name: "REMDES", value: newDiscount },
-          { name: "ID", value: record.ID },
-        ]);
-        break;
-      case "REMDES":
-        setDiscount(value);
-        setNetItems(totalItems - value);
+          { name: 'REMPER', value },
+          { name: 'REMDES', value: newDiscount },
+          { name: 'ID', value: record.ID }
+        ])
+        break
+      case 'REMDES':
+        setDiscount(value)
+        setNetItems(totalItems - value)
         setItemRecord([
-          { name: "REMPER", value: Math.round((value / totalItems) * 100, 1) },
-          { name: "REMDES", value },
-          { name: "ID", value: record.ID },
-        ]);
-        break;
+          { name: 'REMPER', value: Math.round((value / totalItems) * 100, 1) },
+          { name: 'REMDES', value },
+          { name: 'ID', value: record.ID }
+        ])
+        break
       default:
     }
-  };
+  }
 
   const discountFields = [
     {
-      name: "ID",
-      hidden: true,
+      name: 'ID',
+      hidden: true
     },
     {
-      name: "REMPER",
-      title: "Desc. %",
-      onChange: (value) => handleChange("REMPER", value),
-      type: "percent",
+      name: 'REMPER',
+      title: 'Desc. %',
+      onChange: (value) => handleChange('REMPER', value),
+      type: 'percent'
     },
     {
-      name: "REMDES",
-      title: "Desc. $",
-      onChange: (value) => handleChange("REMDES", value),
-      type: "amount",
-      width: "100%",
-    },
-  ];
+      name: 'REMDES',
+      title: 'Desc. $',
+      onChange: (value) => handleChange('REMDES', value),
+      type: 'amount',
+      width: '100%'
+    }
+  ]
 
   useEffect(() => {
     if (discountForm.current) {
-      itemRecord.forEach((item) => discountForm.current.setFields([item]));
+      itemRecord.forEach((item) => discountForm.current.setFields([item]))
     }
-  }, [itemRecord]);
+  }, [itemRecord])
 
   const itemsTableProps = {
     loading,
     error,
     items,
     discount,
-    rowKey: "ID",
-    path: props.location.pathname,
-  };
+    rowKey: 'ID',
+    path: props.location.pathname
+  }
 
   if (!!url) {
     return (
@@ -192,9 +192,10 @@ const Remito = (props) => {
         push
         to={{
           pathname: url,
+          state: { source }
         }}
       />
-    );
+    )
   }
   return (
     <>
@@ -206,7 +207,7 @@ const Remito = (props) => {
         />
         {error && <Alert message="Error" description={error} type="error" />}
         <div className="card-container no-Discount">
-          <Collapse defaultActiveKey={["1"]} ghost>
+          <Collapse defaultActiveKey={['1']} ghost>
             <Panel key="1" header="Detalle">
               <Info
                 fields={fields}
@@ -218,7 +219,7 @@ const Remito = (props) => {
               />
             </Panel>
           </Collapse>
-          <Collapse defaultActiveKey={["1"]} ghost>
+          <Collapse defaultActiveKey={['1']} ghost>
             <Panel key="1" header="Productos">
               <Items {...itemsTableProps} />
             </Panel>
@@ -259,7 +260,7 @@ const Remito = (props) => {
         </Row>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default Remito;
+export default Remito
