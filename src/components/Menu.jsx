@@ -41,17 +41,25 @@ const Menu = () => {
           ABM Clientes
           <Link to="/clientes" />
         </AntdMenu.Item>
+
         <AntdMenu.Item key="4">
           Condición de IVA
           <Link to="/ivas" />
         </AntdMenu.Item>
+
         <AntdMenu.Item key="5">
           Porcentaje IVA
           <Link to="/porciva" />
         </AntdMenu.Item>
+
         <AntdMenu.Item key="6">
-          Pagos de facturas
+          Realizar Pagos
           <Link to="/pagos" />
+        </AntdMenu.Item>
+
+        <AntdMenu.Item key="14">
+          Imputar Conceptos
+          <Link to="/conceptos" />
         </AntdMenu.Item>
       </SubMenu>
 
@@ -98,10 +106,6 @@ const Menu = () => {
           <Link to="/deudores" />
         </AntdMenu.Item>
 
-        <AntdMenu.Item key="14">
-          Conceptos
-          <Link to="/conceptos" />
-        </AntdMenu.Item>
       </SubMenu>
 
       <SubMenu key="sub8" icon={<FundProjectionScreenOutlined />} title="Reporte de Ventas">
