@@ -105,18 +105,21 @@ const Menu = () => {
           Deudores
           <Link to="/deudores" />
         </AntdMenu.Item>
-
       </SubMenu>
 
-      <SubMenu key="sub8" icon={<FundProjectionScreenOutlined />} title="Reporte de Ventas">
+      <SubMenu
+        key="sub8"
+        icon={<FundProjectionScreenOutlined />}
+        title="Reporte de Ventas"
+      >
         <AntdMenu.Item key="15">
           Ventas por Producto
-          <Link to="/prductos/ventas" />
+          <Link to="/reportes/ventas/producto" />
         </AntdMenu.Item>
 
         <AntdMenu.Item key="16">
           Ventas por Subtipo
-          <Link to="/prductos/subtipo" />
+          <Link to="/reportes/ventas/subtipo" />
         </AntdMenu.Item>
       </SubMenu>
 

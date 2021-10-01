@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { Table as AntdTable, BackTop, Row, Col } from "antd";
-import Search from "./Search";
-import AddButton from "./AddButton";
-import PrintButton from "./PrintButton";
-import { setPathProps, getPathProps } from "services";
+import React, { useEffect, useState } from 'react'
+import { Table as AntdTable, BackTop, Row, Col } from 'antd'
+import Search from './Search'
+import AddButton from './AddButton'
+import PrintButton from './PrintButton'
+import { setPathProps, getPathProps } from 'services'
 
 const Table = (props) => {
-  const { path, pagination } = props;
-  const pagePath = path || "default";
-  const initialTableProps = pagination ? getPathProps(pagePath) : {};
-  const [newProps, setNewProps] = useState({});
-  const [dataSource, setDataSource] = useState([]);
-  const [search, setSearch] = useState(initialTableProps.search || "");
-  const [tableProps, setTableProps] = useState(initialTableProps);
+  const { path, pagination } = props
+  const pagePath = path || 'default'
+  const initialTableProps = pagination ? getPathProps(pagePath) : {}
+  const [newProps, setNewProps] = useState({})
+  const [dataSource, setDataSource] = useState([])
+  const [search, setSearch] = useState(initialTableProps.search || '')
+  const [tableProps, setTableProps] = useState(initialTableProps)
 
   const onChange = (pagination, filters, sorter) => {
     const newTableProps = {
       ...tableProps,
       filters,
-      sorter,
-    };
-    setTableProps(newTableProps);
-  };
+      sorter
+    }
+    setTableProps(newTableProps)
+  }
 
   const onSearch = (search) => {
     if (!search) {
-      return setDataSource(props.dataSource);
+      return setDataSource(props.dataSource)
     }
-    const filtered = [];
+    const filtered = []
 
     props.dataSource.map((record) =>
       props.columns
@@ -41,58 +41,62 @@ const Table = (props) => {
           ) {
             const exists = filtered.find(
               (r) => r[newProps.rowKey] === record[newProps.rowKey]
-            );
+            )
             if (!exists) {
-              filtered.push(record);
+              filtered.push(record)
             }
           }
         })
-    );
-    setDataSource(filtered);
-  };
+    )
+    setDataSource(filtered)
+  }
 
   const searchPlaceholder = props.columns
     .filter((field) => field.searchable)
     .map((field) => field.title)
-    .join(", ");
+    .join(', ')
 
   const paginationProps = {
-    position: ["bottomCenter"],
+    position: ['bottomCenter'],
     showTotal: (total, _) => `${total} registros`,
     hideOnSinglePage: true,
     pageSizeOptions: [5, 10, 15, 20, 50, 100],
     showLessItems: true,
-    size: "small",
-  };
+    size: 'small'
+  }
 
   useEffect(() => {
-    setNewProps(props);
-    setDataSource(props.dataSource);
-  }, [props]);
+    setNewProps(props)
+    setDataSource(props.dataSource)
+  }, [props])
 
   useEffect(
     () => setPathProps(pagePath, tableProps),
     [tableProps, props, pagePath]
-  );
+  )
 
   return (
     <>
       <BackTop />
-      <Row>
-        {props.columns.filter((field) => field.searchable).length > 0 && (
-          <Col>
-            <Search
-              className="table-search"
-              onSearch={onSearch}
-              onChange={setSearch}
-              searchPlaceholder={searchPlaceholder}
-              value={search}
-              path={pagePath}
-            />
+      {!props.noSearch && (
+        <Row>
+          {props.columns.filter((field) => field.searchable).length > 0 && (
+            <Col>
+              <Search
+                className="table-search"
+                onSearch={onSearch}
+                onChange={setSearch}
+                searchPlaceholder={searchPlaceholder}
+                value={search}
+                path={pagePath}
+              />
+            </Col>
+          )}
+          <Col offset={1}>
+            {props.onAdd && <AddButton onAdd={props.onAdd} />}
           </Col>
-        )}
-        <Col offset={1}>{props.onAdd && <AddButton onAdd={props.onAdd} />}</Col>
-      </Row>
+        </Row>
+      )}
       <Row style={{ marginBottom: 10 }}>
         <Col>{props.onPrint && <PrintButton onPrint={props.onPrint} />}</Col>
       </Row>
@@ -108,7 +112,7 @@ const Table = (props) => {
         dataSource={dataSource}
       />
     </>
-  );
-};
+  )
+}
 
-export default Table;
+export default Table

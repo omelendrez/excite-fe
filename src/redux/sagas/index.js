@@ -14,6 +14,7 @@ import remitosSaga from "./remitosSaga";
 import productosSaga from "./productosSaga";
 import provinciasSaga from "./provinciasSaga";
 import estadosSaga from "./estadosSaga";
+import reportesSaga from './reportsSaga'
 import wakeUp from "./wakeUp";
 
 export default function* rootSaga() {
@@ -33,6 +34,7 @@ export default function* rootSaga() {
     productosSaga(),
     provinciasSaga(),
     estadosSaga(),
+    reportesSaga(),
     wakeUp(),
   ]);
 }

@@ -1,0 +1,10 @@
+export const GET_SALES_BY_PRODUCT_REQUEST = "GET_SALES_BY_PRODUCT_REQUEST";
+export const GET_SALES_BY_PRODUCT_SUCCESS = "GET_SALES_BY_PRODUCT_SUCCESS";
+export const GET_SALES_BY_PRODUCT_FAILED = "GET_SALES_BY_PRODUCT_FAILED";
+
+export const getSalesByProduct = (id) => {
+  return {
+    type: GET_SALES_BY_PRODUCT_REQUEST,
+    id
+  };
+};

@@ -1,68 +1,71 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import { Layout } from "antd";
+import React from 'react'
+import { Route } from 'react-router-dom'
+import { Layout } from 'antd'
 
-import Home from "components/Home";
+import Home from 'components/Home'
 
-import Transportes from "components/transportes/Transportes";
-import Transporte from "components/transportes/Transporte";
-import TransporteForm from "components/transportes/TransporteForm";
+import Transportes from 'components/transportes/Transportes'
+import Transporte from 'components/transportes/Transporte'
+import TransporteForm from 'components/transportes/TransporteForm'
 
-import Clientes from "components/clientes/Clientes";
-import Cliente from "components/clientes/Cliente";
-import ClienteForm from "components/clientes/ClienteForm";
-import ClienteTipoForm from "./clientes/ClienteTipoForm";
+import Clientes from 'components/clientes/Clientes'
+import Cliente from 'components/clientes/Cliente'
+import ClienteForm from 'components/clientes/ClienteForm'
+import ClienteTipoForm from './clientes/ClienteTipoForm'
 
-import Ivas from "components/ivas/Ivas";
-import Iva from "components/ivas/Iva";
-import IvaForm from "components/ivas/IvaForm";
+import Ivas from 'components/ivas/Ivas'
+import Iva from 'components/ivas/Iva'
+import IvaForm from 'components/ivas/IvaForm'
 
-import Porciva from "components/porciva/Porciva";
+import Porciva from 'components/porciva/Porciva'
 
-import Pagos from "components/pagos/Pagos";
-import Pago from "components/pagos/Pago";
-import PagoForm from "components/pagos/PagoForm";
+import Pagos from 'components/pagos/Pagos'
+import Pago from 'components/pagos/Pago'
+import PagoForm from 'components/pagos/PagoForm'
 
-import Vendedores from "components/vendedores/Vendedores";
-import Vendedor from "components/vendedores/Vendedor";
-import VendedorForm from "components/vendedores/VendedorForm";
+import Vendedores from 'components/vendedores/Vendedores'
+import Vendedor from 'components/vendedores/Vendedor'
+import VendedorForm from 'components/vendedores/VendedorForm'
 
-import Tipos from "components/tipos/Tipos";
-import Tipo from "components/tipos/Tipo";
-import TipoForm from "components/tipos/TipoForm";
+import Tipos from 'components/tipos/Tipos'
+import Tipo from 'components/tipos/Tipo'
+import TipoForm from 'components/tipos/TipoForm'
 
-import Subtipos from "components/subtipos/Subtipos";
-import Subtipo from "components/subtipos/Subtipo";
-import SubtipoForm from "components/subtipos/SubtipoForm";
+import Subtipos from 'components/subtipos/Subtipos'
+import Subtipo from 'components/subtipos/Subtipo'
+import SubtipoForm from 'components/subtipos/SubtipoForm'
 
-import Productos from "components/productos/Productos";
-import Producto from "components/productos/Producto";
-import ProductoForm from "components/productos/ProductoForm";
+import Productos from 'components/productos/Productos'
+import Producto from 'components/productos/Producto'
+import ProductoForm from 'components/productos/ProductoForm'
 
-import Ajustes from "components/ajustes/Ajustes";
-import Ajuste from "components/ajustes/Ajuste";
-import AjusteForm from "components/ajustes/AjusteForm";
+import Ajustes from 'components/ajustes/Ajustes'
+import Ajuste from 'components/ajustes/Ajuste'
+import AjusteForm from 'components/ajustes/AjusteForm'
 
-import Remitos from "components/remitos/Remitos";
-import Remito from "components/remitos/Remito";
-import RemitoForm from "components/remitos/RemitoForm";
-import ItemForm from "components/remitos/ItemForm";
-import Presupuesto from "components/reportes/presupuesto/Presupuesto";
-import Deudores from "components/deudores/Deudores";
+import Remitos from 'components/remitos/Remitos'
+import Remito from 'components/remitos/Remito'
+import RemitoForm from 'components/remitos/RemitoForm'
+import ItemForm from 'components/remitos/ItemForm'
+import Presupuesto from 'components/reportes/presupuesto/Presupuesto'
+import Deudores from 'components/deudores/Deudores'
 
-import Conceptos from "components/conceptos/Conceptos";
-import Concepto from "components/conceptos/Concepto";
-import ConceptoForm from "components/conceptos/ConceptoForm";
+import Conceptos from 'components/conceptos/Conceptos'
+import Concepto from 'components/conceptos/Concepto'
+import ConceptoForm from 'components/conceptos/ConceptoForm'
 
-import Numeros from "components/numeros/Numeros";
-import Numero from "components/numeros/Numero";
-import NumeroForm from "components/numeros/NumeroForm";
+import Numeros from 'components/numeros/Numeros'
+import Numero from 'components/numeros/Numero'
+import NumeroForm from 'components/numeros/NumeroForm'
 
-const { Content } = Layout;
+import VentasProducto from './reportes/ventas-producto'
+import VentasSubtipo from './reportes/ventas-subtipo'
+
+const { Content } = Layout
 
 const Routes = () => {
   return (
-    <Content style={{ margin: "0 16px" }}>
+    <Content style={{ margin: '0 16px' }}>
       <Route exact path="/" component={Home} />
 
       {/* Tranportes */}
@@ -147,8 +150,20 @@ const Routes = () => {
       <Route exact path="/ultimos-numeros/add/numero" component={NumeroForm} />
       <Route exact path="/ultimos-numeros/:id" component={Numero} />
       <Route exact path="/ultimos-numeros/edit/:id" component={NumeroForm} />
-    </Content>
-  );
-};
 
-export default Routes;
+      {/* Reporte Ventas */}
+      <Route
+        exact
+        path="/reportes/ventas/producto"
+        component={VentasProducto}
+      />
+      <Route
+        exact
+        path="/reportes/ventas/subtipo"
+        component={VentasSubtipo}
+      />
+    </Content>
+  )
+}
+
+export default Routes
