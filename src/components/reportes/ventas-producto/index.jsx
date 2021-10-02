@@ -8,8 +8,44 @@ import EditForm from 'components/common/EditForm'
 import { getSalesByProduct } from 'redux/actions'
 import { getSelectList } from 'utils/helpers'
 import { fields } from './fields'
-
 import { columns } from './columns'
+import './product-details.scss'
+
+const ProductDetails = (props) => {
+  const { tipos, subtipos, producto } = props
+
+  return (
+    <div className="details-container">
+      {producto?.PRODCOD && (
+        <>
+          <div className="detail-row">
+            <div className="detail-label">Código:</div>
+            <div className="detail-value">{producto.PRODCOD}</div>
+          </div>
+          <div className="detail-row">
+            <div className="detail-label">Descr.:</div>
+            <div className="detail-value">{producto.PRODDES}</div>
+          </div>
+          <div className="detail-row">
+            <div className="detail-label">Tipo:</div>
+            <div className="detail-value">
+              {tipos.records.find((t) => t.TIPCOD === producto.TIPCOD).TIPDES}
+            </div>
+          </div>
+          <div className="detail-row">
+            <div className="detail-label">Subtipo:</div>
+            <div className="detail-value">
+              {
+                subtipos.records.find((t) => t.SUBTIPCOD === producto.SUBTIPCOD)
+                  .SUBTIPDES
+              }
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
 
 const VentasProducto = (props) => {
   const dispatch = useDispatch()
@@ -41,7 +77,7 @@ const VentasProducto = (props) => {
       <Header title="Ventas por Producto" onBack={props.history.goBack} />
 
       {error && <Alert message="Error" description={error} type="error" />}
-      <div style={{display: 'flex', justifyContent:'space-around'}}>
+      <div className="producto-container">
         <EditForm
           fields={fieldsList}
           record={{ PRODCOD: productId }}
@@ -54,33 +90,8 @@ const VentasProducto = (props) => {
           }}
           history={props.history}
         />
-        {producto && (
-          <div>
-            <div>
-              Tipo:
-              <strong>
-                <code>
-                  {
-                    tipos.records.find((t) => t.TIPCOD === producto.TIPCOD)
-                      .TIPDES
-                  }
-                </code>
-              </strong>
-            </div>
-            <div>
-              Subtipo:
-              <strong>
-                <code>
-                  {
-                    subtipos.records.find(
-                      (t) => t.SUBTIPCOD === producto.SUBTIPCOD
-                    ).SUBTIPDES
-                  }
-                </code>
-              </strong>
-            </div>
-          </div>
-        )}
+
+        <ProductDetails tipos={tipos} subtipos={subtipos} producto={producto} />
       </div>
 
       <Table

@@ -7,7 +7,7 @@ import notification from './notification'
 import Tipos from 'components/tipos/TipoForm'
 import Subtipos from 'components/subtipos/SubtipoForm'
 import { formatInputDate } from 'utils/helpers'
-import './editForm.css'
+import './edit-form.scss'
 
 const components = {
   Tipos,
@@ -146,7 +146,7 @@ const EditForm = (props) => {
   if (!record) return null
 
   return (
-    <>
+    <div className="edit-form">
       <Form
         form={form}
         onFinish={props.onFinish}
@@ -191,7 +191,7 @@ const EditForm = (props) => {
           <FormComponent record={{ ID: 0 }} maximize={true} />
         )}
       </Modal>
-    </>
+    </div>
   )
 }
 
