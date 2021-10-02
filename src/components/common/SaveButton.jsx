@@ -1,19 +1,22 @@
-import React from "react";
-import { Button } from "antd";
-import { SaveOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Button } from 'antd'
+import { SaveOutlined } from '@ant-design/icons'
 
 const SaveButton = (props) => {
+  const saveButtonText = props.saveButtonText || 'Guardar'
   return (
     <Button
       type="primary"
       icon={<SaveOutlined />}
       shape="round"
       htmlType="submit"
-      {...props}
+      disabled={props.disabled}
+      loading={props.loading}
+      onClick={props.onClick}
     >
-      Guardar
+      {saveButtonText}
     </Button>
-  );
-};
+  )
+}
 
-export default SaveButton;
+export default SaveButton

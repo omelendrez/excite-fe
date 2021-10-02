@@ -15,8 +15,8 @@ export const formatDate = (date) => moment(date).format('L')
 export const formatDateNow = () => moment().format('DD/MM/YY')
 export const formatTimeNow = () => moment().format('HH:MM')
 //export const formatDate = (date) => moment(date).add(-3, "hours").format("L");  // For local environment
-
 export const formatInputDate = (date) => moment(date)
+export const formatDatePost = (date) => moment(date).format('YYYY-MM-DD')
 
 const createSelectList = (records, id, text, filter = null) => {
   const uniqueList = []

@@ -1,4 +1,4 @@
-import { sortColumn, formatDate } from 'utils/helpers'
+import { formatDate } from 'utils/helpers'
 
 export const columns = [
   {
@@ -17,7 +17,6 @@ export const columns = [
   {
     dataIndex: 'CLINOM',
     title: 'Cliente',
-    sorter: (a, b) => sortColumn(a, b, 'CLINOM'),
     ellipsis: true,
     width: 280
   },

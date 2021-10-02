@@ -152,10 +152,10 @@ const EditForm = (props) => {
         onFinish={props.onFinish}
         initialValues={record}
         labelCol={{
-          span: props.maximize ? 0 : 3
+          span: props.maximize ? 5 : 3
         }}
         wrapperCol={{
-          span: props.maximize ? 0 : 8
+          span: props.maximize ? null : 8
         }}
         onValuesChange={handleChange}
       >
@@ -170,16 +170,18 @@ const EditForm = (props) => {
               addOption={() => toggleModal(field.options)}
             />
           ))}
-        {props.onFinish && (
-          <Row>
-            <Col offset={props.maximize ? 5 : 2} span={props.maximize ? 6 : 3}>
-              <SaveButton loading={props.loading} disabled={submitDisabled} />
-            </Col>
-            <Col>
-              <ResetButton handleReset={onReset} />
-            </Col>
-          </Row>
-        )}
+        <Row>
+          <Col offset={props.maximize ? 5 : 2} span={props.maximize ? 6 : 3}>
+            <SaveButton
+              loading={props.loading}
+              disabled={submitDisabled}
+              saveButtonText={props.saveButtonText}
+            />
+          </Col>
+          <Col>
+            <ResetButton handleReset={onReset} />
+          </Col>
+        </Row>
       </Form>
       <Modal
         visible={modalVisible}

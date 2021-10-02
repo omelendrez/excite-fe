@@ -4,8 +4,8 @@ import { getRecordById } from 'services'
 
 const endpoint = 'productos-ventas-producto'
 
-function getSalesByProduct(id) {
-  return getRecordById(`${endpoint}/${id}`)
+function getSalesByProduct({ PRODCOD, REMFEC_FROM, REMFEC_TO }) {
+  return getRecordById(`${endpoint}/${PRODCOD}?q=${REMFEC_FROM}&q=${REMFEC_TO}`)
     .then((response) => response)
     .catch((error) => {
       throw error
@@ -14,7 +14,7 @@ function getSalesByProduct(id) {
 
 function* fetchSalesByProductSaga(action) {
   try {
-    const record = yield call(getSalesByProduct, action.id)
+    const record = yield call(getSalesByProduct, action)
     yield put({
       type: types.GET_SALES_BY_PRODUCT_SUCCESS,
       payload: record
