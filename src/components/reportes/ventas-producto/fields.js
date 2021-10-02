@@ -1,4 +1,4 @@
-export const fields = (props) => {
+export const fields = () => {
   return [
     {
       name: 'PRODCOD',
@@ -9,13 +9,13 @@ export const fields = (props) => {
     },
     {
       name: 'REMFEC_FROM',
-      title: 'Fecha desde',
+      title: 'Reporte desde',
       type: 'date',
       rules: [{ required: true }]
     },
     {
       name: 'REMFEC_TO',
-      title: 'Fecha hasta',
+      title: 'Reporte hasta',
       type: 'date',
       rules: [{ required: true }]
     }
