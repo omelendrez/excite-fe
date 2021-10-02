@@ -108,7 +108,7 @@ const VentasProducto = (props) => {
         <Table
           loading={loading}
           columns={columns}
-          dataSource={salesByProduct}
+          dataSource={formValues?.PRODCOD ? salesByProduct : []}
           rowKey="REMNUM"
           path={props.location.pathname}
           pagination={false}
