@@ -1,7 +1,12 @@
 import React from 'react'
+import { formatDate } from 'utils/helpers'
 
 const ProductDetails = (props) => {
-  const { tipos, subtipos, producto } = props
+  const { tipos, subtipos, producto, formValues } = props
+
+  const { REMFEC_FROM, REMFEC_TO } = formValues
+
+  const period = `${formatDate(REMFEC_FROM)} al ${formatDate(REMFEC_TO)}`
 
   return (
     <div className="details-container">
@@ -29,6 +34,10 @@ const ProductDetails = (props) => {
                   .SUBTIPDES
               }
             </div>
+          </div>
+          <div className="detail-row">
+            <div className="detail-label">Período:</div>
+            <div className="detail-value">{period}</div>
           </div>
         </>
       )}

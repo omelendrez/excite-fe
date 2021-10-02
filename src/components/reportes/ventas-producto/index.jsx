@@ -101,6 +101,7 @@ const VentasProducto = (props) => {
             tipos={tipos}
             subtipos={subtipos}
             producto={producto}
+            formValues={formValues}
           />
         </div>
 
