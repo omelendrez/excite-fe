@@ -17,7 +17,7 @@ const ProductDetails = (props) => {
             <div className="detail-value">{producto.PRODCOD}</div>
           </div>
           <div className="detail-row">
-            <div className="detail-label">Descr.:</div>
+            <div className="detail-label">Descripción:</div>
             <div className="detail-value">{producto.PRODDES}</div>
           </div>
           <div className="detail-row">
