@@ -71,6 +71,11 @@ export const itemFields = (props) => {
   const { productos, handleSelectedValue } = props;
   return [
     {
+      name: "ID",
+      type: "number",
+      readonly: true,
+    },
+    {
       name: "REMNUM",
       title: "Número de remito",
       type: "number",
