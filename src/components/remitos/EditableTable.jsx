@@ -60,7 +60,7 @@ const EditableTable = (props) => {
       const element = `tr[data-row-key="${editingKey}"] td.ant-table-cell-ellipsis`;
       if (!!producto) {
         document.querySelector(element).textContent = name;
-        form.current.setFields([{ name: "REMPRE", value: price }]);
+        form.current.setFields([{ name: "REMPRE", value: parseFloat(price) }]);
         return resolve();
       } else {
         document.querySelector(element).textContent = "";
