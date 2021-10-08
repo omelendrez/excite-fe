@@ -161,11 +161,11 @@ export const itemColumns = (props) => {
           required: true,
           message: "Ingrese Precio",
         },
-        {
-          min: 1,
-          type: "number",
-          message: "Precio no puede ser 0",
-        },
+        // {
+        //   min: 1,
+        //   type: "number",
+        //   message: "Precio no puede ser 0",
+        // },
       ],
     },
     {

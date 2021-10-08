@@ -1,17 +1,17 @@
 /**
  * This table solves a specific problem but it has to be refactored to make it more generic
  */
-import React, { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Table, Form, Space, Divider } from "antd";
-import InputField from "../common/InputField";
-import Modal from "../common/Modal";
-import AddButton from "../common/AddButton";
-import EditableCell from "./EditableCell";
-import TableSummary from "./TableSummary";
-import { cleanFields } from "utils/helpers";
-import { addItem, updateItem } from "redux/actions";
-import "./editableTable.scss";
+import React, { useEffect, useState, useRef } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Table, Form, Space, Divider } from 'antd'
+import InputField from '../common/InputField'
+import Modal from '../common/Modal'
+import AddButton from '../common/AddButton'
+import EditableCell from './EditableCell'
+import TableSummary from './TableSummary'
+import { cleanFields } from 'utils/helpers'
+import { addItem, updateItem } from 'redux/actions'
+import './editableTable.scss'
 
 const EditableTable = (props) => {
   const {
@@ -21,144 +21,144 @@ const EditableTable = (props) => {
     fields,
     columns,
     loading,
-    discount,
-  } = props;
-  const form = useRef(null);
-  const searchForm = useRef(null);
-  const [data, setData] = useState(dataSource);
-  const [editingKey, setEditingKey] = useState(null);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const productos = useSelector((state) => state.productos);
-  const { record: remito } = useSelector((state) => state.remitos);
-  const { records: clientes } = useSelector((state) => state.clientes);
-  const dispatch = useDispatch();
-  const [selectedValue, setSelectedValue] = useState(null);
+    discount
+  } = props
+  const form = useRef(null)
+  const searchForm = useRef(null)
+  const [data, setData] = useState(dataSource)
+  const [editingKey, setEditingKey] = useState(null)
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const productos = useSelector((state) => state.productos)
+  const { record: remito } = useSelector((state) => state.remitos)
+  const { records: clientes } = useSelector((state) => state.clientes)
+  const dispatch = useDispatch()
+  const [selectedValue, setSelectedValue] = useState(null)
 
-  const handleSelectedValue = (value) => setSelectedValue(value);
+  const handleSelectedValue = (value) => setSelectedValue(value)
 
   const fieldsList = fields({
     productos,
-    handleSelectedValue,
-  });
+    handleSelectedValue
+  })
 
   const prodcodValidator = (params) => {
-    const { field: fieldName } = params;
-    const value = form.current.getFieldValue(fieldName);
+    const { field: fieldName } = params
+    const value = form.current.getFieldValue(fieldName)
+    const curPrice = form.current.getFieldValue('REMPRE')
     return new Promise((resolve, reject) => {
       const producto = productos.records.find(
         (producto) => producto.PRODCOD === value
-      );
-      let price = producto.PRODPRE;
-      const name = producto.PRODDES;
+      )
+      let price = producto.PRODPRE
+      const name = producto.PRODDES
       const tipo =
         (clientes.tipos &&
           clientes.tipos.find((tipo) => tipo.TIPCOD === producto.TIPCOD)) ||
-        null;
+        null
       if (tipo) {
-        price = tipo.CLIPRODPRE;
+        price = tipo.CLIPRODPRE
       }
-      const element = `tr[data-row-key="${editingKey}"] td.ant-table-cell-ellipsis`;
+      const element = `tr[data-row-key="${editingKey}"] td.ant-table-cell-ellipsis`
       if (!!producto) {
-        document.querySelector(element).textContent = name;
-        form.current.setFields([{ name: "REMPRE", value: parseFloat(price) }]);
-        return resolve();
+        document.querySelector(element).textContent = name
+        form.current.setFields([{ name: 'REMPRE', value: curPrice || price }])
+        return resolve()
       } else {
-        document.querySelector(element).textContent = "";
-        form.current.setFields([{ name: "REMPRE", value: 0 }]);
-        return reject();
+        document.querySelector(element).textContent = ''
+        form.current.setFields([{ name: 'REMPRE', value: 0 }])
+        return reject()
       }
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    !!document.getElementsByTagName("input").length &&
-      document.getElementsByTagName("input")[0].focus();
-  }, [editingKey]);
+    document.getElementsByTagName('input')[0]?.focus()
+  }, [editingKey])
 
   useEffect(() => {
-    setData(dataSource);
-    setEditingKey(null);
-  }, [dataSource, loading]);
+    setData(dataSource)
+    setEditingKey(null)
+  }, [dataSource, loading])
 
   const onSearchOk = () => {
-    if (!selectedValue) return;
-    const value = selectedValue;
+    if (!selectedValue) return
+    const value = selectedValue
     const producto = productos.records.find(
       (producto) => producto.PRODCOD === value
-    );
-    let price = producto.PRODPRE;
-    const name = producto.PRODDES;
+    )
+    let price = producto.PRODPRE
+    const name = producto.PRODDES
     const tipo =
       (clientes.tipos &&
         clientes.tipos.find((tipo) => tipo.TIPCOD === producto.TIPCOD)) ||
-      null;
+      null
     if (tipo) {
-      price = tipo.CLIPRODPRE;
+      price = tipo.CLIPRODPRE
     }
 
     document.querySelector(
       `tr[data-row-key="${editingKey}"] td.ant-table-cell-ellipsis`
-    ).textContent = name;
+    ).textContent = name
 
     if (form.current) {
-      form.current.setFields([{ name: "PRODCOD", value }]);
-      form.current.setFields([{ name: "REMPRE", value: price }]);
+      form.current.setFields([{ name: 'PRODCOD', value }])
+      form.current.setFields([{ name: 'REMPRE', value: price }])
     }
-    setIsModalVisible(false);
-    document.getElementsByTagName("input")[0].focus();
-  };
+    setIsModalVisible(false)
+    document.getElementsByTagName('input')[0].focus()
+  }
 
-  const isEditing = (record) => record.PRODCOD === editingKey;
+  const isEditing = (record) => record.PRODCOD === editingKey
 
   const edit = (record) => {
     if (form.current) {
-      form.current.setFieldsValue(record);
-      setEditingKey(record.PRODCOD);
+      form.current.setFieldsValue(record)
+      setEditingKey(record.PRODCOD)
     }
-  };
+  }
 
   const cancel = () => {
-    const newData = data.filter((d) => d.ID !== 0);
-    setData(newData);
-    setEditingKey(null);
-  };
+    const newData = data.filter((d) => d.ID !== 0)
+    setData(newData)
+    setEditingKey(null)
+  }
 
   const onCancelModal = () => {
-    setIsModalVisible(false);
-  };
+    setIsModalVisible(false)
+  }
 
   const handleModal = () => {
-    setIsModalVisible(true);
-  };
+    setIsModalVisible(true)
+  }
 
   const save = async (id, remito) => {
     if (form.current) {
-      const row = await form.current.validateFields();
-      row["ID"] = id;
-      row["REMNUM"] = remito;
-      const newValues = cleanFields(fieldsList, row);
+      const row = await form.current.validateFields()
+      row['ID'] = id
+      row['REMNUM'] = remito
+      const newValues = cleanFields(fieldsList, row)
       if (!row.ID) {
-        return dispatch(addItem(newValues));
+        return dispatch(addItem(newValues))
       }
-      dispatch(updateItem(newValues));
+      dispatch(updateItem(newValues))
     }
-  };
+  }
 
   const handleAdd = () => {
-    const row = {};
+    const row = {}
     fieldsList.forEach(
       (column) =>
-        (row[column.name] = "number-amount".includes(column.type) ? 0 : "")
-    );
-    row["REMNUM"] = remito.REMNUM;
-    row["REMCAN"] = 1;
-    const newData = [...data, row];
-    setEditingKey("");
-    setData(newData);
+        (row[column.name] = 'number-amount'.includes(column.type) ? 0 : '')
+    )
+    row['REMNUM'] = remito.REMNUM
+    row['REMCAN'] = 1
+    const newData = [...data, row]
+    setEditingKey('')
+    setData(newData)
     if (form.current) {
-      form.current.setFieldsValue(row);
+      form.current.setFieldsValue(row)
     }
-  };
+  }
 
   const mergedColumns = columns({
     save,
@@ -168,10 +168,10 @@ const EditableTable = (props) => {
     isEditing,
     cancel,
     editingKey,
-    prodcodValidator,
+    prodcodValidator
   }).map((col) => {
     if (!col.editable) {
-      return col;
+      return col
     }
 
     return {
@@ -184,18 +184,18 @@ const EditableTable = (props) => {
           title: col.title,
           editing: isEditing(record),
           handleModal: col.handleModal,
-          rules: col.rules,
-        };
-      },
-    };
-  });
+          rules: col.rules
+        }
+      }
+    }
+  })
 
-  const field = fieldsList.find((f) => f.name === "PRODCOD");
+  const field = fieldsList.find((f) => f.name === 'PRODCOD')
 
   const totalAmount = data.reduce(
     (acc, cur) => acc + cur.REMCAN * cur.REMPRE,
     0
-  );
+  )
 
   return (
     <>
@@ -203,8 +203,8 @@ const EditableTable = (props) => {
         <Table
           components={{
             body: {
-              cell: EditableCell,
-            },
+              cell: EditableCell
+            }
           }}
           bordered
           dataSource={data}
@@ -235,7 +235,7 @@ const EditableTable = (props) => {
         </Form>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default EditableTable;
+export default EditableTable

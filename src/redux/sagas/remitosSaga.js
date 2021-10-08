@@ -91,7 +91,7 @@ function addItem(newData) {
 }
 
 export function updateItem(newData) {
-  return updateRecord(`${endpoint}/items`, newData)
+  return updateRecord(`${endpoint}/items/${newData.ID}`, newData)
     .then((response) => response)
     .catch((error) => {
       throw error;
