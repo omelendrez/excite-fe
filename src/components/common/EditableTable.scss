@@ -1,0 +1,37 @@
+.editable-table {
+  table {
+    background-color: hsl(0, 0%, 100%);
+    thead,
+    tbody,
+    tfoot {
+      tr {
+        td,
+        th {
+          border: 1px solid #efefef;
+          white-space: nowrap;
+          font-size: 1.1em;
+          padding: 4px 10px;
+
+          &.editable {
+            input {
+              outline: none;
+              border: 1px solid white;
+              text-align: right;
+              width: 100px;
+              &:focus {
+                border: 1px solid lightblue;
+              }
+            }
+          }
+        }
+      }
+    }
+    tfoot {
+      tr {
+        td {
+          font-weight: 900;
+        }
+      }
+    }
+  }
+}
