@@ -32,7 +32,7 @@ const EditableRow = (props) => {
               parseFloat(row.REMPRE) !== parseFloat(formState.REMPRE)
             ) {
               if (formState.PRODCOD !== '') {
-                if (formState.PRODDES === '') {
+                if (formState.PRODDES === NOT_FOUND) {
                   return message.error('Código de Producto No Existe')
                 }
                 if (!parseInt(formState.REMCAN)) {
