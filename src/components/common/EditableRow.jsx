@@ -10,28 +10,32 @@ const EditableRow = (props) => {
   const { row, onSave } = props
   const [formState, setFormState] = useState(row)
 
-  const keyDownHandler = useCallback((event) => {
-    if (event.target.nodeName === 'INPUT') {
-      if (event.keyCode === 13) {
-        event.preventDefault()
-        const [index, form] = getIndex(event)
-        form.elements[index + 1]?.focus()
-        if (
-          event.target.id === 'REMPRE' &&
-          parseInt(event.target.dataset?.rowid) === row.ID
-        ) {
-          console.log(row, formState)
+  const keyDownHandler = useCallback(
+    (event) => {
+      if (event.target.nodeName === 'INPUT') {
+        if (event.keyCode === 13) {
+          event.preventDefault()
+          const [index, form] = getIndex(event)
+          form.elements[index + 1]?.focus()
           if (
-            parseInt(row.PRODCOD) !== parseInt(formState.PRODCOD) ||
-            parseInt(row.REMCAN) !== parseInt(formState.REMCAN) ||
-            parseFloat(row.REMPRE) !== parseFloat(formState.REMPRE)
+            event.target.id === 'REMPRE' &&
+            parseInt(event.target.dataset?.rowid) === row.ID
           ) {
-            onSave(formState)
+            if (
+              parseInt(row.PRODCOD) !== parseInt(formState.PRODCOD) ||
+              parseInt(row.REMCAN) !== parseInt(formState.REMCAN) ||
+              parseFloat(row.REMPRE) !== parseFloat(formState.REMPRE)
+            ) {
+              onSave(formState)
+              setFormState(row)
+              form.elements[form.elements.length - 3]?.focus()
+            }
           }
         }
       }
-    }
-  })
+    },
+    [row, formState, onSave]
+  )
 
   useEffect(() => {
     document.addEventListener('keydown', keyDownHandler)

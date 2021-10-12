@@ -89,36 +89,14 @@ export const columns = [
   }
 ]
 
-export const itemColumns = (props) => {
-  const {
-    save,
-    edit,
-    handleDelete,
-    handleModal,
-    isEditing,
-    cancel,
-    editingKey,
-    prodcodValidator
-  } = props
-
+export const itemColumns = () => {
   return [
     {
       dataIndex: 'PRODCOD',
       title: 'Código',
       editable: true,
       width: 60,
-      handleModal,
-      align: 'center',
-      rules: [
-        {
-          required: true,
-          message: 'Ingrese Producto'
-        },
-        {
-          validator: prodcodValidator,
-          message: 'Producto no existe'
-        }
-      ]
+      align: 'center'
     },
     {
       dataIndex: 'PRODDES',
@@ -172,6 +150,6 @@ export const itemColumns = (props) => {
       render: (_, record) => formatAmount(record.REMCAN * record.REMPRE),
       align: 'right',
       width: 120
-    }
+    },
   ]
 }

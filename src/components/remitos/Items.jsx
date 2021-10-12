@@ -1,42 +1,24 @@
 import React from 'react'
 import { Layout } from 'antd'
-import { useDispatch } from 'react-redux'
 import Header from 'components/common/Header'
 import EditableTable from 'components/common/EditableTable'
 import Alert from 'components/common/Alert'
-import { deleteItem } from 'redux/actions'
 import { itemFields } from './fields'
 import { itemColumns } from './columns'
 
-const Remitos = (props) => {
-  const dispatch = useDispatch()
-  const { loading, items, error, discount } = props
+const Items = (props) => {
+  const { loading, items, error, discount, onSave } = props
 
-  const handleDelete = (record) => dispatch(deleteItem(record))
-
-  const columns = itemColumns({
-    save: () => {},
-    edit: () => {},
-    handleDelete: () => {},
-    handleModal: () => {},
-    cancel: () => {},
-    editingKey: null,
-    prodcodValidator: () => {}
-  })
-
-  const data = items.map((i) => ({
-    ...i,
-    REMTOT: i.REMCAN * i.REMPRE
-  }))
+  const columns = itemColumns()
 
   const tableProps = {
     loading,
-    data,
+    data: items,
     fields: itemFields,
     rowKey: 'ID',
     columns,
     discount,
-    handleDelete
+    onSave
   }
 
   return (
@@ -48,4 +30,4 @@ const Remitos = (props) => {
   )
 }
 
-export default Remitos
+export default Items

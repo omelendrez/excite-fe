@@ -13,8 +13,12 @@ import {
   getRemito,
   updateRemito,
   deleteRemito,
-  getCliente
+  getCliente,
+  deleteItem,
+  addItem,
+  updateItem
 } from 'redux/actions'
+
 import { fields } from './fields'
 import { setFields, formatAmount } from 'utils/helpers'
 import './remito.scss'
@@ -177,13 +181,39 @@ const Remito = (props) => {
     }
   }, [itemRecord])
 
+  const onSave = (row) => {
+    const payload = {
+      ...row,
+      REMNUM: record.REMNUM,
+      PRODDES: undefined
+    }
+    switch (row.ID.toString()) {
+      case '':
+        dispatch(deleteItem(payload))
+        break
+      case '0':
+        dispatch(
+          addItem({
+            ...payload,
+            ID: undefined
+          })
+        )
+        break
+      default:
+        dispatch(updateItem(payload))
+    }
+    dispatch(getRemito(props.match.params.id))
+  }
+
   const itemsTableProps = {
     loading,
     error,
     items,
     discount,
     rowKey: 'ID',
-    path: props.location.pathname
+    path: props.location.pathname,
+
+    onSave
   }
 
   if (!!url) {
