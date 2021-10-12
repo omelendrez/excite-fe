@@ -6,14 +6,14 @@ import EditableFooter from './EditableFooter'
 import './EditableTable.scss'
 
 const EditableTable = (props) => {
-  const { columns, data, discount, onSave  } = props
-  const [formData, setFormData] = useState({})
+  const { columns, data, discount, onSave } = props
+  const [formData, setFormData] = useState([])
   const defaultRow = {
     ID: 0,
     PRODCOD: '',
     PRODDES: '',
     REMCAN: '',
-    REMPRE: '',
+    REMPRE: ''
   }
 
   useEffect(() => setFormData(data), [data])
@@ -27,7 +27,7 @@ const EditableTable = (props) => {
           <EditableHeader columns={columns} />
         </thead>
         <tbody>
-          {data.map((r) => (
+          {formData.map((r) => (
             <EditableRow
               key={r.ID}
               row={r}

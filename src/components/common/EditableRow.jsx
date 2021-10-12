@@ -31,11 +31,16 @@ const EditableRow = (props) => {
               parseInt(row.REMCAN) !== parseInt(formState.REMCAN) ||
               parseFloat(row.REMPRE) !== parseFloat(formState.REMPRE)
             ) {
-              if (formState.PRODDES === '' && formState.PRODCOD !== '') {
-                return message.error('Código de Producto No Existe')
-              }
-              if (!parseFloat(formState.REMPRE)) {
-                return message.error('Precio No Puede Ser 0')
+              if (formState.PRODCOD !== '') {
+                if (formState.PRODDES === '') {
+                  return message.error('Código de Producto No Existe')
+                }
+                if (!parseInt(formState.REMCAN)) {
+                  return message.error('Cantidad No Puede Ser 0')
+                }
+                if (!parseFloat(formState.REMPRE)) {
+                  return message.error('Precio No Puede Ser 0')
+                }
               }
               onSave(formState)
               setFormState(row)
@@ -49,20 +54,28 @@ const EditableRow = (props) => {
   )
 
   useEffect(() => {
+    setFormState(row)
+  }, [row])
+
+  useEffect(() => {
     document.addEventListener('keydown', keyDownHandler)
     return () => document.removeEventListener('keydown', keyDownHandler)
   }, [keyDownHandler])
 
   const handleChange = (e) => {
     let PRODDES = NOT_FOUND
+    let REMPRE = 0
     if (e.target.id === 'PRODCOD') {
-      PRODDES =
-        productos.records.find((p) => p.PRODCOD === e.target.value)?.PRODDES ||
-        NOT_FOUND
+      const producto = productos.records.find(
+        (p) => p.PRODCOD === e.target.value
+      )
+      PRODDES = producto?.PRODDES || NOT_FOUND
+      REMPRE = producto?.PRODPRE || 0
       setFormState((data) => ({
         ...data,
         [e.target.id]: e.target.value,
-        PRODDES
+        PRODDES,
+        REMPRE
       }))
     } else {
       setFormState((data) => ({
