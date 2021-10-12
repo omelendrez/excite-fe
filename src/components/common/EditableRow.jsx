@@ -43,8 +43,8 @@ const EditableRow = (props) => {
                 }
               }
               onSave(formState)
-              setFormState(row)
-              form.elements[form.elements.length - 3]?.focus()
+              setFormState(row) // Reset empty row
+              form.elements[form.elements.length - 3]?.focus() // PRODCOD focus
             }
           }
         }
