@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { message } from 'antd'
+import { useSelector } from 'react-redux'
 import { formatAmount } from 'utils/helpers'
+
+const NOT_FOUND = ''
 
 const getIndex = (event) => {
   const form = event.target.form
@@ -9,6 +13,7 @@ const getIndex = (event) => {
 const EditableRow = (props) => {
   const { row, onSave } = props
   const [formState, setFormState] = useState(row)
+  const productos = useSelector((state) => state.productos)
 
   const keyDownHandler = useCallback(
     (event) => {
@@ -26,6 +31,12 @@ const EditableRow = (props) => {
               parseInt(row.REMCAN) !== parseInt(formState.REMCAN) ||
               parseFloat(row.REMPRE) !== parseFloat(formState.REMPRE)
             ) {
+              if (formState.PRODDES === '' && formState.PRODCOD !== '') {
+                return message.error('Código de Producto No Existe')
+              }
+              if (!parseFloat(formState.REMPRE)) {
+                return message.error('Precio No Puede Ser 0')
+              }
               onSave(formState)
               setFormState(row)
               form.elements[form.elements.length - 3]?.focus()
@@ -42,8 +53,25 @@ const EditableRow = (props) => {
     return () => document.removeEventListener('keydown', keyDownHandler)
   }, [keyDownHandler])
 
-  const handleChange = (e) =>
-    setFormState((data) => ({ ...data, [e.target.id]: e.target.value }))
+  const handleChange = (e) => {
+    let PRODDES = NOT_FOUND
+    if (e.target.id === 'PRODCOD') {
+      PRODDES =
+        productos.records.find((p) => p.PRODCOD === e.target.value)?.PRODDES ||
+        NOT_FOUND
+      setFormState((data) => ({
+        ...data,
+        [e.target.id]: e.target.value,
+        PRODDES
+      }))
+    } else {
+      setFormState((data) => ({
+        ...data,
+        [e.target.id]: e.target.value
+      }))
+    }
+  }
+
   const handleFocus = (event) => event.target.select()
 
   const totalRow = formatAmount(formState.REMCAN * formState.REMPRE)

@@ -202,7 +202,6 @@ const Remito = (props) => {
       default:
         dispatch(updateItem(payload))
     }
-    dispatch(getRemito(props.match.params.id))
   }
 
   const itemsTableProps = {
