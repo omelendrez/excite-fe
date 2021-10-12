@@ -1,6 +1,6 @@
-import React from "react";
-import { Button, Popconfirm } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Button, Popconfirm } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
 
 const DeleteButton = (props) => {
   return (
@@ -11,10 +11,10 @@ const DeleteButton = (props) => {
       onConfirm={props.handleDelete}
     >
       <Button icon={<DeleteOutlined />} danger shape="round">
-        Eliminar
+        {!props.noLabel && 'Eliminar'}
       </Button>
     </Popconfirm>
-  );
-};
+  )
+}
 
-export default DeleteButton;
+export default DeleteButton

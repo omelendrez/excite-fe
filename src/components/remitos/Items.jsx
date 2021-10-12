@@ -1,48 +1,24 @@
 import React from 'react'
-import { Layout, Table as AntdTable, Typography } from 'antd'
-import { useDispatch } from 'react-redux'
+import { Layout } from 'antd'
 import Header from 'components/common/Header'
-import EditableTable from './EditableTable'
+import EditableTable from 'components/common/EditableTable'
 import Alert from 'components/common/Alert'
-import { formatAmount } from 'utils/helpers'
-import { deleteItem } from 'redux/actions'
 import { itemFields } from './fields'
 import { itemColumns } from './columns'
 
-const { Text } = Typography
+const Items = (props) => {
+  const { loading, items, error, discount, onSave } = props
 
-const Remitos = (props) => {
-  const dispatch = useDispatch()
-  const { loading, items, error, discount } = props
-
-  const handleDelete = (record) => dispatch(deleteItem(record))
-
-  const summary = (pageData) => {
-    let totalAmount = 0
-    pageData.forEach((item) => {
-      totalAmount += item.REMCAN * item.REMPRE
-    })
-
-    return (
-      <AntdTable.Summary.Row className="summary-row">
-        <AntdTable.Summary.Cell>Total</AntdTable.Summary.Cell>
-        <AntdTable.Summary.Cell align="right" colSpan={3}>
-          <Text type="primary">{formatAmount(totalAmount)}</Text>
-        </AntdTable.Summary.Cell>
-      </AntdTable.Summary.Row>
-    )
-  }
+  const columns = itemColumns()
 
   const tableProps = {
     loading,
-    dataSource: items,
+    data: items,
     fields: itemFields,
-    rowKey: 'PRODCOD',
-    columns: itemColumns,
-    summary,
-    pagination: false,
-    handleDelete,
-    discount
+    rowKey: 'ID',
+    columns,
+    discount,
+    onSave
   }
 
   return (
@@ -54,4 +30,4 @@ const Remitos = (props) => {
   )
 }
 
-export default Remitos
+export default Items
