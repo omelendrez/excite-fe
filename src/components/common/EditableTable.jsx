@@ -12,8 +12,8 @@ const EditableTable = (props) => {
     ID: 0,
     PRODCOD: '',
     PRODDES: '',
-    REMCAN: 1,
-    REMPRE: 0,
+    REMCAN: '',
+    REMPRE: '',
   }
 
   useEffect(() => setFormData(data), [data])
