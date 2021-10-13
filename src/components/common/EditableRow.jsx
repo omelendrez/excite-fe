@@ -14,6 +14,7 @@ const EditableRow = (props) => {
   const { row, onSave } = props
   const [formState, setFormState] = useState(row)
   const productos = useSelector((state) => state.productos)
+  const clientes = useSelector((state) => state.clientes)
 
   const keyDownHandler = useCallback(
     (event) => {
@@ -65,12 +66,20 @@ const EditableRow = (props) => {
   const handleChange = (e) => {
     let PRODDES = NOT_FOUND
     let REMPRE = 0
+    let TIPCOD = ''
     if (e.target.id === 'PRODCOD') {
       const producto = productos.records.find(
         (p) => p.PRODCOD === e.target.value
       )
       PRODDES = producto?.PRODDES || NOT_FOUND
       REMPRE = producto?.PRODPRE || 0
+      TIPCOD = producto?.TIPCOD || ''
+      
+      const tipo = clientes.tipos.find((tipo) => tipo.TIPCOD === TIPCOD)
+      if (tipo) {
+        REMPRE = tipo.CLIPRODPRE
+      }
+
       setFormState((data) => ({
         ...data,
         [e.target.id]: e.target.value,
