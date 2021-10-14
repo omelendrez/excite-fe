@@ -19,6 +19,30 @@ const EditableRow = (props) => {
   const keyDownHandler = useCallback(
     (event) => {
       if (event.target.nodeName === 'INPUT') {
+        if (event.keyCode === 37) {
+          event.preventDefault()
+          const [index, form] = getIndex(event)
+          console.log(index)
+          form.elements[index - 1]?.focus()
+        }
+        if (event.keyCode === 38) {
+          event.preventDefault()
+          const [index, form] = getIndex(event)
+          console.log(index)
+          form.elements[index - 3]?.focus()
+        }
+        if (event.keyCode === 39) {
+          event.preventDefault()
+          const [index, form] = getIndex(event)
+          console.log(index)
+          form.elements[index + 1]?.focus()
+        }
+        if (event.keyCode === 40) {
+          event.preventDefault()
+          const [index, form] = getIndex(event)
+          console.log(index)
+          form.elements[index + 3]?.focus()
+        }
         if (event.keyCode === 13) {
           event.preventDefault()
           const [index, form] = getIndex(event)
@@ -74,7 +98,7 @@ const EditableRow = (props) => {
       PRODDES = producto?.PRODDES || NOT_FOUND
       REMPRE = producto?.PRODPRE || 0
       TIPCOD = producto?.TIPCOD || ''
-      
+
       const tipo = clientes.tipos.find((tipo) => tipo.TIPCOD === TIPCOD)
       if (tipo) {
         REMPRE = tipo.CLIPRODPRE
