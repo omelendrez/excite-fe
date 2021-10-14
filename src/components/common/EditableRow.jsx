@@ -5,9 +5,15 @@ import { formatAmount } from 'utils/helpers'
 
 const NOT_FOUND = ''
 
-const getIndex = (event) => {
+const setFocus = (event, step) => {
+  event.preventDefault()
   const form = event.target.form
-  return [Array.prototype.indexOf.call(form, event.target), form]
+  const index = Array.prototype.indexOf.call(form, event.target)
+  // Stop left arrow on first col 
+  // Stop right arrow on last col
+  if (!(step === -1 && index % 3 === 0) && !(step === 1 && index % 3 === 2)) {
+    form.elements[index + step]?.focus()
+  }
 }
 
 const EditableRow = (props) => {
@@ -19,55 +25,53 @@ const EditableRow = (props) => {
   const keyDownHandler = useCallback(
     (event) => {
       if (event.target.nodeName === 'INPUT') {
-        if (event.keyCode === 37) {
-          event.preventDefault()
-          const [index, form] = getIndex(event)
-          form.elements[index - 1]?.focus()
-        }
-        if (event.keyCode === 38) {
-          event.preventDefault()
-          const [index, form] = getIndex(event)
-          form.elements[index - 3]?.focus()
-        }
-        if (event.keyCode === 39) {
-          event.preventDefault()
-          const [index, form] = getIndex(event)
-          form.elements[index + 1]?.focus()
-        }
-        if (event.keyCode === 40) {
-          event.preventDefault()
-          const [index, form] = getIndex(event)
-          form.elements[index + 3]?.focus()
-        }
-        if (event.keyCode === 13) {
-          event.preventDefault()
-          const [index, form] = getIndex(event)
-          form.elements[index + 1]?.focus()
-          if (
-            event.target.id === 'REMPRE' &&
-            parseInt(event.target.dataset?.rowid) === row.ID
-          ) {
+        switch (event.keyCode) {
+          default:
+            break
+          case 37:
+            setFocus(event, -1)
+            break
+          case 38:
+            setFocus(event, -3)
+            break
+          case 39:
+            setFocus(event, +1)
+            break
+          case 40:
+            setFocus(event, +3)
+            break
+          case 13:
             if (
-              parseInt(row.PRODCOD) !== parseInt(formState.PRODCOD) ||
-              parseInt(row.REMCAN) !== parseInt(formState.REMCAN) ||
-              parseFloat(row.REMPRE) !== parseFloat(formState.REMPRE)
+              event.target.id === 'REMPRE' &&
+              parseInt(event.target.dataset?.rowid) === row.ID
             ) {
-              if (formState.PRODCOD !== '') {
-                if (formState.PRODDES === NOT_FOUND) {
-                  return message.error('Código de Producto No Existe')
+              if (
+                parseInt(row.PRODCOD) !== parseInt(formState.PRODCOD) ||
+                parseInt(row.REMCAN) !== parseInt(formState.REMCAN) ||
+                parseFloat(row.REMPRE) !== parseFloat(formState.REMPRE)
+              ) {
+                if (formState.PRODCOD !== '') {
+                  if (formState.PRODDES === NOT_FOUND) {
+                    return message.error('Código de Producto No Existe')
+                  }
+                  if (!parseInt(formState.REMCAN)) {
+                    return message.error('Cantidad No Puede Ser 0')
+                  }
+                  if (!parseFloat(formState.REMPRE)) {
+                    return message.error('Precio No Puede Ser 0')
+                  }
+                } else if (!parseInt(formState.REMCAN)) {
+                  return
                 }
-                if (!parseInt(formState.REMCAN)) {
-                  return message.error('Cantidad No Puede Ser 0')
-                }
-                if (!parseFloat(formState.REMPRE)) {
-                  return message.error('Precio No Puede Ser 0')
-                }
+
+                onSave(formState)
+                setFormState(row) // Reset empty row
+                setFocus(event, 1)
               }
-              onSave(formState)
-              setFormState(row) // Reset empty row
-              form.elements[form.elements.length - 3]?.focus() // PRODCOD focus
+            } else {
+              setFocus(event, 1)
             }
-          }
+            break
         }
       }
     },
