@@ -22,25 +22,21 @@ const EditableRow = (props) => {
         if (event.keyCode === 37) {
           event.preventDefault()
           const [index, form] = getIndex(event)
-          console.log(index)
           form.elements[index - 1]?.focus()
         }
         if (event.keyCode === 38) {
           event.preventDefault()
           const [index, form] = getIndex(event)
-          console.log(index)
           form.elements[index - 3]?.focus()
         }
         if (event.keyCode === 39) {
           event.preventDefault()
           const [index, form] = getIndex(event)
-          console.log(index)
           form.elements[index + 1]?.focus()
         }
         if (event.keyCode === 40) {
           event.preventDefault()
           const [index, form] = getIndex(event)
-          console.log(index)
           form.elements[index + 3]?.focus()
         }
         if (event.keyCode === 13) {
