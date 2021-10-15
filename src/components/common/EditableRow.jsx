@@ -5,15 +5,39 @@ import { formatAmount } from 'utils/helpers'
 
 const NOT_FOUND = ''
 
-const setFocus = (event, step) => {
-  event.preventDefault()
+const setFocus = (event) => {
+  let step
+  let force = false
+  switch (event.keyCode) {
+    case 37: // left key
+      step = -1
+      break
+    case 38: // up key
+      step = -3
+      break
+    case 39: // right key
+      step = +1
+      break
+    case 40: // down key
+      step = +3
+      break
+    case 13: // enter key
+      step = 1
+      force = true
+  }
   const form = event.target.form
   const index = Array.prototype.indexOf.call(form, event.target)
-  // Stop left arrow on first col 
-  // Stop right arrow on last col
-  if (!(step === -1 && index % 3 === 0) && !(step === 1 && index % 3 === 2)) {
+  if (
+    !(step === -1 && index % 3 === 0) &&
+    !(step === 1 && index % 3 === 2 && !force)
+  ) {
     form.elements[index + step]?.focus()
   }
+}
+
+const setLastFocus = () => {
+  const form = document.querySelectorAll('.editable input#PRODCOD')
+  if (form) form[form.length - 1]?.focus()
 }
 
 const EditableRow = (props) => {
@@ -25,53 +49,38 @@ const EditableRow = (props) => {
   const keyDownHandler = useCallback(
     (event) => {
       if (event.target.nodeName === 'INPUT') {
-        switch (event.keyCode) {
-          default:
-            break
-          case 37:
-            setFocus(event, -1)
-            break
-          case 38:
-            setFocus(event, -3)
-            break
-          case 39:
-            setFocus(event, +1)
-            break
-          case 40:
-            setFocus(event, +3)
-            break
-          case 13:
+        setFocus(event)
+        if (event.keyCode === 13) {
+          if (
+            event.target.id === 'REMPRE' &&
+            parseInt(event.target.dataset?.rowid) === row.ID
+          ) {
             if (
-              event.target.id === 'REMPRE' &&
-              parseInt(event.target.dataset?.rowid) === row.ID
+              parseInt(row.PRODCOD) !== parseInt(formState.PRODCOD) ||
+              parseInt(row.REMCAN) !== parseInt(formState.REMCAN) ||
+              parseFloat(row.REMPRE) !== parseFloat(formState.REMPRE)
             ) {
-              if (
-                parseInt(row.PRODCOD) !== parseInt(formState.PRODCOD) ||
-                parseInt(row.REMCAN) !== parseInt(formState.REMCAN) ||
-                parseFloat(row.REMPRE) !== parseFloat(formState.REMPRE)
-              ) {
-                if (formState.PRODCOD !== '') {
-                  if (formState.PRODDES === NOT_FOUND) {
-                    return message.error('Código de Producto No Existe')
-                  }
-                  if (!parseInt(formState.REMCAN)) {
-                    return message.error('Cantidad No Puede Ser 0')
-                  }
-                  if (!parseFloat(formState.REMPRE)) {
-                    return message.error('Precio No Puede Ser 0')
-                  }
-                } else if (!parseInt(formState.REMCAN)) {
-                  return
+              if (formState.PRODCOD !== '') {
+                if (formState.PRODDES === NOT_FOUND) {
+                  return message.error('Código de Producto No Existe')
                 }
-
-                onSave(formState)
-                setFormState(row) // Reset empty row
-                setFocus(event, 1)
+                if (!parseInt(formState.REMCAN)) {
+                  return message.error('Cantidad No Puede Ser 0')
+                }
+                if (!parseFloat(formState.REMPRE)) {
+                  return message.error('Precio No Puede Ser 0')
+                }
+              } else if (!parseInt(formState.REMCAN)) {
+                return
               }
-            } else {
-              setFocus(event, 1)
+
+              onSave(formState)
+              if (formState.PRODCOD !== '') {
+                setLastFocus()
+              }
+              setFormState(row) // Reset empty row
             }
-            break
+          }
         }
       }
     },
