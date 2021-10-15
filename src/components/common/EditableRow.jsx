@@ -24,6 +24,8 @@ const setFocus = (event) => {
     case 13: // enter key
       step = 1
       force = true
+      break
+    default:
   }
   const form = event.target.form
   const index = Array.prototype.indexOf.call(form, event.target)
