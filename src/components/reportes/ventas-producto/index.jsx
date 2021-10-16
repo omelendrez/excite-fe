@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Layout } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
-import { Table as AntdTable, Typography, Space } from 'antd'
+import { Layout, Table as AntdTable, Typography, Space } from 'antd'
 import Header from 'components/common/Header'
 import Table from 'components/common/Table'
 import Alert from 'components/common/Alert'
