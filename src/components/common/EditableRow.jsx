@@ -45,9 +45,16 @@ const setLastFocus = () => {
 }
 
 const EditableRow = (props) => {
-  const { row, onSave, selected, onToggleModal, isModalVisible, currentRow } =
-    props
+  const {
+    row,
+    onSave,
+    selected,
+    onToggleModal,
+    isModalVisible,
+    currentRow,
+  } = props
   const [formState, setFormState] = useState(row)
+  const [selectedValue, setSelectedValue] = useState('')
   const productos = useSelector((state) => state.productos)
   const clientes = useSelector((state) => state.clientes)
 
@@ -95,16 +102,20 @@ const EditableRow = (props) => {
     [row, formState, onSave, onToggleModal, isModalVisible]
   )
 
-  useEffect(() => {
-    setFormState(row)
-  }, [row])
+  useEffect(() => setFormState(row), [row])
 
   useEffect(() => {
-    if (selected && formState.ID === parseInt(currentRow)) {
-      handleChange({ target: { id: 'PRODCOD', value: selected } })
-      document.querySelector(`[data-rowid='${currentRow}']`).focus()
+    if (selected) {
+      setSelectedValue(selected)
     }
   }, [selected])
+
+  useEffect(() => {
+    if (selectedValue && formState.ID === parseInt(currentRow)) {
+      handleChange({ target: { id: 'PRODCOD', value: selectedValue } })
+      document.querySelector(`[data-rowid='${currentRow}']`).focus()
+    }
+  }, [selectedValue])
 
   useEffect(() => {
     document.addEventListener('keydown', keyDownHandler)

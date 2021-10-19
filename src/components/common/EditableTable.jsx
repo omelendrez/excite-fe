@@ -17,6 +17,7 @@ const EditableTable = (props) => {
   const [selected, setSelected] = useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [currentRow, setCurrentRow] = useState(null)
+  const [search, setSeach] = useState('')
   const defaultRow = {
     ID: 0,
     PRODCOD: '',
@@ -35,13 +36,19 @@ const EditableTable = (props) => {
   const onSelect = (value) => {
     onToggleModal()
     setSelected(value)
+    setSeach(undefined)
   }
 
   const onToggleModal = (currentRow) => {
+    setSeach(null)
     if (currentRow) {
       setCurrentRow(currentRow)
     }
     setIsModalVisible((status) => !status)
+  }
+
+  const handleChange = (text) => {
+    setSeach(text)
   }
 
   return (
@@ -87,6 +94,8 @@ const EditableTable = (props) => {
       >
         <Select
           showSearch
+          onChange={handleChange}
+          value={search}
           autoFocus={true}
           style={{ width: '100%' }}
           placeholder="Seleccione un producto"
@@ -96,7 +105,6 @@ const EditableTable = (props) => {
           }
           loading={loading}
           onSelect={onSelect}
-          defaultOpen={true}
           filterSort={(optionA, optionB) =>
             optionA.children
               .toLowerCase()
@@ -111,7 +119,6 @@ const EditableTable = (props) => {
           ))}
         </Select>
       </Modal>
-      )
     </>
   )
 }
