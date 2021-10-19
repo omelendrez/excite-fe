@@ -10,7 +10,7 @@ import {
 
 const endpoint = "productos";
 
-function getProductos() {
+function getProductos () {
   return getRecords(endpoint)
     .then((response) => response)
     .catch((error) => {
@@ -18,7 +18,15 @@ function getProductos() {
     });
 }
 
-function getProducto(id) {
+function getActiveProductos () {
+  return getRecords(`${endpoint}-activos`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+function getProducto (id) {
   return getRecordById(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
@@ -26,7 +34,7 @@ function getProducto(id) {
     });
 }
 
-function addProducto(newData) {
+function addProducto (newData) {
   return addRecord(endpoint, newData)
     .then((response) => response)
     .catch((error) => {
@@ -34,7 +42,7 @@ function addProducto(newData) {
     });
 }
 
-function updateProducto(newData) {
+function updateProducto (newData) {
   return updateRecord(endpoint, newData)
     .then((response) => response)
     .catch((error) => {
@@ -42,7 +50,7 @@ function updateProducto(newData) {
     });
 }
 
-function deleteProducto(id) {
+function deleteProducto (id) {
   return deleteRecord(`${endpoint}/${id}`)
     .then((response) => response)
     .catch((error) => {
@@ -50,12 +58,13 @@ function deleteProducto(id) {
     });
 }
 
-function* fetchProductosSaga() {
+function* fetchProductosSaga () {
   try {
     const records = yield call(getProductos);
+    const active = yield call(getActiveProductos);
     yield put({
       type: types.GET_PRODUCTOS_SUCCESS,
-      payload: records,
+      payload: { records, active },
     });
   } catch (error) {
     yield put({
@@ -65,7 +74,7 @@ function* fetchProductosSaga() {
   }
 }
 
-function* fetchProductoSaga(action) {
+function* fetchProductoSaga (action) {
   try {
     const record = yield call(getProducto, action.id);
     yield put({
@@ -80,7 +89,7 @@ function* fetchProductoSaga(action) {
   }
 }
 
-function* addProductoSaga(action) {
+function* addProductoSaga (action) {
   try {
     const record = yield call(addProducto, action.newData);
     yield put({
@@ -98,7 +107,7 @@ function* addProductoSaga(action) {
   }
 }
 
-function* updateProductoSaga(action) {
+function* updateProductoSaga (action) {
   try {
     const record = yield call(updateProducto, action.newData);
     yield put({
@@ -116,7 +125,7 @@ function* updateProductoSaga(action) {
   }
 }
 
-function* deleteProductoSaga(action) {
+function* deleteProductoSaga (action) {
   try {
     const record = yield call(deleteProducto, action.id);
     yield put({
@@ -134,7 +143,7 @@ function* deleteProductoSaga(action) {
   }
 }
 
-function* productosSaga() {
+function* productosSaga () {
   yield takeEvery(types.GET_PRODUCTOS_REQUEST, fetchProductosSaga);
   yield takeEvery(types.GET_PRODUCTO_REQUEST, fetchProductoSaga);
   yield takeEvery(types.ADD_PRODUCTO_REQUEST, addProductoSaga);

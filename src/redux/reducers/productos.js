@@ -3,6 +3,7 @@ import * as types from "redux/actions";
 const initialState = {
   record: {},
   records: [],
+  active: [],
   loading: false,
   success: false,
   error: null,
@@ -18,10 +19,12 @@ const productosReducer = (state = initialState, action) => {
         error: null,
       };
     case types.GET_PRODUCTOS_SUCCESS:
+      const { records, active } = action.payload;
       return {
         ...state,
         loading: false,
-        records: action.payload,
+        records,
+        active,
         error: null,
       };
     case types.GET_PRODUCTOS_FAILED:

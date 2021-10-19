@@ -8,32 +8,34 @@ const NOT_FOUND = ''
 const setFocus = (event) => {
   let step
   let force = false
-  switch (event.keyCode) {
-    case 37: // left key
+  switch (event.code) {
+    case 'ArrowLeft': // left key
       step = -1
       break
-    case 38: // up key
+    case 'ArrowUp': // up key
       step = -3
       break
-    case 39: // right key
+    case 'ArrowRight': // right key
       step = +1
       break
-    case 40: // down key
+    case 'ArrowDown': // down key
       step = +3
       break
-    case 13: // enter key
+    case 'Enter': // enter key
       step = 1
       force = true
       break
     default:
   }
   const form = event.target.form
-  const index = Array.prototype.indexOf.call(form, event.target)
-  if (
-    !(step === -1 && index % 3 === 0) &&
-    !(step === 1 && index % 3 === 2 && !force)
-  ) {
-    form.elements[index + step]?.focus()
+  if (form) {
+    const index = Array.prototype.indexOf.call(form, event.target)
+    if (
+      !(step === -1 && index % 3 === 0) &&
+      !(step === 1 && index % 3 === 2 && !force)
+    ) {
+      form.elements[index + step]?.focus()
+    }
   }
 }
 
@@ -43,16 +45,20 @@ const setLastFocus = () => {
 }
 
 const EditableRow = (props) => {
-  const { row, onSave } = props
+  const { row, onSave, selected, onToggleModal, isModalVisible, currentRow } =
+    props
   const [formState, setFormState] = useState(row)
   const productos = useSelector((state) => state.productos)
   const clientes = useSelector((state) => state.clientes)
 
   const keyDownHandler = useCallback(
     (event) => {
-      if (event.target.nodeName === 'INPUT') {
+      if (event.target.nodeName === 'INPUT' && !isModalVisible) {
         setFocus(event)
-        if (event.keyCode === 13) {
+        if (event.code === 'F4' && event.target.id === 'PRODCOD') {
+          onToggleModal(event.target.getAttribute('data-rowid'))
+        }
+        if (event.code === 'Enter') {
           if (
             event.target.id === 'REMPRE' &&
             parseInt(event.target.dataset?.rowid) === row.ID
@@ -86,12 +92,19 @@ const EditableRow = (props) => {
         }
       }
     },
-    [row, formState, onSave]
+    [row, formState, onSave, onToggleModal, isModalVisible]
   )
 
   useEffect(() => {
     setFormState(row)
   }, [row])
+
+  useEffect(() => {
+    if (selected && formState.ID === parseInt(currentRow)) {
+      handleChange({ target: { id: 'PRODCOD', value: selected } })
+      document.querySelector(`[data-rowid='${currentRow}']`).focus()
+    }
+  }, [selected])
 
   useEffect(() => {
     document.addEventListener('keydown', keyDownHandler)
@@ -142,6 +155,7 @@ const EditableRow = (props) => {
           onFocus={handleFocus}
           value={formState.PRODCOD}
           onChange={handleChange}
+          data-rowid={row.ID}
         />
       </td>
       <td>{formState.PRODDES}</td>
