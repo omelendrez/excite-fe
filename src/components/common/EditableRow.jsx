@@ -115,6 +115,7 @@ const EditableRow = (props) => {
       handleChange({ target: { id: 'PRODCOD', value: selectedValue } })
       document.querySelector(`[data-rowid='${currentRow}']`).focus()
     }
+    // eslint-disable-next-line
   }, [selectedValue])
 
   useEffect(() => {
