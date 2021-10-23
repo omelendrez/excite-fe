@@ -1,6 +1,6 @@
-import React from "react";
-import { Button } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import React from "react"
+import { Button } from "antd"
+import { PlusOutlined } from "@ant-design/icons"
 
 const AddButton = (props) => {
   return (
@@ -13,7 +13,7 @@ const AddButton = (props) => {
     >
       Agregar
     </Button>
-  );
-};
+  )
+}
 
-export default AddButton;
+export default AddButton
