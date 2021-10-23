@@ -119,7 +119,7 @@ export const fields = [
     type: "amount",
     hidden: true,
   },
-];
+]
 
 export const tipoFields = [
   {
@@ -145,4 +145,4 @@ export const tipoFields = [
     type: "number",
     hidden: true,
   },
-];
+]
