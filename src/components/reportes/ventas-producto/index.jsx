@@ -48,6 +48,7 @@ const VentasProducto = (props) => {
   }, [formValues, dispatch])
 
   const handlePrint = (e) => {
+    e.preventDefault()
     window.print()
   }
 
