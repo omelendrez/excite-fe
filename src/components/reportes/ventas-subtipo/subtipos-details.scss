@@ -1,0 +1,50 @@
+.subtipos-table {
+  th, td {
+    font-family: monospace;
+    font-size: large;
+    text-transform: uppercase;;
+  }
+  .detail-row {
+    &.first {
+      td {
+        padding-top: 20px;
+      }
+    }
+  }
+}
+@media print {
+  .subtipos-table {
+    visibility: visible;
+    position: absolute;
+    height: fit-content;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    background: #fff !important;
+    color: #000;
+
+    .ant-page-header-back,
+    .form-container {
+      display: none;
+    }
+
+    .details-container {
+      border: none !important;
+    }
+
+    .ant-table {
+      table {
+        width: auto;
+
+        .ant-dropdown-trigger {
+          display: none;
+        }
+
+        .ant-table-cell {
+          border: none;
+        }
+      }
+    }
+  }
+}
