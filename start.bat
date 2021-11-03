@@ -1,2 +1,2 @@
 cd C:\webserver\excite-fe
-nodemon
+npm start
