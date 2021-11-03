@@ -10,7 +10,6 @@ import { getSalesBySubtype } from 'redux/actions'
 import './subtipos-details.scss'
 
 import { fields } from './fields'
-import { columns } from './columns'
 
 const VentasSubtipo = (props) => {
   const dispatch = useDispatch()

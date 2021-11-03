@@ -10,7 +10,7 @@ let store;
 if (process.NODE_ENV !== "production" && window.__REDUX_DEVTOOLS_EXTENSION__) {
   store = compose(
     applyMiddleware(sagaMiddleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__({ serialize: true })
   )(createStore)(rootReducer);
 } else {
   store = compose(applyMiddleware(sagaMiddleware))(createStore)(rootReducer);

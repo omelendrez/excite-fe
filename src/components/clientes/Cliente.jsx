@@ -107,14 +107,13 @@ const Cliente = (props) => {
     rowKey: "ID",
     onAdd: onAddTipo,
   }
-  const newBalance = saldos.reduce((acu, cur) => acu + cur.AMOUNT, 0)
-  const newSaldos = saldos.map((saldo) => {
-    const newSaldo = {
+  const newBalance = saldos.reduce((acu, cur) => acu + parseFloat(cur.AMOUNT), 0)
+  const newSaldos = saldos.map((saldo) => (
+    {
       ...saldo,
       AMOUNT: saldo.TYPE === "Balance Actual" ? newBalance : saldo.AMOUNT,
-    }
-    return newSaldo
-  })
+    })
+  )
 
   return (
     <Layout>

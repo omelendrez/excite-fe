@@ -7,3 +7,5 @@ const postre = calcular('postre')
 
 console.log(lista.reduce(primer, {}))
 console.log(lista.reduce(postre, {}))
+const [{ primer: firstName }] = lista
+console.log(firstName)
