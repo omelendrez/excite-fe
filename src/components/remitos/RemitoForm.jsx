@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { Layout } from "antd";
 import Header from "components/common/Header";
 import EditForm from "components/common/EditForm";
@@ -14,7 +15,7 @@ const RemitoForm = (props) => {
 
   const dispatch = useDispatch();
   const remitos = useSelector((state) => state.remitos);
-  const { loading, success, error } = remitos;
+  const { loading, success, error, record: rec } = remitos;
   const estados = useSelector((state) => state.estados);
   const clientes = useSelector((state) => state.clientes);
   const vendedores = useSelector((state) => state.vendedores);
@@ -39,6 +40,17 @@ const RemitoForm = (props) => {
     ];
     setChangeFieldValues(newFieldValues);
   };
+
+  if (rec.REMNUM) {
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: `/remitos/${rec.REMNUM}`,
+        }}
+      />
+    );
+  }
 
   return (
     <Layout>
