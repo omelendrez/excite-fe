@@ -8,7 +8,7 @@ const NOT_FOUND = ''
 const setFocus = (event) => {
   let step
   let force = false
-  switch (event.code) {
+  switch (event.key) {
     case 'ArrowLeft': // left key
       step = -1
       break
@@ -22,7 +22,6 @@ const setFocus = (event) => {
       step = +3
       break
     case 'Enter': // enter key
-    case 'NumpadEnter':
       step = 1
       force = true
       break
@@ -63,10 +62,10 @@ const EditableRow = (props) => {
     (event) => {
       if (event.target.nodeName === 'INPUT' && !isModalVisible) {
         setFocus(event)
-        if (event.code === 'F4' && event.target.id === 'PRODCOD') {
+        if (event.key === 'F4' && event.target.id === 'PRODCOD') {
           onToggleModal(event.target.getAttribute('data-rowid'))
         }
-        if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+        if (event.key === 'Enter' || event.key === 'NumpadEnter') {
           if (
             event.target.id === 'REMPRE' &&
             parseInt(event.target.dataset?.rowid) === row.ID
