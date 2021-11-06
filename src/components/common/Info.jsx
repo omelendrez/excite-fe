@@ -10,6 +10,7 @@ import ConceptsButton from './ConceptsButton'
 import QuotationsButton from './QuotationsButton'
 import PriceButton from './PriceButton'
 import DiscountButton from './DiscountButton'
+import InvoiceButton from './InvoiceButton'
 import DropdownButton from './DropdownButton'
 import { formatDate, formatAmount } from 'utils/helpers'
 import './info.css'
@@ -102,6 +103,11 @@ const Info = (props) => {
         {props.onDelete && (
           <Col>
             <DeleteButton handleDelete={props.onDelete} />
+          </Col>
+        )}
+        {props.onInvoice && (
+          <Col>
+            <InvoiceButton onInvoice={props.onInvoice} />
           </Col>
         )}
       </Row>

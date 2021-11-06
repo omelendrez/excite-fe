@@ -99,7 +99,8 @@ const Remito = (props) => {
     }
   }, [success, record, error, props.history])
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.preventDetault()
     dispatch(deleteRemito(props.match.params.id))
   }
 
@@ -113,6 +114,10 @@ const Remito = (props) => {
     setDiscount(record.REMDES)
     setNetItems(totalItems - record.REMDES)
     setShowDiscount(!showDiscount)
+  }
+
+  const handleInvoice = () => {
+
   }
 
   const confirmDiscount = () => {
@@ -245,6 +250,7 @@ const Remito = (props) => {
                 success={success}
                 onPrintRemito={items.length !== 0 ? handlePrint : null}
                 onDiscount={items.length !== 0 ? handleDiscount : null}
+                onInvoice={items.length !== 0 ? handleInvoice : null}
               />
             </Panel>
           </Collapse>
