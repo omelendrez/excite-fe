@@ -56,6 +56,9 @@ const VentasSubtipo = (props) => {
               saveButtonText="Confirmar"
             />
           </div>
+          <Space>
+            <PrintButton onPrint={handlePrint} />
+          </Space>
         </div>
 
         <div className="subtipos-table">
@@ -85,9 +88,6 @@ const VentasSubtipo = (props) => {
         </div>
 
       </div>
-      <Space>
-        <PrintButton onPrint={handlePrint} />
-      </Space>
     </Layout>
   )
 }

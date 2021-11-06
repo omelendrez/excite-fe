@@ -96,6 +96,10 @@ const VentasProducto = (props) => {
               onFinish={onFinish}
               saveButtonText="Confirmar"
             />
+            <Space>
+              <PrintButton onPrint={handlePrint} />
+            </Space>
+
           </div>
           <ProductDetails
             tipos={tipos}
@@ -116,9 +120,6 @@ const VentasProducto = (props) => {
           summary={summary}
         />
       </div>
-      <Space>
-        <PrintButton onPrint={handlePrint} />
-      </Space>
     </Layout>
   )
 }
