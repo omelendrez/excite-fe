@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, Spin } from 'antd'
-import { PrinterOutlined, FileDoneOutlined } from '@ant-design/icons'
+import { PrinterOutlined, ProfileOutlined } from '@ant-design/icons'
 import { getSelectList } from 'utils/helpers'
 import EditButton from './EditButton'
 import DeleteButton from './DeleteButton'
@@ -107,7 +107,7 @@ const Info = (props) => {
         )}
         {props.onInvoice && (
           <Col>
-            <DropdownButton icon={<FileDoneOutlined />} label="Factura" options={[{ key: 1, text: 'Factura E' }]} onConfirm={props.onInvoice} />
+            <DropdownButton icon={<ProfileOutlined />} label="Factura" options={[{ key: 1, text: 'Factura E' }]} onConfirm={props.onInvoice} />
           </Col>
         )}
       </Row>
