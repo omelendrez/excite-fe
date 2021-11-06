@@ -22,6 +22,7 @@ const setFocus = (event) => {
       step = +3
       break
     case 'Enter': // enter key
+    case 'NumpadEnter':
       step = 1
       force = true
       break
@@ -65,7 +66,7 @@ const EditableRow = (props) => {
         if (event.code === 'F4' && event.target.id === 'PRODCOD') {
           onToggleModal(event.target.getAttribute('data-rowid'))
         }
-        if (event.code === 'Enter') {
+        if (event.code === 'Enter' || event.code === 'NumpadEnter') {
           if (
             event.target.id === 'REMPRE' &&
             parseInt(event.target.dataset?.rowid) === row.ID
