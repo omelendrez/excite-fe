@@ -116,8 +116,15 @@ const Remito = (props) => {
     setShowDiscount(!showDiscount)
   }
 
-  const handleInvoice = () => {
-
+  const handleInvoice = (e) => {
+    switch (e.key) {
+      default:
+        console.log('Error', e.key)
+        break
+      case '1':
+        console.log('ok')
+        break
+    }
   }
 
   const confirmDiscount = () => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, Spin } from 'antd'
+import { PrinterOutlined, FileDoneOutlined } from '@ant-design/icons'
 import { getSelectList } from 'utils/helpers'
 import EditButton from './EditButton'
 import DeleteButton from './DeleteButton'
@@ -10,7 +11,6 @@ import ConceptsButton from './ConceptsButton'
 import QuotationsButton from './QuotationsButton'
 import PriceButton from './PriceButton'
 import DiscountButton from './DiscountButton'
-import InvoiceButton from './InvoiceButton'
 import DropdownButton from './DropdownButton'
 import { formatDate, formatAmount } from 'utils/helpers'
 import './info.css'
@@ -72,7 +72,7 @@ const Info = (props) => {
         )}
         {props.onPrintRemito && (
           <Col>
-            <DropdownButton onPrint={props.onPrintRemito} />
+            <DropdownButton icon={<PrinterOutlined />} label="Imprimir" options={[{ key: 1, text: 'Detallado' }, { key: 2, text: 'Resumido' }]} onConfirm={props.onPrintRemito} />
           </Col>
         )}
         {props.onQuotations && (
@@ -107,7 +107,7 @@ const Info = (props) => {
         )}
         {props.onInvoice && (
           <Col>
-            <InvoiceButton onInvoice={props.onInvoice} />
+            <DropdownButton icon={<FileDoneOutlined />} label="Factura" options={[{ key: 1, text: 'Factura E' }]} onConfirm={props.onInvoice} />
           </Col>
         )}
       </Row>
