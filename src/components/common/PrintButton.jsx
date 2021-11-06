@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, message } from "antd";
-import { PrinterOutlined } from "@ant-design/icons";
+import { PrinterTwoTone } from "@ant-design/icons";
 
 const PrintButton = (props) => {
   const noHandlePrint = () => {
@@ -8,7 +8,7 @@ const PrintButton = (props) => {
   };
   return (
     <Button
-      icon={<PrinterOutlined />}
+      icon={<PrinterTwoTone />}
       onClick={props.onPrint || noHandlePrint}
       shape="round"
       className="no-print"

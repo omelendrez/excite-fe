@@ -1,11 +1,11 @@
 import React from "react";
 import { Button } from "antd";
-import { CalculatorOutlined } from "@ant-design/icons";
+import { CalculatorTwoTone } from "@ant-design/icons";
 
 const InvoiceButton = (props) => {
   return (
     <Button
-      icon={<CalculatorOutlined />}
+      icon={<CalculatorTwoTone />}
       onClick={props.onInvoice}
       shape="round"
     >

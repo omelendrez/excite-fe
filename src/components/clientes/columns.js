@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import EditButton from "components/common/EditButton";
 import DeleteButton from "components/common/DeleteButton";
 import { sortColumn, statuses, formatAmount } from "utils/helpers";
-import { DollarOutlined } from "@ant-design/icons";
+import { DollarTwoTone } from "@ant-design/icons";
 
 export const columns = () => {
   const status = statuses
@@ -21,7 +21,7 @@ export const columns = () => {
         {name}{" "}
         {specialPrices ? (
           <Tooltip title="Tiene precios especiales">
-            <DollarOutlined style={{ color: "blue" }} />
+            <DollarTwoTone style={{ color: "blue" }} />
           </Tooltip>
         ) : null}
       </div>
