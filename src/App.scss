@@ -42,3 +42,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+button.ant-btn-dangerous span svg path  {
+  fill: inherit
+}
