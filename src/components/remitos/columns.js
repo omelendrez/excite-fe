@@ -147,7 +147,7 @@ export const itemColumns = () => {
     },
     {
       dataIndex: 'REMTOT',
-      title: 'Total',
+      title: 'Subtotal',
       render: (_, record) => formatAmount(record.REMCAN * record.REMPRE),
       align: 'right',
       width: 120

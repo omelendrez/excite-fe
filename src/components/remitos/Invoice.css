@@ -1,0 +1,29 @@
+.invoice-header {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.invoice-row {
+  display: flex;
+  align-items: center;
+  line-height: 20px;
+}
+
+.invoice-row .field-name {
+  text-align: right;
+  margin-right: 6px;
+  width: 80px;
+}
+
+.invoice-row .field-value  {
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 260px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.container {
+  background-color: #fff;
+}
