@@ -16,19 +16,11 @@ const Invoice = props => {
     },
     {
       label: 'Vendedor',
-      value: seller.VENCOD
-    },
-    {
-      label: 'Nombre',
-      value: seller.VENNOM
+      value: `${seller.VENCOD} - ${seller.VENNOM}`
     },
     {
       label: 'Cliente',
-      value: client.CLICOD
-    },
-    {
-      label: 'Nombre',
-      value: client.CLINOM
+      value: `${client.CLICOD} - ${client.CLINOM}`
     },
     {
       label: 'Domicilio',
