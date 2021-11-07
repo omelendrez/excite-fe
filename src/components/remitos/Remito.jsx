@@ -7,6 +7,7 @@ import Alert from 'components/common/Alert'
 import Items from './Items'
 import Info from 'components/common/Info'
 import Modal from 'components/common/Modal'
+import Invoice from './Invoice'
 import InputField from 'components/common/InputField'
 import notification from 'components/common/notification'
 import {
@@ -49,6 +50,7 @@ const Remito = (props) => {
   const [defaultItemValues, setDefaultItemValues] = useState([])
   const [url, setUrl] = useState('')
   const [source, setSource] = useState('1')
+  const [showInvoice, setShowInvoice] = useState(false)
 
   useEffect(() => {
     dispatch(getRemito(props.match.params.id))
@@ -122,9 +124,14 @@ const Remito = (props) => {
         console.log('Error', e.key)
         break
       case '1':
-        console.log('ok')
+        toggleInvoice()
         break
     }
+  }
+
+  const toggleInvoice = () => {
+    setShowInvoice(!showInvoice)
+
   }
 
   const confirmDiscount = () => {
@@ -300,6 +307,17 @@ const Remito = (props) => {
             <div className="total">{formatAmount(netItems)}</div>
           </Col>
         </Row>
+      </Modal>
+      <Modal
+        isModalVisible={showInvoice}
+        onClose={toggleInvoice}
+        width="370px"
+        okText="Confirmar"
+        onOk={() => console.log(record)}
+        title="Factura E"
+        forceRender
+      >
+        <Invoice record={record} items={items} fields={fields} />
       </Modal>
     </>
   )

@@ -101,6 +101,7 @@ export const itemColumns = () => {
     {
       dataIndex: 'PRODDES',
       title: 'Producto',
+      align: 'left',
       hideOnEdit: true,
       ellipsis: true,
       width: 280
@@ -130,7 +131,7 @@ export const itemColumns = () => {
       title: 'Precio',
       inputType: 'amount',
       editable: true,
-      align: 'right',
+      align: 'center',
       width: 160,
       rules: [
         {
