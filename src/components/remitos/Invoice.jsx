@@ -2,12 +2,12 @@ import React from 'react'
 import { Layout } from 'antd'
 import { formatDate } from 'utils/helpers'
 import './Invoice.css'
+
 const Invoice = props => {
   const { record, items, columns, client, seller, iva } = props
-  console.log(iva, client)
   const headers = [
     {
-      label: 'Presupuesto',
+      label: 'Presup.',
       value: record.REMNUM
     },
     {

@@ -122,3 +122,27 @@ export const timeout = (delay = 0) => {
     setTimeout(resolve(), delay)
   })
 }
+
+
+/**
+ * @param {css styles} styles: string
+ * @returns a closure
+ */
+function createConsoleMessage(styles) {
+  return function (message) {
+    if (process.env.REACT_APP_SENTRY_ENV === 'production') return
+    console.log(`%c ${typeof message === 'object' ? JSON.stringify(message) : message} `, styles)
+  }
+}
+
+/**
+ * Usage:
+ * import { log } from '../functions/utils'
+ * log.info('Test of log')
+ */
+export const log = {
+  info: createConsoleMessage('background:blue;color:white;'),
+  warning: createConsoleMessage('background:orange;color:black;'),
+  error: createConsoleMessage('background:red;color:white;'),
+  success: createConsoleMessage('background:green;color:white;')
+}

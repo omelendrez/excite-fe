@@ -1,13 +1,14 @@
 .invoice-header {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .invoice-row {
   display: flex;
   align-items: center;
-  line-height: 20px;
 }
 
 .invoice-row .field-name {
@@ -19,7 +20,7 @@
 .invoice-row .field-value  {
   font-weight: bold;
   text-transform: uppercase;
-  width: 260px;
+  width: 200px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

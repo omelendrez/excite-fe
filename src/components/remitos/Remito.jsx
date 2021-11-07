@@ -19,7 +19,6 @@ import {
   addItem,
   updateItem
 } from 'redux/actions'
-
 import { fields } from './fields'
 import { setFields, formatAmount } from 'utils/helpers'
 import './remito.scss'
@@ -248,6 +247,7 @@ const Remito = (props) => {
       />
     )
   }
+
   return (
     <>
       <Layout>
@@ -314,7 +314,7 @@ const Remito = (props) => {
       <Modal
         isModalVisible={showInvoice}
         onClose={toggleInvoice}
-        width="800px"
+        width="640px"
         okText="Confirmar"
         onOk={() => console.log(record)}
         title="Factura E"
@@ -324,9 +324,9 @@ const Remito = (props) => {
           record={record}
           items={items}
           columns={itemColumns()}
-          client={clientes.find(c => c.CLICOD === record.CLICOD)}
+          client={clientes?.find(c => c.CLICOD === record?.CLICOD)}
           seller={vendedores.find(v => v.VENCOD === record.VENCOD)}
-          iva={ivas.find(i => i.IVACOD === clientes.find(c => c.CLICOD === record.CLICOD).IVACOD)}
+          iva={ivas?.find(i => i.IVACOD === clientes?.find(c => c.CLICOD === record?.CLICOD)?.IVACOD)}
         />
       </Modal>
     </>
