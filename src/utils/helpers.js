@@ -131,7 +131,7 @@ export const timeout = (delay = 0) => {
 function createConsoleMessage(styles) {
   return function (message) {
     if (process.env.REACT_APP_SENTRY_ENV === 'production') return
-    console.log(`%c ${typeof message === 'object' ? JSON.stringify(message) : message} `, styles)
+    console.log(`%c ${typeof message === 'object' ? JSON.stringify(message, null, 2) : message} `, styles)
   }
 }
 
