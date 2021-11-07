@@ -35,7 +35,7 @@ const Remito = (props) => {
   const discountForm = useRef(null)
   const dispatch = useDispatch()
   const remitos = useSelector((state) => state.remitos)
-  const { records: clientes } = useSelector((state) => state.clientes)
+  const { record: cliente } = useSelector((state) => state.clientes)
   const { records: vendedores } = useSelector((state) => state.vendedores)
   const { records: ivas } = useSelector((state) => state.ivas)
   const { loading, success, record, error, items } = remitos
@@ -77,7 +77,7 @@ const Remito = (props) => {
       const info = setFields(fields, record)
       setInfo(info)
     }
-  }, [dispatch, record, clientes])
+  }, [dispatch, record])
 
   useEffect(() => {
     if (items) {
@@ -324,9 +324,9 @@ const Remito = (props) => {
           record={record}
           items={items}
           columns={itemColumns()}
-          client={clientes?.find(c => c.CLICOD === record?.CLICOD)}
+          client={cliente}
           seller={vendedores.find(v => v.VENCOD === record.VENCOD)}
-          iva={ivas?.find(i => i.IVACOD === clientes?.find(c => c.CLICOD === record?.CLICOD)?.IVACOD)}
+          iva={ivas?.find(i => i.IVACOD === cliente?.IVACOD)}
         />
       </Modal>
     </>
