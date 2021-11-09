@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Result } from 'antd'
 import BackButton from 'components/common/BackButton'
+import PrintButton from 'components/common/PrintButton'
 import { formatDateNow, formatTimeNow, formatAmount } from 'utils/helpers'
 import './presupuesto.scss'
 import headers from './headers.json'
@@ -20,13 +21,16 @@ const Presupuesto = (props) => {
   const { records: transportes } = useSelector((state) => state.transportes)
   const records = props.location.state.source === '1' ? items : compact
 
+  const vendedor = `${vendedores.find((v) => v.VENCOD === cliente.VENCOD).VENNOM} - ${cliente.VENCOD}`
+  const total = formatAmount(records.reduce((acc, cur) => acc + cur.REMCAN * cur.REMPRE, 0) - remito.REMDES)
+
   const onBack = () => props.history.goBack()
 
-  useEffect(() => {
+  const onPrint = () => {
     if (remito.REMNUM) {
       window.print()
     }
-  }, [remito])
+  }
 
   if (!remito.REMNUM) {
     return (
@@ -133,9 +137,7 @@ const Presupuesto = (props) => {
             <div className="cliente-right-row">
               <div className="label">Vendedor</div>
               <div className="value">
-                {`${
-                  vendedores.find((v) => v.VENCOD === cliente.VENCOD).VENNOM
-                } - ${cliente.VENCOD}`}
+                {vendedor}
               </div>
             </div>
           </div>
@@ -237,15 +239,13 @@ const Presupuesto = (props) => {
           <div className="total-bottom">
             <div className="label">Total a Pagar</div>
             <div className="value">
-              {formatAmount(
-                records.reduce((acc, cur) => acc + cur.REMCAN * cur.REMPRE, 0) -
-                  remito.REMDES
-              )}
+              {total}
             </div>
           </div>
         </div>
       </div>
       <BackButton onBack={onBack} />
+      <PrintButton onPrint={onPrint} />
     </>
   )
 }
