@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Layout, Collapse, Form, Row, Col } from 'antd'
+import { Layout, Collapse, Form, Row, Col, Divider } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from 'components/common/Header'
 import Alert from 'components/common/Alert'
@@ -338,6 +338,17 @@ const Remito = (props) => {
           client={cliente}
           seller={vendedores.find(v => v.VENCOD === record.VENCOD)}
           iva={ivas?.find(i => i.IVACOD === cliente?.IVACOD)}
+        />
+        <Divider />
+        <Alert
+          message="Antención!"
+          description={
+            <p>
+              Tenga en cuenta que una vez confirmada la Factura E no podrá ser modificada.
+            </p>
+          }
+          type="info"
+          showIcon
         />
       </Modal>
     </>

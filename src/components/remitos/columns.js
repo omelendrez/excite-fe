@@ -165,19 +165,20 @@ export const invoiceColumns = () => {
     {
       dataIndex: 'PRODCOD',
       title: 'Código',
+      align: 'left'
     },
     {
       dataIndex: 'PRODDES',
       title: 'Producto',
       ellipsis: true,
-      width: 280
+      align: 'left'
     },
     {
       dataIndex: 'REMPRE',
       title: 'Precio Unit.',
       inputType: 'amount',
       editable: true,
-      align: 'center',
+      align: 'right',
     },
     {
       dataIndex: 'REMTOT',
