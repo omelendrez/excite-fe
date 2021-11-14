@@ -154,3 +154,36 @@ export const itemColumns = () => {
     },
   ]
 }
+
+export const invoiceColumns = () => {
+  return [
+    {
+      dataIndex: 'REMCAN',
+      title: 'Cantidad',
+      align: 'center',
+    },
+    {
+      dataIndex: 'PRODCOD',
+      title: 'Código',
+    },
+    {
+      dataIndex: 'PRODDES',
+      title: 'Producto',
+      ellipsis: true,
+      width: 280
+    },
+    {
+      dataIndex: 'REMPRE',
+      title: 'Precio Unit.',
+      inputType: 'amount',
+      editable: true,
+      align: 'center',
+    },
+    {
+      dataIndex: 'REMTOT',
+      title: 'Precio Total',
+      render: (_, record) => formatAmount(record.REMCAN * record.REMPRE),
+      align: 'right',
+    },
+  ]
+}

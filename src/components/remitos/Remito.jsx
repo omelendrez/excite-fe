@@ -22,7 +22,7 @@ import {
 import { fields } from './fields'
 import { setFields, formatAmount } from 'utils/helpers'
 import './remito.scss'
-import { itemColumns } from './columns'
+import { invoiceColumns } from './columns'
 
 const { Panel } = Collapse
 
@@ -38,7 +38,7 @@ const Remito = (props) => {
   const { record: cliente } = useSelector((state) => state.clientes)
   const { records: vendedores } = useSelector((state) => state.vendedores)
   const { records: ivas } = useSelector((state) => state.ivas)
-  const { loading, success, record, error, items } = remitos
+  const { loading, success, record, error, items, compact } = remitos
   const infoDefault = fields.map((field) => ({
     title: field.title,
     value: ''
@@ -173,6 +173,17 @@ const Remito = (props) => {
         ])
         break
       default:
+    }
+  }
+
+  const handleInvoiceOkButton = e => {
+    e.preventDefault()
+    const isSaving = record.REMFACNUM === 0
+
+    if (isSaving) {
+      console.log('save record')
+    } else {
+      setUrl('/remitos/invoice/imprimir')
     }
   }
 
@@ -315,15 +326,15 @@ const Remito = (props) => {
         isModalVisible={showInvoice}
         onClose={toggleInvoice}
         width="640px"
-        okText="Confirmar"
-        onOk={() => console.log(record)}
+        okText={record.REMFACNUM === 0 ? 'Confirmar' : 'Imprimir'}
+        onOk={handleInvoiceOkButton}
         title="Factura E"
-        forceRender
+        maskClosable={false}
       >
         <Invoice
           record={record}
-          items={items}
-          columns={itemColumns()}
+          items={compact}
+          columns={invoiceColumns()}
           client={cliente}
           seller={vendedores.find(v => v.VENCOD === record.VENCOD)}
           iva={ivas?.find(i => i.IVACOD === cliente?.IVACOD)}

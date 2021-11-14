@@ -5,11 +5,7 @@ import tableFields from './commonTableFields.json'
 export const sortColumn = (a, b, fieldName) =>
   a[fieldName] < b[fieldName] ? -1 : a[fieldName] > b[fieldName] ? 1 : 0
 
-export const formatAmount = (value = 0) =>
-  `$ ${Number.parseFloat(value).toFixed(2)}`.replace(
-    /\B(?=(\d{3})+(?!\d))/g,
-    ','
-  )
+export const formatAmount = (value = 0) => new Intl.NumberFormat('es-AR', { minimumFractionDigits: 2 }).format(value)
 
 export const formatDate = (date) => moment(date).format('L')
 export const formatDateNow = () => moment().format('DD/MM/YY')
