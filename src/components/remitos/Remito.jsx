@@ -339,17 +339,21 @@ const Remito = (props) => {
           seller={vendedores.find(v => v.VENCOD === record.VENCOD)}
           iva={ivas?.find(i => i.IVACOD === cliente?.IVACOD)}
         />
+
         <Divider />
-        <Alert
-          message="Antención!"
-          description={
-            <p>
-              Tenga en cuenta que una vez confirmada la Factura E no podrá ser modificada.
-            </p>
-          }
-          type="info"
-          showIcon
-        />
+
+        {record.REMFACNUM === 0 &&
+          <Alert
+            message="Antención!"
+            description={
+              <p>
+                Tenga en cuenta que una vez confirmada la Factura E no podrá ser modificada.
+              </p>
+            }
+            type="info"
+            showIcon
+          />
+        }
       </Modal>
     </>
   )
