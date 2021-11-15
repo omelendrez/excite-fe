@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from 'antd'
-import { formatDate } from 'utils/helpers'
+import { formatDate, formatAmount } from 'utils/helpers'
 import './Invoice.css'
 
 const Invoice = props => {
@@ -34,8 +34,13 @@ const Invoice = props => {
       label: 'I.V.A.',
       value: iva.IVADES
     },
-
   ]
+
+  const totalAmount = items.reduce(
+    (acc, cur) => acc + cur.REMCAN * cur.REMPRE,
+    0
+  )
+
   return (
     <Layout className="container">
       <div className="invoice-header">
@@ -64,6 +69,16 @@ const Invoice = props => {
           </tr>)
           )}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={4} align="right" style={{ borderTop: '1px solid #ccc', paddingTop: 10 }}>
+              Total:
+            </td>
+            <td align="right" className="bold" style={{ borderTop: '1px solid #ccc', paddingTop: 10 }}>
+              {formatAmount(totalAmount)}
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </Layout>
   )

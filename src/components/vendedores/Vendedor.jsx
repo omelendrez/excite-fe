@@ -76,7 +76,7 @@ const Vendedor = (props) => {
     loading,
     columns: clientColumns(),
     dataSource: clientes.active,
-    rowKey: "ID",
+    rowKey: "CLICOD",
   };
 
   return (
