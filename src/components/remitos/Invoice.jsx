@@ -71,10 +71,10 @@ const Invoice = props => {
         </tbody>
         <tfoot>
           <tr>
-            <td colSpan={4} align="right" style={{ borderTop: '1px solid #ccc', paddingTop: 10 }}>
+            <td colSpan={4}>
               Total:
             </td>
-            <td align="right" className="bold" style={{ borderTop: '1px solid #ccc', paddingTop: 10 }}>
+            <td className="bold">
               {formatAmount(totalAmount)}
             </td>
           </tr>

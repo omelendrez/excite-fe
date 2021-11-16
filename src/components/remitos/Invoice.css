@@ -1,4 +1,8 @@
-.invoice-header {
+.container {
+  background-color: #fff;
+}
+
+.container .invoice-header {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
@@ -6,18 +10,18 @@
   border-bottom: 1px solid #eaeaea;
 }
 
-.invoice-row {
+.container .invoice-header .invoice-row {
   display: flex;
   align-items: center;
 }
 
-.invoice-row .field-name {
+.container .invoice-header .invoice-row .field-name {
   text-align: right;
   margin-right: 6px;
   width: 80px;
 }
 
-.invoice-row .field-value  {
+.container .invoice-header .invoice-row .field-value  {
   font-weight: bold;
   text-transform: uppercase;
   width: 200px;
@@ -25,6 +29,11 @@
   overflow: hidden;
   white-space: nowrap;
 }
-.container {
-  background-color: #fff;
+
+.container table tfoot tr td{
+  border-bottom: 1px solid #eaeaea;
+  padding-top: 10px;
+  text-align: right;
 }
+
+
