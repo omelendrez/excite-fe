@@ -142,3 +142,11 @@ export const log = {
   error: createConsoleMessage('background:red;color:white;'),
   success: createConsoleMessage('background:green;color:white;')
 }
+
+export const charPadding = (value, char, length) => {
+  let string = value
+  while (string.length < length) {
+    string = `${char}${string}`
+  }
+  return string
+}

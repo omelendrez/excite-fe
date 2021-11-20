@@ -1,246 +1,145 @@
 $print-font: 'Inconsolata', monospace;
 
-:root {
-  --total-row: 510px;
+.invoice {
+  margin: 0;
+  padding: 0;
+  width: 21cm;
+  height: 22cm;
+  background-color: rgb(219, 210, 198);
+  position: absolute;
 }
 
-.presupuesto {
-  width: 8.5in;
-  .remito {
-    display: flex;
-    flex-direction: row;
-    .header-left {
-      position: relative;
-      width: 70%;
-      padding: 10px;
-      .logo {
-        background-image: url(../../../LOGOCHICO.JPG);
-        background-repeat: no-repeat;
-        background-position-x: left;
-        background-size: contain;
-        margin: 0;
-      }
-      .document-name {
-        position: absolute;
-        top: 60px;
-        left: 360px;
-        text-align: center;
-        .document-name-header {
-          font-size: 1.3em;
-          font-weight: 700;
-        }
-      }
-    }
-    .header-right {
-      width: 30%;
-      .sub-header-top {
-        border-left: none;
-        border-bottom: none;
-        height: 50%;
-        .sub-header-top-row {
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-end;
-        }
-      }
-      .sub-header-bottom {
-        border-left: none;
-        height: 50%;
-        .sub-header-bottom-row {
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-end;
-          .label {
-            font-size: 0.9em;
-          }
-        }
-      }
-    }
-  }
-  .cliente {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-top: 0;
-    .cliente-left {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      .cliente-left-row {
-        display: flex;
-        flex-direction: row;
-        white-space: nowrap;
-      }
-    }
-
-    .cliente-right {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      .cliente-right-row {
-        display: flex;
-        flex-direction: row;
-        height: 22px;
-        white-space: nowrap;
-      }
-    }
-  }
-
-  .others {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-top: 0;
-    .others-left {
-      border-right: 1px solid #000;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      .others-left-row {
-        display: flex;
-        flex-direction: row;
-      }
-    }
-
-    .others-right {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      .others-right-row {
-        display: flex;
-        flex-direction: row;
-        height: 22px;
-      }
-    }
-  }
-  .productos {
-    border-top: 0;
-    padding-top: 20px;
-    table {
-      margin-bottom: 10px;
-      thead {
-        tr {
-          th {
-            border-bottom: 1px solid #000;
-            font-weight: bold;
-            padding: 0;
-            &.cantidad {
-              width: 60px;
-            }
-            &.producto {
-              width: 90px;
-            }
-            &.detalle {
-              width: 200px;
-              overflow: hidden;
-            }
-            &.precio {
-              width: 100px;
-            }
-            &.importe {
-              width: 160px;
-            }
-          }
-        }
-      }
-      tbody {
-        tr {
-          td {
-            font-family: $print-font;
-            padding: 0;
-          }
-        }
-      }
-      tfoot {
-        border-top: 1px solid #000;
-        .subtotal-title {
-          text-align: right;
-        }
-      }
-    }
-  }
-  .total {
-    padding-top: 10px;
-    padding-bottom: 20px;
-    border-top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .total-top {
-      width: var(--total-row);
-      display: flex;
-      flex-direction: row;
-      border-bottom: 1px solid #000;
-      .label {
-        width: 200px;
-        white-space: nowrap;
-      }
-      .value {
-        text-align: right;
-        font-weight: 600;
-      }
-    }
-    .total-bottom {
-      width: var(--total-row);
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      .label {
-        width: 200px;
-      }
-      .value {
-        text-align: right;
-        font-size: 1.2em;
-        font-weight: 600;
-      }
-    }
-  }
+.invoice .invoice-number {
+  position: absolute;
+  top: 2cm;
+  left: 4cm;
 }
 
-.border {
-  border: 1px solid #000;
+.invoice .date {
+  position: absolute;
+  top: 3cm;
+  left: 13cm;
 }
 
-.bold {
-  font-weight: 700;
+.invoice .client-name {
+  position: absolute;
+  top: 5cm;
+  left: 3cm;
 }
 
-.right {
+.invoice .client-cuit {
+  position: absolute;
+  top: 5cm;
+  left: 12.5cm;
+}
+
+.invoice .client-address {
+  position: absolute;
+  top: 6cm;
+  left: 3cm;
+}
+
+.invoice .client-phone {
+  position: absolute;
+  top: 6cm;
+  left: 12.5cm;
+}
+
+.invoice .client-city {
+  position: absolute;
+  top: 6.5cm;
+  left: 3cm;
+}
+
+.invoice .client-state {
+  position: absolute;
+  top: 7cm;
+  left: 3cm;
+}
+
+.invoice .remito {
+  position: absolute;
+  top: 7cm;
+  left: 12.5cm;
+}
+
+.invoice .client-resp {
+  position: absolute;
+  top: 7.5cm;
+  left: 18cm;
+}
+
+.invoice .items-list {
+  position: absolute;
+  top: 9cm;
+  left: 0cm;
+  width: 100%;
+  height: 8cm;
+}
+
+.invoice .table {
+  position: absolute;
+  top: 9cm;
+  left: 0.5cm;
+}
+
+.invoice .table .table-row .item-quantity {
+  width: 1cm;
+}
+
+.invoice .table-row .item-code {
+  width: 1cm;
+}
+
+.invoice .table-row .item-description {
+  width: 10cm;
+}
+
+.invoice .table-row .item-price {
+  width: 3cm;
   text-align: right;
 }
 
-.center {
-  text-align: center;
-}
-
-.courier {
-  font-family: $print-font;
-  font-size: 1.1em;
-}
-
-.label {
-  font-weight: 600;
-  padding: 2px;
+.invoice .table-row .item-total {
+  width: 3cm;
   text-align: right;
-  width: 110px;
-  &::after {
-    content: ':';
-  }
 }
 
-.value {
-  padding: 2px;
-  width: 50%;
-  font-family: $print-font;
+.invoice .subtotal1 {
+  position: absolute;
+  top: 16.5cm;
+  left: 16cm;
 }
 
-.site-result-demo-error-icon {
-  color: red;
+.invoice .subtotal2 {
+  position: absolute;
+  top: 17.5cm;
+  left: 1cm;
 }
 
-svg {
-  font-size: 1em;
+.invoice .subtotal3 {
+  position: absolute;
+  top: 17.5cm;
+  left: 7cm;
+}
+
+.invoice .iva1 {
+  position: absolute;
+  top: 17.5cm;
+  left: 10.5cm;
+}
+
+.invoice .iva2 {
+  position: absolute;
+  top: 17.5cm;
+  left: 13.5cm;
+}
+
+.invoice .total {
+  position: absolute;
+  top: 17.5cm;
+  left: 17cm;
+  font-weight: bold;
 }
 
 @media print {
@@ -250,7 +149,7 @@ svg {
     color: #000;
     background-color: #fff;
 
-    .presupuesto {
+    .invoice {
       visibility: visible;
       position: absolute;
       height: 100%;

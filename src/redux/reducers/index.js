@@ -1,39 +1,41 @@
 import { combineReducers } from 'redux'
-import transportesReducer from './transportes'
-import ivasReducer from './ivas'
-import conceptosReducer from './conceptos'
-import clientesReducer from './clientes'
 import ajustesReducer from './ajustes'
-import tiposReducer from './tipos'
-import subtiposReducer from './subtipos'
-import vendedoresReducer from './vendedores'
-import porcivaReducer from './porciva'
-import pagosReducer from './pagos'
+import clientesReducer from './clientes'
+import conceptosReducer from './conceptos'
+import estadosReducer from './estados'
+import facturasReducer from './facturas'
+import ivasReducer from './ivas'
 import numerosReducer from './numeros'
-import remitosReducer from './remitos'
+import pagosReducer from './pagos'
+import porcivaReducer from './porciva'
 import productosReducer from './productos'
 import provinciasReducer from './provincias'
-import estadosReducer from './estados'
+import remitosReducer from './remitos'
 import reportsReducer from './reports'
+import subtiposReducer from './subtipos'
+import tiposReducer from './tipos'
+import transportesReducer from './transportes'
+import vendedoresReducer from './vendedores'
 import wakeUpReducer from './wakeUp'
 
 const rootReducer = combineReducers({
-  transportes: transportesReducer,
-  ivas: ivasReducer,
-  conceptos: conceptosReducer,
-  clientes: clientesReducer,
   ajustes: ajustesReducer,
-  tipos: tiposReducer,
-  subtipos: subtiposReducer,
-  vendedores: vendedoresReducer,
-  porciva: porcivaReducer,
-  pagos: pagosReducer,
+  clientes: clientesReducer,
+  conceptos: conceptosReducer,
+  estados: estadosReducer,
+  facturas: facturasReducer,
+  ivas: ivasReducer,
   numeros: numerosReducer,
-  remitos: remitosReducer,
+  pagos: pagosReducer,
+  porciva: porcivaReducer,
   productos: productosReducer,
   provincias: provinciasReducer,
-  estados: estadosReducer,
+  remitos: remitosReducer,
   reports: reportsReducer,
+  subtipos: subtiposReducer,
+  tipos: tiposReducer,
+  transportes: transportesReducer,
+  vendedores: vendedoresReducer,
   wakeUp: wakeUpReducer
 })
 

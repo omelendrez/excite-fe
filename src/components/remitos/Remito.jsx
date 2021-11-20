@@ -20,7 +20,7 @@ import {
   updateItem
 } from 'redux/actions'
 import { fields } from './fields'
-import { setFields, formatAmount } from 'utils/helpers'
+import { setFields, formatAmount, log } from 'utils/helpers'
 import './remito.scss'
 import { invoiceColumns } from './columns'
 
@@ -123,10 +123,14 @@ const Remito = (props) => {
   const handleInvoice = (e) => {
     switch (e.key) {
       default:
-        console.log('Error', e.key)
+        log.error('Error', e.key)
         break
       case '1':
-        toggleInvoice()
+        if (record.REMFACNUM === 0) {
+          toggleInvoice()
+        } else {
+          setUrl(`/remitos/invoice/imprimir/${record.REMFACNUM}`)
+        }
         break
     }
   }
@@ -179,11 +183,8 @@ const Remito = (props) => {
   const handleInvoiceOkButton = e => {
     e.preventDefault()
     const isSaving = record.REMFACNUM === 0
-
     if (isSaving) {
       console.log('save record')
-    } else {
-      setUrl('/remitos/invoice/imprimir')
     }
   }
 
@@ -243,7 +244,6 @@ const Remito = (props) => {
     discount,
     rowKey: 'ID',
     path: props.location.pathname,
-
     onSave
   }
 
@@ -331,17 +331,17 @@ const Remito = (props) => {
         title="Factura E"
         maskClosable={false}
       >
-        <Invoice
-          record={record}
-          items={compact}
-          columns={invoiceColumns()}
-          client={cliente}
-          seller={vendedores.find(v => v.VENCOD === record.VENCOD)}
-          iva={ivas?.find(i => i.IVACOD === cliente?.IVACOD)}
-        />
-
         {record.REMFACNUM === 0 &&
           <>
+            <Invoice
+              record={record}
+              items={compact}
+              columns={invoiceColumns()}
+              client={cliente}
+              seller={vendedores.find(v => v.VENCOD === record.VENCOD)}
+              iva={ivas?.find(i => i.IVACOD === cliente?.IVACOD)}
+            />
+
             <Divider />
             <Alert
               message="Antención!"

@@ -6,6 +6,8 @@ $print-font: 'Inconsolata', monospace;
 
 .presupuesto {
   width: 8.5in;
+  background-color: rgb(219, 210, 198);
+  position: absolute;
   .remito {
     display: flex;
     flex-direction: row;

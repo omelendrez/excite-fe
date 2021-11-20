@@ -1,40 +1,42 @@
 import { all } from "redux-saga/effects";
-import transportesSaga from "./transportesSaga";
-import ivasSaga from "./ivasSaga";
-import conceptosSaga from "./conceptosSaga";
-import clientesSaga from "./clientesSaga";
 import ajustesSaga from "./ajustesSaga";
-import tiposSaga from "./tiposSaga";
-import subtiposSaga from "./subtiposSaga";
-import vendedoresSaga from "./vendedoresSaga";
-import porcivaSaga from "./porcivaSaga";
-import pagosSaga from "./pagosSaga";
+import clientesSaga from "./clientesSaga";
+import conceptosSaga from "./conceptosSaga";
+import estadosSaga from "./estadosSaga";
+import facturasSaga from "./facturasSaga";
+import ivasSaga from "./ivasSaga";
 import numerosSaga from "./numerosSaga";
-import remitosSaga from "./remitosSaga";
+import pagosSaga from "./pagosSaga";
+import porcivaSaga from "./porcivaSaga";
 import productosSaga from "./productosSaga";
 import provinciasSaga from "./provinciasSaga";
-import estadosSaga from "./estadosSaga";
+import remitosSaga from "./remitosSaga";
 import reportesSaga from './reportsSaga'
+import subtiposSaga from "./subtiposSaga";
+import tiposSaga from "./tiposSaga";
+import transportesSaga from "./transportesSaga";
+import vendedoresSaga from "./vendedoresSaga";
 import wakeUp from "./wakeUp";
 
 export default function* rootSaga() {
   yield all([
-    transportesSaga(),
-    ivasSaga(),
-    conceptosSaga(),
-    clientesSaga(),
     ajustesSaga(),
-    tiposSaga(),
-    subtiposSaga(),
-    vendedoresSaga(),
-    porcivaSaga(),
-    pagosSaga(),
+    clientesSaga(),
+    conceptosSaga(),
+    estadosSaga(),
+    facturasSaga(),
+    ivasSaga(),
     numerosSaga(),
-    remitosSaga(),
+    pagosSaga(),
+    porcivaSaga(),
     productosSaga(),
     provinciasSaga(),
-    estadosSaga(),
+    remitosSaga(),
     reportesSaga(),
+    subtiposSaga(),
+    tiposSaga(),
+    transportesSaga(),
+    vendedoresSaga(),
     wakeUp(),
   ]);
 }

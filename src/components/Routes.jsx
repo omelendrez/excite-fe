@@ -146,7 +146,7 @@ const Routes = () => {
       <Route exact path="/remitos/items/add/item" component={ItemForm} />
       <Route exact path="/remitos/items/edit/:id" component={ItemForm} />
       <Route exact path="/remitos/remito/reporte" component={Presupuesto} />
-      <Route exact path="/remitos/invoice/imprimir" component={Invoice} />
+      <Route exact path="/remitos/invoice/imprimir/:id" component={Invoice} />
 
       {/* Números */}
       <Route exact path="/ultimos-numeros" component={Numeros} />

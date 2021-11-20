@@ -44,8 +44,8 @@ const Invoice = props => {
   return (
     <Layout className="container">
       <div className="invoice-header">
-        {headers.map((header, index) =>
-          <div className="invoice-row" key={index}>
+        {headers.map((header) =>
+          <div className="invoice-row" key={header.label}>
             <div className="field-name">{header.label}</div>
             <div className="field-value">{header.value}</div>
           </div>
@@ -61,7 +61,7 @@ const Invoice = props => {
         </thead>
         <tbody>
           {items.map((row) =>
-          (<tr key={row.ID}>
+          (<tr key={row.PRODCOD}>
             {columns.map(col =>
             (<td key={col.dataIndex} width={col.width} align={col.align}>
               {col.render ? col.render(row[col.dataIndex], row) : row[col.dataIndex]}</td>)

@@ -1,232 +1,65 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Result, Button } from 'antd'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import BackButton from 'components/common/BackButton'
 import PrintButton from 'components/common/PrintButton'
-import { formatDateNow, formatTimeNow, formatAmount } from 'utils/helpers'
+import { getFactura } from 'redux/actions/facturas'
+import { formatDate, formatAmount, charPadding } from 'utils/helpers'
 import './invoice.scss'
 
 const Presupuesto = (props) => {
-  const {
-    record: remito,
-    compact
-  } = useSelector((state) => state.remitos)
-  const { record: cliente } = useSelector((state) => state.clientes)
-  const { records: vendedores } = useSelector((state) => state.vendedores)
-  const { records: provincias } = useSelector((state) => state.provincias)
-  const { records: ivas } = useSelector((state) => state.ivas)
-  const { records: transportes } = useSelector((state) => state.transportes)
-  const records = compact
+  const dispatch = useDispatch()
+  const { record, items } = useSelector(state => state.facturas)
+
+  useEffect(() => {
+    dispatch(getFactura(props.match.params.id))
+  }, [dispatch, props.match.params.id])
 
   const onBack = () => props.history.goBack()
 
-  const onPrint = () => {
-    if (remito.REMNUM) {
-      window.print()
-    }
+  const onPrint = () => window.print()
+
+  if (!record?.FACNUM) {
+    return null
   }
 
-  if (!remito.REMNUM) {
-    return (
-      <Result
-        status="error"
-        title="No se pudo cargar la Factura "
-        subTitle="Vuelva a seleccionar el remito correspondiente en la página de Presupuestos y vuelva a intentar imprimir la factura."
-        extra={
-          <Button onClick={onBack}>
-            Volver
-          </Button>
-        }
-      ></Result>
-    )
-  }
+  const invoice = `${charPadding(record.FACNUM.toString(), '0', 8)} EX`
 
-  const vendedor = `${vendedores.find((v) => v.VENCOD === cliente.VENCOD).VENNOM} - ${cliente.VENCOD}`
-  const total = formatAmount(records.reduce((acc, cur) => acc + cur.REMCAN * cur.REMPRE, 0) - remito.REMDES)
+  const total = items.reduce((acc, cur) => acc + parseFloat(cur.FACTOT), 0) - parseFloat(record.FACDES)
 
   return (
     <>
-      <div className="presupuesto">
-        <div className="remito">
-          <div className="header-right">
-            <div className="sub-header-top border">
-              <div className="sub-header-top-row">
-                <div className="label">Fecha</div>
-                <div className="value">{formatDateNow()}</div>
-              </div>
-              <div className="sub-header-top-row">
-                <div className="label">Hora</div>
-                <div className="value">{formatTimeNow()}</div>
-              </div>
-              <div className="sub-header-top-row">
-                <div className="label">Página</div>
-                <div className="value">1</div>
-              </div>
-            </div>
-            <div className="sub-header-bottom border">
-              <div className="sub-header-bottom-row">
-                <div className="label" style={{ marginTop: 3 }}>
-                  PRESUPUESTO N.
-                </div>
-                <div className="value bold courier">
-                  {remito.REMNUM.toString().padStart(8, '0')}
-                </div>
-              </div>
-              <div className="sub-header-bottom-row">
-                <div className="label">Fecha</div>
-                <div className="value">30/10/20</div>
-              </div>
-              <div className="sub-header-bottom-row">
-                <div className="label">Pedido N.</div>
-                <div className="value">0</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="cliente border">
-          <div className="cliente-left">
-            <div className="cliente-left-row">
-              <div className="label">Cliente</div>
-              <div className="value">{cliente.CLINOM}</div>
-            </div>
-            <div className="cliente-left-row">
-              <div className="label">Dirección</div>
-              <div className="value">{cliente.CLIDOM}</div>
-            </div>
-            <div className="cliente-left-row">
-              <div className="label">Localidad</div>
-              <div className="value">
-                {cliente.CLICP} {cliente.CLILOC}
-              </div>
-            </div>
-            <div className="cliente-left-row">
-              <div className="label">Provincia</div>
-              <div className="value">
-                {provincias.find((p) => p.PROCOD === cliente.PROCOD).PRONOM}
-              </div>
-            </div>
-            <div className="cliente-left-row">
-              <div className="label">Teléfono</div>
-              <div className="value">{cliente.CLITEL}</div>
-            </div>
-          </div>
-
-          <div className="cliente-right">
-            <div className="cliente-right-row">
-              <div className="label">C.U.I.T.</div>
-              <div className="value">{cliente.CLICUIT}</div>
-            </div>
-            <div className="cliente-right-row"></div>
-            <div className="cliente-right-row">
-              <div className="label">Vendedor</div>
-              <div className="value">
-                {vendedor}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="others border">
-          <div className="others-left">
-            <div className="others-left-row">
-              <div className="label">IVA</div>
-              <div className="value">
-                {ivas.find((i) => i.IVACOD === cliente.IVACOD).IVADES}
-              </div>
-            </div>
-          </div>
-          <div className="others-right">
-            <div className="others-right-row">
-              <div className="label">Transporte</div>
-              <div className="value">
-                {transportes.find((t) => t.TRACOD === cliente.TRACOD).TRANOM}
-              </div>
-            </div>
-            <div className="others-right-row">
-              <div className="label">Dirección</div>
-              <div className="value">
-                {transportes.find((t) => t.TRACOD === cliente.TRACOD).TRADOM}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="productos border">
+      <div className="invoice">
+        <div className="invoice-number">{invoice}</div>
+        <div className="date">{formatDate(record.FACFEC)}</div>
+        <div className="client-name">{record.CLINOM}</div>
+        <div className="client-cuit">{record.CLICUIT}</div>
+        <div className="client-address">{record.CLIDOM}</div>
+        <div className="client-phone">{record.CLITEL}</div>
+        <div className="client-city">{record.CLILOC}</div>
+        <div className="client-state">{record.PRONOM}</div>
+        <div className="remito">{record.FACREMNUM}</div>
+        <div className="client-resp">X</div>
+        <div className="table">
           <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th className="cantidad center">Cantidad</th>
-                <th className="producto center">Producto</th>
-                <th className="detalle">Detalle</th>
-                <th className="precio right">Precio Unitario</th>
-                <th className="importe right">Importe</th>
-              </tr>
-            </thead>
             <tbody>
-              {records.map((item, index) => (
-                <tr key={index}>
-                  <td></td>
-                  <td className="center">{item.REMCAN}</td>
-                  <td className="center">{item.PRODCOD}</td>
-                  <td>{item.PRODDES}</td>
-                  <td className="right">{formatAmount(item.REMPRE)}</td>
-                  <td className="right">
-                    {formatAmount(item.REMCAN * item.REMPRE)}
-                  </td>
+              {items.map((item, index) => (
+                <tr key={index} className="table-row">
+                  <td className="item-quantity">{item.FACCAN}</td>
+                  <td className="item-code">{item.SUBTIPCOD}</td>
+                  <td className="item-description">{item.SUBTIPDES}</td>
+                  <td className="item-price">{formatAmount(item.FACPRE)}</td>
+                  <td className="item-total">{formatAmount(item.FACTOT)}</td>
                 </tr>
               ))}
             </tbody>
-            <tfoot>
-              <tr className="bold">
-                <td colSpan={2}>Total de Productos:</td>
-                <td>
-                  {records.reduce(
-                    (acc, cur) => acc + parseFloat(cur.REMCAN),
-                    0
-                  )}
-                </td>
-                <td colSpan="2" className="subtotal-title">
-                  SubTotal del Presupuesto:
-                </td>
-                <td className="right courier">
-                  {formatAmount(
-                    records.reduce(
-                      (acc, cur) => acc + cur.REMCAN * cur.REMPRE,
-                      0
-                    )
-                  )}
-                </td>
-              </tr>
-              {remito.REMDES > 0 && (
-                <tr className="bold">
-                  <td colSpan="5" className="subtotal-title">
-                    Descuento (-):
-                  </td>
-                  <td className="right courier">
-                    {formatAmount(remito.REMDES)}
-                  </td>
-                </tr>
-              )}
-            </tfoot>
           </table>
         </div>
-
-        <div className="total border">
-          <div className="total-top">
-            <div className="label">IVA Factura N.</div>
-            <div className="value">{remito.REMFACNUM}</div>
-            <div className="label">Importe</div>
-            <div className="value">{formatAmount(0)}</div>
-          </div>
-          <div className="total-bottom">
-            <div className="label">Total a Pagar</div>
-            <div className="value">
-              {total}
-            </div>
-          </div>
-        </div>
+        <div className="subtotal1">{formatAmount(total)}</div>
+        <div className="subtotal2">{formatAmount(total)}</div>
+        <div className="subtotal3">{formatAmount(total)}</div>
+        <div className="iva1">{formatAmount(0)}</div>
+        <div className="iva2">{formatAmount(0)}</div>
+        <div className="total">{formatAmount(total)}</div>
       </div>
       <BackButton onBack={onBack} />
       <PrintButton onPrint={onPrint} />
