@@ -1,6 +1,6 @@
 import { put, takeEvery, call } from "redux-saga/effects";
 import * as types from "redux/actions";
-import { getRecordById } from "services";
+import { getRecordById, addRecord } from "services";
 
 const endpoint = "facturas";
 
@@ -19,6 +19,14 @@ function getFacturaItems(id) {
       throw error;
     });
 }
+function createFactura(id) {
+  return addRecord(`${endpoint}/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 
 function* fetchFacturaSaga(action) {
   try {
@@ -36,8 +44,34 @@ function* fetchFacturaSaga(action) {
   }
 }
 
+function* createFacturaSaga(action) {
+  try {
+    const record = yield call(createFactura, action.id);
+    yield put({
+      type: types.GET_REMITOS_REQUEST,
+    });
+    yield put({
+      type: types.GET_ITEMS_REQUEST,
+      id: record[0].REMNUM,
+    });
+    yield put({
+      type: types.GET_REMITO_REQUEST,
+      id: record[0].REMNUM,
+    });
+    yield put({
+      type: types.CREATE_FACTURA_SUCCESS
+    });
+  } catch (error) {
+    yield put({
+      type: types.CREATE_FACTURA_FAILED,
+      payload: error.message,
+    });
+  }
+}
+
 function* facturaSaga() {
   yield takeEvery(types.GET_FACTURA_REQUEST, fetchFacturaSaga);
+  yield takeEvery(types.CREATE_FACTURA_REQUEST, createFacturaSaga);
 }
 
 export default facturaSaga;

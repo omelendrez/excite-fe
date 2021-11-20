@@ -17,7 +17,8 @@ import {
   getCliente,
   deleteItem,
   addItem,
-  updateItem
+  updateItem,
+  createFactura
 } from 'redux/actions'
 import { fields } from './fields'
 import { setFields, formatAmount, log } from 'utils/helpers'
@@ -182,10 +183,7 @@ const Remito = (props) => {
 
   const handleInvoiceOkButton = e => {
     e.preventDefault()
-    const isSaving = record.REMFACNUM === 0
-    if (isSaving) {
-      console.log('save record')
-    }
+    dispatch(createFactura(record.REMNUM))
   }
 
   const discountFields = [
@@ -259,6 +257,10 @@ const Remito = (props) => {
     )
   }
 
+  if (record?.REMFACNUM && showInvoice) {
+    toggleInvoice()
+  }
+
   return (
     <>
       <Layout>
@@ -271,14 +273,15 @@ const Remito = (props) => {
         <div className="card-container no-Discount">
           <Collapse defaultActiveKey={['1']} ghost>
             <Panel key="1" header="Detalle">
+              {record.ESTCOD === 'A' && <Alert message="Atención" description="Este documento ha sido ANULADO" type="info" />}
               <Info
                 fields={fields}
                 data={info}
                 onDelete={items.length === 0 ? handleDelete : null}
                 success={success}
-                onPrintRemito={items.length !== 0 ? handlePrint : null}
-                onDiscount={items.length !== 0 ? handleDiscount : null}
-                onInvoice={items.length !== 0 ? handleInvoice : null}
+                onPrintRemito={items.length !== 0 && record.ESTCOD !== 'A' ? handlePrint : null}
+                onDiscount={items.length !== 0 && record.ESTCOD !== 'A' ? handleDiscount : null}
+                onInvoice={items.length !== 0 && record.ESTCOD !== 'A' ? handleInvoice : null}
               />
             </Panel>
           </Collapse>

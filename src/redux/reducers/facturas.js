@@ -31,6 +31,26 @@ const facturasReducer = (state = initialState, action) => {
         error: action.payload,
       };
 
+
+    case types.CREATE_FACTURA_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case types.CREATE_FACTURA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      };
+    case types.CREATE_FACTURA_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     default:
       return state;
   }
