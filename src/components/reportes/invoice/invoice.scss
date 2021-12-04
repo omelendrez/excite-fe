@@ -11,37 +11,37 @@ $print-font: 'Inconsolata', monospace;
 
 .invoice .invoice-number {
   position: absolute;
-  top: 2cm;
-  left: 4cm;
+  top: 1.5cm;
+  left: 3.5cm;
 }
 
 .invoice .date {
   position: absolute;
-  top: 3cm;
-  left: 13cm;
+  top: 2.5cm;
+  left: 15cm;
 }
 
 .invoice .client-name {
   position: absolute;
-  top: 5cm;
+  top: 4.6cm;
   left: 3cm;
 }
 
 .invoice .client-cuit {
   position: absolute;
-  top: 5cm;
+  top: 4.7cm;
   left: 12.5cm;
 }
 
 .invoice .client-address {
   position: absolute;
-  top: 6cm;
+  top: 5.6cm;
   left: 3cm;
 }
 
 .invoice .client-phone {
   position: absolute;
-  top: 6cm;
+  top: 5.5cm;
   left: 12.5cm;
 }
 
@@ -59,14 +59,14 @@ $print-font: 'Inconsolata', monospace;
 
 .invoice .remito {
   position: absolute;
-  top: 7cm;
+  top: 6.6cm;
   left: 12.5cm;
 }
 
 .invoice .client-resp {
   position: absolute;
-  top: 7.5cm;
-  left: 18cm;
+  top: 7.3cm;
+  left: 18.5cm;
 }
 
 .invoice .items-list {
@@ -84,7 +84,7 @@ $print-font: 'Inconsolata', monospace;
 }
 
 .invoice .table .table-row .item-quantity {
-  width: 1cm;
+  width: 1.7cm;
 }
 
 .invoice .table-row .item-code {
@@ -96,7 +96,7 @@ $print-font: 'Inconsolata', monospace;
 }
 
 .invoice .table-row .item-price {
-  width: 3cm;
+  width: 2.3cm;
   text-align: right;
 }
 
@@ -107,38 +107,38 @@ $print-font: 'Inconsolata', monospace;
 
 .invoice .subtotal1 {
   position: absolute;
-  top: 16.5cm;
-  left: 16cm;
+  top: 17.3cm;
+  left: 16.3cm;
 }
 
 .invoice .subtotal2 {
   position: absolute;
-  top: 17.5cm;
+  top: 19.5cm;
   left: 1cm;
 }
 
 .invoice .subtotal3 {
   position: absolute;
-  top: 17.5cm;
-  left: 7cm;
+  top: 19.5cm;
+  left: 7.4cm;
 }
 
 .invoice .iva1 {
   position: absolute;
-  top: 17.5cm;
-  left: 10.5cm;
+  top: 19.5cm;
+  left: 10.9cm;
 }
 
 .invoice .iva2 {
   position: absolute;
-  top: 17.5cm;
-  left: 13.5cm;
+  top: 19.5cm;
+  left: 13.9cm;
 }
 
 .invoice .total {
   position: absolute;
-  top: 17.5cm;
-  left: 17cm;
+  top: 19.5cm;
+  left: 17.6cm;
   font-weight: bold;
 }
 

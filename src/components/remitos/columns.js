@@ -26,30 +26,27 @@ export const columns = [
     width: 120
   },
   {
-    dataIndex: 'CLICOD',
-    title: 'Código',
+    dataIndex: 'REMFACNUM',
+    title: 'Factura',
+    render: (text) => text || '',
+    width: 80,
     searchable: true,
-    width: 80
   },
   {
     dataIndex: 'CLINOM',
     title: 'Cliente',
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, 'CLINOM'),
+    render: (text, record) => `${record.CLICOD} ${text}`,
     ellipsis: true,
     width: 280
-  },
-  {
-    dataIndex: 'VENCOD',
-    title: 'Código',
-    searchable: true,
-    width: 80
   },
   {
     dataIndex: 'VENNOM',
     title: 'Vendedor',
     searchable: true,
     sorter: (a, b) => sortColumn(a, b, 'VENNOM'),
+    render: (text, record) => `${record.VENCOD} ${text}`,
     ellipsis: true,
     width: 180
   },
