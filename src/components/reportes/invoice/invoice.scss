@@ -3,10 +3,22 @@ $print-font: 'Inconsolata', monospace;
 .invoice {
   margin: 0;
   padding: 0;
-  width: 21cm;
-  height: 22cm;
-  background-color: rgb(219, 210, 198);
+  width: 210mm;
+  height: 297mm;
   position: absolute;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: -26px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    background-image: url(../../../assets/FACTURA-E.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 
 .invoice .invoice-number {
@@ -160,6 +172,10 @@ $print-font: 'Inconsolata', monospace;
       padding: 0;
       background: #fff !important;
       color: #000;
+      &::before {
+        display: none;
+      }
+    
       /*       @page {
         size: A4 portrait;
         margin: 0.5cm;
